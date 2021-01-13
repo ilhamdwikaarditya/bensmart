@@ -25,25 +25,31 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 			</a>
 		</li>
 
-		<li class="side-nav-item <?php if ($page_name == 'categories' || $page_name == 'category_add' || $page_name == 'category_edit' ): ?> active <?php endif; ?>">
-			<a href="javascript: void(0);" class="side-nav-link <?php if ($page_name == 'categories' || $page_name == 'category_add' || $page_name == 'category_edit' ): ?> active <?php endif; ?>">
+		<?php 
+			$session_level = '1';
+			$CI =& get_instance();
+			$CI->load->model('Menu_model');
+			$result = $CI->Menu_model->getAllMenugroups($session_level)->result();
+				foreach ($result as $rows){
+		?>
+
+		<li class="side-nav-item  ">
+			<a href="javascript: void(0);" class="side-nav-link ">
 				<i class="dripicons-network-1"></i>
-				<span> <?php echo get_phrase('categories'); ?> </span>
+				<span> <?php echo $rows->nm_menu_groups; ?> </span>
 				<span class="menu-arrow"></span>
 			</a>
 			<ul class="side-nav-second-level" aria-expanded="false">
-				<li class = "<?php if($page_name == 'categories' || $page_name == 'category_edit') echo 'active'; ?>">
-					<a href="<?php echo site_url('admin/categories'); ?>"><?php echo get_phrase('categories'); ?></a>
-				</li>
+				<?php 
 
-				<li class = "<?php if($page_name == 'category_add') echo 'active'; ?>">
-					<a href="<?php echo site_url('admin/category_form/add_category'); ?>"><?php echo get_phrase('add_new_category'); ?></a>
+					$result_= $CI->Menu_model->getAllMenudetails($rows->id_menu_groups, $session_level)->result();
+						foreach ($result_ as $rows_){
+				?>
+				<li class = "">
+					<a href="<?php echo base_url(); ?><?php echo $rows_->url; ?>"><?php echo $rows_->nm_menu_details; ?></a>
 				</li>
+				<?php } ?>
 			</ul>
 		</li>
-		
-		<?php $session_level = '1'?>
-        <?php foreach ($this->Menu_model->getAllMenugroups($session_level)->result() as $rows) { ?>
-		
 		<?php } ?>
 </div>
