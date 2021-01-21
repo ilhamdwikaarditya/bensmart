@@ -919,5 +919,20 @@
     "private_messaging": "Private messaging",
     "private_message": "Private message",
     "choose_an_option_from_the_left_side": "Choose an option from the left side",
-    "instructor_settings_updated": "Instructor settings updated"
+    "instructor_settings_updated": "Instructor settings updated",
+    "nanda": "Nanda",
+    "jenjang": "Jenjang",
+    "": "",
+    "jenjang_add": "Jenjang add",
+    "jenjang_edit": "Jenjang edit",
+    "materi_group_add": "Materi group add",
+    "materi_group": "Materi group",
+    "materi_group_edit": "Materi group edit",
+    "materi_group_sub": "Materi group sub",
+    "materi_group_sub_add": "Materi group sub add",
+    "materi_group_sub_edit": "Materi group sub edit",
+    "mapel": "Mapel",
+    "mata_pelajaran": "Mata pelajaran",
+    "mata_pelajaran_add": "Mata pelajaran add",
+    "mata_pelajaran_edit": "Mata pelajaran edit"
 }
