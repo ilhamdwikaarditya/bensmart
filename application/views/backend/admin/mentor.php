@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo $page_title; ?>
-                <a href = "<?php echo site_url('admin/mentor_form/add_mentor_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i>Tambah Mentor</a>
+                <a href = "<?php echo site_url('master/mentor_form/add_mentor_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i>Tambah Mentor</a>
             </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
@@ -42,8 +42,8 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="<?php echo site_url('admin/mentor_form/edit_mentor_form/'.$data_mentor['id_mentor']) ?>">Edit</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('admin/mentor/delete/'.$data_mentor['id_mentor']); ?>');">Delete</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('master/mentor_form/edit_mentor_form/'.$data_mentor['id_mentor']) ?>">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('master/mentor/delete/'.$data_mentor['id_mentor']); ?>');">Delete</a></li>
                                     </ul>
                                 </div>
                               </td>
