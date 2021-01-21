@@ -1934,6 +1934,30 @@ class Crud_model extends CI_Model
         }
         return $this->db->get('course')->result_array();
     }
+	
+	public function filter_level_for_backend($category_id, $instructor_id, $price, $status)
+    {
+        if ($category_id != "all") {
+            $this->db->where('sub_category_id', $category_id);
+        }
+
+        if ($price != "all") {
+            if ($price == "paid") {
+                $this->db->where('is_free_course', null);
+            } elseif ($price == "free") {
+                $this->db->where('is_free_course', 1);
+            }
+        }
+
+        if ($instructor_id != "all") {
+            $this->db->where('user_id', $instructor_id);
+        }
+
+        if ($status != "all") {
+            $this->db->where('status', $status);
+        }
+        return $this->db->get('ref_level')->result_array();
+    }
 
     public function sort_section($section_json)
     {
