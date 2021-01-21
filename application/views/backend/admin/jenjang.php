@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo $page_title; ?>
-                <a href = "<?php echo site_url('admins/jenjang_form/add_jenjang_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i>Add Jenjang</a>
+                <a href = "<?php echo site_url('master/jenjang_form/add_jenjang_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i>Add Jenjang</a>
             </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
@@ -44,8 +44,8 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="<?php echo site_url('admins/jenjang_form/edit_jenjang_form/'.$jenjang['id_jenjang']) ?>">Edit</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('admins/jenjang/delete/'.$jenjang['id_jenjang']); ?>');">Delete</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('master/jenjang_form/edit_jenjang_form/'.$jenjang['id_jenjang']) ?>">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('master/jenjang/delete/'.$jenjang['id_jenjang']); ?>');">Delete</a></li>
                                     </ul>
                                 </div>
                               </td>

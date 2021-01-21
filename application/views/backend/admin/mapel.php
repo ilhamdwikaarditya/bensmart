@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo $page_title; ?>
-                <a href = "<?php echo site_url('admins/mapel_form/add_mapel_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i>Add <?php echo $page_title; ?></a>
+                <a href = "<?php echo site_url('master/mapel_form/add_mapel_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i>Add <?php echo $page_title; ?></a>
             </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
@@ -44,8 +44,8 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="<?php echo site_url('admins/mapel_form/edit_mapel_form/'.$mapel['id_mapel']) ?>">Edit</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('admins/mapel/delete/'.$mapel['id_mapel']); ?>');">Delete</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('master/mapel_form/edit_mapel_form/'.$mapel['id_mapel']) ?>">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('master/mapel/delete/'.$mapel['id_mapel']); ?>');">Delete</a></li>
                                     </ul>
                                 </div>
                               </td>
