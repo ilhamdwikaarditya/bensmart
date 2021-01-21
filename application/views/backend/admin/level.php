@@ -38,8 +38,8 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="<?php echo site_url('admin/level_form/edit_level_form/'.$datalevel['id_level']) ?>"><?php echo get_phrase('edit'); ?></a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('admin/level/delete/'.$datalevel['id_level']); ?>');"><?php echo get_phrase('delete'); ?></a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('admin/level_form/edit_level_form/'.$datalevel['id_level']) ?>">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('admin/level/delete/'.$datalevel['id_level']); ?>');">Delete</a></li>
                                     </ul>
                                 </div>
                               </td>

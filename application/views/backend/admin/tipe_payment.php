@@ -38,8 +38,8 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="<?php echo site_url('admin/tipe_payment_form/edit_tipe_payment_form/'.$datatipepayment['id_type_payment']) ?>"><?php echo get_phrase('edit'); ?></a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('admin/tipe_payment/delete/'.$datatipepayment['id_type_payment']); ?>');"><?php echo get_phrase('delete'); ?></a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('admin/tipe_payment_form/edit_tipe_payment_form/'.$datatipepayment['id_type_payment']) ?>">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('admin/tipe_payment/delete/'.$datatipepayment['id_type_payment']); ?>');">Delete</a></li>
                                     </ul>
                                 </div>
                               </td>

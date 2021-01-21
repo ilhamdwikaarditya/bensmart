@@ -42,8 +42,8 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="<?php echo site_url('admin/mentor_form/edit_mentor_form/'.$data_mentor['id_mentor']) ?>"><?php echo get_phrase('edit'); ?></a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('admin/mentor/delete/'.$data_mentor['id_mentor']); ?>');"><?php echo get_phrase('delete'); ?></a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('admin/mentor_form/edit_mentor_form/'.$data_mentor['id_mentor']) ?>">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('admin/mentor/delete/'.$data_mentor['id_mentor']); ?>');">Delete</a></li>
                                     </ul>
                                 </div>
                               </td>
