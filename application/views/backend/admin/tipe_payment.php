@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo $page_title; ?>
-                <a href = "<?php echo site_url('admin/tipe_payment_form/add_tipe_payment_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i>Tambah Tipe Payment</a>
+                <a href = "<?php echo site_url('master/tipe_payment_form/add_tipe_payment_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i>Tambah Tipe Payment</a>
             </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
@@ -38,8 +38,8 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="<?php echo site_url('admin/tipe_payment_form/edit_tipe_payment_form/'.$datatipepayment['id_type_payment']) ?>">Edit</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('admin/tipe_payment/delete/'.$datatipepayment['id_type_payment']); ?>');">Delete</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('master/tipe_payment_form/edit_tipe_payment_form/'.$datatipepayment['id_type_payment']) ?>">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('master/tipe_payment/delete/'.$datatipepayment['id_type_payment']); ?>');">Delete</a></li>
                                     </ul>
                                 </div>
                               </td>

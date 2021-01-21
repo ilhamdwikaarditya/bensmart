@@ -47,15 +47,15 @@ class Master extends CI_Controller {
         }
         if ($param1 == "add") {
             $this->master_model->add_jenjang();
-            redirect(site_url('admins/jenjang'), 'refresh');
+            redirect(site_url('master/jenjang'), 'refresh');
         }
         elseif ($param1 == "edit") {
             $this->master_model->edit_jenjang($param2);
-            redirect(site_url('admins/jenjang'), 'refresh');
+            redirect(site_url('master/jenjang'), 'refresh');
         }
         elseif ($param1 == "delete") {
             $this->master_model->delete_jenjang($param2);
-            redirect(site_url('admins/jenjang'), 'refresh');
+            redirect(site_url('master/jenjang'), 'refresh');
         }
 
         $page_data['page_name'] = 'jenjang';
@@ -88,15 +88,15 @@ class Master extends CI_Controller {
         }
         if ($param1 == "add") {
             $this->master_model->add_materi_group();
-            redirect(site_url('admins/materi_group'), 'refresh');
+            redirect(site_url('master/materi_group'), 'refresh');
         }
         elseif ($param1 == "edit") {
             $this->master_model->edit_materi_group($param2);
-            redirect(site_url('admins/materi_group'), 'refresh');
+            redirect(site_url('master/materi_group'), 'refresh');
         }
         elseif ($param1 == "delete") {
             $this->master_model->delete_materi_group($param2);
-            redirect(site_url('admins/materi_group'), 'refresh');
+            redirect(site_url('master/materi_group'), 'refresh');
         }
 
         $page_data['page_name'] = 'materi_group';
@@ -131,15 +131,15 @@ class Master extends CI_Controller {
         }
         if ($param1 == "add") {
             $this->master_model->add_materi_group_sub();
-            redirect(site_url('admins/materi_group_sub'), 'refresh');
+            redirect(site_url('master/materi_group_sub'), 'refresh');
         }
         elseif ($param1 == "edit") {
             $this->master_model->edit_materi_group_sub($param2);
-            redirect(site_url('admins/materi_group_sub'), 'refresh');
+            redirect(site_url('master/materi_group_sub'), 'refresh');
         }
         elseif ($param1 == "delete") {
             $this->master_model->delete_materi_group_sub($param2);
-            redirect(site_url('admins/materi_group_sub'), 'refresh');
+            redirect(site_url('master/materi_group_sub'), 'refresh');
         }
 
         $page_data['page_name'] = 'materi_group_sub';
@@ -174,15 +174,15 @@ class Master extends CI_Controller {
         }
         if ($param1 == "add") {
             $this->master_model->add_mapel();
-            redirect(site_url('admins/mapel'), 'refresh');
+            redirect(site_url('master/mapel'), 'refresh');
         }
         elseif ($param1 == "edit") {
             $this->master_model->edit_mapel($param2);
-            redirect(site_url('admins/mapel'), 'refresh');
+            redirect(site_url('master/mapel'), 'refresh');
         }
         elseif ($param1 == "delete") {
             $this->master_model->delete_mapel($param2);
-            redirect(site_url('admins/mapel'), 'refresh');
+            redirect(site_url('master/mapel'), 'refresh');
         }
 
         $page_data['page_name'] = 'mapel';
@@ -216,15 +216,15 @@ class Master extends CI_Controller {
         }
         if ($param1 == "add") {
             $this->master_model->add_level();
-            redirect(site_url('admin/level'), 'refresh');
+            redirect(site_url('master/level'), 'refresh');
         }
         elseif ($param1 == "edit") {
             $this->master_model->edit_level($param2);
-            redirect(site_url('admin/level'), 'refresh');
+            redirect(site_url('master/level'), 'refresh');
         }
         elseif ($param1 == "delete") {
             $this->master_model->delete_level($param2);
-            redirect(site_url('admin/level'), 'refresh');
+            redirect(site_url('master/level'), 'refresh');
         }
 
         $page_data['page_name'] = 'level';
@@ -258,15 +258,15 @@ class Master extends CI_Controller {
         }
         if ($param1 == "add") {
             $this->master_model->add_mentor();
-            redirect(site_url('admin/mentor'), 'refresh');
+            redirect(site_url('master/mentor'), 'refresh');
         }
         elseif ($param1 == "edit") {
             $this->master_model->edit_mentor($param2);
-            redirect(site_url('admin/mentor'), 'refresh');
+            redirect(site_url('master/mentor'), 'refresh');
         }
         elseif ($param1 == "delete") {
             $this->master_model->delete_mentor($param2);
-            redirect(site_url('admin/mentor'), 'refresh');
+            redirect(site_url('master/mentor'), 'refresh');
         }
 
         $page_data['page_name'] = 'mentor';
@@ -302,15 +302,15 @@ class Master extends CI_Controller {
         }
         if ($param1 == "add") {
             $this->master_model->add_tipe_payment();
-            redirect(site_url('admin/tipe_payment'), 'refresh');
+            redirect(site_url('master/tipe_payment'), 'refresh');
         }
         elseif ($param1 == "edit") {
             $this->master_model->edit_tipe_payment($param2);
-            redirect(site_url('admin/tipe_payment'), 'refresh');
+            redirect(site_url('master/tipe_payment'), 'refresh');
         }
         elseif ($param1 == "delete") {
             $this->master_model->delete_tipe_payment($param2);
-            redirect(site_url('admin/tipe_payment'), 'refresh');
+            redirect(site_url('master/tipe_payment'), 'refresh');
         }
 
         $page_data['page_name'] = 'tipe_payment';
@@ -345,15 +345,15 @@ class Master extends CI_Controller {
         }
         if ($param1 == "add") {
             $this->master_model->add_member();
-            redirect(site_url('admin/member'), 'refresh');
+            redirect(site_url('master/member'), 'refresh');
         }
         elseif ($param1 == "edit") {
             $this->master_model->edit_member($param2);
-            redirect(site_url('admin/member'), 'refresh');
+            redirect(site_url('master/member'), 'refresh');
         }
         elseif ($param1 == "delete") {
             $this->master_model->delete_member($param2);
-            redirect(site_url('admin/member'), 'refresh');
+            redirect(site_url('master/member'), 'refresh');
         }
 
         $page_data['page_name'] = 'member';

@@ -17,7 +17,7 @@
 
                 <h4 class="header-title mb-3">Form Edit Tipe Payment </h4>
 
-                <form class="required-form" action="<?php echo site_url('admin/tipe_payment/edit/'.$id_type_payment); ?>" enctype="multipart/form-data" method="post">
+                <form class="required-form" action="<?php echo site_url('master/tipe_payment/edit/'.$id_type_payment); ?>" enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
                         <ul class="nav nav-pills nav-justified form-wizard-header mb-3">
                             <li class="nav-item">

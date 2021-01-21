@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo $page_title; ?>
-                <a href = "<?php echo site_url('admin/member_form/add_member_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i>Tambah Member</a>
+                <a href = "<?php echo site_url('master/member_form/add_member_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i>Tambah Member</a>
             </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
@@ -45,8 +45,8 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="<?php echo site_url('admin/member_form/edit_member_form/'.$datamember['id_user']) ?>">Edit</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('admin/member/delete/'.$datamember['id_user']); ?>');">Delete</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('master/member_form/edit_member_form/'.$datamember['id_user']) ?>">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('master/member/delete/'.$datamember['id_user']); ?>');">Delete</a></li>
                                     </ul>
                                 </div>
                               </td>
