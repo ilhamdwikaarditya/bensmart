@@ -63,11 +63,9 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
-                                            <h3 class="mt-0">Thank You !</h3>
+                                            <br/>
 
-                                            <p class="w-75 mb-2 mx-auto"><?php echo get_phrase('you_are_just_one_click_away'); ?></p>
-
+                                            
                                             <div class="mb-3">
                                                 <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button">Submit</button>
                                             </div>
@@ -75,32 +73,6 @@
                                     </div> <!-- end col -->
                                 </div> <!-- end row -->
                             </div>
-
-                            <!-- <div class="tab-pane" id="finish">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="text-center">
-                                            <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
-                                            <h3 class="mt-0">Thank You !</h3>
-
-                                            <p class="w-75 mb-2 mx-auto"><?php echo get_phrase('you_are_just_one_click_away'); ?></p>
-
-                                            <div class="mb-3">
-                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button"><?php echo get_phrase('submit'); ?></button>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </div> 
-                            </div> -->
-
-                            <!-- <ul class="list-inline mb-0 wizard text-center">
-                                <li class="previous list-inline-item">
-                                    <a href="javascript::" class="btn btn-info"> <i class="mdi mdi-arrow-left-bold"></i> </a>
-                                </li>
-                                <li class="next list-inline-item">
-                                    <a href="javascript::" class="btn btn-info"> <i class="mdi mdi-arrow-right-bold"></i> </a>
-                                </li>
-                            </ul> -->
 
                         </div> <!-- tab-content -->
                     </div> <!-- end #progressbarwizard-->

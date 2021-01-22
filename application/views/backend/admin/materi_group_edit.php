@@ -1,6 +1,5 @@
 <?php
 $materi_group_data = $this->master_model->get_materi_group_by_id($id_materi_group)->row_array();
-// $social_links = json_decode($materi_group_data['social_links'], true);
 ?>
 <div class="row ">
     <div class="col-xl-12">
@@ -55,11 +54,9 @@ $materi_group_data = $this->master_model->get_materi_group_by_id($id_materi_grou
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
-                                            <h3 class="mt-0">Thank You !</h3>
+                                            <br/>
 
-                                            <p class="w-75 mb-2 mx-auto"><?php echo get_phrase('you_are_just_one_click_away'); ?></p>
-
+                                            
                                             <div class="mb-3">
                                                 <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button"><?php echo get_phrase('submit'); ?></button>
                                             </div>

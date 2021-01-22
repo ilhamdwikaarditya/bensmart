@@ -44,8 +44,7 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
-                                            <h3 class="mt-0">Terimakasih !</h3>
+                                            <br/>
 
                                             <div class="mb-3">
                                                 <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button"><?php echo get_phrase('submit'); ?></button>

@@ -1,6 +1,5 @@
 <?php
     $mapel_data = $this->db->get_where('ref_mapel', array('id_mapel' => $id_mapel))->row_array();
-    // $social_links = json_decode($mapel_data['social_links'], true);
 ?>
 <div class="row ">
     <div class="col-xl-12">
@@ -50,11 +49,7 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
-                                            <h3 class="mt-0">Thank You !</h3>
-
-                                            <p class="w-75 mb-2 mx-auto"><?php echo get_phrase('you_are_just_one_click_away'); ?></p>
-
+                                            <br/>
                                             <div class="mb-3">
                                                 <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button">Submit</button>
                                             </div>

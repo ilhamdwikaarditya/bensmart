@@ -23,12 +23,7 @@
                                     <span class="d-none d-sm-inline"><?php echo get_phrase('basic_info'); ?></span>
                                 </a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a href="#finish" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
-                                    <i class="mdi mdi-checkbox-marked-circle-outline mr-1"></i>
-                                    <span class="d-none d-sm-inline"><?php echo get_phrase('finish'); ?></span>
-                                </a>
-                            </li> -->
+                            
                         </ul>
                         <div class="tab-content b-0 mb-0">
 
@@ -57,11 +52,7 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
-                                            <h3 class="mt-0">Thank You !</h3>
-
-                                            <p class="w-75 mb-2 mx-auto"><?php echo get_phrase('you_are_just_one_click_away'); ?></p>
-
+                                            <br/>
                                             <div class="mb-3">
                                                 <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button">Submit</button>
                                             </div>
@@ -70,31 +61,7 @@
                                 </div> <!-- end row -->
                             </div>
 
-                            <!-- <div class="tab-pane" id="finish">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="text-center">
-                                            <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
-                                            <h3 class="mt-0">Thank You !</h3>
-
-                                            <p class="w-75 mb-2 mx-auto"><?php echo get_phrase('you_are_just_one_click_away'); ?></p>
-
-                                            <div class="mb-3">
-                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button"><?php echo get_phrase('submit'); ?></button>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </div> 
-                            </div> -->
-
-                            <!-- <ul class="list-inline mb-0 wizard text-center">
-                                <li class="previous list-inline-item">
-                                    <a href="javascript::" class="btn btn-info"> <i class="mdi mdi-arrow-left-bold"></i> </a>
-                                </li>
-                                <li class="next list-inline-item">
-                                    <a href="javascript::" class="btn btn-info"> <i class="mdi mdi-arrow-right-bold"></i> </a>
-                                </li>
-                            </ul> -->
+                            
 
                         </div> <!-- tab-content -->
                     </div> <!-- end #progressbarwizard-->
