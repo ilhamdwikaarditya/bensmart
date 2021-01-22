@@ -14,99 +14,42 @@ class Manajemen_kelas_model extends CI_Model
 	
 	public function get_manajemen_kelas($id = 0) {
         if ($id > 0) {
-            return $this->db->get_where('ref_level', array('id' => $id, 'is_instructor' => 1));
+            return $this->db->get_where('tr_class', array('id_class' => $id));
         }else{
-            return $this->db->get_where('ref_level');
+			/* $this->db->from("tr_class a");
+			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub', 'left');
+			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang', 'left');
+			$this->db->join('ref_mapel d', 'a.id_mapel = d.id_mapel', 'left');
+			$this->db->order_by('id_class');
+			 */
+			//$this->db->select("nm_class, price, discount, nm_mapel, nm_jenjang, nm_materi_group_sub, nm_mentor");
+			$this->db->from("tr_class a");
+			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub');
+			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang');
+			$this->db->join('ref_mapel d', 'a.id_mapel = d.id_mapel');
+			//$this->db->join('tr_class_mentor e', 'a.id_class = e.id_class', 'left');
+			$this->db->order_by('id_class');
+			
+			return $this->db->get();
         }
     }
 	
-	public function add_jenjang($is_instructor = false)
-    {
-        $data['nm_jenjang'] = html_escape($this->input->post('nm_jenjang'));
-        $data['kd_jenjang'] = html_escape($this->input->post('kd_jenjang'));
+	public function add_manajemen_kelas() {
 
-        $this->db->insert('ref_jenjang', $data);
-        $id_jenjang = $this->db->insert_id();
-        $this->session->set_flashdata('flash_message', 'jenjang added successfully');
-    }
+            $data['nm_class'] = html_escape($this->input->post('nm_class'));
+            $data['desc_class'] = html_escape($this->input->post('desc_class'));
+            $data['price'] = html_escape($this->input->post('price'));
+            $data['discount'] = html_escape($this->input->post('discount'));
+            $data['discount_price'] = html_escape($this->input->post('price')) - html_escape($this->input->post('discount'));
+            $data['id_mapel'] = html_escape($this->input->post('id_mapel'));
+            $data['id_jenjang'] = html_escape($this->input->post('id_jenjang'));
+            $data['id_materi_group_sub'] = html_escape($this->input->post('id_materi_group_sub'));
+            $data['cuser'] = $this->session->userdata('id_user');
+            $data['thumbnail'] = md5(rand(10000, 10000000));
 
-    public function add_materi_group($is_instructor = false)
-    {
-        $data['nm_materi_group'] = html_escape($this->input->post('nm_materi_group'));
-        $data['id_jenjang'] = html_escape($this->input->post('id_jenjang'));
-
-        $this->db->insert('ref_materi_group', $data);
-        $id_materi_group = $this->db->insert_id();
-        $this->session->set_flashdata('flash_message', 'materi group added successfully');
-    }
-
-    public function add_materi_group_sub($is_instructor = false)
-    {
-        $data['nm_materi_group_sub'] = html_escape($this->input->post('nm_materi_group_sub'));
-        $data['kd_materi_group_sub'] = html_escape($this->input->post('kd_materi_group_sub'));
-        $data['id_materi_group'] = html_escape($this->input->post('id_materi_group'));
-
-        $this->db->insert('ref_materi_group_sub', $data);
-        $id_materi_group_sub = $this->db->insert_id();
-        $this->session->set_flashdata('flash_message', 'materi group sub added successfully');
-    }
-
-    public function add_mapel($is_instructor = false)
-    {
-        $data['nm_mapel'] = html_escape($this->input->post('nm_mapel'));
-        $data['kd_mapel'] = html_escape($this->input->post('kd_mapel'));
-
-        $this->db->insert('ref_mapel', $data);
-        $id_mapel = $this->db->insert_id();
-        $this->session->set_flashdata('flash_message', 'mapel added successfully');
-    }
-
-    public function add_level() {
-        
-            $data['nm_level'] = html_escape($this->input->post('nm_level'));
-
-            $this->db->insert('ref_level', $data);
-            $level_id = $this->db->insert_id();
-            $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
-    }
-	
-	public function add_member() {
-        $validity = $this->check_duplication_member('on_create', $this->input->post('email'));
-        if ($validity == false) {
-            $this->session->set_flashdata('error_message', get_phrase('email_duplication'));
-        }else {
-            $data['fullname'] = html_escape($this->input->post('fullname'));
-            $data['address'] = html_escape($this->input->post('address'));
-            $data['phone'] = html_escape($this->input->post('phone'));
-            $data['email'] = html_escape($this->input->post('email'));
-            $data['password'] = sha1(html_escape($this->input->post('password')));
-            $data['id_level'] = 3;
-            $data['photo'] = md5(rand(10000, 10000000));
-
-            $this->db->insert('ref_user', $data);
+            $this->db->insert('tr_class', $data);
             $user_id = $this->db->insert_id();
-            $this->upload_photo($data['photo']);
-            $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
-        }
-    }
-	
-	public function add_mentor() {
-        
-            $data['id_user'] = html_escape($this->input->post('id_user'));
-            $data['bio'] 	 = html_escape($this->input->post('bio'));
-            $data['quotes']  = html_escape($this->input->post('quotes'));
-
-            $this->db->insert('ref_mentor', $data);
-            $mentor_id = $this->db->insert_id();
-            $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
-    }
-	
-	public function add_tipe_payment() {
-        
-            $data['nm_type_payment'] = html_escape($this->input->post('nm_type_payment'));
-
-            $this->db->insert('ref_type_payment', $data);
-            $mentor_id = $this->db->insert_id();
+            $this->upload_thumbnail($data['thumbnail']);
             $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
     }
 	
@@ -279,18 +222,18 @@ class Manajemen_kelas_model extends CI_Model
         }
     }
 
-	public function upload_photo($image_code) {
-        if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
-            move_uploaded_file($_FILES['photo']['tmp_name'], 'uploads/photo/'.$image_code.'.jpg');
+	public function upload_thumbnail($image_code) {
+        if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['name'] != "") {
+            move_uploaded_file($_FILES['thumbnail']['tmp_name'], 'uploads/thumbnail_class/'.$image_code.'.jpg');
             $this->session->set_flashdata('flash_message', 'Berhasil');
         }
     }	
 	
-	public function get_user_photo_url($user_id) {
+	public function get_thumbnail_url($user_id) {
 
-        $user_profile_image = $this->db->get_where('ref_user', array('id_user' => $user_id))->row('photo');
-        if (file_exists('uploads/photo/'.$user_profile_image.'.jpg'))
-             return base_url().'uploads/photo/'.$user_profile_image.'.jpg';
+        $user_profile_image = $this->db->get_where('tr_class', array('id_class' => $user_id))->row('thumbnail');
+        if (file_exists('uploads/thumbnail_class/'.$user_profile_image.'.jpg'))
+             return base_url().'uploads/thumbnail_class/'.$user_profile_image.'.jpg';
         else
             return base_url().'uploads/photo/placeholder.png';
     }

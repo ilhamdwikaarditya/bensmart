@@ -37,15 +37,15 @@
                           <tr>
                               <td><?php echo $key+1; ?></td>
                               <td>
-                                  <img src="<?php echo $this->user_model->get_user_photo_url($datamanajemenkelas['id_class']);?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
+                                  <img src="<?php echo $this->manajemen_kelas_model->get_thumbnail_url($datamanajemenkelas['id_class']);?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
                               </td>
                               <td><?php echo $datamanajemenkelas['nm_class']; ?></td>
                               <td><?php echo $datamanajemenkelas['price']; ?></td>
                               <td><?php echo $datamanajemenkelas['discount']; ?></td>
                               <td><?php echo $datamanajemenkelas['nm_mapel']; ?></td>
                               <td><?php echo $datamanajemenkelas['nm_jenjang']; ?></td>
-                              <td><?php echo $datamanajemenkelas['nm_materi_group']; ?></td>
-                              <td><?php echo $datamanajemenkelas['fullname']; ?></td>
+                              <td><?php echo $datamanajemenkelas['nm_materi_group_sub']; ?></td>
+                              <td><?php echo $datamanajemenkelas['nm_mentor']; ?></td>
                               
                               <td>
                                   <div class="dropright dropright">
@@ -53,6 +53,8 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/detmateri_manajemen_kelas_form/'.$datamanajemenkelas['id_user']) ?>">Isi Detail Materi</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/mentor_manajemen_kelas_form/'.$datamanajemenkelas['id_user']) ?>">Tentukan Mentor</a></li>
                                         <li><a class="dropdown-item" href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/edit_manajemen_kelas_form/'.$datamanajemenkelas['id_user']) ?>">Edit</a></li>
                                         <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/manajemen_kelas/delete/'.$datamanajemenkelas['id_user']); ?>');">Delete</a></li>
                                     </ul>

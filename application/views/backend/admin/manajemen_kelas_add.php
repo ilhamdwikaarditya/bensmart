@@ -14,7 +14,7 @@
 
                 <h4 class="header-title mb-3">Form Kelas</h4>
 
-                <form class="required-form" action="<?php echo site_url('manajemenkelas_data/manajemenkelas_data/add'); ?>" enctype="multipart/form-data" method="post">
+                <form class="required-form" action="<?php echo site_url('manajemen_kelas/manajemen_kelas/add'); ?>" enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
                         <ul class="nav nav-pills nav-justified form-wizard-header mb-3">
                             <li class="nav-item">
@@ -90,7 +90,7 @@
                                         <div class="form-group row mb-3">
                                             <label class="col-md-3 col-form-label" for="discount">Discount<span class="required">*</span></label>
                                             <div class="col-md-9">
-                                                <input type="number" id="discount" name="discount" min="0" max="100" class="form-control" required>
+                                                <input type="number" id="discount" name="discount"  class="form-control" placeholder="5000" required>
                                             </div>
                                         </div>
                                     </div> <!-- end col -->
@@ -104,7 +104,7 @@
 											<label class="col-md-3 col-form-label" for="id_mapel">Mata pelajaran<span class="required">*</span></label>
 											<div class="col-md-9">
 											<select class="form-control select2" data-toggle="select2" name="id_mapel" id="id_mapel">
-											  <option value="0"><?php echo get_phrase('none'); ?></option>
+											  <option value="0">None</option>
 											  <?php foreach ($mapel as $datamapel): ?>
 													  <option value="<?php echo $datamapel['id_mapel']; ?>"><?php echo $datamapel['nm_mapel']; ?></option>
 											  <?php endforeach; ?>
@@ -115,7 +115,7 @@
 											<label class="col-md-3 col-form-label" for="jenjang">Jenjang<span class="required">*</span></label>
 											<div class="col-md-9">
 											<select class="form-control select2" data-toggle="select2" name="id_jenjang" id="id_jenjang">
-											  <option value="0"><?php echo get_phrase('none'); ?></option>
+											  <option value="0">None</option>
 											  <?php foreach ($jenjang as $datajenjang): ?>
 													  <option value="<?php echo $datajenjang['id_jenjang']; ?>"><?php echo $datajenjang['nm_jenjang']; ?></option>
 											  <?php endforeach; ?>
@@ -125,8 +125,8 @@
 										<div class="form-group row mb-3">
 											<label class="col-md-3 col-form-label" for="id_materi_group_sub">Materi Group<span class="required">*</span></label>
 											<div class="col-md-9">
-											<select class="form-control select2" data-toggle="select2" name="id_user" id="id_user">
-											  <option value="0"><?php echo get_phrase('none'); ?></option>
+											<select class="form-control select2" data-toggle="select2" name="id_materi_group_sub" id="id_materi_group_sub">
+											  <option value="0">None</option>
 											  <?php foreach ($materi_group_sub as $datamateri_group_sub): ?>
 													  <option value="<?php echo $datamateri_group_sub['id_materi_group_sub']; ?>"><?php echo $datamateri_group_sub['nm_materi_group_sub']; ?></option>
 											  <?php endforeach; ?>
@@ -145,7 +145,7 @@
                                             <h3 class="mt-0">Terimakasih !</h3>
 
                                             <div class="mb-3">
-                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button"><?php echo get_phrase('submit'); ?></button>
+                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button">Submmit</button>
                                             </div>
                                         </div>
                                     </div> <!-- end col -->
