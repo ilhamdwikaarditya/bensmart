@@ -57,6 +57,10 @@ class Manajemen_kelas extends CI_Controller {
             $this->manajemen_kelas_model->delete_manajemen_kelas($param2);
             redirect(site_url('manajemen_kelas/manajemen_kelas'), 'refresh');
         }
+		elseif ($param1 == "add_mentor") {
+            $this->manajemen_kelas_model->add_mentor_manajemen_kelas($param2);
+            redirect(site_url('manajemen_kelas/manajemen_kelas'), 'refresh');
+        }
 
         $page_data['page_name'] = 'manajemen_kelas';
         $page_data['page_title'] = 'Manajemen Kelas';
@@ -74,7 +78,7 @@ class Manajemen_kelas extends CI_Controller {
 			$page_data['jenjang'] = $this->master_model->get_all_jenjang()->result_array();
 			$page_data['materi_group_sub'] = $this->master_model->get_all_materi_group_sub()->result_array();
             $page_data['page_name'] = 'manajemen_kelas_add';
-            $page_data['page_title'] = 'Tambah Manajemen kelas';
+            $page_data['page_title'] = 'Tambah kelas';
             $this->load->view('backend/index', $page_data);
         }
         elseif ($param1 == 'edit_manajemen_kelas_form') {
@@ -83,7 +87,14 @@ class Manajemen_kelas extends CI_Controller {
 			$page_data['materi_group_sub'] = $this->master_model->get_all_materi_group_sub()->result_array();
             $page_data['page_name'] = 'manajemen_kelas_edit';
             $page_data['id_class'] = $param2;
-            $page_data['page_title'] = 'Edit Manajemen kelas';
+            $page_data['page_title'] = 'Edit kelas';
+            $this->load->view('backend/index', $page_data);
+        }
+		elseif ($param1 == 'mentor_manajemen_kelas_form') {
+			$page_data['mentor'] = $this->manajemen_kelas_model->get_mentor()->result_array();
+			$page_data['page_name'] = 'manajemen_kelas_mentor_add';
+            $page_data['id_class'] = $param2;
+            $page_data['page_title'] = 'Tambah Mentor kelas';
             $this->load->view('backend/index', $page_data);
         }
     }

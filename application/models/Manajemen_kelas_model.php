@@ -34,6 +34,13 @@ class Manajemen_kelas_model extends CI_Model
         }
     }
 	
+	public function get_mentor($mentor_id = 0) {
+		$this->db->select("a.id_mentor, a.id_user, b.fullname");
+		$this->db->from("ref_mentor a");
+		$this->db->join('ref_user b', 'a.id_user = b.id_user');
+        return $this->db->get();
+    }
+	
 	public function add_manajemen_kelas() {
 
             $data['nm_class'] = html_escape($this->input->post('nm_class'));
@@ -44,13 +51,27 @@ class Manajemen_kelas_model extends CI_Model
             $data['id_mapel'] = html_escape($this->input->post('id_mapel'));
             $data['id_jenjang'] = html_escape($this->input->post('id_jenjang'));
             $data['id_materi_group_sub'] = html_escape($this->input->post('id_materi_group_sub'));
-            $data['cuser'] = $this->session->userdata('id_user');
+            $data['cuser'] = html_escape($this->session->userdata('id_user'));
             $data['thumbnail'] = md5(rand(10000, 10000000));
 
             $this->db->insert('tr_class', $data);
             $user_id = $this->db->insert_id();
             $this->upload_thumbnail($data['thumbnail']);
             $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
+    }
+	
+	public function add_mentor_manajemen_kelas($class_id = "") { // Admin does this editing
+        
+			$data['id_class']  = html_escape($class_id);
+            $data['id_mentor'] = html_escape($this->input->post('id_mentor'));
+            $data['nm_mentor'] = html_escape($this->input->post('nm_mentor'));
+            $data['cuser']     = html_escape($this->session->userdata('id_user'));
+			
+			$this->db->where('id_class', $class_id);
+			$this->db->delete('tr_class_mentor');
+            $this->db->insert('tr_class_mentor', $data);
+            $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
+        
     }
 	
 	public function edit_manajemen_kelas($class_id = "") { // Admin does this editing
