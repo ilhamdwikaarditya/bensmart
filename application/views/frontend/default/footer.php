@@ -4,7 +4,7 @@
       <div class="col-md-6">
         <p class="copyright-text">
           <a href=""><img src="<?php echo base_url('uploads/system/'.get_frontend_settings('dark_logo')); ?>" alt="" class="d-inline-block" width="110"></a>
-          <a href="<?php echo get_settings('footer_link'); ?>" target="_blank"><?php echo get_settings('footer_text'); ?></a>
+          
         </p>
       </div>
       <div class="col-md-6">

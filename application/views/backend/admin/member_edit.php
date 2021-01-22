@@ -71,7 +71,7 @@
                                             <div class="col-md-9">
                                                 <div class="d-flex">
                                                   <div class="">
-                                                      <img class = "rounded-circle img-thumbnail" src="<?php echo $this->user_model->get_user_photo_url($member_data['id_user']);?>" alt="" style="height: 50px; width: 50px;">
+                                                      <img class = "rounded-circle img-thumbnail" src="<?php echo $this->master_model->get_user_photo_url($member_data['id_user']);?>" alt="" style="height: 50px; width: 50px;">
                                                   </div>
                                                   <div class="flex-grow-1 mt-1 pl-3">
                                                       <div class="input-group">

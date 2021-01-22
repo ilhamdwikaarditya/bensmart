@@ -13,10 +13,10 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
                     </ul>
 
                     <a href="<?php echo site_url(''); ?>" class="navbar-brand" href="#">
-                        <img src="<?php echo base_url('uploads/system/'.get_frontend_settings('dark_logo')); ?>" alt="" height="35">
+                        <img src="<?php echo base_url('uploads/system/'.get_frontend_settings('dark_logo')); ?>" alt="" height="25">
                     </a>
 
-                    <?php include 'menu.php'; ?>
+                    <?php // include 'menu.php'; ?>
 
 
                     <form class="inline-form" action="<?php echo site_url('home/search'); ?>" method="get" style="width: 100%;">

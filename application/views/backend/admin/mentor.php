@@ -22,8 +22,7 @@
                       <th>#</th>
                       <th>Nama Mentor</th>
                       <th>Email</th>
-                      <th>Bio</th>
-                      <th>Quotes</th>
+                      <th>Telp</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -34,8 +33,7 @@
                               <td><?php echo $key+1; ?></td>
                               <td><?php echo $data_mentor['fullname']; ?></td>
                               <td><?php echo $data_mentor['email']; ?></td>
-                              <td><?php echo $data_mentor['bio']; ?></td>
-                              <td><?php echo $data_mentor['quotes']; ?></td>
+                              <td><?php echo $data_mentor['phone']; ?></td>
                               <td>
                                   <div class="dropright dropright">
                                     <button type="button" class="btn btn-sm btn-outline-primary btn-rounded btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

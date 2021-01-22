@@ -118,9 +118,6 @@ class Master_model extends CI_Model
     }
 	
 	public function get_member($user_id = 0) {
-        if ($user_id > 0) {
-            $this->db->where('id_user', $user_id);
-        }
         $this->db->where('id_level =', 3);
         return $this->db->get('ref_user');
     }
@@ -129,7 +126,7 @@ class Master_model extends CI_Model
         if ($id > 0) {
             return $this->db->get_where('ref_mentor', array('id_mentor' => $id, 'is_instructor' => 1));
         }else{
-            $this->db->select('a.*, b.fullname, b.email');
+            $this->db->select('a.*, b.fullname, b.email, b.phone');
             $this->db->from('ref_mentor a');
             $this->db->join('ref_user b','a.id_user = b.id_user');
 			return $this->db->get();

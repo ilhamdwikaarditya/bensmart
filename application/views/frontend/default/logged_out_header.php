@@ -9,9 +9,9 @@
             <li><a class="mobile-search-trigger" href="#mobile-search">Search<span></span></a></li>
           </ul>
 
-          <a href="<?php echo site_url(''); ?>" class="navbar-brand" href="#"><img src="<?php echo base_url('uploads/system/'.get_frontend_settings('dark_logo')); ?>" alt="" height="35"></a>
+          <a href="<?php echo site_url(''); ?>" class="navbar-brand" href="#"><img src="<?php echo base_url('uploads/system/'.get_frontend_settings('dark_logo')); ?>" alt="" height="25"></a>
 
-          <?php include 'menu.php'; ?>
+          <?php // include 'menu.php'; ?>
 
           <form class="inline-form" action="<?php echo site_url('home/search'); ?>" method="get" style="width: 100%;">
             <div class="input-group search-box mobile-search">

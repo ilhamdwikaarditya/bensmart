@@ -16,19 +16,14 @@ class Manajemen_kelas_model extends CI_Model
         if ($id > 0) {
             return $this->db->get_where('tr_class', array('id_class' => $id));
         }else{
-			/* $this->db->from("tr_class a");
-			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub', 'left');
-			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang', 'left');
-			$this->db->join('ref_mapel d', 'a.id_mapel = d.id_mapel', 'left');
-			$this->db->order_by('id_class');
-			 */
-			//$this->db->select("nm_class, price, discount, nm_mapel, nm_jenjang, nm_materi_group_sub, nm_mentor");
-			$this->db->from("tr_class a");
+			$this->db->select("a.id_class, nm_class, price, discount, nm_mapel, nm_jenjang, nm_materi_group_sub, group_concat(nm_mentor) nm_mentor");
+			$this->db->from('tr_class a');
 			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub');
 			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang');
 			$this->db->join('ref_mapel d', 'a.id_mapel = d.id_mapel');
-			//$this->db->join('tr_class_mentor e', 'a.id_class = e.id_class', 'left');
-			$this->db->order_by('id_class');
+			$this->db->join('tr_class_mentor e', 'a.id_class = e.id_class', 'left');
+			$this->db->group_by('a.id_class');
+			$this->db->order_by('a.id_class');
 			
 			return $this->db->get();
         }
