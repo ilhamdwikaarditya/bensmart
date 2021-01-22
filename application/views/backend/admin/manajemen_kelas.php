@@ -53,10 +53,10 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/detmateri_manajemen_kelas_form/'.$datamanajemenkelas['id_user']) ?>">Isi Detail Materi</a></li>
-                                        <li><a class="dropdown-item" href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/mentor_manajemen_kelas_form/'.$datamanajemenkelas['id_user']) ?>">Tentukan Mentor</a></li>
-                                        <li><a class="dropdown-item" href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/edit_manajemen_kelas_form/'.$datamanajemenkelas['id_user']) ?>">Edit</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/manajemen_kelas/delete/'.$datamanajemenkelas['id_user']); ?>');">Delete</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/detmateri_manajemen_kelas_form/'.$datamanajemenkelas['id_class']) ?>">Isi Detail Materi</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/mentor_manajemen_kelas_form/'.$datamanajemenkelas['id_class']) ?>">Tentukan Mentor</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/edit_manajemen_kelas_form/'.$datamanajemenkelas['id_class']) ?>">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/manajemen_kelas/delete/'.$datamanajemenkelas['id_class']); ?>');">Delete</a></li>
                                     </ul>
                                 </div>
                               </td>

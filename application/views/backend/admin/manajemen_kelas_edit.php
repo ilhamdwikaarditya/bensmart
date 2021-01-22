@@ -1,5 +1,5 @@
 <?php
-    $member_data = $this->db->get_where('ref_user', array('id_user' => $member_id))->row_array();
+    $manajemen_kelas_data = $this->db->get_where('tr_class', array('id_class' => $id_class))->row_array();
 ?>
 <div class="row ">
     <div class="col-xl-12">
@@ -15,27 +15,33 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="header-title mb-3">Form edit member</h4>
+                <h4 class="header-title mb-3">Form edit kelas</h4>
 
-                <form class="required-form" action="<?php echo site_url('master/member/edit/'.$member_id); ?>" enctype="multipart/form-data" method="post">
+                <form class="required-form" action="<?php echo site_url('manajemen_kelas/manajemen_kelas/edit/'.$id_class); ?>" enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
                         <ul class="nav nav-pills nav-justified form-wizard-header mb-3">
                             <li class="nav-item">
                                 <a href="#basic_info" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                     <i class="mdi mdi-face-profile mr-1"></i>
-                                    <span class="d-none d-sm-inline"><?php echo get_phrase('basic_info'); ?></span>
+                                    <span class="d-none d-sm-inline">Detail Kelas</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#login_credentials" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                     <i class="mdi mdi-lock mr-1"></i>
-                                    <span class="d-none d-sm-inline"><?php echo get_phrase('login_credentials'); ?></span>
+                                    <span class="d-none d-sm-inline">Detail Harga</span>
+                                </a>
+                            </li>
+							<li class="nav-item">
+                                <a href="#materi" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
+                                    <i class="mdi mdi-checkbox-marked-circle-outline mr-1"></i>
+                                    <span class="d-none d-sm-inline">Detail Materi</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#finish" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                     <i class="mdi mdi-checkbox-marked-circle-outline mr-1"></i>
-                                    <span class="d-none d-sm-inline"><?php echo get_phrase('finish'); ?></span>
+                                    <span class="d-none d-sm-inline">Finish</span>
                                 </a>
                             </li>
                         </ul>
@@ -49,29 +55,23 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group row mb-3">
-                                            <label class="col-md-3 col-form-label" for="fullname">Nama Lengkap <span class="required">*</span> </label>
+                                            <label class="col-md-3 col-form-label" for="nm_class">Nama Kelas<span class="required">*</span></label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" id="fullname" name="fullname" value="<?php echo $member_data['fullname']; ?>" required>
+                                                <input type="text" class="form-control" id="nm_class" name="nm_class" value="<?php echo $manajemen_kelas_data['nm_class']; ?>" required>
                                             </div>
                                         </div>
                                         <div class="form-group row mb-3">
-                                            <label class="col-md-3 col-form-label" for="address">Alamat <span class="required">*</span> </label>
+                                            <label class="col-md-3 col-form-label" for="desc_class">Deskripsi Kelas</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" id="address" name="address" value="<?php echo $member_data['address']; ?>" required>
+                                                <textarea name="desc_class" id="summernote-basic" class="form-control"><?php echo $manajemen_kelas_data['desc_class']; ?></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row mb-3">
-                                            <label class="col-md-3 col-form-label" for="phone">Telp <span class="required">*</span> </label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $member_data['phone']; ?>" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mb-3">
-                                            <label class="col-md-3 col-form-label" for="photo">Foto member</label>
+                                            <label class="col-md-3 col-form-label" for="thumbnail">Foto Kelas</label>
                                             <div class="col-md-9">
                                                 <div class="d-flex">
                                                   <div class="">
-                                                      <img class = "rounded-circle img-thumbnail" src="<?php echo $this->user_model->get_user_photo_url($member_data['id_user']);?>" alt="" style="height: 50px; width: 50px;">
+                                                      <img class = "rounded-circle img-thumbnail" src="<?php echo $this->manajemen_kelas_model->get_thumbnail_url($manajemen_kelas_data['id_class']);?>" alt="" style="height: 50px; width: 50px;">
                                                   </div>
                                                   <div class="flex-grow-1 mt-1 pl-3">
                                                       <div class="input-group">
@@ -92,27 +92,70 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group row mb-3">
-                                            <label class="col-md-3 col-form-label" for="email"> <?php echo get_phrase('email'); ?> <span class="required">*</span> </label>
+                                            <label class="col-md-3 col-form-label" for="price">Harga<span class="required">*</span></label>
                                             <div class="col-md-9">
-                                                <input type="email" id="email" name="email" class="form-control" value="<?php echo $member_data['email']; ?>" required>
+                                                <input type="number" id="price" name="price" class="form-control" value="<?php echo $manajemen_kelas_data['price']; ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="discount">Discount<span class="required">*</span></label>
+                                            <div class="col-md-9">
+                                                <input type="number" id="discount" name="discount"  class="form-control" placeholder="5000" value="<?php echo $manajemen_kelas_data['discount']; ?>" required>
                                             </div>
                                         </div>
                                     </div> <!-- end col -->
                                 </div> <!-- end row -->
                             </div>
-
-                            
+							
+							<div class="tab-pane" id="materi">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group row mb-3">
+											<label class="col-md-3 col-form-label" for="id_mapel">Mata pelajaran<span class="required">*</span></label>
+											<div class="col-md-9">
+											<select class="form-control select2" data-toggle="select2" name="id_mapel" id="id_mapel">
+											  <option value="0">None</option>
+											  <?php foreach ($mapel as $datamapel): ?>
+													<option value="<?php echo $datamapel['id_mapel']; ?>" <?php if($manajemen_kelas_data['id_mapel'] == $datamapel['id_mapel']) echo 'selected'; ?>><?php echo $datamapel['nm_mapel']; ?></option>
+											  <?php endforeach; ?>
+											</select>
+											</div>
+										</div>
+										<div class="form-group row mb-3">
+											<label class="col-md-3 col-form-label" for="jenjang">Jenjang<span class="required">*</span></label>
+											<div class="col-md-9">
+											<select class="form-control select2" data-toggle="select2" name="id_jenjang" id="id_jenjang">
+											  <option value="0">None</option>
+											  <?php foreach ($jenjang as $datajenjang): ?>
+													  <option value="<?php echo $datajenjang['id_jenjang']; ?>" <?php if($manajemen_kelas_data['id_jenjang'] == $datajenjang['id_jenjang']) echo 'selected'; ?>><?php echo $datajenjang['nm_jenjang']; ?></option>
+											  <?php endforeach; ?>
+											</select>
+											</div>
+										</div>
+										<div class="form-group row mb-3">
+											<label class="col-md-3 col-form-label" for="id_materi_group_sub">Materi Group<span class="required">*</span></label>
+											<div class="col-md-9">
+											<select class="form-control select2" data-toggle="select2" name="id_materi_group_sub" id="id_materi_group_sub">
+											  <option value="0">None</option>
+											  <?php foreach ($materi_group_sub as $datamateri_group_sub): ?>
+													  <option value="<?php echo $datamateri_group_sub['id_materi_group_sub']; ?>" <?php if($manajemen_kelas_data['id_materi_group_sub'] == $datamateri_group_sub['id_materi_group_sub']) echo 'selected'; ?>><?php echo $datamateri_group_sub['nm_materi_group_sub']; ?></option>
+											  <?php endforeach; ?>
+											</select>
+											</div>
+										</div>
+                                    </div> <!-- end col -->
+                                </div> <!-- end row -->
+                            </div>
+							
                             <div class="tab-pane" id="finish">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="text-center">
                                             <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
-                                            <h3 class="mt-0"><?php echo get_phrase('thank_you'); ?> !</h3>
-
-                                            <p class="w-75 mb-2 mx-auto"><?php echo get_phrase('you_are_just_one_click_away'); ?></p>
+                                            <h3 class="mt-0">Terimakasih !</h3>
 
                                             <div class="mb-3">
-                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button"><?php echo get_phrase('submit'); ?></button>
+                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button">Submit</button>
                                             </div>
                                         </div>
                                     </div> <!-- end col -->
