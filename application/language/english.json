@@ -921,5 +921,10 @@
     "choose_an_option_from_the_left_side": "Choose an option from the left side",
     "instructor_settings_updated": "Instructor settings updated",
     "mentor": "Mentor",
-    "tambah_level": "Tambah level"
+    "tambah_level": "Tambah level",
+    "jenjang_add": "Jenjang add",
+    "jenjang": "Jenjang",
+    "member": "Member",
+    "tambah_member": "Tambah member",
+    "tipe_payment": "Tipe payment"
 }
