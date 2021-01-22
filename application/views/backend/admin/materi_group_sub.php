@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo $page_title; ?>
-                <a href = "<?php echo site_url('admins/materi_group_sub_form/add_materi_group_sub_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i>Add Materi Group Sub</a>
+                <a href = "<?php echo site_url('master/materi_group_sub_form/add_materi_group_sub_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i>Add Materi Group Sub</a>
             </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
@@ -49,8 +49,8 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="<?php echo site_url('admins/materi_group_sub_form/edit_materi_group_sub_form/'.$materi_group_sub['id_materi_group_sub']) ?>">Edit</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('admins/materi_group_sub/delete/'.$materi_group_sub['id_materi_group_sub']); ?>');">Delete</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('master/materi_group_sub_form/edit_materi_group_sub_form/'.$materi_group_sub['id_materi_group_sub']) ?>">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('master/materi_group_sub/delete/'.$materi_group_sub['id_materi_group_sub']); ?>');">Delete</a></li>
                                     </ul>
                                 </div>
                               </td>

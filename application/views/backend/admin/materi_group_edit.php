@@ -18,7 +18,7 @@ $materi_group_data = $this->master_model->get_materi_group_by_id($id_materi_grou
 
                 <h4 class="header-title mb-3">Materi Group Edit Form</h4>
 
-                <form class="required-form" action="<?php echo site_url('admins/materi_group/edit/' . $id_materi_group); ?>" enctype="multipart/form-data" method="post">
+                <form class="required-form" action="<?php echo site_url('master/materi_group/edit/' . $id_materi_group); ?>" enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
                         <ul class="nav nav-pills nav-justified form-wizard-header mb-3">
                             <li class="nav-item">

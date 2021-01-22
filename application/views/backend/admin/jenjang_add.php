@@ -14,7 +14,7 @@
 
                 <h4 class="header-title mb-3">Jenjang Add Form</h4>
 
-                <form class="required-form" action="<?php echo site_url('admins/jenjang/add'); ?>" enctype="multipart/form-data" method="post">
+                <form class="required-form" action="<?php echo site_url('master/jenjang/add'); ?>" enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
                         <ul class="nav nav-pills nav-justified form-wizard-header mb-3">
                             <li class="nav-item">
