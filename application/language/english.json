@@ -938,5 +938,9 @@
     "tambah_mentor_kelas": "Tambah mentor kelas",
     "tambah_level": "Tambah level",
     "edit_level": "Edit level",
-    "tambah_mentor": "Tambah mentor"
+    "tambah_mentor": "Tambah mentor",
+    "tambah_tipe_payment": "Tambah tipe payment",
+    "materi_group_add": "Materi group add",
+    "materi_group_sub_add": "Materi group sub add",
+    "mata_pelajaran_add": "Mata pelajaran add"
 }
