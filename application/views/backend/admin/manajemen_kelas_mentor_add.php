@@ -88,7 +88,7 @@
                               <td><?php echo $datamentorkelas['nm_mentor']; ?></td>
                               <td>
                                 <div class="dropright dropright">
-                                    <button type="button" class="btn btn-sm btn-outline-primary btn-rounded btn-icon" href="#" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/manajemen_kelas/delete/'.$datamanajemenkelas['id_class']); ?>');">
+                                    <button type="button" class="btn btn-sm btn-outline-primary btn-rounded btn-icon" href="#" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/manajemen_kelas_form/delete_mentor_manajemen_kelas/'.$datamentorkelas['id_class_mentor']); ?>');">
                                         Delete
                                     </button>
                                 </div>

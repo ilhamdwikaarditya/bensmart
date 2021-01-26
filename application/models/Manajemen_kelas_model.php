@@ -93,8 +93,7 @@ class Manajemen_kelas_model extends CI_Model
             $data['nm_mentor'] = html_escape($this->input->post('nm_mentor'));
             $data['cuser']     = html_escape($this->session->userdata('id_user'));
 			
-			$this->db->where('id_class', $class_id);
-			$this->db->delete('tr_class_mentor');
+			
             $this->db->insert('tr_class_mentor', $data);
             $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
         
@@ -169,6 +168,12 @@ class Manajemen_kelas_model extends CI_Model
 	public function delete_manajemen_kelas($class_id = "") {
         $this->db->where('id_class', $class_id);
         $this->db->delete('tr_class');
+        $this->session->set_flashdata('flash_message', 'Berhasil dihapus');
+    }
+	
+	public function delete_mentor_manajemen_kelas($mentor_class_id = "") {
+        $this->db->where('id_class_mentor', $mentor_class_id);
+        $this->db->delete('tr_class_mentor');
         $this->session->set_flashdata('flash_message', 'Berhasil dihapus');
     }
     

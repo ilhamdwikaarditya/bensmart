@@ -105,6 +105,10 @@ class Manajemen_kelas extends CI_Controller {
             $page_data['page_title'] = 'Tambah Section Materi dan Materi Detail';
             $this->load->view('backend/index', $page_data);
         }
+		elseif ($param1 == 'delete_mentor_manajemen_kelas') {
+			$this->manajemen_kelas_model->delete_mentor_manajemen_kelas($param2);
+            redirect(site_url('manajemen_kelas/manajemen_kelas'), 'refresh');
+        }
     }
     
     public function materi_section($param1 = "", $param2 = "", $param3 = "") {
