@@ -20,6 +20,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
+                      <th>Foto</th>
                       <th>Nama Mentor</th>
                       <th>Email</th>
                       <th>Telp</th>
@@ -31,6 +32,9 @@
                        foreach ($mentor->result_array() as $key => $data_mentor): ?>
                           <tr>
                               <td><?php echo $key+1; ?></td>
+							  <td>
+                                  <img src="<?php echo $this->master_model->get_user_photo_url($data_mentor['id_user']);?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
+                              </td>
                               <td><?php echo $data_mentor['fullname']; ?></td>
                               <td><?php echo $data_mentor['email']; ?></td>
                               <td><?php echo $data_mentor['phone']; ?></td>
