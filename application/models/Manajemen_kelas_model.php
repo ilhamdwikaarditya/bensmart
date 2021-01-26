@@ -35,6 +35,24 @@ class Manajemen_kelas_model extends CI_Model
 		$this->db->join('ref_user b', 'a.id_user = b.id_user');
         return $this->db->get();
     }
+
+    public function get_materi_section($type_by, $id) {
+        if ($type_by == 'class') {
+            return $this->db->get_where('tr_class_materi_section', array('id_class' => $id));
+        } elseif ($type_by == 'section') {
+            return $this->db->get_where('tr_class_materi_section', array('id_class_materi_section' => $id));
+        }
+        // return $this->db->get_where('tr_class_materi_section', array('id_class' => $id_class));
+    }
+
+    public function get_materi_detail($type_by, $id) {
+        if ($type_by == 'section') {
+            return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_section' => $id));
+        } elseif ($type_by == 'detail') {
+            return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_detail' => $id));
+        }
+        // return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_section' => $id_class_materi_section));
+    }
 	
 	public function add_manajemen_kelas() {
 
@@ -54,8 +72,8 @@ class Manajemen_kelas_model extends CI_Model
             $this->upload_thumbnail($data['thumbnail']);
             $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
     }
-	
-	public function add_mentor_manajemen_kelas($class_id = "") { // Admin does this editing
+
+    public function add_mentor_manajemen_kelas($class_id = "") { // Admin does this editing
         
 			$data['id_class']  = html_escape($class_id);
             $data['id_mentor'] = html_escape($this->input->post('id_mentor'));
@@ -67,6 +85,27 @@ class Manajemen_kelas_model extends CI_Model
             $this->db->insert('tr_class_mentor', $data);
             $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
         
+    }
+
+    public function add_materi_section($id_class)
+    {
+        $data['nm_class_materi_section'] = html_escape($this->input->post('nm_class_materi_section'));
+        $data['position'] = html_escape($this->input->post('position'));
+        $data['id_class'] = $id_class;
+        $this->db->insert('tr_class_materi_section', $data);
+        $id_class = $this->db->insert_id();
+    }
+
+    public function add_materi_detail($id_class)
+    {
+        $data['nm_class_materi_detail'] = html_escape($this->input->post('nm_class_materi_detail'));
+        $data['position'] = html_escape($this->input->post('position'));
+        $data['duration'] = html_escape($this->input->post('duration'));
+        $data['url_materi'] = html_escape($this->input->post('url_materi'));
+        $data['desc'] = html_escape($this->input->post('desc'));
+        $data['id_class_materi_section'] = html_escape($this->input->post('id_class_materi_section'));
+        $this->db->insert('tr_class_materi_detail', $data);
+        $id_class_materi_section = $this->db->insert_id();
     }
 	
 	public function edit_manajemen_kelas($class_id = "") { // Admin does this editing
@@ -93,6 +132,25 @@ class Manajemen_kelas_model extends CI_Model
             $this->session->set_flashdata('flash_message', 'Berhasil dirubah');
         
     }
+
+    public function edit_materi_section($id_class_materi_section)
+    {
+        $data['nm_class_materi_section'] = html_escape($this->input->post('nm_class_materi_section'));
+        $data['position'] = html_escape($this->input->post('position'));
+        $this->db->where('id_class_materi_section', $id_class_materi_section);
+        $this->db->update('tr_class_materi_section', $data);
+    }
+
+    public function edit_materi_detail($id_class_materi_detail)
+    {
+        $data['nm_class_materi_detail'] = html_escape($this->input->post('nm_class_materi_detail'));
+        $data['position'] = html_escape($this->input->post('position'));
+        $data['duration'] = html_escape($this->input->post('duration'));
+        $data['url_materi'] = html_escape($this->input->post('url_materi'));
+        $data['desc'] = html_escape($this->input->post('desc'));
+        $this->db->where('id_class_materi_detail', $id_class_materi_detail);
+        $this->db->update('tr_class_materi_detail', $data);
+    }
 	
 	
 	public function delete_manajemen_kelas($class_id = "") {
@@ -100,7 +158,21 @@ class Manajemen_kelas_model extends CI_Model
         $this->db->delete('tr_class');
         $this->session->set_flashdata('flash_message', 'Berhasil dihapus');
     }
-	
+    
+    public function delete_materi_section($id_class, $id_class_materi_section)
+    {
+        $this->db->where('id_class_materi_section', $id_class_materi_section);
+        $this->db->delete('tr_class_materi_section');
+
+        $this->db->where('id_class_materi_section', $id_class_materi_section);
+        $this->db->delete('tr_class_materi_sdetail');
+    }
+    
+    public function delete_materi_detail($id_class, $id_class_materi_detail)
+    {
+        $this->db->where('id_class_materi_detail', $id_class_materi_detail);
+        $this->db->delete('tr_class_materi_detail');
+    }
 
 	public function upload_thumbnail($image_code) {
         if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['name'] != "") {

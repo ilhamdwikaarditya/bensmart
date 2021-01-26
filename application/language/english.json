@@ -942,5 +942,10 @@
     "tambah_tipe_payment": "Tambah tipe payment",
     "materi_group_add": "Materi group add",
     "materi_group_sub_add": "Materi group sub add",
-    "mata_pelajaran_add": "Mata pelajaran add"
+    "mata_pelajaran_add": "Mata pelajaran add",
+    "tambah_section_materi_dan_materi_detail": "Tambah section materi dan materi detail",
+    "list_of_sections": "List of sections",
+    "update_sorting": "Update sorting",
+    "sections_have_been_sorted": "Sections have been sorted",
+    "": ""
 }
