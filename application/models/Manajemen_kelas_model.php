@@ -29,6 +29,19 @@ class Manajemen_kelas_model extends CI_Model
         }
     }
 	
+	public function get_mentor_kelas($id = 0) {
+        
+			#$this->db->select("a.id_class, d.id_user, b.id_class_mentor, d.photo, c.nm_mentor");
+			$this->db->from('tr_class a');
+			$this->db->join('tr_class_mentor b', 'a.id_class = b.id_class');
+			$this->db->join('ref_mentor c', 'b.id_mentor = c.id_mentor');
+			$this->db->join('ref_user d', 'c.id_user = d.id_user');
+			$this->db->where('a.id_class',$id);
+			
+			return $this->db->get();
+        
+    }
+	
 	public function get_mentor($mentor_id = 0) {
 		$this->db->select("a.id_mentor, a.id_user, b.fullname");
 		$this->db->from("ref_mentor a");

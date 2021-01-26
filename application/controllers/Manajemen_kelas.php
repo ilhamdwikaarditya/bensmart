@@ -92,6 +92,7 @@ class Manajemen_kelas extends CI_Controller {
         }
 		elseif ($param1 == 'mentor_manajemen_kelas_form') {
 			$page_data['mentor'] = $this->manajemen_kelas_model->get_mentor()->result_array();
+			$page_data['mentor_kelas'] = $this->manajemen_kelas_model->get_mentor_kelas($param2);
 			$page_data['page_name'] = 'manajemen_kelas_mentor_add';
             $page_data['id_class'] = $param2;
             $page_data['page_title'] = 'Tambah Mentor kelas';

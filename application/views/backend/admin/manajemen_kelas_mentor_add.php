@@ -72,13 +72,29 @@
                   <thead>
                     <tr>
                       <th>#</th>
+                      <th>Foto</th>
                       <th>Mentor</th>
-                      <th>Quotes</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-                      
+						<?php
+                       foreach ($mentor_kelas->result_array() as $key => $datamentorkelas): ?>
+                          <tr>
+                              <td><?php echo $key+1; ?></td>
+                              <td>
+                                  <img src="<?php echo $this->master_model->get_user_photo_url($datamentorkelas['id_user']);?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
+                              </td>
+                              <td><?php echo $datamentorkelas['nm_mentor']; ?></td>
+                              <td>
+                                <div class="dropright dropright">
+                                    <button type="button" class="btn btn-sm btn-outline-primary btn-rounded btn-icon" href="#" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/manajemen_kelas/delete/'.$datamanajemenkelas['id_class']); ?>');">
+                                        Delete
+                                    </button>
+                                </div>
+                              </td>
+                          </tr>
+                      <?php endforeach; ?>
                   </tbody>
               </table>
               </div>
