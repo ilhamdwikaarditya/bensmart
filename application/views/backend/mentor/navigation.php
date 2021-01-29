@@ -23,7 +23,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 			</a>
 		</li>
 		<?php 
-			$session_level = '1';
+			$session_level = $this->session->userdata('id_level');
 			$CI =& get_instance();
 			$CI->load->model('Menu_model');
 			$result = $CI->Menu_model->getAllMenugroups($session_level)->result();
