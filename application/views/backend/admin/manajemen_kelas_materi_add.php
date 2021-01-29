@@ -1,5 +1,5 @@
 <?php
-$materi_section = $this->manajemen_kelas_model->get_materi_section_admin('class', $id_class)->result_array();
+$materi_section = $this->manajemen_kelas_model->get_materi_section('class', $id_class)->result_array();
 ?>
 <div class="row ">
     <div class="col-xl-12">
@@ -16,7 +16,7 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section_admin('class'
             <div class="card-body">
 
                 <h4 class="header-title mb-3">Form Tambah Materi
-                <a href="<?php echo site_url('manajemen_kelas/manajemen_kelas'); ?>" class="alignToTitle btn btn-outline-secondary btn-rounded btn-sm"> <i class=" mdi mdi-keyboard-backspace"></i> Kembali</a>
+                    <a href="<?php echo site_url('manajemen_kelas/manajemen_kelas'); ?>" class="alignToTitle btn btn-outline-secondary btn-rounded btn-sm"> <i class=" mdi mdi-keyboard-backspace"></i> Kembali</a>
                 </h4>
 
                 <form class="required-form" action="<?php echo site_url('manajemen_kelas/manajemen_kelas/add_mentor/' . $id_class); ?>" enctype="multipart/form-data" method="post">
@@ -28,7 +28,26 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section_admin('class'
                                     <span class="d-none d-sm-inline">Materi</span>
                                 </a>
                             </li>
-
+                        </ul>
+                        <ul class="nav nav-pills nav-justified form-wizard-header mb-3">
+                            <li class="nav-item">
+                                <a href="#materi" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
+                                    <i style="color: orange;" class="mdi mdi-crop-square mr-1 bg-warning"></i>
+                                    <span class="d-none d-sm-inline">Diajukan</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#materi" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
+                                    <i style="color: red;" class="mdi mdi-crop-square mr-1 bg-danger"></i>
+                                    <span class="d-none d-sm-inline">Ditolak</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#materi" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
+                                    <i style="color: green;" class="mdi mdi-crop-square mr-1 bg-success"></i>
+                                    <span class="d-none d-sm-inline">Disetujui</span>
+                                </a>
+                            </li>
                         </ul>
                         <div class="tab-content b-0 mb-0">
 
@@ -56,27 +75,63 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section_admin('class'
                                                             <div class="clearfix"></div>
                                                             <?php
                                                             // $lessons = $this->crud_model->get_lessons('section', $section['id'])->result_array();
-                                                            $lessons = $this->manajemen_kelas_model->get_materi_detail('section', $section['id_class_materi_section'])->result_array();
+                                                            $lessons = $this->manajemen_kelas_model->get_materi_detail_admin('section', $section['id_class_materi_section'])->result_array();
                                                             foreach ($lessons as $index => $lesson) : ?>
                                                                 <div class="col-md-12">
                                                                     <!-- Portlet card -->
                                                                     <div class="card text-secondary on-hover-action mb-2" id="<?php echo 'lesson-' . $lesson['id_class_materi_detail']; ?>">
-                                                                        <div class="card-body thinner-card-body">
-                                                                            <div class="card-widgets display-none" id="widgets-of-lesson-<?php echo $lesson['id_class_materi_detail']; ?>">
-                                                                                <a href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/detmateri_dokumen_manajemen_kelas_form/'.$lesson['id_class_materi_detail']); ?>" ><i class="mdi mdi-file-outline"></i></a>
-                                                                                <a href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_edit/' . $lesson['id_class_materi_detail'] . '/' . $lesson['id_class_materi_section']); ?>', 'Edit Materi Detail')"><i class="mdi mdi-pencil-outline"></i></a>
-                                                                                <a href="javascript::" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/materi_detail/' . $id_class . '/delete' . '/' . $lesson['id_class_materi_detail']); ?>');"><i class="mdi mdi-window-close"></i></a>
-                                                                                <a href="javascript::" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/materi_detail/' . $id_class . '/send' . '/' . $lesson['id_class_materi_detail']); ?>');"><i class="mdi mdi-send"></i></a>
+                                                                        <?php if ($lesson['active'] == '1') { ?>
+                                                                            <div class="card-body thinner-card-body bg-warning">
+                                                                                <div class="card-widgets display-none" id="widgets-of-lesson-<?php echo $lesson['id_class_materi_detail']; ?>">
+                                                                                    <a href="<?php echo site_url('mentor/manajemen_kelas_form/detmateri_dokumen_manajemen_kelas_form/' . $lesson['id_class_materi_detail']); ?>"><i class="mdi mdi-file-outline"></i></a>
+                                                                                    <!-- <a href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_edit/' . $lesson['id_class_materi_detail'] . '/' . $lesson['id_class_materi_section']); ?>', 'Edit Materi Detail')"><i class="mdi mdi-pencil-outline"></i></a> -->
+                                                                                    <a href="javascript::" onclick="confirm_modal('<?php echo site_url('mentor/materi_detail/' . $id_class . '/send' . '/' . $lesson['id_class_materi_detail']); ?>');"><i class="mdi mdi-check"></i></a>
+                                                                                    <a href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_reject/' . $lesson['id_class_materi_detail'] . '/' . $lesson['id_class_materi_section']); ?>');"><i class="mdi mdi-window-close"></i></a>
+                                                                                </div>
+                                                                                <h5 class="card-title mb-0">
+                                                                                    <span class="font-weight-light">
+                                                                                        <?php
+                                                                                        $lesson_counter++; // Keeps track of number of lesson
+                                                                                        ?>
+                                                                                        <?php echo 'Materi' . ' ' . $lesson_counter; ?>
+                                                                                    </span>: <?php echo $lesson['nm_class_materi_detail']; ?>
+                                                                                </h5>
                                                                             </div>
-                                                                            <h5 class="card-title mb-0">
-                                                                                <span class="font-weight-light">
-                                                                                    <?php
-                                                                                    $lesson_counter++; // Keeps track of number of lesson
-                                                                                    ?>
-                                                                                    <?php echo 'Materi' . ' ' . $lesson_counter; ?>
-                                                                                </span>: <?php echo $lesson['nm_class_materi_detail']; ?>
-                                                                            </h5>
-                                                                        </div>
+                                                                        <?php } else if ($lesson['active'] == '2') { ?>
+                                                                            <div class="card-body thinner-card-body bg-danger">
+                                                                                <div class="card-widgets display-none" id="widgets-of-lesson-<?php echo $lesson['id_class_materi_detail']; ?>">
+                                                                                    <a href="<?php echo site_url('mentor/manajemen_kelas_form/detmateri_dokumen_manajemen_kelas_form/' . $lesson['id_class_materi_detail']); ?>"><i class="mdi mdi-file-outline"></i></a>
+                                                                                    <!-- <a href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_edit/' . $lesson['id_class_materi_detail'] . '/' . $lesson['id_class_materi_section']); ?>', 'Edit Materi Detail')"><i class="mdi mdi-pencil-outline"></i></a> -->
+                                                                                    <a href="javascript::" onclick="confirm_modal('<?php echo site_url('mentor/materi_detail/' . $id_class . '/send' . '/' . $lesson['id_class_materi_detail']); ?>');"><i class="mdi mdi-check"></i></a>
+                                                                                    <!-- <a href="javascript::" onclick="confirm_modal('<?php echo site_url('mentor/materi_detail/' . $id_class . '/delete' . '/' . $lesson['id_class_materi_detail']); ?>');"><i class="mdi mdi-window-close"></i></a> -->
+                                                                                </div>
+                                                                                <h5 class="card-title mb-0">
+                                                                                    <span class="font-weight-light">
+                                                                                        <?php
+                                                                                        $lesson_counter++; // Keeps track of number of lesson
+                                                                                        ?>
+                                                                                        <?php echo 'Materi' . ' ' . $lesson_counter; ?>
+                                                                                    </span>: <?php echo $lesson['nm_class_materi_detail']; ?>
+                                                                                </h5>
+                                                                            </div>
+                                                                        <?php } else if ($lesson['active'] == '3') { ?>
+                                                                            <div class="card-body thinner-card-body bg-success">
+                                                                                <div class="card-widgets display-none" id="widgets-of-lesson-<?php echo $lesson['id_class_materi_detail']; ?>">
+                                                                                    <a href="<?php echo site_url('mentor/manajemen_kelas_form/detmateri_dokumen_manajemen_kelas_form/' . $lesson['id_class_materi_detail']); ?>"><i class="mdi mdi-file-outline"></i></a>
+                                                                                    <!-- <a href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_edit/' . $lesson['id_class_materi_detail'] . '/' . $lesson['id_class_materi_section']); ?>', 'Edit Materi Detail')"><i class="mdi mdi-pencil-outline"></i></a> -->
+                                                                                    <a href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_reject/' . $lesson['id_class_materi_detail'] . '/' . $lesson['id_class_materi_section']); ?>');"><i class="mdi mdi-window-close"></i></a>
+                                                                                    <!-- <a href="javascript::" onclick="confirm_modal('<?php echo site_url('mentor/materi_detail/' . $id_class . '/send' . '/' . $lesson['id_class_materi_detail']); ?>');"><i class="mdi mdi-send"></i></a> -->
+                                                                                </div>
+                                                                                <h5 class="card-title mb-0">
+                                                                                    <span class="font-weight-light">
+                                                                                        <?php
+                                                                                        $lesson_counter++; // Keeps track of number of lesson
+                                                                                        ?>
+                                                                                        <?php echo 'Materi' . ' ' . $lesson_counter; ?>
+                                                                                    </span>: <?php echo $lesson['nm_class_materi_detail']; ?>
+                                                                                </h5>
+                                                                            </div>
+                                                                        <?php } ?>
                                                                     </div> <!-- end card-->
                                                                 </div>
                                                             <?php endforeach; ?>

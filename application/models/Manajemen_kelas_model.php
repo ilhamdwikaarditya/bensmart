@@ -49,23 +49,6 @@ class Manajemen_kelas_model extends CI_Model
         return $this->db->get();
     }
 
-    public function get_materi_section_admin($type_by, $id) {
-        if ($type_by == 'class') {
-            $this->db->from('tr_class_materi_section a');
-			$this->db->where('a.id_class',$id);
-			$this->db->where("a.active in ('1', '2', '3')");
-			return $this->db->get();
-            // return $this->db->get_where('tr_class_materi_section', array('id_class' => $id));
-        } elseif ($type_by == 'section') {
-            $this->db->from('tr_class_materi_section a');
-			$this->db->where('a.id_class_materi_section',$id);
-			$this->db->where("a.active in ('1', '2', '3')");
-			return $this->db->get();
-            // return $this->db->get_where('tr_class_materi_section', array('id_class_materi_section' => $id));
-        }
-        // return $this->db->get_where('tr_class_materi_section', array('id_class' => $id_class));
-    }
-
     public function get_materi_section($type_by, $id) {
         if ($type_by == 'class') {
             return $this->db->get_where('tr_class_materi_section', array('id_class' => $id));
@@ -73,6 +56,19 @@ class Manajemen_kelas_model extends CI_Model
             return $this->db->get_where('tr_class_materi_section', array('id_class_materi_section' => $id));
         }
         // return $this->db->get_where('tr_class_materi_section', array('id_class' => $id_class));
+    }
+
+    public function get_materi_detail_admin($type_by, $id) {
+        if ($type_by == 'section') {
+            $this->db->from("tr_class_materi_detail a");
+			$this->db->where('a.id_class_materi_section',$id);
+			$this->db->where("a.active in ('1', '2', '3')");
+            return $this->db->get();
+            // return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_section' => $id));
+        } elseif ($type_by == 'detail') {
+            return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_detail' => $id));
+        }
+        // return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_section' => $id_class_materi_section));
     }
 
     public function get_materi_detail($type_by, $id) {
@@ -249,6 +245,21 @@ class Manajemen_kelas_model extends CI_Model
     public function send_materi_detail($id_class, $id_class_materi_detail)
     {
         $data['active'] = '1'; 
+        $this->db->where('id_class_materi_detail', $id_class_materi_detail);
+        $this->db->update('tr_class_materi_detail', $data);
+    }
+
+    public function accept_materi_detail($id_class, $id_class_materi_detail)
+    {
+        $data['active'] = '3'; 
+        $this->db->where('id_class_materi_detail', $id_class_materi_detail);
+        $this->db->update('tr_class_materi_detail', $data);
+    }
+
+    public function reject_materi_detail($id_class, $id_class_materi_detail)
+    {
+        $data['active'] = '2'; 
+        $data['reason_rejected'] = html_escape($this->input->post('reason_rejected'));
         $this->db->where('id_class_materi_detail', $id_class_materi_detail);
         $this->db->update('tr_class_materi_detail', $data);
     }

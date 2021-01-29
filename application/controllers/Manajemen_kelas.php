@@ -157,6 +157,14 @@ class Manajemen_kelas extends CI_Controller {
             $this->manajemen_kelas_model->delete_materi_detail($param1, $param3);
             $this->session->set_flashdata('flash_message', 'Materi Detail Berhasil Dihapus');
         }
+        elseif ($param2 == 'accept') {
+            $this->manajemen_kelas_model->accept_materi_detail($param1, $param3);
+            $this->session->set_flashdata('flash_message', 'Materi Detail Berhasil Disetujui');
+        }
+        elseif ($param2 == 'reject') {
+            $this->manajemen_kelas_model->reject_materi_detail($param1, $param3);
+            $this->session->set_flashdata('error_message', 'Materi Detail Berhasil Ditolak');
+        }
         redirect(site_url('manajemen_kelas/manajemen_kelas_form/detmateri_manajemen_kelas_form/'.$param1));
     }
 
