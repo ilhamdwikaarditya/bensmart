@@ -74,8 +74,8 @@ label {
 }
 .btn {
     color: #fff;
-    background-color: #ec5252;
-    border-color: #ec5252;
+    background-color: #F0AD4E;
+    border-color: #F0AD4E;
     padding: 11px 12px;
     font-size: 15px;
     border-radius: 2px;
@@ -84,8 +84,8 @@ label {
 }
 .btn:hover,
 .btn:focus {
-    background-color: #992337;
-    border-color: #992337;
+    background-color: #FFCC00;
+    border-color: #FFCC00;
     color: #fff;
 }
 textarea:focus,
@@ -226,12 +226,12 @@ menu code was here
     font-size: 15px;
     padding: 10px 15px;
     background: #f2f3f5;
-    color: #ec5252;
+    color: #FFCC00;
 }
 .search-box button:hover,
 .search-box button:focus{
-    background-color: #ec5252 !important;
-    border-color: #ec5252;
+    background-color: #FFCC00 !important;
+    border-color: #FFCC00;
     color: #fff;
 }
 
@@ -1001,10 +1001,10 @@ homepage styles
     background: #fff;
     border: 0;
     border-radius: 0 3px 3px 0;
-    color: #ec5252;
+    color: #FFCC00;
 }
 .home-banner-wrap .btn:hover{
-    background: #ec5252;
+    background: #FFCC00;
     color: #fff;
 }
 .home-fact-area{
@@ -3438,8 +3438,8 @@ section.user-dashboard-area {
 
 .user-dashboard-content .content-update-box button {
     color: #fff;
-    background-color: #ec5252;
-    border-color: #ec5252;
+    background-color: #;
+    border-color: #F0AD4E;
     padding: 11px 12px;
     font-size: 15px;
     border-radius: 2px;

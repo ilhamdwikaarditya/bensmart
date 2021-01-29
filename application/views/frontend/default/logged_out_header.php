@@ -30,16 +30,31 @@
             </div>
           <?php endif; ?>
 
-          <div class="cart-box menu-icon-box" id = "cart_items">
-            <?php include 'cart_items.php'; ?>
-          </div>
+			<div class="instructor-box menu-icon-box">
+				<div class="icon">
+					<a href="<?php echo site_url('home/about_us'); ?>" style="border: 1px solid transparent; margin: 10px 10px; font-size: 14px; width: 100%; border-radius: 0; min-width: 100px;">Tentang Kami</a>
+				</div>
+			</div>
+			<div class="instructor-box menu-icon-box">
+				<div class="icon">
+					<a href="<?php echo site_url('#'); ?>" style="border: 1px solid transparent; margin: 10px 10px; font-size: 14px; width: 100%; border-radius: 0; min-width: 100px;">Belajar apa saja</a>
+				</div>
+			</div>
+			<div class="instructor-box menu-icon-box">
+				<div class="icon">
+					<a href="<?php echo site_url('#'); ?>" style="border: 1px solid transparent; margin: 10px 10px; font-size: 14px; width: 100%; border-radius: 0; min-width: 100px;">Keunggulan</a>
+				</div>
+			</div>
+			
+			<div class="cart-box menu-icon-box" id = "cart_items">
+				<?php include 'cart_items.php'; ?>
+			</div>
+			
+			<span class="signin-box-move-desktop-helper"></span>
+			<div class="sign-in-box btn-group">
 
-          <span class="signin-box-move-desktop-helper"></span>
-          <div class="sign-in-box btn-group">
+            <a href="<?php echo site_url('home/login'); ?>" class="btn btn-sign-up">Masuk Kelas</a>
 
-            <a href="<?php echo site_url('home/login'); ?>" class="btn btn-sign-in">Masuk</a>
-
-            <a href="<?php echo site_url('home/sign_up'); ?>" class="btn btn-sign-up">Daftar</a>
 
           </div> <!--  sign-in-box end -->
         </nav>

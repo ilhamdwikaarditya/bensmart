@@ -70,7 +70,7 @@
 </a>
 <div class="visit_website">
     <h4 style="color: #fff; float: left;"> <?php echo $this->db->get_where('settings' , array('key'=>'system_name'))->row()->value; ?></h4>
-    <a href="#" target="" class="btn btn-outline-light ml-3">Kunjungi Website</a>
+    <a href="<?php echo site_url('home'); ?>" target="" class="btn btn-outline-light ml-3">Kunjungi Website</a>
 </div>
 </div>
 </div>
