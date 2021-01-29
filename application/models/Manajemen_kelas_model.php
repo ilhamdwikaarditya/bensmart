@@ -252,6 +252,7 @@ class Manajemen_kelas_model extends CI_Model
     public function accept_materi_detail($id_class, $id_class_materi_detail)
     {
         $data['active'] = '3'; 
+        $data['reason_rejected'] = '';
         $this->db->where('id_class_materi_detail', $id_class_materi_detail);
         $this->db->update('tr_class_materi_detail', $data);
     }
