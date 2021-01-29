@@ -9,9 +9,7 @@
             $this->db->where('a.id_level', $level);
             $this->db->where('a.active', $active);
             $this->db->where('b.active', $active);
-            $session = $this->session->userdata('login');
             $this->db->order_by("b.position", "asc");
-
             return $this->db->get();
         }
 
@@ -23,7 +21,6 @@
             $this->db->where('a.id_level', $level);
             $this->db->where('a.active', $active);
             $this->db->where('b.active', $active);
-            $session = $this->session->userdata('login');
             $this->db->order_by("b.position", "asc");
             if ($id == 0) {
             } else {
