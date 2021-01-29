@@ -3,36 +3,25 @@
     <div class="row">
       <div class="col-md-6">
         <p class="copyright-text">
-          <a href=""><img src="<?php echo base_url('uploads/system/'.get_frontend_settings('dark_logo')); ?>" alt="" class="d-inline-block" width="110"></a>
+          <a href=""><img src="<?php echo base_url('uploads/system/'.get_frontend_settings('dark_logo')); ?>" alt="" class="d-inline-block" width="150" height="20"></a>
           
         </p>
       </div>
       <div class="col-md-6">
         <ul class="nav justify-content-md-end footer-menu">
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo site_url('home/about_us'); ?>"><?php echo site_phrase('about'); ?></a>
+            <a class="nav-link" href="<?php echo site_url('home/about_us'); ?>">Tentang</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo site_url('home/privacy_policy'); ?>"><?php echo site_phrase('privacy_policy'); ?></a>
+            <a class="nav-link" href="<?php echo site_url('home/privacy_policy'); ?>">Kebijakan pribadi</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo site_url('home/terms_and_condition'); ?>"><?php echo site_phrase('terms_and_condition'); ?></a>
+            <a class="nav-link" href="<?php echo site_url('home/terms_and_condition'); ?>">Syarat dan Ketentuan</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo site_url('home/login'); ?>">
-              <?php echo site_phrase('login'); ?>
+              Masuk
             </a>
-          </li>
-          <li>
-            <select class="language_selector" onchange="switch_language(this.value)">
-                <?php
-                 $languages = $this->crud_model->get_all_languages();
-                 foreach ($languages as $language): ?>
-                    <?php if (trim($language) != ""): ?>
-                        <option value="<?php echo strtolower($language); ?>" <?php if ($this->session->userdata('language') == $language): ?>selected<?php endif; ?>><?php echo ucwords($language);?></option>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </select>
           </li>
         </ul>
       </div>

@@ -13,7 +13,7 @@
                     </ol>
                 </nav>
                 <h1 class="category-name">
-                    <?php echo site_phrase('register_yourself'); ?>
+                    Pendaftaran
                 </h1>
             </div>
         </div>
@@ -27,19 +27,19 @@
               <div class="user-dashboard-box mt-3">
                   <div class="user-dashboard-content w-100 login-form hidden">
                       <div class="content-title-box">
-                          <div class="title"><?php echo site_phrase('login'); ?></div>
+                          <div class="title">Login</div>
                           <div class="subtitle"><?php echo site_phrase('provide_your_valid_login_credentials'); ?>.</div>
                       </div>
                       <form action="<?php echo site_url('login/validate_login/user'); ?>" method="post">
                           <div class="content-box">
                               <div class="basic-group">
                                   <div class="form-group">
-                                      <label for="login-email"><span class="input-field-icon"><i class="fas fa-envelope"></i></span> <?php echo site_phrase('email'); ?>:</label>
-                                      <input type="email" class="form-control" name = "email" id="login-email" placeholder="<?php echo site_phrase('email'); ?>" required>
+                                      <label for="login-email"><span class="input-field-icon"><i class="fas fa-envelope"></i></span> Email:</label>
+                                      <input type="email" class="form-control" name = "email" id="login-email" placeholder="Email" required>
                                   </div>
                                   <div class="form-group">
-                                      <label for="login-password"><span class="input-field-icon"><i class="fas fa-lock"></i></span> <?php echo site_phrase('password'); ?>:</label>
-                                      <input type="password" class="form-control" name = "password" placeholder="<?php echo site_phrase('password'); ?>" required>
+                                      <label for="login-password"><span class="input-field-icon"><i class="fas fa-lock"></i></span> Password:</label>
+                                      <input type="password" class="form-control" name = "password" placeholder="Password" required>
                                   </div>
                               </div>
                           </div>
@@ -57,35 +57,48 @@
                   </div>
                   <div class="user-dashboard-content w-100 register-form">
                       <div class="content-title-box">
-                          <div class="title"><?php echo site_phrase('registration_form'); ?></div>
-                          <div class="subtitle"><?php echo site_phrase('sign_up_and_start_learning'); ?>.</div>
+                          <div class="title">Form Pendaftaran</div>
+                          <div class="subtitle">Ayo daftar dan mulai belajar.</div>
                       </div>
                       <form action="<?php echo site_url('login/register'); ?>" method="post">
                           <div class="content-box">
                               <div class="basic-group">
                                   <div class="form-group">
-                                      <label for="first_name"><span class="input-field-icon"><i class="fas fa-user"></i></span> <?php echo site_phrase('first_name'); ?>:</label>
-                                      <input type="text" class="form-control" name = "first_name" id="first_name" placeholder="<?php echo site_phrase('first_name'); ?>" value="" required>
+                                      <label for="fullname"><span class="input-field-icon"><i class="fas fa-user"></i></span> Nama Lengkap:</label>
+                                      <input type="text" class="form-control" name = "fullname" id="fullname" placeholder="Nama Lengkap" value="" required>
                                   </div>
                                   <div class="form-group">
-                                      <label for="last_name"><span class="input-field-icon"><i class="fas fa-user"></i></span> <?php echo site_phrase('last_name'); ?>:</label>
-                                      <input type="text" class="form-control" name = "last_name" id="last_name" placeholder="<?php echo site_phrase('last_name'); ?>" value="" required>
+                                      <label for="phone"><span class="input-field-icon"><i class="fas fa-user"></i></span> Handphone:</label>
+                                      <input type="text" class="form-control" name = "phone" id="phone" placeholder="Handphone" value="" required>
+                                  </div>
+								  <div class="form-group">
+                                      <label for="address"><span class="input-field-icon"><i class="fas fa-user"></i></span> Alamat:</label>
+                                      <textarea name="address" id = "address" class="form-control"></textarea>
+                                  </div>
+								  <div class="form-group">
+                                      <label for="jenjang"><span class="input-field-icon"><i class="fas fa-jenjang"></i></span> Jenjang:</label>
+                                      <select class="form-control select2" data-toggle="select2" name="id_jenjang" id="id_jenjang">
+										  <option value="0">None</option>
+										  <?php foreach ($jenjang as $datajenjang): ?>
+												  <option value="<?php echo $datajenjang['id_jenjang']; ?>"><?php echo $datajenjang['nm_jenjang']; ?></option>
+										  <?php endforeach; ?>
+										</select>
                                   </div>
                                   <div class="form-group">
-                                      <label for="registration-email"><span class="input-field-icon"><i class="fas fa-envelope"></i></span> <?php echo site_phrase('email'); ?>:</label>
-                                      <input type="email" class="form-control" name = "email" id="registration-email" placeholder="<?php echo site_phrase('email'); ?>" value="" required>
+                                      <label for="registration-email"><span class="input-field-icon"><i class="fas fa-envelope"></i></span> Email:</label>
+                                      <input type="email" class="form-control" name = "email" id="registration-email" placeholder="Email" value="" required>
                                   </div>
                                   <div class="form-group">
-                                      <label for="registration-password"><span class="input-field-icon"><i class="fas fa-lock"></i></span> <?php echo site_phrase('password'); ?>:</label>
-                                      <input type="password" class="form-control" name = "password" id="registration-password" placeholder="<?php echo site_phrase('password'); ?>" value="" required>
+                                      <label for="registration-password"><span class="input-field-icon"><i class="fas fa-lock"></i></span> Password:</label>
+                                      <input type="password" class="form-control" name = "password" id="registration-password" placeholder="Password" value="" required>
                                   </div>
                               </div>
                           </div>
                           <div class="content-update-box">
-                              <button type="submit" class="btn"><?php echo site_phrase('sign_up'); ?></button>
+                              <button type="submit" class="btn">Daftar</button>
                           </div>
                           <div class="account-have text-center">
-                              <?php echo site_phrase('already_have_an_account'); ?>? <a href="javascript::" onclick="toggoleForm('login')"><?php echo site_phrase('login'); ?></a>
+                              Sudah punya akun ? <a href="javascript::" onclick="toggoleForm('login')"><?php echo site_phrase('login'); ?></a>
                           </div>
                       </form>
                   </div>

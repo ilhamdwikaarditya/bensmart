@@ -43,9 +43,9 @@ if (! function_exists('currency')) {
             }elseif ($position == 'right-space') {
                 return $price.' '.$symbol;
             }elseif ($position == 'left') {
-                return $symbol.$price;
+                return $symbol.' '.number_format($price);
             }elseif ($position == 'left-space') {
-                return $symbol.' '.$price;
+                return $symbol.' '.number_format($price);
             }
         }
     }

@@ -617,7 +617,7 @@ class Crud_model extends CI_Model
         $this->db->update('course', $updater);
     }
 
-    public function get_course_thumbnail_url($course_id, $type = 'course_thumbnail')
+    public function get_course_thumbnail_url($class_id, $type = 'course_thumbnail')
     {
         // Course media placeholder is coming from the theme config file. Which has all the placehoder for different images. Choose like course type.
         $course_media_placeholders = themeConfiguration(get_frontend_settings('theme'), 'course_media_placeholders');
@@ -628,8 +628,10 @@ class Crud_model extends CI_Model
         // } else{
         //     return $course_media_placeholders[$type.'_placeholder'];
         // }
-        if (file_exists('uploads/thumbnails/course_thumbnails/' . $type . '_' . get_frontend_settings('theme') . '_' . $course_id . '.jpg')) {
-            return base_url() . 'uploads/thumbnails/course_thumbnails/' . $type . '_' . get_frontend_settings('theme') . '_' . $course_id . '.jpg';
+		$thumbnail_class_image = $this->db->get_where('tr_class', array('id_class' => $class_id))->row('thumbnail');
+		
+        if (file_exists('uploads/thumbnail_class/' . $thumbnail_class_image . '.jpg')) {
+            return base_url() . 'uploads/thumbnail_class/' . $thumbnail_class_image . '.jpg';
         } else {
             return base_url() . $course_media_placeholders[$type . '_placeholder'];
         }
@@ -702,7 +704,7 @@ class Crud_model extends CI_Model
 
     public function get_top_courses()
     {
-        return $this->db->get_where('course', array('is_top_course' => 1, 'status' => 'active'));
+        return $this->db->get_where('tr_class', array('active' => '1'));
     }
 
     public function get_default_category_id()

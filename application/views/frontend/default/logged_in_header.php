@@ -16,12 +16,12 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
                         <img src="<?php echo base_url('uploads/system/'.get_frontend_settings('dark_logo')); ?>" alt="" height="25">
                     </a>
 
-                    <?php // include 'menu.php'; ?>
+                    <?php  include 'menu.php'; ?>
 
 
                     <form class="inline-form" action="<?php echo site_url('home/search'); ?>" method="get" style="width: 100%;">
                         <div class="input-group search-box mobile-search">
-                            <input type="text" name = 'query' class="form-control" placeholder="<?php echo site_phrase('search_for_courses'); ?>">
+                            <input type="text" name = 'query' class="form-control" placeholder="Pencarian Kelas">
                             <div class="input-group-append">
                                 <button class="btn" type="submit"><i class="fas fa-search"></i></button>
                             </div>
@@ -97,9 +97,9 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
                 <span class="signin-box-move-desktop-helper"></span>
                 <div class="sign-in-box btn-group d-none">
 
-                    <button type="button" class="btn btn-sign-in" data-toggle="modal" data-target="#signInModal">Log In</button>
+                    <button type="button" class="btn btn-sign-in" data-toggle="modal" data-target="#signInModal">Masuk</button>
 
-                    <button type="button" class="btn btn-sign-up" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
+                    <button type="button" class="btn btn-sign-up" data-toggle="modal" data-target="#signUpModal">Daftar</button>
 
                 </div> <!--  sign-in-box end -->
 

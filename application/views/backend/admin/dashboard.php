@@ -9,7 +9,7 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo get_phrase('dashboard'); ?></h4>
+                <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> Dashboard </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
@@ -102,12 +102,12 @@
                             <?php
                                 $pending_payouts = $this->crud_model->get_pending_payouts()->result_array();
                                 foreach ($pending_payouts as $key => $pending_payout):
-                                $instructor_details = $this->user_model->get_all_user($pending_payout['user_id'])->row_array();
+                                $instructor_details = $this->user_model->get_all_user($pending_payout['id_user'])->row_array();
                             ?>
                             <tr>
                                 <td>
-                                    <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body" style="cursor: auto;"><?php echo $instructor_details['first_name'].' '.$instructor_details['last_name']; ?></a></h5>
-                                    <small><?php echo get_phrase('email'); ?>: <span class="text-muted font-13"><?php echo $instructor_details['email']; ?></span></small>
+                                    <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body" style="cursor: auto;"><?php echo $instructor_details['fullname']; ?></a></h5>
+                                    <small><?php echo 'email'; ?>: <span class="text-muted font-13"><?php echo $instructor_details['email']; ?></span></small>
                                 </td>
                                 <td>
                                     <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body" style="cursor: auto;"><?php echo currency($pending_payout['amount']); ?></a></h5>

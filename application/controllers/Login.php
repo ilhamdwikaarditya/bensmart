@@ -27,26 +27,28 @@ class Login extends CI_Controller {
     public function validate_login($from = "") {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
-        $credential = array('email' => $email, 'password' => sha1($password), 'status' => 1);
+        $credential = array('email' => $email, 'password' => sha1($password));
 
         // Checking login credential for admin
-        $query = $this->db->get_where('users', $credential);
+        $query = $this->db->get_where('ref_user', $credential);
 
         if ($query->num_rows() > 0) {
             $row = $query->row();
-            $this->session->set_userdata('user_id', $row->id);
-            $this->session->set_userdata('role_id', $row->role_id);
-            $this->session->set_userdata('role', get_user_role('user_role', $row->id));
-            $this->session->set_userdata('name', $row->first_name.' '.$row->last_name);
-            $this->session->set_userdata('is_instructor', $row->is_instructor);
-            $this->session->set_flashdata('flash_message', get_phrase('welcome').' '.$row->first_name.' '.$row->last_name);
-            if ($row->role_id == 1) {
+            $this->session->set_userdata('id_user', $row->id_user);
+            $this->session->set_userdata('id_level', $row->id_level);
+            $this->session->set_userdata('role', get_user_role('user_role', $row->id_user));
+            $this->session->set_userdata('fullname', $row->fullname);
+            $this->session->set_flashdata('flash_message', get_phrase('welcome').' '.$row->fullname);
+            if ($row->id_level == 1) { //Administrator
                 $this->session->set_userdata('admin_login', '1');
                 redirect(site_url('admin/dashboard'), 'refresh');
-            }else if($row->role_id == 2){
-                $this->session->set_userdata('user_login', '1');
+            }else if($row->id_level == 2){ //Mentor
+                $this->session->set_userdata('mentor_login', '1');
                 redirect(site_url('home'), 'refresh');
-            }
+            }else{
+				$this->session->set_userdata('user_login', '1');
+                redirect(site_url('home'), 'refresh');
+			}
         }else {
             $this->session->set_flashdata('error_message',get_phrase('invalid_login_credentials'));
             redirect(site_url('home/login'), 'refresh');
@@ -54,13 +56,15 @@ class Login extends CI_Controller {
     }
 
     public function register() {
-        $data['first_name'] = html_escape($this->input->post('first_name'));
-        $data['last_name']  = html_escape($this->input->post('last_name'));
+        $data['fullname'] = html_escape($this->input->post('fullname'));
+        $data['phone']  = html_escape($this->input->post('phone'));
+        $data['address']  = html_escape($this->input->post('address'));
+        $data['id_jenjang']  = html_escape($this->input->post('id_jenjang'));
         $data['email']  = html_escape($this->input->post('email'));
         $data['password']  = sha1($this->input->post('password'));
         
-        if(empty($data['first_name']) || empty($data['last_name']) || empty($data['email']) || empty($data['password'])){
-            $this->session->set_flashdata('error_message',site_phrase('your_sign_up_form_is_empty').'. '.site_phrase('fill_out_the_form with_your_valid_data'));
+        if(empty($data['fullname']) || empty($data['phone']) || empty($data['address']) || empty($data['email']) || empty($data['password'])){
+            $this->session->set_flashdata('error_message','formulir pendaftaran Anda kosong'.'. '.'isi formulir dengan data valid Anda');
             redirect(site_url('home/sign_up'), 'refresh');
         }
 
@@ -68,35 +72,12 @@ class Login extends CI_Controller {
         $data['verification_code'] = $verification_code;
 
         if (get_settings('student_email_verification') == 'enable') {
-            $data['status'] = 0;
+            $data['status_verification'] = 0;
         }else {
-            $data['status'] = 1;
+            $data['status_verification'] = 1;
         }
 
-        $data['wishlist'] = json_encode(array());
-        $data['watch_history'] = json_encode(array());
-        $data['date_added'] = strtotime(date("Y-m-d H:i:s"));
-        $social_links = array(
-            'facebook' => "",
-            'twitter'  => "",
-            'linkedin' => ""
-        );
-        $data['social_links'] = json_encode($social_links);
-        $data['role_id']  = 2;
-
-        // Add paypal keys
-        $paypal_info = array();
-        $paypal['production_client_id'] = "";
-        array_push($paypal_info, $paypal);
-        $data['paypal_keys'] = json_encode($paypal_info);
-        // Add Stripe keys
-        $stripe_info = array();
-        $stripe_keys = array(
-            'public_live_key' => "",
-            'secret_live_key' => ""
-        );
-        array_push($stripe_info, $stripe_keys);
-        $data['stripe_keys'] = json_encode($stripe_info);
+        $data['id_level']  = 3;
 
         $validity = $this->user_model->check_duplication('on_create', $data['email']);
 

@@ -123,7 +123,18 @@
 											</div>
 										</div>
 										<div class="form-group row mb-3">
-											<label class="col-md-3 col-form-label" for="id_materi_group_sub">Materi Group<span class="required">*</span></label>
+											<label class="col-md-3 col-form-label" for="id_materi_group">Materi Group<span class="required">*</span></label>
+											<div class="col-md-9">
+											<select class="form-control select2" data-toggle="select2" name="id_materi_group" id="id_materi_group">
+											  <option value="0">None</option>
+											  <?php foreach ($materi_group as $datamateri_group): ?>
+													  <option value="<?php echo $datamateri_group['id_materi_group']; ?>"><?php echo $datamateri_group['nm_materi_group']; ?></option>
+											  <?php endforeach; ?>
+											</select>
+											</div>
+										</div>
+										<div class="form-group row mb-3">
+											<label class="col-md-3 col-form-label" for="id_materi_group_sub">Materi Sub Group<span class="required">*</span></label>
 											<div class="col-md-9">
 											<select class="form-control select2" data-toggle="select2" name="id_materi_group_sub" id="id_materi_group_sub">
 											  <option value="0">None</option>

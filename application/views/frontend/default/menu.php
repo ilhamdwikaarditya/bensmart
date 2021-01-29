@@ -7,7 +7,7 @@
     <li class="has-children">
       <a href="">
         <i class="fas fa-th d-inline"></i>
-        <span><?php echo site_phrase('courses'); ?></span>
+        <span>Kelas</span>
         <span class="has-sub-category"><i class="fas fa-angle-right"></i></span>
       </a>
 
@@ -41,7 +41,7 @@
   <li class="all-category-devided mt-2 mb-0 p-0">
     <a href="<?php echo site_url('home/courses'); ?>" class="py-3">
       <span class="icon"><i class="fa fa-align-justify"></i></span>
-      <span><?php echo site_phrase('all_courses'); ?></span>
+      <span>Semua kelas</span>
     </a>
   </li>
 

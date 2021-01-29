@@ -12,22 +12,22 @@ class User_model extends CI_Model {
     }
 
     public function get_admin_details() {
-        return $this->db->get_where('users', array('role_id' => 1));
+        return $this->db->get_where('ref_user', array('id_level' => 1));
     }
 
     public function get_user($user_id = 0) {
         if ($user_id > 0) {
-            $this->db->where('id', $user_id);
+            $this->db->where('id_user', $user_id);
         }
-        $this->db->where('role_id', 2);
-        return $this->db->get('users');
+        $this->db->where('id_level', 2);
+        return $this->db->get('ref_user');
     }
 
     public function get_all_user($user_id = 0) {
         if ($user_id > 0) {
-            $this->db->where('id', $user_id);
+            $this->db->where('id_user', $user_id);
         }
-        return $this->db->get('users');
+        return $this->db->get('ref_user');
     }
 
     public function add_user($is_instructor = false) {
@@ -44,7 +44,7 @@ class User_model extends CI_Model {
             $social_link['linkedin'] = html_escape($this->input->post('linkedin_link'));
             $data['social_links'] = json_encode($social_link);
             $data['biography'] = $this->input->post('biography');
-            $data['role_id'] = 2;
+            $data['id_level'] = 2;
             $data['date_added'] = strtotime(date("Y-m-d H:i:s"));
             $data['wishlist'] = json_encode(array());
             $data['watch_history'] = json_encode(array());
@@ -71,7 +71,7 @@ class User_model extends CI_Model {
                 $data['is_instructor'] = 1;
             }
 
-            $this->db->insert('users', $data);
+            $this->db->insert('ref_user', $data);
             $user_id = $this->db->insert_id();
             $this->upload_user_image($data['image']);
             $this->session->set_flashdata('flash_message', get_phrase('user_added_successfully'));
@@ -79,7 +79,7 @@ class User_model extends CI_Model {
     }
 
     public function check_duplication($action = "", $email = "", $user_id = "") {
-        $duplicate_email_check = $this->db->get_where('users', array('email' => $email));
+        $duplicate_email_check = $this->db->get_where('ref_user', array('email' => $email));
 
         if ($action == 'on_create') {
             if ($duplicate_email_check->num_rows() > 0) {
@@ -122,7 +122,7 @@ class User_model extends CI_Model {
             $data['last_modified'] = strtotime(date("Y-m-d H:i:s"));
 
             if (isset($_FILES['user_image']) && $_FILES['user_image']['name'] != "") {
-                unlink('uploads/user_image/' . $this->db->get_where('users', array('id' => $user_id))->row('image').'.jpg');
+                unlink('uploads/user_image/' . $this->db->get_where('ref_user', array('id_user' => $user_id))->row('image').'.jpg');
                 $data['image'] = md5(rand(10000, 10000000));
             }
 
@@ -141,8 +141,8 @@ class User_model extends CI_Model {
             array_push($stripe_info, $stripe_keys);
             $data['stripe_keys'] = json_encode($stripe_info);
 
-            $this->db->where('id', $user_id);
-            $this->db->update('users', $data);
+            $this->db->where('id_user', $user_id);
+            $this->db->update('ref_user', $data);
             $this->upload_user_image($data['image']);
             $this->session->set_flashdata('flash_message', get_phrase('user_update_successfully'));
         }else {
@@ -151,18 +151,18 @@ class User_model extends CI_Model {
 
     }
     public function delete_user($user_id = "") {
-        $this->db->where('id', $user_id);
-        $this->db->delete('users');
+        $this->db->where('id_user', $user_id);
+        $this->db->delete('ref_user');
         $this->session->set_flashdata('flash_message', get_phrase('user_deleted_successfully'));
     }
 
     public function unlock_screen_by_password($password = "") {
         $password = sha1($password);
-        return $this->db->get_where('users', array('id' => $this->session->userdata('user_id'), 'password' => $password))->num_rows();
+        return $this->db->get_where('ref_user', array('id_user' => $this->session->userdata('user_id'), 'password' => $password))->num_rows();
     }
 
     public function register_user($data) {
-        $this->db->insert('users', $data);
+		$this->db->insert('ref_user', $data);
         return $this->db->insert_id();
     }
 
@@ -170,7 +170,7 @@ class User_model extends CI_Model {
         $update_code['verification_code'] = $data['verification_code'];
         $update_code['password'] = $data['password'];
         $this->db->where('email', $data['email']);
-        $this->db->update('users', $update_code);
+        $this->db->update('ref_user', $update_code);
     }
 
     public function my_courses($user_id = "") {
@@ -203,8 +203,8 @@ class User_model extends CI_Model {
                 }
             }
             $data['email'] = html_escape($this->input->post('email'));
-            $this->db->where('id', $user_id);
-            $this->db->update('users', $data);
+            $this->db->where('id_user', $user_id);
+            $this->db->update('ref_user', $data);
             $this->session->set_flashdata('flash_message', get_phrase('updated_successfully'));
         }else {
             $this->session->set_flashdata('error_message', get_phrase('email_duplication'));
@@ -227,17 +227,17 @@ class User_model extends CI_Model {
             }
         }
 
-        $this->db->where('id', $user_id);
-        $this->db->update('users', $data);
+        $this->db->where('id_user', $user_id);
+        $this->db->update('ref_user', $data);
         $this->session->set_flashdata('flash_message', get_phrase('password_updated'));
     }
 
 
     public function get_instructor($id = 0) {
         if ($id > 0) {
-            return $this->db->get_where('users', array('id' => $id, 'is_instructor' => 1));
+            return $this->db->get_where('ref_user', array('id_user' => $id, 'is_instructor' => 1));
         }else{
-            return $this->db->get_where('users', array('is_instructor' => 1));
+            return $this->db->get_where('ref_user', array('is_instructor' => 1));
         }
     }
 
@@ -251,7 +251,7 @@ class User_model extends CI_Model {
     }
 
     public function get_user_image_url($user_id) {
-        $user_profile_image = $this->db->get_where('users', array('id' => $user_id))->row('image');
+        $user_profile_image = $this->db->get_where('ref_user', array('id_user' => $user_id))->row('image');
         if (file_exists('uploads/user_image/'.$user_profile_image.'.jpg'))
              return base_url().'uploads/user_image/'.$user_profile_image.'.jpg';
         else
@@ -267,8 +267,8 @@ class User_model extends CI_Model {
             }
         }
         if (count($instructor_ids) > 0) {
-            $this->db->where_in('id', $instructor_ids);
-            $query_result = $this->db->get('users');
+            $this->db->where_in('id_user', $instructor_ids);
+            $query_result = $this->db->get('ref_user');
         }else {
             $query_result = $this->get_admin_details();
         }
@@ -283,8 +283,8 @@ class User_model extends CI_Model {
         $paypal['production_secret_key'] = html_escape($this->input->post('paypal_secret_key'));
         array_push($paypal_info, $paypal);
         $data['paypal_keys'] = json_encode($paypal_info);
-        $this->db->where('id', $user_id);
-        $this->db->update('users', $data);
+        $this->db->where('id_user', $user_id);
+        $this->db->update('ref_user', $data);
     }
     public function update_instructor_stripe_settings($user_id = '') {
         // Update Stripe keys
@@ -295,26 +295,26 @@ class User_model extends CI_Model {
         );
         array_push($stripe_info, $stripe_keys);
         $data['stripe_keys'] = json_encode($stripe_info);
-        $this->db->where('id', $user_id);
-        $this->db->update('users', $data);
+        $this->db->where('id_user', $user_id);
+        $this->db->update('ref_user', $data);
     }
 
     // POST INSTRUCTOR APPLICATION FORM AND INSERT INTO DATABASE IF EVERYTHING IS OKAY
     public function post_instructor_application() {
         // FIRST GET THE USER DETAILS
-        $user_details = $this->get_all_user($this->input->post('id'))->row_array();
+        $user_details = $this->get_all_user($this->input->post('id_user'))->row_array();
 
         // CHECK IF THE PROVIDED ID AND EMAIL ARE COMING FROM VALID USER
         if ($user_details['email'] == $this->input->post('email')) {
 
             // GET PREVIOUS DATA FROM APPLICATION TABLE
-            $previous_data = $this->get_applications($user_details['id'], 'user')->num_rows();
+            $previous_data = $this->get_applications($user_details['id_user'], 'user')->num_rows();
             // CHECK IF THE USER HAS SUBMITTED FORM BEFORE
             if($previous_data > 0) {
                 $this->session->set_flashdata('error_message', get_phrase('already_submitted'));
                 redirect(site_url('user/become_an_instructor'), 'refresh');
             }
-            $data['user_id'] = $this->input->post('id');
+            $data['user_id'] = $this->input->post('id_user');
             $data['address'] = $this->input->post('address');
             $data['phone'] = $this->input->post('phone');
             $data['message'] = $this->input->post('message');
@@ -352,7 +352,7 @@ class User_model extends CI_Model {
                 $applications = $this->db->get_where('applications', array('user_id' => $id));
                 return $applications;
             }else {
-                $applications = $this->db->get_where('applications', array('id' => $id));
+                $applications = $this->db->get_where('applications', array('id_user' => $id));
                 return $applications;
             }
         }else{
@@ -381,17 +381,17 @@ class User_model extends CI_Model {
             $application_details = $application_details->row_array();
             if ($status == 'approve') {
                 $application_data['status'] = 1;
-                $this->db->where('id', $application_id);
+                $this->db->where('id_user', $application_id);
                 $this->db->update('applications', $application_data);
 
                 $instructor_data['is_instructor'] = 1;
-                $this->db->where('id', $application_details['user_id']);
-                $this->db->update('users', $instructor_data);
+                $this->db->where('id_user', $application_details['user_id']);
+                $this->db->update('ref_user', $instructor_data);
 
                 $this->session->set_flashdata('flash_message', get_phrase('application_approved_successfully'));
                 redirect(site_url('admin/instructor_application'), 'refresh');
             }else{
-                $this->db->where('id', $application_id);
+                $this->db->where('id_user', $application_id);
                 $this->db->delete('applications');
                 $this->session->set_flashdata('flash_message', get_phrase('application_deleted_successfully'));
                 redirect(site_url('admin/instructor_application'), 'refresh');
