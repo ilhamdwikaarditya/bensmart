@@ -743,6 +743,7 @@ class Home extends CI_Controller {
         }elseif ($this->session->userdata('user_login')) {
             redirect(site_url('user'), 'refresh');
         }
+		$page_data['jenjang'] = $this->master_model->get_all_jenjang()->result_array();
         $page_data['page_name'] = 'sign_up';
         $page_data['page_title'] = site_phrase('sign_up');
         $this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);

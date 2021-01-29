@@ -20,8 +20,8 @@ if ( ! function_exists('get_user_role'))
 		$CI	=&	get_instance();
 		$CI->load->database();
 
-        $role_id	=	$CI->db->get_where('users' , array('id' => $user_id))->row()->role_id;
-        $user_role	=	$CI->db->get_where('role' , array('id' => $role_id))->row()->name;
+        $role_id	=	$CI->db->get_where('ref_user' , array('id_user' => $user_id))->row()->id_level;
+        $user_role	=	$CI->db->get_where('ref_level' , array('id_level' => $role_id))->row()->nm_level;
 
         if ($type == "user_role") {
             return $user_role;

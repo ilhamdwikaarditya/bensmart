@@ -21,7 +21,7 @@
         <div class="wrapper">
             <!-- BEGIN CONTENT -->
             <!-- SIDEBAR -->
-            <?php include $logged_in_user_role.'/'.'navigation.php' ?>
+            <?php include $logged_in_user_role.'/'.'navigation.php'; ?>
             <!-- PAGE CONTAINER-->
             <div class="content-page">
                 <div class="content">

@@ -11,11 +11,11 @@
 
           <a href="<?php echo site_url(''); ?>" class="navbar-brand" href="#"><img src="<?php echo base_url('uploads/system/'.get_frontend_settings('dark_logo')); ?>" alt="" height="25"></a>
 
-          <?php // include 'menu.php'; ?>
+          <?php  include 'menu.php'; ?>
 
           <form class="inline-form" action="<?php echo site_url('home/search'); ?>" method="get" style="width: 100%;">
             <div class="input-group search-box mobile-search">
-              <input type="text" name = 'query' class="form-control" placeholder="<?php echo site_phrase('search_for_courses'); ?>">
+              <input type="text" name = 'query' class="form-control" placeholder="Pencarian kelas">
               <div class="input-group-append">
                 <button class="btn" type="submit"><i class="fas fa-search"></i></button>
               </div>
@@ -37,9 +37,9 @@
           <span class="signin-box-move-desktop-helper"></span>
           <div class="sign-in-box btn-group">
 
-            <a href="<?php echo site_url('home/login'); ?>" class="btn btn-sign-in"><?php echo site_phrase('log_in'); ?></a>
+            <a href="<?php echo site_url('home/login'); ?>" class="btn btn-sign-in">Masuk</a>
 
-            <a href="<?php echo site_url('home/sign_up'); ?>" class="btn btn-sign-up"><?php echo site_phrase('sign_up'); ?></a>
+            <a href="<?php echo site_url('home/sign_up'); ?>" class="btn btn-sign-up">Daftar</a>
 
           </div> <!--  sign-in-box end -->
         </nav>

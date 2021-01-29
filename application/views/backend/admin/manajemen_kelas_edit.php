@@ -137,6 +137,17 @@
 											<div class="col-md-9">
 											<select class="form-control select2" data-toggle="select2" name="id_materi_group_sub" id="id_materi_group_sub">
 											  <option value="0">None</option>
+											  <?php foreach ($materi_group as $datamateri_group): ?>
+													  <option value="<?php echo $datamateri_group['id_materi_group']; ?>" <?php if($manajemen_kelas_data['id_materi_group'] == $datamateri_group['id_materi_group']) echo 'selected'; ?>><?php echo $datamateri_group['nm_materi_group']; ?></option>
+											  <?php endforeach; ?>
+											</select>
+											</div>
+										</div>
+										<div class="form-group row mb-3">
+											<label class="col-md-3 col-form-label" for="id_materi_group_sub">Materi Sub Group<span class="required">*</span></label>
+											<div class="col-md-9">
+											<select class="form-control select2" data-toggle="select2" name="id_materi_group_sub" id="id_materi_group_sub">
+											  <option value="0">None</option>
 											  <?php foreach ($materi_group_sub as $datamateri_group_sub): ?>
 													  <option value="<?php echo $datamateri_group_sub['id_materi_group_sub']; ?>" <?php if($manajemen_kelas_data['id_materi_group_sub'] == $datamateri_group_sub['id_materi_group_sub']) echo 'selected'; ?>><?php echo $datamateri_group_sub['nm_materi_group_sub']; ?></option>
 											  <?php endforeach; ?>

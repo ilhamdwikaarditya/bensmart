@@ -76,6 +76,7 @@ class Manajemen_kelas extends CI_Controller {
         if ($param1 == 'add_manajemen_kelas_form') {
 			$page_data['mapel'] = $this->master_model->get_all_mapel()->result_array();
 			$page_data['jenjang'] = $this->master_model->get_all_jenjang()->result_array();
+			$page_data['materi_group'] = $this->master_model->get_all_materi_group()->result_array();
 			$page_data['materi_group_sub'] = $this->master_model->get_all_materi_group_sub()->result_array();
             $page_data['page_name'] = 'manajemen_kelas_add';
             $page_data['page_title'] = 'Tambah kelas';
@@ -84,6 +85,7 @@ class Manajemen_kelas extends CI_Controller {
         elseif ($param1 == 'edit_manajemen_kelas_form') {
 			$page_data['mapel'] = $this->master_model->get_all_mapel()->result_array();
 			$page_data['jenjang'] = $this->master_model->get_all_jenjang()->result_array();
+			$page_data['materi_group'] = $this->master_model->get_all_materi_group()->result_array();
 			$page_data['materi_group_sub'] = $this->master_model->get_all_materi_group_sub()->result_array();
             $page_data['page_name'] = 'manajemen_kelas_edit';
             $page_data['id_class'] = $param2;
