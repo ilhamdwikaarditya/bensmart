@@ -116,11 +116,10 @@ class Login extends CI_Controller {
     }
 
     public function session_destroy() {
-        $this->session->unset_userdata('user_id');
-        $this->session->unset_userdata('role_id');
+        $this->session->unset_userdata('id_user');
+        $this->session->unset_userdata('id_level');
         $this->session->unset_userdata('role');
-        $this->session->unset_userdata('name');
-        $this->session->unset_userdata('is_instructor');
+        $this->session->unset_userdata('fullname');
         if ($this->session->userdata('admin_login') == 1) {
             $this->session->unset_userdata('admin_login');
         }else {
