@@ -1,9 +1,10 @@
-<section class="home-banner-area" style="background-image: url('<?= base_url("uploads/system/".get_frontend_settings('banner_image')); ?>');
+<section class="home-banner-area img-fluid" style="background-image: url('<?= base_url("uploads/system/".get_frontend_settings('banner_image')); ?>');
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
         padding: 170px 0 130px;
-        color: #fff;">
+        color: #fff;
+		">
     <div class="container-lg">
         <div class="row">
             <div class="col">

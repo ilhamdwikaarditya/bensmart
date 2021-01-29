@@ -38,12 +38,8 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
 
                     <div class="instructor-box menu-icon-box">
                         <div class="icon">
-                            <a href="<?php echo site_url('home/my_courses'); ?>" style="border: 1px solid transparent; margin: 10px 10px; font-size: 14px; width: 100%; border-radius: 0; min-width: 100px;"><?php echo site_phrase('my_courses'); ?></a>
+                            <a href="<?php echo site_url('home/my_courses'); ?>" style="border: 1px solid transparent; margin: 10px 10px; font-size: 14px; width: 100%; border-radius: 0; min-width: 100px;">Kelas Saya</a>
                         </div>
-                    </div>
-
-                    <div class="wishlist-box menu-icon-box" id = "wishlist_items">
-                        <?php include 'wishlist_items.php'; ?>
                     </div>
 
                     <div class="cart-box menu-icon-box" id = "cart_items">
