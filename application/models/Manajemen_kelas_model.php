@@ -49,6 +49,23 @@ class Manajemen_kelas_model extends CI_Model
         return $this->db->get();
     }
 
+    public function get_materi_section_admin($type_by, $id) {
+        if ($type_by == 'class') {
+            $this->db->from('tr_class_materi_section a');
+			$this->db->where('a.id_class',$id);
+			$this->db->where("a.active in ('1', '2', '3')");
+			return $this->db->get();
+            // return $this->db->get_where('tr_class_materi_section', array('id_class' => $id));
+        } elseif ($type_by == 'section') {
+            $this->db->from('tr_class_materi_section a');
+			$this->db->where('a.id_class_materi_section',$id);
+			$this->db->where("a.active in ('1', '2', '3')");
+			return $this->db->get();
+            // return $this->db->get_where('tr_class_materi_section', array('id_class_materi_section' => $id));
+        }
+        // return $this->db->get_where('tr_class_materi_section', array('id_class' => $id_class));
+    }
+
     public function get_materi_section($type_by, $id) {
         if ($type_by == 'class') {
             return $this->db->get_where('tr_class_materi_section', array('id_class' => $id));
@@ -65,6 +82,14 @@ class Manajemen_kelas_model extends CI_Model
             return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_detail' => $id));
         }
         // return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_section' => $id_class_materi_section));
+    }
+
+    public function get_materi_detail_dokumen($type_by, $id) {
+        if ($type_by == 'detail') {
+            return $this->db->get_where('tr_class_materi_dokumen', array('id_class_materi_detail' => $id));
+        } elseif ($type_by == 'dokumen') {
+            return $this->db->get_where('tr_class_materi_dokumen', array('id_class_materi_dokumen' => $id));
+        }
     }
 	
 	public function add_manajemen_kelas() {
@@ -119,6 +144,19 @@ class Manajemen_kelas_model extends CI_Model
         $this->db->insert('tr_class_materi_detail', $data);
         $id_class_materi_section = $this->db->insert_id();
     }
+
+    public function add_materi_detail_dokumen($param1) {
+
+        $data['nm_materi_dokumen'] = html_escape($this->input->post('nm_materi_dokumen'));
+        $data['id_class_materi_detail'] = $param1;
+        $data['cuser'] = html_escape($this->session->userdata('id_user'));
+        $data['file_materi_dokumen'] = html_escape($this->input->post('nm_materi_dokumen'));
+
+        $this->db->insert('tr_class_materi_dokumen', $data);
+        $id_class_materi_dokumen = $this->db->insert_id();
+        $this->upload_materi_detail_dokumen($data['file_materi_dokumen']);
+        $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
+}
 	
 	public function edit_manajemen_kelas($class_id = "") { // Admin does this editing
         
@@ -180,10 +218,20 @@ class Manajemen_kelas_model extends CI_Model
     public function delete_materi_section($id_class, $id_class_materi_section)
     {
         $this->db->where('id_class_materi_section', $id_class_materi_section);
-        $this->db->delete('tr_class_materi_section');
+        $this->db->from('tr_class_materi_detail');
+        $cek_data =  $this->db->count_all_results();
+        if ($cek_data > 0) {
+            $this->session->set_flashdata('flash_message', 'Gagal, Tidak Bisa Menghapus Section yang Mempunyai Detail');
+            redirect(site_url('mentor/manajemen_kelas_form/detmateri_manajemen_kelas_form/'.$id_class));
+        } else {
+            $this->db->where('id_class_materi_section', $id_class_materi_section);
+            $this->db->delete('tr_class_materi_section');
+            $this->session->set_flashdata('flash_message', 'Materi Section Berhasil Dihapus');
+            redirect(site_url('mentor/manajemen_kelas_form/detmateri_manajemen_kelas_form/'.$id_class));
+        }
 
-        $this->db->where('id_class_materi_section', $id_class_materi_section);
-        $this->db->delete('tr_class_materi_sdetail');
+        // $this->db->where('id_class_materi_section', $id_class_materi_section);
+        // $this->db->delete('tr_class_materi_detail');
     }
     
     public function delete_materi_detail($id_class, $id_class_materi_detail)
@@ -192,12 +240,32 @@ class Manajemen_kelas_model extends CI_Model
         $this->db->delete('tr_class_materi_detail');
     }
 
+    public function delete_materi_detail_dokumen($id_class_materi_detail, $id_class_materi_dokumen)
+    {
+        $this->db->where('id_class_materi_dokumen', $id_class_materi_dokumen);
+        $this->db->delete('tr_class_materi_dokumen');
+    }
+
+    public function send_materi_detail($id_class, $id_class_materi_detail)
+    {
+        $data['active'] = '1'; 
+        $this->db->where('id_class_materi_detail', $id_class_materi_detail);
+        $this->db->update('tr_class_materi_detail', $data);
+    }
+
 	public function upload_thumbnail($image_code) {
         if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['name'] != "") {
             move_uploaded_file($_FILES['thumbnail']['tmp_name'], 'uploads/thumbnail_class/'.$image_code.'.jpg');
             $this->session->set_flashdata('flash_message', 'Berhasil');
         }
-    }	
+    }
+    
+    public function upload_materi_detail_dokumen($dokumen) {
+        if (isset($_FILES['file_materi_dokumen']) && $_FILES['file_materi_dokumen']['name'] != "") {
+            move_uploaded_file($_FILES['file_materi_dokumen']['tmp_name'], 'uploads/materi_detail_dokumen/'.$dokumen);
+            $this->session->set_flashdata('flash_message', 'Berhasil');
+        }
+    }
 	
 	public function get_thumbnail_url($user_id) {
 

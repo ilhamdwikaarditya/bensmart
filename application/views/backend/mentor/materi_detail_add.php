@@ -4,7 +4,7 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section('class', $par
 ?>
 
 <!-- ACTUAL LESSON ADDING FORM -->
-<form action="<?php echo site_url('manajemen_kelas/materi_detail/'.$param2.'/add'); ?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo site_url('mentor/materi_detail/'.$param2.'/add'); ?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id_class" id="id_class" value="<?php echo $param2; ?>">
     <div class="form-group">
         <label>Materi Detail</label>
