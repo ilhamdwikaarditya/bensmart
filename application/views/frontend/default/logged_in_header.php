@@ -1,5 +1,5 @@
 <?php
-$user_details = $this->user_model->get_user($this->session->userdata('user_id'))->row_array();
+$user_details = $this->user_model->get_user($this->session->userdata('id_user'),$this->session->userdata('id_level'))->row_array();
 ?>
 <section class="menu-area">
     <div class="container-xl">
@@ -52,7 +52,7 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
                     <div class="user-box menu-icon-box">
                         <div class="icon">
                             <a href="javascript::">
-                            <img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('user_id')); ?>" alt="" class="img-fluid">
+                            <img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('id_user')); ?>" alt="" class="img-fluid">
                         </a>
                     </div>
                     <div class="dropdown user-dropdown corner-triangle top-right">
@@ -62,12 +62,12 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
                                 <a href="">
                                     <div class="clearfix">
                                         <div class="user-image float-left">
-                                            <img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('user_id')); ?>" alt="" >
+                                            <img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('id_user')); ?>" alt="" >
                                         </div>
                                         <div class="user-details">
                                             <div class="user-name">
                                                 <span class="hi"><?php echo site_phrase('hi'); ?>,</span>
-                                                <?php echo $user_details['first_name'].' '.$user_details['last_name']; ?>
+                                                <?php echo $user_details['fullname']; ?>
                                             </div>
                                             <div class="user-email">
                                                 <span class="email"><?php echo $user_details['email']; ?></span>
@@ -78,12 +78,10 @@ $user_details = $this->user_model->get_user($this->session->userdata('user_id'))
                                 </a>
                             </li>
 
-                            <li class="user-dropdown-menu-item"><a href="<?php echo site_url('home/my_courses'); ?>"><i class="far fa-gem"></i><?php echo site_phrase('my_courses'); ?></a></li>
-                            <li class="user-dropdown-menu-item"><a href="<?php echo site_url('home/my_wishlist'); ?>"><i class="far fa-heart"></i><?php echo site_phrase('my_wishlist'); ?></a></li>
-                            <li class="user-dropdown-menu-item"><a href="<?php echo site_url('home/my_messages'); ?>"><i class="far fa-envelope"></i><?php echo site_phrase('my_messages'); ?></a></li>
-                            <li class="user-dropdown-menu-item"><a href="<?php echo site_url('home/purchase_history'); ?>"><i class="fas fa-shopping-cart"></i><?php echo site_phrase('purchase_history'); ?></a></li>
-                            <li class="user-dropdown-menu-item"><a href="<?php echo site_url('home/profile/user_profile'); ?>"><i class="fas fa-user"></i><?php echo site_phrase('user_profile'); ?></a></li>
-                            <li class="dropdown-user-logout user-dropdown-menu-item"><a href="<?php echo site_url('login/logout/user'); ?>"><?php echo site_phrase('log_out'); ?></a></li>
+                            <li class="user-dropdown-menu-item"><a href="<?php echo site_url('home/my_courses'); ?>"><i class="far fa-gem"></i>Kelas saya</a></li>
+                            <li class="user-dropdown-menu-item"><a href="<?php echo site_url('home/purchase_history'); ?>"><i class="fas fa-shopping-cart"></i>Riwayat pembelian</a></li>
+                            <li class="user-dropdown-menu-item"><a href="<?php echo site_url('home/profile/user_profile'); ?>"><i class="fas fa-user"></i>Profil</a></li>
+                            <li class="dropdown-user-logout user-dropdown-menu-item"><a href="<?php echo site_url('login/logout/user'); ?>">Keluar</a></li>
                         </ul>
                     </div>
                 </div>

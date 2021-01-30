@@ -15,11 +15,11 @@ class User_model extends CI_Model {
         return $this->db->get_where('ref_user', array('id_level' => 1));
     }
 
-    public function get_user($user_id = 0) {
+    public function get_user($user_id = 0,$level_id = 0) {
         if ($user_id > 0) {
             $this->db->where('id_user', $user_id);
         }
-        $this->db->where('id_level', 2);
+        $this->db->where('id_level', $level_id);
         return $this->db->get('ref_user');
     }
 
