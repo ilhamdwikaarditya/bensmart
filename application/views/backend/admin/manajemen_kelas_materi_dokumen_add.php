@@ -16,46 +16,62 @@ $materi_detail = $this->manajemen_kelas_model->get_materi_detail('detail', $id_c
             <div class="card-body">
 
                 <h4 class="header-title mb-3">Form Tambah Materi Dokumen
-                <a href="javascript::" onclick="window.history.back()" class="alignToTitle btn btn-outline-secondary btn-rounded btn-sm"> <i class=" mdi mdi-keyboard-backspace"></i> Kembali</a>
+                    <a href="javascript::" onclick="window.history.back()" class="alignToTitle btn btn-outline-secondary btn-rounded btn-sm"> <i class=" mdi mdi-keyboard-backspace"></i> Kembali</a>
                 </h4>
 
-                    <div id="progressbarwizard">
-                        <ul class="nav nav-pills nav-justified form-wizard-header mb-3">
-                            <li class="nav-item">
-                                <a href="#materi" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
-                                    <i class="mdi mdi-face-profile mr-1"></i>
-                                    <span class="d-none d-sm-inline">Materi Dokumen</span>
-                                </a>
-                            </li>
+                <div id="progressbarwizard">
+                    <ul class="nav nav-pills nav-justified form-wizard-header mb-3">
+                        <li class="nav-item">
+                            <a href="#materi" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
+                                <i class="mdi mdi-face-profile mr-1"></i>
+                                <span class="d-none d-sm-inline">Materi Dokumen</span>
+                            </a>
+                        </li>
 
-                        </ul>
-                        <div class="tab-content b-0 mb-0">
+                    </ul>
+                    <div class="tab-content b-0 mb-0">
 
-                            <div class="tab-pane" id="materi">
-                                <div class="row justify-content-center">
-                                    <div class="col-xl-12 mb-4 text-center mt-3">
-                                        <a href="javascript::void(0)" class="btn btn-outline-primary btn-rounded btn-sm ml-1" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_dokumen_add/' . $id_class_materi_detail); ?>', 'Tambah Materi Dokumen Baru')"><i class="mdi mdi-plus"></i> Tambah Materi Dokumen</a>
-                                    </div>
+                        <div class="tab-pane" id="materi">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-12 mb-4 text-center mt-3">
+                                    <a href="javascript::void(0)" class="btn btn-outline-primary btn-rounded btn-sm ml-1" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_dokumen_add/' . $id_class_materi_detail); ?>', 'Tambah Materi Dokumen Baru')"><i class="mdi mdi-plus"></i> Tambah Materi Dokumen</a>
+                                </div>
 
-                                    <div class="col-xl-8">
-                                        <div class="row">
-                                            <?php
-                                            $dokumen_counter = 0;
-                                            foreach ($materi_detail as $key => $detail) : ?>
-                                                <div class="col-xl-12">
-                                                    <div class="card bg-light text-seconday on-hover-action mb-5" id="section-<?php echo $detail['id_class_materi_detail']; ?>">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title" class="mb-3" style="min-height: 45px;"><span class="font-weight-light"><?php echo 'Materi' . ' ' . ++$key; ?></span>: <?php echo $detail['nm_class_materi_detail']; ?>
-                                                            </h5>
-                                                            <div class="clearfix"></div>
-                                                            <?php
-                                                            // $documents = $this->crud_model->get_lessons('section', $detail['id'])->result_array();
-                                                            $documents = $this->manajemen_kelas_model->get_materi_detail_dokumen('detail', $detail['id_class_materi_detail'])->result_array();
-                                                            foreach ($documents as $index => $document) : ?>
-                                                                <div class="col-md-12">
-                                                                    <!-- Portlet card -->
-                                                                    <div class="card text-secondary on-hover-action mb-2" id="<?php echo 'lesson-' . $document['id_class_materi_dokumen']; ?>">
-                                                                        <div class="card-body thinner-card-body">
+                                <div class="col-xl-8">
+                                    <div class="row">
+                                        <?php
+                                        $dokumen_counter = 0;
+                                        foreach ($materi_detail as $key => $detail) : ?>
+                                            <div class="col-xl-12">
+                                                <div class="card bg-light text-seconday on-hover-action mb-5" id="section-<?php echo $detail['id_class_materi_detail']; ?>">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title" class="mb-3" style="min-height: 45px;"><span class="font-weight-light"><?php echo 'List Dokumen' ?></span> <?php echo $detail['nm_class_materi_detail']; ?>
+                                                        </h5>
+                                                        <div class="clearfix"></div>
+                                                        <?php
+                                                        // $documents = $this->crud_model->get_lessons('section', $detail['id'])->result_array();
+                                                        $documents = $this->manajemen_kelas_model->get_materi_detail_dokumen('detail', $detail['id_class_materi_detail'])->result_array();
+                                                        foreach ($documents as $index => $document) : ?>
+                                                            <div class="col-md-12">
+                                                                <!-- Portlet card -->
+                                                                <div class="card text-secondary on-hover-action mb-2" id="<?php echo 'lesson-' . $document['id_class_materi_dokumen']; ?>">
+                                                                    <?php if ($detail['active'] == '1') { ?>
+                                                                        <div class="card-body thinner-card-body bg-warning">
+                                                                            <div class="card-widgets display-none" id="widgets-of-lesson-<?php echo $document['id_class_materi_dokumen']; ?>">
+                                                                                <!-- <a href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_edit/' . $document['id_class_materi_detail'] . '/' . $document['id_class_materi_detail']); ?>', 'Edit Materi Detail')"><i class="mdi mdi-eye"></i></a> -->
+                                                                                <a href="javascript::" onclick=""><i class="mdi mdi-eye"></i></a>
+                                                                            </div>
+                                                                            <h5 class="card-title mb-0">
+                                                                                <span class="font-weight-light">
+                                                                                    <?php
+                                                                                    $dokumen_counter++; // Keeps track of number of lesson
+                                                                                    ?>
+                                                                                    <?php echo 'Dokumen' . ' ' . $dokumen_counter; ?>
+                                                                                </span>: <?php echo $document['nm_materi_dokumen']; ?>
+                                                                            </h5>
+                                                                        </div>
+                                                                    <?php } else if ($detail['active'] == '2') { ?>
+                                                                        <div class="card-body thinner-card-body bg-danger">
                                                                             <div class="card-widgets display-none" id="widgets-of-lesson-<?php echo $document['id_class_materi_dokumen']; ?>">
                                                                                 <!-- <a href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_edit/' . $document['id_class_materi_detail'] . '/' . $document['id_class_materi_detail']); ?>', 'Edit Materi Detail')"><i class="mdi mdi-eye"></i></a> -->
                                                                                 <a href="javascript::" onclick=""><i class="mdi mdi-eye"></i></a>
@@ -70,20 +86,36 @@ $materi_detail = $this->manajemen_kelas_model->get_materi_detail('detail', $id_c
                                                                                 </span>: <?php echo $document['nm_materi_dokumen']; ?>
                                                                             </h5>
                                                                         </div>
-                                                                    </div> <!-- end card-->
-                                                                </div>
-                                                            <?php endforeach; ?>
-                                                        </div> <!-- end card-body-->
-                                                    </div> <!-- end card-->
-                                                </div>
-                                            <?php endforeach; ?>
-                                        </div>
+                                                                    <?php } else if ($detail['active'] == '3') { ?>
+                                                                        <div class="card-body thinner-card-body bg-success">
+                                                                            <div class="card-widgets display-none" id="widgets-of-lesson-<?php echo $document['id_class_materi_dokumen']; ?>">
+                                                                                <!-- <a href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_edit/' . $document['id_class_materi_detail'] . '/' . $document['id_class_materi_detail']); ?>', 'Edit Materi Detail')"><i class="mdi mdi-eye"></i></a> -->
+                                                                                <a href="javascript::" onclick=""><i class="mdi mdi-eye"></i></a>
+                                                                            </div>
+                                                                            <h5 class="card-title mb-0">
+                                                                                <span class="font-weight-light">
+                                                                                    <?php
+                                                                                    $dokumen_counter++; // Keeps track of number of lesson
+                                                                                    ?>
+                                                                                    <?php echo 'Dokumen' . ' ' . $dokumen_counter; ?>
+                                                                                </span>: <?php echo $document['nm_materi_dokumen']; ?>
+                                                                            </h5>
+                                                                        </div>
+                                                                    <?php } ?>
+                                                                </div> <!-- end card-->
+                                                            </div>
+                                                        <?php endforeach; ?>
+                                                    </div> <!-- end card-body-->
+                                                </div> <!-- end card-->
+                                            </div>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                        </div> <!-- tab-content -->
-                    </div> <!-- end #progressbarwizard-->
+                    </div> <!-- tab-content -->
+                </div> <!-- end #progressbarwizard-->
 
             </div> <!-- end card-body -->
         </div> <!-- end card-->
