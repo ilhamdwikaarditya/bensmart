@@ -1,31 +1,18 @@
 <?php
-// $param2 IS FOR COURSE ID AND $param3 IS FOR LESSON TYPE
-$materi_detail = $this->manajemen_kelas_model->get_materi_detail('detail', $param2)->result_array();
+// $param2 IS FOR MATERI SECTION ID AND $param3 IS FOR MATERI DETAIL
 $materi_section = $this->manajemen_kelas_model->get_materi_section('section', $param3)->result_array();
+$materi_detail = $this->manajemen_kelas_model->get_materi_detail('detail', $param2)->row_array();
+$class = $this->manajemen_kelas_model->get_materi_section('section', $param3)->row_array();
 ?>
 
 <!-- ACTUAL LESSON ADDING FORM -->
-<form action="<?php echo site_url('mentor/materi_detail_dokumen/' . $param2 . '/add'); ?>" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="id_class_materi_detail" id="id_class_materi_detail" value="<?php echo $param2; ?>">
-    <div class="form-group">
-        <label>Nama Dokumen</label>
-        <input type="text" name="nm_materi_dokumen" id="nm_materi_dokumen" class="form-control" required>
-    </div>
 
-    <div class="form-group">
-        <label for="title"> Dokumen</label>
-        <div class="input-group">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="file_materi_dokumen" name="file_materi_dokumen" onchange="changeTitleOfImageUploader(this)">
-                <label class="custom-file-label" for="thumbnail">Pilih File</label>
-            </div>
-        </div>
-    </div>
+<input type="hidden" name="id_class" value="<?php echo $param3; ?>">
 
-    <div class="text-center">
-        <button class="btn btn-success" type="submit" name="button">Tambah Dokumen</button>
-    </div>
-</form>
+<div class="form-group">
+    <label for="title">Alasan Ditolak</label>
+    <textarea class="form-control" type="text" name="desc" id="desc" required readonly><?php echo $materi_detail['reason_rejected']; ?></textarea>
+</div>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -41,8 +28,9 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section('section', $p
     function ajax_get_video_details(video_url) {
         $('#perloader').show();
         if (checkURLValidity(video_url)) {
+            // alert(video_url);
             $.ajax({
-                url: '<?php echo site_url('admin/ajax_get_video_details'); ?>',
+                url: '<?php echo site_url('mentor/ajax_get_video_details'); ?>',
                 type: 'POST',
                 data: {
                     video_url: video_url

@@ -54,8 +54,8 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section('class', $id_
                             <div class="tab-pane" id="materi">
                                 <div class="row justify-content-center">
                                     <div class="col-xl-12 mb-4 text-center mt-3">
-                                        <a href="javascript::void(0)" class="btn btn-outline-primary btn-rounded btn-sm ml-1" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_section_add/' . $id_class); ?>', 'Tambah Materi Section Baru')"><i class="mdi mdi-plus"></i> Tambah Materi Section</a>
-                                        <a href="javascript::void(0)" class="btn btn-outline-primary btn-rounded btn-sm ml-1" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_add/' . $id_class); ?>', 'Tambah Materi Detail Baru')"><i class="mdi mdi-plus"></i> Tambah Materi Detail</a>
+                                        <!-- <a href="javascript::void(0)" class="btn btn-outline-primary btn-rounded btn-sm ml-1" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_section_add/' . $id_class); ?>', 'Tambah Materi Section Baru')"><i class="mdi mdi-plus"></i> Tambah Materi Section</a>
+                                        <a href="javascript::void(0)" class="btn btn-outline-primary btn-rounded btn-sm ml-1" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_add/' . $id_class); ?>', 'Tambah Materi Detail Baru')"><i class="mdi mdi-plus"></i> Tambah Materi Detail</a> -->
                                     </div>
 
                                     <div class="col-xl-8">
@@ -68,8 +68,8 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section('class', $id_
                                                         <div class="card-body">
                                                             <h5 class="card-title" class="mb-3" style="min-height: 45px;"><span class="font-weight-light"><?php echo 'Section' . ' ' . ++$key; ?></span>: <?php echo $section['nm_class_materi_section']; ?>
                                                                 <div class="row justify-content-center alignToTitle float-right display-none" id="widgets-of-section-<?php echo $section['id_class_materi_section']; ?>">
-                                                                    <button type="button" class="btn btn-outline-secondary btn-rounded btn-sm ml-1" name="button" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_section_edit/' . $section['id_class_materi_section'] . '/' . $id_class); ?>', 'Edit Materi Section')"><i class="mdi mdi-pencil-outline"></i> Edit Materi Section</button>
-                                                                    <button type="button" class="btn btn-outline-secondary btn-rounded btn-sm ml-1" name="button" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/materi_section/' . $id_class . '/delete' . '/' . $section['id_class_materi_section']); ?>');"><i class="mdi mdi-window-close"></i> Hapus Materi Section</button>
+                                                                    <!-- <button type="button" class="btn btn-outline-secondary btn-rounded btn-sm ml-1" name="button" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_section_edit/' . $section['id_class_materi_section'] . '/' . $id_class); ?>', 'Edit Materi Section')"><i class="mdi mdi-pencil-outline"></i> Edit Materi Section</button>
+                                                                    <button type="button" class="btn btn-outline-secondary btn-rounded btn-sm ml-1" name="button" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/materi_section/' . $id_class . '/delete' . '/' . $section['id_class_materi_section']); ?>');"><i class="mdi mdi-window-close"></i> Hapus Materi Section</button> -->
                                                                 </div>
                                                             </h5>
                                                             <div class="clearfix"></div>
@@ -82,9 +82,9 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section('class', $id_
                                                                         <?php if ($lesson['active'] == '1') { ?>
                                                                             <div class="card-body thinner-card-body bg-warning">
                                                                                 <div class="card-widgets display-none" id="widgets-of-lesson-<?php echo $lesson['id_class_materi_detail']; ?>">
-                                                                                    <a href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/detmateri_dokumen_manajemen_kelas_form/' . $lesson['id_class_materi_detail']); ?>"><i class="mdi mdi-file-outline"></i></a>
-                                                                                    <a href="javascript::" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/materi_detail/' . $id_class . '/accept' . '/' . $lesson['id_class_materi_detail']); ?>');"><i class="mdi mdi-check"></i></a>
-                                                                                    <a href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_reject/' . $lesson['id_class_materi_detail'] . '/' . $lesson['id_class_materi_section']); ?>');"><i class="mdi mdi-window-close"></i></a>
+                                                                                    <a title="Dokumen" href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/detmateri_dokumen_manajemen_kelas_form/' . $lesson['id_class_materi_detail']); ?>"><i class="mdi mdi-file-outline"></i></a>
+                                                                                    <a title="Setujui" href="javascript::" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/materi_detail/' . $id_class . '/accept' . '/' . $lesson['id_class_materi_detail']); ?>');"><i class="mdi mdi-check"></i></a>
+                                                                                    <a title="Tolak" href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_reject/' . $lesson['id_class_materi_detail'] . '/' . $lesson['id_class_materi_section']); ?>');"><i class="mdi mdi-window-close"></i></a>
                                                                                 </div>
                                                                                 <h5 class="card-title mb-0">
                                                                                     <span class="font-weight-light">
@@ -98,8 +98,8 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section('class', $id_
                                                                         <?php } else if ($lesson['active'] == '2') { ?>
                                                                             <div class="card-body thinner-card-body bg-danger">
                                                                                 <div class="card-widgets display-none" id="widgets-of-lesson-<?php echo $lesson['id_class_materi_detail']; ?>">
-                                                                                    <a href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/detmateri_dokumen_manajemen_kelas_form/' . $lesson['id_class_materi_detail']); ?>"><i class="mdi mdi-file-outline"></i></a>
-                                                                                    <a href="javascript::" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/materi_detail/' . $id_class . '/accept' . '/' . $lesson['id_class_materi_detail']); ?>');"><i class="mdi mdi-check"></i></a>
+                                                                                    <a title="Dokumen" href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/detmateri_dokumen_manajemen_kelas_form/' . $lesson['id_class_materi_detail']); ?>"><i class="mdi mdi-file-outline"></i></a>
+                                                                                    <a title="Setujui" href="javascript::" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/materi_detail/' . $id_class . '/accept' . '/' . $lesson['id_class_materi_detail']); ?>');"><i class="mdi mdi-check"></i></a>
                                                                                 </div>
                                                                                 <h5 class="card-title mb-0">
                                                                                     <span class="font-weight-light">
@@ -113,8 +113,8 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section('class', $id_
                                                                         <?php } else if ($lesson['active'] == '3') { ?>
                                                                             <div class="card-body thinner-card-body bg-success">
                                                                                 <div class="card-widgets display-none" id="widgets-of-lesson-<?php echo $lesson['id_class_materi_detail']; ?>">
-                                                                                    <a href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/detmateri_dokumen_manajemen_kelas_form/' . $lesson['id_class_materi_detail']); ?>"><i class="mdi mdi-file-outline"></i></a>
-                                                                                    <a href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_reject/' . $lesson['id_class_materi_detail'] . '/' . $lesson['id_class_materi_section']); ?>');"><i class="mdi mdi-window-close"></i></a>
+                                                                                    <a title="Dokumen" href="<?php echo site_url('manajemen_kelas/manajemen_kelas_form/detmateri_dokumen_manajemen_kelas_form/' . $lesson['id_class_materi_detail']); ?>"><i class="mdi mdi-file-outline"></i></a>
+                                                                                    <a title="Tolak" href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_reject/' . $lesson['id_class_materi_detail'] . '/' . $lesson['id_class_materi_section']); ?>');"><i class="mdi mdi-window-close"></i></a>
                                                                                 </div>
                                                                                 <h5 class="card-title mb-0">
                                                                                     <span class="font-weight-light">

@@ -41,6 +41,11 @@ class Mentor extends CI_Controller {
         $this->load->view('backend/index.php', $page_data);
     }
 
+    public function ajax_get_video_details() {
+        $video_details = $this->video_model->getVideoDetails($_POST['video_url']);
+        echo $video_details['duration'];
+    }
+
     public function manajemen_kelas($param1 = "", $param2 = "") {
         if ($this->session->userdata('mentor_login') != true) {
             redirect(site_url('login'), 'refresh');

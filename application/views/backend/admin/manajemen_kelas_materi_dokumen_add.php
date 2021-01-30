@@ -34,7 +34,7 @@ $materi_detail = $this->manajemen_kelas_model->get_materi_detail('detail', $id_c
                         <div class="tab-pane" id="materi">
                             <div class="row justify-content-center">
                                 <div class="col-xl-12 mb-4 text-center mt-3">
-                                    <a href="javascript::void(0)" class="btn btn-outline-primary btn-rounded btn-sm ml-1" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_dokumen_add/' . $id_class_materi_detail); ?>', 'Tambah Materi Dokumen Baru')"><i class="mdi mdi-plus"></i> Tambah Materi Dokumen</a>
+                                    <!-- <a href="javascript::void(0)" class="btn btn-outline-primary btn-rounded btn-sm ml-1" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_dokumen_add/' . $id_class_materi_detail); ?>', 'Tambah Materi Dokumen Baru')"><i class="mdi mdi-plus"></i> Tambah Materi Dokumen</a> -->
                                 </div>
 
                                 <div class="col-xl-8">
@@ -59,7 +59,7 @@ $materi_detail = $this->manajemen_kelas_model->get_materi_detail('detail', $id_c
                                                                         <div class="card-body thinner-card-body bg-warning">
                                                                             <div class="card-widgets display-none" id="widgets-of-lesson-<?php echo $document['id_class_materi_dokumen']; ?>">
                                                                                 <!-- <a href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_edit/' . $document['id_class_materi_detail'] . '/' . $document['id_class_materi_detail']); ?>', 'Edit Materi Detail')"><i class="mdi mdi-eye"></i></a> -->
-                                                                                <a href="javascript::" onclick=""><i class="mdi mdi-eye"></i></a>
+                                                                                <a href="<?php echo site_url('uploads/materi_detail_dokumen//'.$document['file_materi_dokumen']); ?>" target="_blank" onclick=""><i class="mdi mdi-eye"></i></a>
                                                                             </div>
                                                                             <h5 class="card-title mb-0">
                                                                                 <span class="font-weight-light">
@@ -74,7 +74,7 @@ $materi_detail = $this->manajemen_kelas_model->get_materi_detail('detail', $id_c
                                                                         <div class="card-body thinner-card-body bg-danger">
                                                                             <div class="card-widgets display-none" id="widgets-of-lesson-<?php echo $document['id_class_materi_dokumen']; ?>">
                                                                                 <!-- <a href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_edit/' . $document['id_class_materi_detail'] . '/' . $document['id_class_materi_detail']); ?>', 'Edit Materi Detail')"><i class="mdi mdi-eye"></i></a> -->
-                                                                                <a href="javascript::" onclick=""><i class="mdi mdi-eye"></i></a>
+                                                                                <a href="<?php echo site_url('uploads/materi_detail_dokumen//'.$document['file_materi_dokumen']); ?>" target="_blank" onclick=""><i class="mdi mdi-eye"></i></a>
                                                                                 <a href="javascript::" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/materi_detail_dokumen/' . $id_class_materi_detail . '/delete' . '/' . $document['id_class_materi_dokumen']); ?>');"><i class="mdi mdi-window-close"></i></a>
                                                                             </div>
                                                                             <h5 class="card-title mb-0">
@@ -90,7 +90,7 @@ $materi_detail = $this->manajemen_kelas_model->get_materi_detail('detail', $id_c
                                                                         <div class="card-body thinner-card-body bg-success">
                                                                             <div class="card-widgets display-none" id="widgets-of-lesson-<?php echo $document['id_class_materi_dokumen']; ?>">
                                                                                 <!-- <a href="javascript::" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_detail_edit/' . $document['id_class_materi_detail'] . '/' . $document['id_class_materi_detail']); ?>', 'Edit Materi Detail')"><i class="mdi mdi-eye"></i></a> -->
-                                                                                <a href="javascript::" onclick=""><i class="mdi mdi-eye"></i></a>
+                                                                                <a href="<?php echo site_url('uploads/materi_detail_dokumen//'.$document['file_materi_dokumen']); ?>" target="_blank" onclick=""><i class="mdi mdi-eye"></i></a>
                                                                             </div>
                                                                             <h5 class="card-title mb-0">
                                                                                 <span class="font-weight-light">
