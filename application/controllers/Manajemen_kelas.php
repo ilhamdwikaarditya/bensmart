@@ -187,6 +187,7 @@ class Manajemen_kelas extends CI_Controller {
         }
         redirect(site_url('manajemen_kelas/manajemen_kelas_form/detmateri_dokumen_manajemen_kelas_form/'.$param1));
     }
+
 	
 	function get_chain(){
         $param = $this->input->post('param');
@@ -194,6 +195,63 @@ class Manajemen_kelas extends CI_Controller {
         $where = $this->input->post('where');
         $data = $this->manajemen_kelas_model->get_chain($param,$table,$where);
         echo json_encode($data);
+	}
+
+    public function manajemen_bundling($param1 = "", $param2 = "") {
+        if ($this->session->userdata('admin_login') != true) {
+            redirect(site_url('login'), 'refresh');
+        }
+        if ($param1 == "add") {
+            $this->manajemen_kelas_model->add_manajemen_bundling();
+            redirect(site_url('manajemen_kelas/manajemen_bundling'), 'refresh');
+        }
+        elseif ($param1 == "edit") {
+            $this->manajemen_kelas_model->edit_manajemen_bundling($param2);
+            redirect(site_url('manajemen_kelas/manajemen_bundling'), 'refresh');
+        }
+        elseif ($param1 == "delete") {
+            $this->manajemen_kelas_model->delete_manajemen_bundling($param2);
+            redirect(site_url('manajemen_kelas/manajemen_bundling'), 'refresh');
+        }
+		elseif ($param1 == "add_mentor") {
+            $this->manajemen_kelas_model->add_mentor_manajemen_kelas($param2);
+            redirect(site_url('manajemen_kelas/manajemen_bundling'), 'refresh');
+        }
+
+        $page_data['page_name'] = 'manajemen_bundling';
+        $page_data['page_title'] = 'Paket Pembelajaran';
+        $page_data['manajemen_bundling'] = $this->manajemen_kelas_model->get_manajemen_bundling($param2);
+        $this->load->view('backend/index', $page_data);
     }
-  
+
+    public function manajemen_bundling_form($param1 = "", $param2 = "") {
+        if ($this->session->userdata('admin_login') != true) {
+            redirect(site_url('login'), 'refresh');
+        }
+
+        if ($param1 == 'add_manajemen_bundling_form') {
+			$page_data['mapel'] = $this->master_model->get_all_mapel()->result_array();
+			$page_data['jenjang'] = $this->master_model->get_all_jenjang()->result_array();
+			$page_data['materi_group'] = $this->master_model->get_all_materi_group()->result_array();
+			$page_data['materi_group_sub'] = $this->master_model->get_all_materi_group_sub()->result_array();
+            $page_data['page_name'] = 'manajemen_kelas_add';
+            $page_data['page_title'] = 'Tambah kelas';
+            $this->load->view('backend/index', $page_data);
+        }
+        elseif ($param1 == 'edit_manajemen_bundling_form') {
+			$page_data['mapel'] = $this->master_model->get_all_mapel()->result_array();
+			$page_data['jenjang'] = $this->master_model->get_all_jenjang()->result_array();
+			$page_data['materi_group'] = $this->master_model->get_all_materi_group()->result_array();
+			$page_data['materi_group_sub'] = $this->master_model->get_all_materi_group_sub()->result_array();
+            $page_data['page_name'] = 'manajemen_kelas_edit';
+            $page_data['id_class'] = $param2;
+            $page_data['page_title'] = 'Edit kelas';
+            $this->load->view('backend/index', $page_data);
+        }
+		elseif ($param1 == 'delete_manajemen_bundling_form') {
+			$this->manajemen_kelas_model->delete_mentor_manajemen_kelas($param2);
+            redirect(site_url('manajemen_kelas/manajemen_kelas'), 'refresh');
+        }
+	}
+	
 }
