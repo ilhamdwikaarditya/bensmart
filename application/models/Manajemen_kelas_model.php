@@ -28,6 +28,22 @@ class Manajemen_kelas_model extends CI_Model
 			return $this->db->get();
         }
     }
+
+    public function get_manajemen_bundling($id = 0) {
+        if ($id > 0) {
+            return $this->db->get_where('tr_bundling', array('id_bundling' => $id));
+        }else{
+			$this->db->select("a.id_bundling, a.nm_bundling, price, discount, nm_mapel, nm_jenjang, nm_materi_group_sub");
+			$this->db->from('tr_bundling a');
+			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub');
+			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang');
+			$this->db->join('ref_mapel d', 'a.id_mapel = d.id_mapel');
+			$this->db->group_by('a.id_bundling');
+			$this->db->order_by('a.id_bundling');
+			
+			return $this->db->get();
+        }
+    }
 	
 	public function get_mentor_kelas($id = 0) {
         
