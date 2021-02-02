@@ -35,7 +35,7 @@
 							  <td>
                                   <img src="<?php echo $this->master_model->get_user_photo_url($data_mentor['id_user']);?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
                               </td>
-                              <td><?php echo $data_mentor['fullname']; ?></td>
+                              <td><?php echo $data_mentor['fristname']." ".$data_mentor['lastname']; ?></td>
                               <td><?php echo $data_mentor['email']; ?></td>
                               <td><?php echo $data_mentor['phone']; ?></td>
                               <td>

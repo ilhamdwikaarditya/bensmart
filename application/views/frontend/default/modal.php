@@ -79,3 +79,27 @@ function async_modal() {
     return asyncModal;
 }
 </script>
+
+
+<script type="text/javascript">
+function info_modal(texting)
+{
+    jQuery('#info-modal').modal('show', {backdrop: 'static'});
+    document.getElementById('replace-me').innerText = texting;
+}
+</script>
+
+<!-- Info Alert Modal -->
+<div id="info-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body p-4">
+                <div class="text-center">
+                    <i class="dripicons-information h1 text-info"></i>
+					<p id="replace-me"> </p>
+                    <button type="button" class="btn btn-info my-2" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

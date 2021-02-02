@@ -40,7 +40,7 @@
 											<select class="form-control select2" data-toggle="select2" name="id_mentor" id="id_mentor" onchange="setnamamentor(this)">
 											  <option value="0">None</option>
 											  <?php foreach ($mentor as $datamentor): ?>
-													  <option value="<?php echo $datamentor['id_mentor']; ?>"><?php echo $datamentor['fullname']; ?></option>
+													  <option value="<?php echo $datamentor['id_mentor']; ?>"><?php echo $datamentor['lastname']." ".$datamentor['lastname']; ?></option>
 											  <?php endforeach; ?>
 											</select>
 											</div>

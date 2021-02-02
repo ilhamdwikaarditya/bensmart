@@ -67,7 +67,7 @@ $user_details = $this->user_model->get_user($this->session->userdata('id_user'),
                                         <div class="user-details">
                                             <div class="user-name">
                                                 <span class="hi"><?php echo site_phrase('hi'); ?>,</span>
-                                                <?php echo $user_details['fullname']; ?>
+                                                <?php echo $user_details['fristname']; ?>
                                             </div>
                                             <div class="user-email">
                                                 <span class="email"><?php echo $user_details['email']; ?></span>

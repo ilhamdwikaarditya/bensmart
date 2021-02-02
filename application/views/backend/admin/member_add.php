@@ -46,9 +46,15 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group row mb-3">
-                                            <label class="col-md-3 col-form-label" for="fullname">Nama Lengkap<span class="required">*</span></label>
+                                            <label class="col-md-3 col-form-label" for="fristname">Nama Depan<span class="required">*</span></label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" id="fullname" name="fullname" required>
+                                                <input type="text" class="form-control" id="fristname" name="fristname" required>
+                                            </div>
+                                        </div>
+										<div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="lastname">Nama Belakang<span class="required">*</span></label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="lastname" name="lastname" required>
                                             </div>
                                         </div>
                                         <div class="form-group row mb-3">
