@@ -126,7 +126,7 @@ class Master_model extends CI_Model
         if ($id > 0) {
             return $this->db->get_where('ref_mentor', array('id_mentor' => $id, 'is_instructor' => 1));
         }else{
-            $this->db->select('a.*, b.fullname, b.email, b.phone');
+            $this->db->select('a.*, b.fristname, b.lastname, b.email, b.phone');
             $this->db->from('ref_mentor a');
             $this->db->join('ref_user b','a.id_user = b.id_user');
 			return $this->db->get();
@@ -197,7 +197,8 @@ class Master_model extends CI_Model
         if ($validity == false) {
             $this->session->set_flashdata('error_message', get_phrase('email_duplication'));
         }else {
-            $data['fullname'] = html_escape($this->input->post('fullname'));
+            $data['fristname'] = html_escape($this->input->post('fristname'));
+            $data['lastname'] = html_escape($this->input->post('lastname'));
             $data['address'] = html_escape($this->input->post('address'));
             $data['phone'] = html_escape($this->input->post('phone'));
             $data['email'] = html_escape($this->input->post('email'));
@@ -283,7 +284,8 @@ class Master_model extends CI_Model
 	public function edit_member($member_id = "") { // Admin does this editing
         $validity = $this->check_duplication_member('on_update', $this->input->post('email'), $user_id);
         if ($validity) {
-            $data['fullname'] = html_escape($this->input->post('fullname'));
+            $data['fristname'] = html_escape($this->input->post('fristname'));
+            $data['lastname'] = html_escape($this->input->post('lastname'));
             $data['address'] = html_escape($this->input->post('address'));
             $data['phone'] = html_escape($this->input->post('phone'));
 			if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {

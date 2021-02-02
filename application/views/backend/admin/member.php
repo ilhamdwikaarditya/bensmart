@@ -35,7 +35,7 @@
                               <td>
                                   <img src="<?php echo $this->master_model->get_user_photo_url($datamember['id_user']);?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
                               </td>
-                              <td><?php echo $datamember['fullname']; ?></td>
+                              <td><?php echo $datamember['fristname']." ".$datamember['lastname']; ?></td>
                               <td><?php echo $datamember['address']; ?></td>
                               <td><?php echo $datamember['email']; ?></td>
                               <td>

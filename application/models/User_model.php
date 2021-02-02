@@ -24,7 +24,7 @@ class User_model extends CI_Model {
     }
 
     public function get_all_user($user_id = 0) {
-        if ($user_id > 0) {
+		if ($user_id > 0) {
             $this->db->where('id_user', $user_id);
         }
         return $this->db->get('ref_user');

@@ -64,8 +64,12 @@
                           <div class="content-box">
                               <div class="basic-group">
                                   <div class="form-group">
-                                      <label for="fullname"><span class="input-field-icon"><i class="fas fa-user"></i></span> Nama Lengkap:</label>
-                                      <input type="text" class="form-control" name = "fullname" id="fullname" placeholder="Nama Lengkap" value="" required>
+                                      <label for="fristname"><span class="input-field-icon"><i class="fas fa-user"></i></span> Nama Depan:</label>
+                                      <input type="text" class="form-control" name = "fristname" id="fristname" placeholder="Nama Depan" value="" required>
+                                  </div>
+								  <div class="form-group">
+                                      <label for="lastname"><span class="input-field-icon"><i class="fas fa-user"></i></span> Nama Belakang:</label>
+                                      <input type="text" class="form-control" name = "lastname" id="lastname" placeholder="Nama Belakang" value="" required>
                                   </div>
                                   <div class="form-group">
                                       <label for="phone"><span class="input-field-icon"><i class="fas fa-user"></i></span> Handphone:</label>
@@ -83,10 +87,14 @@
                                       <label for="registration-password"><span class="input-field-icon"><i class="fas fa-lock"></i></span> Password:</label>
                                       <input type="password" class="form-control" name = "password" id="registration-password" placeholder="Password" value="" required>
                                   </div>
+								  <div class="form-group">
+                                      <label for="registration-repassword"><span class="input-field-icon"><i class="fas fa-lock"></i></span> Ulangi Password:</label>
+                                      <input type="password" class="form-control" name = "repassword" id="registration-repassword" placeholder="Ulangi Password" value="" required>
+                                  </div>
                               </div>
                           </div>
                           <div class="content-update-box">
-                              <button type="submit" class="btn">Daftar</button>
+                              <button type="submit" id="daftar" class="btn">Daftar</button>
                           </div>
                           <div class="account-have text-center">
                               Sudah punya akun ? <a href="javascript::" onclick="toggoleForm('login')">Masuk</a>
@@ -124,6 +132,7 @@
 </section>
 
 <script type="text/javascript">
+		
   function toggoleForm(form_type) {
     if (form_type === 'login') {
       $('.login-form').show();
@@ -139,4 +148,16 @@
       $('.register-form').hide();
     }
   }
+	
+	var submit = document.getElementById('daftar');
+	submit.onclick = function() {
+		var pass = $("#registration-password").val();
+		var repass = $("#registration-repassword").val();
+		var texting = "Password Yang dimasukan berbeda";
+		if(pass != repass){
+			info_modal(texting);
+			return false;
+		}
+	}
+
 </script>

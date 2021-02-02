@@ -64,8 +64,12 @@
                           <div class="content-box">
                               <div class="basic-group">
                                   <div class="form-group">
-                                      <label for="fullname"><span class="input-field-icon"><i class="fas fa-user"></i></span> Nama Lengkap:</label>
-                                      <input type="text" class="form-control" name = "fullname" id="fullname" placeholder="Nama Lengkap" value="" required>
+                                      <label for="fristname"><span class="input-field-icon"><i class="fas fa-user"></i></span> Nama Depan:</label>
+                                      <input type="text" class="form-control" name = "fristname" id="fristname" placeholder="Nama Depan" value="" required>
+                                  </div>
+								  <div class="form-group">
+                                      <label for="lastname"><span class="input-field-icon"><i class="fas fa-user"></i></span> Nama Belakang:</label>
+                                      <input type="text" class="form-control" name = "lastname" id="lastname" placeholder="Nama Belakang" value="" required>
                                   </div>
                                   <div class="form-group">
                                       <label for="phone"><span class="input-field-icon"><i class="fas fa-user"></i></span> Handphone:</label>
@@ -91,6 +95,10 @@
                                   <div class="form-group">
                                       <label for="registration-password"><span class="input-field-icon"><i class="fas fa-lock"></i></span> Password:</label>
                                       <input type="password" class="form-control" name = "password" id="registration-password" placeholder="Password" value="" required>
+                                  </div>
+								  <div class="form-group">
+                                      <label for="registration-repassword"><span class="input-field-icon"><i class="fas fa-lock"></i></span> Ulangi Password:</label>
+                                      <input type="password" class="form-control" name = "repassword" id="registration-repassword" placeholder="Ulangi Password" value="" required>
                                   </div>
                               </div>
                           </div>

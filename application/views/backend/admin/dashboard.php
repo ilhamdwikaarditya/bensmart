@@ -106,7 +106,7 @@
                             ?>
                             <tr>
                                 <td>
-                                    <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body" style="cursor: auto;"><?php echo $instructor_details['fullname']; ?></a></h5>
+                                    <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body" style="cursor: auto;"><?php echo $instructor_details['fristname']; ?></a></h5>
                                     <small><?php echo 'email'; ?>: <span class="text-muted font-13"><?php echo $instructor_details['email']; ?></span></small>
                                 </td>
                                 <td>

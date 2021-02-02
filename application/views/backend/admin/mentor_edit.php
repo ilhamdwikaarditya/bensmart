@@ -44,7 +44,7 @@
 												<select class="form-control select2" data-toggle="select2" name="id_user" id="id_user">
 													<option value="0"><?php echo get_phrase('none'); ?></option>
 													<?php foreach ($user as $datauser): ?>
-														<option value="<?php echo $datauser['id_user']; ?>" <?php if($mentor_data['id_user'] == $datauser['id_user']) echo 'selected'; ?>><?php echo $datauser['fullname']; ?></option>
+														<option value="<?php echo $datauser['id_user']; ?>" <?php if($mentor_data['id_user'] == $datauser['id_user']) echo 'selected'; ?>><?php echo $datauser['fristname']." ".$datauser['lastname']; ?></option>
 													<?php endforeach; ?>
 											    </select>
 											</div>

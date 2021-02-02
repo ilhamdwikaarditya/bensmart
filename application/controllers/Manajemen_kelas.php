@@ -188,6 +188,15 @@ class Manajemen_kelas extends CI_Controller {
         redirect(site_url('manajemen_kelas/manajemen_kelas_form/detmateri_dokumen_manajemen_kelas_form/'.$param1));
     }
 
+	
+	function get_chain(){
+        $param = $this->input->post('param');
+        $table = $this->input->post('table');
+        $where = $this->input->post('where');
+        $data = $this->manajemen_kelas_model->get_chain($param,$table,$where);
+        echo json_encode($data);
+	}
+
     public function manajemen_bundling($param1 = "", $param2 = "") {
         if ($this->session->userdata('admin_login') != true) {
             redirect(site_url('login'), 'refresh');
@@ -243,6 +252,6 @@ class Manajemen_kelas extends CI_Controller {
 			$this->manajemen_kelas_model->delete_mentor_manajemen_kelas($param2);
             redirect(site_url('manajemen_kelas/manajemen_kelas'), 'refresh');
         }
-    }
-  
+	}
+	
 }
