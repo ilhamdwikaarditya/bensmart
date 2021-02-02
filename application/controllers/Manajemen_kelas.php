@@ -225,8 +225,8 @@ class Manajemen_kelas extends CI_Controller {
 			$page_data['jenjang'] = $this->master_model->get_all_jenjang()->result_array();
 			$page_data['materi_group'] = $this->master_model->get_all_materi_group()->result_array();
 			$page_data['materi_group_sub'] = $this->master_model->get_all_materi_group_sub()->result_array();
-            $page_data['page_name'] = 'manajemen_kelas_add';
-            $page_data['page_title'] = 'Tambah kelas';
+            $page_data['page_name'] = 'manajemen_bundling_add';
+            $page_data['page_title'] = 'Tambah Paket Belajar';
             $this->load->view('backend/index', $page_data);
         }
         elseif ($param1 == 'edit_manajemen_bundling_form') {
