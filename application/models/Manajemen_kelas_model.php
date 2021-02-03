@@ -33,14 +33,41 @@ class Manajemen_kelas_model extends CI_Model
         if ($id > 0) {
             return $this->db->get_where('tr_bundling', array('id_bundling' => $id));
         }else{
-			$this->db->select("a.id_bundling, a.nm_bundling, price, discount, nm_mapel, nm_jenjang, nm_materi_group_sub");
+			$this->db->select("a.id_bundling, a.nm_bundling, price, discount, nm_jenjang, nm_materi_group_sub");
 			$this->db->from('tr_bundling a');
 			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub');
 			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang');
-			$this->db->join('ref_mapel d', 'a.id_mapel = d.id_mapel');
 			$this->db->group_by('a.id_bundling');
-			$this->db->order_by('a.id_bundling');
-			
+			$this->db->order_by('a.id_bundling');	
+			return $this->db->get();
+        }
+    }
+
+    public function get_manajemen_bundling_kelas($id = 0) {
+        if ($id > 0) {
+            $this->db->select("a.id_bundling_detail, a.id_class, b.nm_class, b.price, b.discount, e.nm_jenjang, nm_materi_group_sub");
+			$this->db->from('tr_bundling_detail a');
+			$this->db->join('tr_class b', 'a.id_class = b.id_class');
+			$this->db->join('ref_materi_group c', 'b.id_materi_group = c.id_materi_group');
+			$this->db->join('ref_materi_group_sub d', 'b.id_materi_group_sub = d.id_materi_group_sub');
+			$this->db->join('ref_jenjang e', 'b.id_jenjang = e.id_jenjang');
+			$this->db->join('ref_mapel f', 'b.id_mapel = f.id_mapel');
+			$this->db->join('tr_class_mentor g', 'b.id_class = g.id_class', 'left');
+			$this->db->where('a.id_bundling', $id);
+			$this->db->group_by('a.id_bundling_detail');
+			$this->db->order_by('a.id_bundling_detail');	
+			return $this->db->get();
+        }else{
+			$this->db->select("a.id_bundling_detail, a.id_class, b.nm_class, b.price, b.discount, e.nm_jenjang, nm_materi_group_sub");
+			$this->db->from('tr_bundling_detail a');
+			$this->db->join('tr_class b', 'a.id_class = b.id_class');
+			$this->db->join('ref_materi_group c', 'b.id_materi_group = c.id_materi_group');
+			$this->db->join('ref_materi_group_sub d', 'b.id_materi_group_sub = d.id_materi_group_sub');
+			$this->db->join('ref_jenjang e', 'b.id_jenjang = e.id_jenjang');
+			$this->db->join('ref_mapel f', 'b.id_mapel = f.id_mapel');
+			$this->db->join('tr_class_mentor g', 'b.id_class = g.id_class', 'left');
+			$this->db->group_by('a.id_bundling_detail');
+			$this->db->order_by('a.id_bundling_detail');	
 			return $this->db->get();
         }
     }
@@ -123,6 +150,24 @@ class Manajemen_kelas_model extends CI_Model
             $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
     }
 
+    public function add_manajemen_bundling() {
+
+        $data['nm_bundling'] = html_escape($this->input->post('nm_bundling'));
+        $data['desc_bundling'] = html_escape($this->input->post('desc_bundling'));
+        $data['price'] = html_escape($this->input->post('price'));
+        $data['discount'] = html_escape($this->input->post('discount'));
+        $data['discount_price'] = html_escape($this->input->post('price')) - html_escape($this->input->post('discount'));
+        $data['id_jenjang'] = html_escape($this->input->post('id_jenjang'));
+        $data['id_materi_group_sub'] = html_escape($this->input->post('id_materi_group_sub'));
+        $data['cuser'] = html_escape($this->session->userdata('id_user'));
+        $data['thumbnail'] = md5(rand(10000, 10000000));
+
+        $this->db->insert('tr_bundling', $data);
+        $user_id = $this->db->insert_id();
+        $this->upload_thumbnail_bundling($data['thumbnail']);
+        $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
+}
+
     public function add_mentor_manajemen_kelas($class_id = "") { // Admin does this editing
         
 			$data['id_class']  = html_escape($class_id);
@@ -168,7 +213,18 @@ class Manajemen_kelas_model extends CI_Model
         $id_class_materi_dokumen = $this->db->insert_id();
         $this->upload_materi_detail_dokumen($data['file_materi_dokumen']);
         $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
-}
+    }
+
+    public function add_kelas_manajemen_bundling($bundling_id = "") { // Admin does this editing
+        
+        $data['id_bundling']  = html_escape($bundling_id);
+        $data['id_class'] = html_escape($this->input->post('id_class'));
+        $data['cuser']     = html_escape($this->session->userdata('id_user'));
+        
+        $this->db->insert('tr_bundling_detail', $data);
+        $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
+    
+    }
 	
 	public function edit_manajemen_kelas($class_id = "") { // Admin does this editing
         
@@ -194,6 +250,31 @@ class Manajemen_kelas_model extends CI_Model
             $this->session->set_flashdata('flash_message', 'Berhasil dirubah');
         
     }
+
+    public function edit_manajemen_bundling($bundling_id = "") { // Admin does this editing
+        
+        $data['nm_bundling'] = html_escape($this->input->post('nm_bundling'));
+        $data['desc_bundling'] = html_escape($this->input->post('desc_bundling'));
+        $data['price'] = html_escape($this->input->post('price'));
+        $data['discount'] = html_escape($this->input->post('discount'));
+        $data['discount_price'] = html_escape($this->input->post('price')) - html_escape($this->input->post('discount'));
+        $data['id_mapel'] = html_escape($this->input->post('id_mapel'));
+        $data['id_jenjang'] = html_escape($this->input->post('id_jenjang'));
+        $data['id_materi_group_sub'] = html_escape($this->input->post('id_materi_group_sub'));
+        $data['cuser'] = $this->session->userdata('id_user');
+        
+        if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['name'] != "") {
+            unlink('uploads/thumbnail_bundling/' . $this->db->get_where('tr_bundling', array('id_bundling' => $bundling_id))->row('thumbnail').'.jpg');
+            $data['thumbnail'] = md5(rand(10000, 10000000));
+        }
+
+        
+        $this->db->where('id_bundling', $bundling_id);
+        $this->db->update('tr_bundling', $data);
+        $this->upload_thumbnail_bundling($data['thumbnail']);
+        $this->session->set_flashdata('flash_message', 'Berhasil dirubah');
+    
+}
 
     public function edit_materi_section($id_class_materi_section)
     {
@@ -258,6 +339,12 @@ class Manajemen_kelas_model extends CI_Model
         $this->db->delete('tr_class_materi_dokumen');
     }
 
+    public function delete_kelas_manajemen_bundling($class_bundling_id = "") {
+        $this->db->where('id_bundling_detail', $class_bundling_id);
+        $this->db->delete('tr_bundling_detail');
+        $this->session->set_flashdata('flash_message', 'Berhasil dihapus');
+    }
+
     public function send_materi_detail($id_class, $id_class_materi_detail)
     {
         $data['active'] = '1'; 
@@ -287,6 +374,13 @@ class Manajemen_kelas_model extends CI_Model
             $this->session->set_flashdata('flash_message', 'Berhasil');
         }
     }
+
+    public function upload_thumbnail_bundling($image_code) {
+        if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['name'] != "") {
+            move_uploaded_file($_FILES['thumbnail']['tmp_name'], 'uploads/thumbnail_bundling/'.$image_code.'.jpg');
+            $this->session->set_flashdata('flash_message', 'Berhasil');
+        }
+    }
     
     public function upload_materi_detail_dokumen($dokumen) {
         if (isset($_FILES['file_materi_dokumen']) && $_FILES['file_materi_dokumen']['name'] != "") {
@@ -300,6 +394,15 @@ class Manajemen_kelas_model extends CI_Model
         $user_profile_image = $this->db->get_where('tr_class', array('id_class' => $user_id))->row('thumbnail');
         if (file_exists('uploads/thumbnail_class/'.$user_profile_image.'.jpg'))
              return base_url().'uploads/thumbnail_class/'.$user_profile_image.'.jpg';
+        else
+            return base_url().'uploads/photo/placeholder.png';
+    }
+
+    public function get_thumbnail_bundling($user_id) {
+
+        $user_profile_image = $this->db->get_where('tr_bundling', array('id_bundling' => $user_id))->row('thumbnail');
+        if (file_exists('uploads/thumbnail_bundling/'.$user_profile_image.'.jpg'))
+             return base_url().'uploads/thumbnail_bundling/'.$user_profile_image.'.jpg';
         else
             return base_url().'uploads/photo/placeholder.png';
     }
