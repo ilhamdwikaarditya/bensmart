@@ -36,7 +36,7 @@
                         $status_wise_courses = $this->crud_model->get_status_wise_courses();
                         $number_of_courses = $status_wise_courses['active']->num_rows();
                         echo $number_of_courses.' Kelas Online' ?></h4>
-                        <p>Cari kelas yang kamu inginkan</p>
+                        <p>Cari kelas yang kamu inginkann</p>
                     </div>
                 </div>
             </div>
