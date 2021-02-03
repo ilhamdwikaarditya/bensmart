@@ -132,7 +132,7 @@
 </section>
 
 <script type="text/javascript">
-		
+
   function toggoleForm(form_type) {
     if (form_type === 'login') {
       $('.login-form').show();
