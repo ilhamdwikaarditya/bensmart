@@ -84,10 +84,10 @@
 		<form action="<?php echo site_url('login/register'); ?>" method="post">
 			
 			<div class="form-group">
-			<label for="fristname">
+			<label for="firstname">
 			  Nama Depan
 			</label>
-			<input type="text" class="form-control" id="fristname" name = "fristname" placeholder="Nama depan">
+			<input type="text" class="form-control" id="firstname" name = "firstname" placeholder="Nama depan">
 		  </div>
 		  <div class="form-group">
 			<label for="lastname">

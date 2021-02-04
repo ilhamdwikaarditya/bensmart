@@ -46,6 +46,31 @@ class Mentor extends CI_Controller {
         echo $video_details['duration'];
     }
 
+    function manage_profile($param1 = '', $param2 = '', $param3 = '')
+    {
+        if ($this->session->userdata('mentor_login') != true)
+        redirect(site_url('login'), 'refresh');
+        if ($param1 == 'update_profile_info') {
+            $this->master_model->edit_mentor_profile($param2);
+            redirect(site_url('mentor/manage_profile'), 'refresh');
+        }
+        if ($param1 == 'update_profile_bio') {
+            $this->master_model->edit_mentor_bio($param2);
+            redirect(site_url('mentor/manage_profile'), 'refresh');
+        }
+        if ($param1 == 'change_password') {
+            $this->master_model->change_password($param2);
+            redirect(site_url('mentor/manage_profile'), 'refresh');
+        }
+        $page_data['page_name']  = 'manage_profile';
+        $page_data['page_title'] = 'Atur Profil';
+        $page_data['edit_data'] = $this->master_model->get_mentor_profile()->result_array();
+        // $page_data['edit_data']  = $this->db->get_where('ref_user', array(
+        //     'id_user' => $this->session->userdata('id_user')
+        // ))->result_array();
+        $this->load->view('backend/index', $page_data);
+    }
+
     public function manajemen_kelas($param1 = "", $param2 = "") {
         if ($this->session->userdata('mentor_login') != true) {
             redirect(site_url('login'), 'refresh');

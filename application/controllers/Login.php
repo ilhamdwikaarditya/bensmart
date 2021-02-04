@@ -37,9 +37,9 @@ class Login extends CI_Controller {
             $this->session->set_userdata('id_user', $row->id_user);
             $this->session->set_userdata('id_level', $row->id_level);
             $this->session->set_userdata('role', get_user_role('user_role', $row->id_user));
-            $this->session->set_userdata('fristname', $row->fristname);
+            $this->session->set_userdata('firstname', $row->firstname);
             $this->session->set_userdata('lastname', $row->lastname);
-            $this->session->set_flashdata('flash_message', get_phrase('welcome').' '.$row->fristname);
+            $this->session->set_flashdata('flash_message', get_phrase('welcome').' '.$row->firstname);
             if ($row->id_level == 1) { //Administrator
                 $this->session->set_userdata('admin_login', '1');
                 redirect(site_url('admin/dashboard'), 'refresh');
@@ -57,7 +57,7 @@ class Login extends CI_Controller {
     }
 
     public function register() {
-        $data['fristname'] = html_escape($this->input->post('fristname'));
+        $data['firstname'] = html_escape($this->input->post('firstname'));
         $data['lastname'] = html_escape($this->input->post('lastname'));
         $data['phone']  = html_escape($this->input->post('phone'));
         $data['address']  = html_escape($this->input->post('address'));
@@ -66,7 +66,7 @@ class Login extends CI_Controller {
         $data['password']  = sha1($this->input->post('password'));
         
 		
-        if(empty($data['fristname']) || empty($data['lastname']) || empty($data['phone']) || empty($data['address']) || empty($data['email']) || empty($data['password'])){
+        if(empty($data['firstname']) || empty($data['lastname']) || empty($data['phone']) || empty($data['address']) || empty($data['email']) || empty($data['password'])){
             $this->session->set_flashdata('error_message','formulir pendaftaran Anda kosong'.'. '.'isi formulir dengan data valid Anda');
             redirect(site_url('home/sign_up'), 'refresh');
         }
@@ -122,7 +122,7 @@ class Login extends CI_Controller {
         $this->session->unset_userdata('id_user');
         $this->session->unset_userdata('id_level');
         $this->session->unset_userdata('role');
-        $this->session->unset_userdata('fristname');
+        $this->session->unset_userdata('firstname');
         $this->session->unset_userdata('lastname');
         if ($this->session->userdata('admin_login') == 1) {
             $this->session->unset_userdata('admin_login');

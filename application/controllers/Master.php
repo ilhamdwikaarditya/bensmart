@@ -375,7 +375,7 @@ class Master extends CI_Controller {
         elseif ($param1 == 'edit_member_form') {
             $page_data['page_name'] = 'member_edit';
             $page_data['member_id'] = $param2;
-            $page_data['page_title'] = 'Rubah Member';
+            $page_data['page_title'] = 'Ubah Member';
             $this->load->view('backend/index', $page_data);
         }
     }

@@ -5,11 +5,11 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 <div class="left-side-menu left-side-menu-detached">
 	<div class="leftbar-user">
 		<a href="javascript: void(0);">
-			<img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('user_id')); ?>" alt="user-image" height="42" class="rounded-circle shadow-sm">
+			<img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('id_user')); ?>" alt="user-image" height="42" class="rounded-circle shadow-sm">
 			<?php
-			$admin_details = $this->user_model->get_all_user($this->session->userdata('user_id'))->row_array();
+			$admin_details = $this->user_model->get_user($this->session->userdata('id_user'))->row_array();
 			?>
-			<span class="leftbar-user-name"><?php echo $admin_details['first_name'].' '.$admin_details['last_name']; ?></span>
+			<span class="leftbar-user-name"><?php echo $admin_details['firstname'].' '.$admin_details['lastname']; ?></span>
 		</a>
 	</div>
 
@@ -23,7 +23,7 @@ $status_wise_courses = $this->crud_model->get_status_wise_courses();
 			</a>
 		</li>
 		<?php 
-			$session_level = $this->session->userdata('id_level');
+			$session_level = $this->session->userdata('id_level');;
 			$CI =& get_instance();
 			$CI->load->model('Menu_model');
 			$result = $CI->Menu_model->getAllMenugroups($session_level)->result();

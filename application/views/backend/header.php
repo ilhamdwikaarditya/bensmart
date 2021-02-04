@@ -24,7 +24,7 @@
                     <?php
                     $logged_in_user_details = $this->user_model->get_all_user($this->session->userdata('id_user'))->row_array();;
                     ?>
-                    <span class="account-user-name"><?php echo $logged_in_user_details['fristname'];?></span>
+                    <span class="account-user-name"><?php echo $logged_in_user_details['firstname'];?></span>
                     <span class="account-position">
 					<?php  if (strtolower($this->session->userdata('role')) == 'user'){
 								echo "user";

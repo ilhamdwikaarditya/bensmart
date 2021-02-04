@@ -109,39 +109,52 @@ class Master_model extends CI_Model
         return $this->db->get();
     }
 
-    public function get_level($id = 0) {
+    public function get_level($id = 0)
+    {
         if ($id > 0) {
             return $this->db->get_where('ref_level', array('id' => $id, 'is_instructor' => 1));
-        }else{
+        } else {
             return $this->db->get_where('ref_level');
         }
     }
-	
-	public function get_member($user_id = 0) {
+
+    public function get_member($user_id = 0)
+    {
         $this->db->where('id_level =', 3);
         return $this->db->get('ref_user');
     }
-	
-	public function get_mentor($id = 0) {
+
+    public function get_mentor($id = 0)
+    {
         if ($id > 0) {
-            return $this->db->get_where('ref_mentor', array('id_mentor' => $id, 'is_instructor' => 1));
-        }else{
-            $this->db->select('a.*, b.fristname, b.lastname, b.email, b.phone');
+            return $this->db->get_where('ref_mentor', array('id_mentor' => $id));
+        } else {
+            $this->db->select('a.*, b.firstname, b.lastname, b.email, b.phone');
             $this->db->from('ref_mentor a');
-            $this->db->join('ref_user b','a.id_user = b.id_user');
-			return $this->db->get();
+            $this->db->join('ref_user b', 'a.id_user = b.id_user');
+            return $this->db->get();
         }
     }
-	
-	public function get_tipe_payment($id = 0) {
+
+    public function get_mentor_profile($id = 0)
+    {
+        $this->db->select('a.*, b.id_user, b.firstname, b.lastname, b.email, b.phone, b.address');
+        $this->db->from('ref_mentor a');
+        $this->db->join('ref_user b', 'a.id_user = b.id_user');
+        $this->db->where('b.id_user', $this->session->userdata('id_user'));
+        return $this->db->get();
+    }
+
+    public function get_tipe_payment($id = 0)
+    {
         if ($id > 0) {
             return $this->db->get_where('ref_type_payment', array('id_payment_type' => $id));
-        }else{
-			return $this->db->get_where('ref_type_payment');
-		}
+        } else {
+            return $this->db->get_where('ref_type_payment');
+        }
     }
-	
-	public function add_jenjang($is_instructor = false)
+
+    public function add_jenjang($is_instructor = false)
     {
         $data['nm_jenjang'] = html_escape($this->input->post('nm_jenjang'));
         $data['kd_jenjang'] = html_escape($this->input->post('kd_jenjang'));
@@ -183,21 +196,23 @@ class Master_model extends CI_Model
         $this->session->set_flashdata('flash_message', 'mapel added successfully');
     }
 
-    public function add_level() {
-        
-            $data['nm_level'] = html_escape($this->input->post('nm_level'));
+    public function add_level()
+    {
 
-            $this->db->insert('ref_level', $data);
-            $level_id = $this->db->insert_id();
-            $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
+        $data['nm_level'] = html_escape($this->input->post('nm_level'));
+
+        $this->db->insert('ref_level', $data);
+        $level_id = $this->db->insert_id();
+        $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
     }
-	
-	public function add_member() {
+
+    public function add_member()
+    {
         $validity = $this->check_duplication_member('on_create', $this->input->post('email'));
         if ($validity == false) {
             $this->session->set_flashdata('error_message', get_phrase('email_duplication'));
-        }else {
-            $data['fristname'] = html_escape($this->input->post('fristname'));
+        } else {
+            $data['firstname'] = html_escape($this->input->post('firstname'));
             $data['lastname'] = html_escape($this->input->post('lastname'));
             $data['address'] = html_escape($this->input->post('address'));
             $data['phone'] = html_escape($this->input->post('phone'));
@@ -212,28 +227,30 @@ class Master_model extends CI_Model
             $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
         }
     }
-	
-	public function add_mentor() {
-        
-            $data['id_user'] = html_escape($this->input->post('id_user'));
-            $data['bio'] 	 = html_escape($this->input->post('bio'));
-            $data['quotes']  = html_escape($this->input->post('quotes'));
 
-            $this->db->insert('ref_mentor', $data);
-            $mentor_id = $this->db->insert_id();
-            $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
-    }
-	
-	public function add_tipe_payment() {
-        
-            $data['nm_type_payment'] = html_escape($this->input->post('nm_type_payment'));
+    public function add_mentor()
+    {
 
-            $this->db->insert('ref_type_payment', $data);
-            $mentor_id = $this->db->insert_id();
-            $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
+        $data['id_user'] = html_escape($this->input->post('id_user'));
+        $data['bio']      = html_escape($this->input->post('bio'));
+        $data['quotes']  = html_escape($this->input->post('quotes'));
+
+        $this->db->insert('ref_mentor', $data);
+        $mentor_id = $this->db->insert_id();
+        $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
     }
-	
-	public function edit_jenjang($id_jenjang = "")
+
+    public function add_tipe_payment()
+    {
+
+        $data['nm_type_payment'] = html_escape($this->input->post('nm_type_payment'));
+
+        $this->db->insert('ref_type_payment', $data);
+        $mentor_id = $this->db->insert_id();
+        $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
+    }
+
+    public function edit_jenjang($id_jenjang = "")
     { // Admin does this editing
         $data['nm_jenjang'] = html_escape($this->input->post('nm_jenjang'));
         $data['kd_jenjang'] = html_escape($this->input->post('kd_jenjang'));
@@ -244,7 +261,7 @@ class Master_model extends CI_Model
     }
 
     public function edit_materi_group($id_materi_group = "")
-    { 
+    {
         $data['nm_materi_group'] = html_escape($this->input->post('nm_materi_group'));
         $data['id_jenjang'] = html_escape($this->input->post('id_jenjang'));
 
@@ -254,7 +271,7 @@ class Master_model extends CI_Model
     }
 
     public function edit_materi_group_sub($id_materi_group_sub = "")
-    { 
+    {
         $data['nm_materi_group_sub'] = html_escape($this->input->post('nm_materi_group_sub'));
         $data['kd_materi_group_sub'] = html_escape($this->input->post('kd_materi_group_sub'));
         $data['id_materi_group'] = html_escape($this->input->post('id_materi_group'));
@@ -265,7 +282,7 @@ class Master_model extends CI_Model
     }
 
     public function edit_mapel($id_mapel = "")
-    { 
+    {
         $data['nm_mapel'] = html_escape($this->input->post('nm_mapel'));
         $data['kd_mapel'] = html_escape($this->input->post('kd_mapel'));
 
@@ -274,58 +291,90 @@ class Master_model extends CI_Model
         $this->session->set_flashdata('flash_message', 'mapel update successfully');
     }
 
-    public function edit_level($level_id = "") { // Admin does this editing
-            $data['nm_level'] = html_escape($this->input->post('nm_level'));
-            $this->db->where('id_level', $level_id);
-            $this->db->update('ref_level', $data);
-            $this->session->set_flashdata('flash_message', 'Berhasil Dirubah');
+    public function edit_level($level_id = "")
+    { // Admin does this editing
+        $data['nm_level'] = html_escape($this->input->post('nm_level'));
+        $this->db->where('id_level', $level_id);
+        $this->db->update('ref_level', $data);
+        $this->session->set_flashdata('flash_message', 'Berhasil Dirubah');
     }
-	
-	public function edit_member($member_id = "") { // Admin does this editing
+
+    public function edit_member($member_id = "")
+    { // Admin does this editing
         $validity = $this->check_duplication_member('on_update', $this->input->post('email'), $user_id);
         if ($validity) {
-            $data['fristname'] = html_escape($this->input->post('fristname'));
+            $data['firstname'] = html_escape($this->input->post('firstname'));
             $data['lastname'] = html_escape($this->input->post('lastname'));
             $data['address'] = html_escape($this->input->post('address'));
             $data['phone'] = html_escape($this->input->post('phone'));
-			if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
-                unlink('uploads/photo/' . $this->db->get_where('ref_user', array('id_user' => $member_id))->row('photo').'.jpg');
+            if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
+                unlink('uploads/photo/' . $this->db->get_where('ref_user', array('id_user' => $member_id))->row('photo') . '.jpg');
                 $data['photo'] = md5(rand(10000, 10000000));
             }
 
             if (isset($_POST['email'])) {
                 $data['email'] = html_escape($this->input->post('email'));
             }
-            
-            
+
+
             $this->db->where('id_user', $member_id);
             $this->db->update('ref_user', $data);
             $this->upload_photo($data['photo']);
             $this->session->set_flashdata('flash_message', 'Berhasil dirubah');
-        }else {
+        } else {
             $this->session->set_flashdata('error_message', 'Email duplikat');
         }
+    }
 
+    public function edit_mentor($mentor_id = "")
+    { // Admin does this editing
+        $data['id_user'] = html_escape($this->input->post('id_user'));
+        $data['bio']      = html_escape($this->input->post('bio'));
+        $data['quotes']  = html_escape($this->input->post('quotes'));
+        $this->db->where('id_mentor', $mentor_id);
+        $this->db->update('ref_mentor', $data);
+        $this->session->set_flashdata('flash_message', 'Berhasil Dirubah');
     }
-	
-	public function edit_mentor($mentor_id = "") { // Admin does this editing
-            $data['id_user'] = html_escape($this->input->post('id_user'));
-            $data['bio'] 	 = html_escape($this->input->post('bio'));
-            $data['quotes']  = html_escape($this->input->post('quotes'));
-            $this->db->where('id_mentor', $mentor_id);
-            $this->db->update('ref_mentor', $data);
-            $this->session->set_flashdata('flash_message', 'Berhasil Dirubah');
+
+    public function edit_mentor_profile($id_user = "")
+    { // Admin does this editing
+        $data['firstname'] = html_escape($this->input->post('firstname'));
+        $data['lastname'] = html_escape($this->input->post('lastname'));
+        // $data['email'] = html_escape($this->input->post('email'));
+        $data['phone'] = html_escape($this->input->post('phone'));
+        $data['address'] = html_escape($this->input->post('address'));
+
+        if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
+            unlink('uploads/photo/' . $this->db->get_where('ref_user', array('id_user' => $id_user))->row('photo') . '.jpg');
+            $data['photo'] = md5(rand(10000, 10000000));
+            $this->upload_photo($data['photo']);
+        }
+
+        $this->db->where('id_user', $id_user);
+        $this->db->update('ref_user', $data);
+        $this->session->set_flashdata('flash_message', 'Berhasil Dirubah');
     }
-	
-	public function edit_tipe_payment($mentor_id = "") { // Admin does this editing
-            $data['nm_type_payment'] = html_escape($this->input->post('nm_type_payment'));
-			
-            $this->db->where('id_type_payment', $mentor_id);
-            $this->db->update('ref_type_payment', $data);
-            $this->session->set_flashdata('flash_message', 'Berhasil Dirubah');
+
+    public function edit_mentor_bio($id_user = "")
+    { // Admin does this editing
+        $data['quotes']  = html_escape($this->input->post('quotes'));
+        $data['bio']      = html_escape($this->input->post('bio'));
+
+        $this->db->where('id_user', $id_user);
+        $this->db->update('ref_mentor', $data);
+        $this->session->set_flashdata('flash_message', 'Berhasil Dirubah');
     }
-	
-	public function delete_jenjang($id_jenjang = "")
+
+    public function edit_tipe_payment($mentor_id = "")
+    { // Admin does this editing
+        $data['nm_type_payment'] = html_escape($this->input->post('nm_type_payment'));
+
+        $this->db->where('id_type_payment', $mentor_id);
+        $this->db->update('ref_type_payment', $data);
+        $this->session->set_flashdata('flash_message', 'Berhasil Dirubah');
+    }
+
+    public function delete_jenjang($id_jenjang = "")
     {
         $this->db->where('id_jenjang', $id_jenjang);
         $this->db->delete('ref_jenjang');
@@ -353,70 +402,76 @@ class Master_model extends CI_Model
         $this->session->set_flashdata('flash_message', 'mapel deleted successfully');
     }
 
-	public function delete_level($level_id = "") {
+    public function delete_level($level_id = "")
+    {
         $this->db->where('id_level', $level_id);
         $this->db->delete('ref_level');
         $this->session->set_flashdata('flash_message', 'Berhasil Dihapus');
     }
-	
-	public function delete_member($user_id = "") {
+
+    public function delete_member($user_id = "")
+    {
         $this->db->where('id_user', $user_id);
         $this->db->delete('ref_user');
         $this->session->set_flashdata('flash_message', get_phrase('user_deleted_successfully'));
     }
-	
-	public function delete_mentor($mentor_id = "") {
+
+    public function delete_mentor($mentor_id = "")
+    {
         $this->db->where('id_mentor', $mentor_id);
         $this->db->delete('ref_mentor');
         $this->session->set_flashdata('flash_message', 'Berhasil Dihapus');
     }
-	
-	public function delete_tipe_payment($mentor_id = "") {
+
+    public function delete_tipe_payment($mentor_id = "")
+    {
         $this->db->where('id_type_payment', $mentor_id);
         $this->db->delete('ref_type_payment');
         $this->session->set_flashdata('flash_message', 'Berhasil Dihapus');
     }
-	
-	public function check_duplication_member($action = "", $email = "", $user_id = "") {
+
+    public function check_duplication_member($action = "", $email = "", $user_id = "")
+    {
         $duplicate_email_check = $this->db->get_where('ref_user', array('email' => $email));
 
         if ($action == 'on_create') {
             if ($duplicate_email_check->num_rows() > 0) {
-                if($duplicate_email_check->row()->status == 1){
+                if ($duplicate_email_check->row()->status == 1) {
                     return false;
-                }else{
+                } else {
                     return 'unverified_user';
                 }
-            }else {
+            } else {
                 return true;
             }
-        }elseif ($action == 'on_update') {
+        } elseif ($action == 'on_update') {
             if ($duplicate_email_check->num_rows() > 0) {
                 if ($duplicate_email_check->row()->id == $user_id) {
                     return true;
-                }else {
+                } else {
                     return false;
                 }
-            }else {
+            } else {
                 return true;
             }
         }
     }
 
-	public function upload_photo($image_code) {
+    public function upload_photo($image_code)
+    {
         if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
-            move_uploaded_file($_FILES['photo']['tmp_name'], 'uploads/photo/'.$image_code.'.jpg');
+            move_uploaded_file($_FILES['photo']['tmp_name'], 'uploads/photo/' . $image_code . '.jpg');
             $this->session->set_flashdata('flash_message', 'Berhasil');
         }
-    }	
-	
-	public function get_user_photo_url($user_id) {
+    }
+
+    public function get_user_photo_url($user_id)
+    {
 
         $user_profile_image = $this->db->get_where('ref_user', array('id_user' => $user_id))->row('photo');
-        if (file_exists('uploads/photo/'.$user_profile_image.'.jpg'))
-             return base_url().'uploads/photo/'.$user_profile_image.'.jpg';
+        if (file_exists('uploads/photo/' . $user_profile_image . '.jpg'))
+            return base_url() . 'uploads/photo/' . $user_profile_image . '.jpg';
         else
-            return base_url().'uploads/photo/placeholder.png';
+            return base_url() . 'uploads/photo/placeholder.png';
     }
-	
 }

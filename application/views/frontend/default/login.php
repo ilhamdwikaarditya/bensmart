@@ -64,8 +64,8 @@
                           <div class="content-box">
                               <div class="basic-group">
                                   <div class="form-group">
-                                      <label for="fristname"><span class="input-field-icon"><i class="fas fa-user"></i></span> Nama Depan:</label>
-                                      <input type="text" class="form-control" name = "fristname" id="fristname" placeholder="Nama Depan" value="" required>
+                                      <label for="firstname"><span class="input-field-icon"><i class="fas fa-user"></i></span> Nama Depan:</label>
+                                      <input type="text" class="form-control" name = "firstname" id="firstname" placeholder="Nama Depan" value="" required>
                                   </div>
 								  <div class="form-group">
                                       <label for="lastname"><span class="input-field-icon"><i class="fas fa-user"></i></span> Nama Belakang:</label>
