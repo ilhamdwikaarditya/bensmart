@@ -86,7 +86,7 @@ class Manajemen_kelas_model extends CI_Model
     }
 	
 	public function get_mentor($mentor_id = 0) {
-		$this->db->select("a.id_mentor, a.id_user, b.fristname, b.lastname");
+		$this->db->select("a.id_mentor, a.id_user, b.firstname, b.lastname");
 		$this->db->from("ref_mentor a");
 		$this->db->join('ref_user b', 'a.id_user = b.id_user');
         return $this->db->get();

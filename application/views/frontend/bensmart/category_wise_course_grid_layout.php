@@ -11,7 +11,7 @@
                  <div class="course-details">
                      <h5 class="title"><?php echo $course['title']; ?></h5>
                      <p class="instructors">
-                         <?php echo $instructor_details['first_name'].' '.$instructor_details['last_name']; ?>
+                         <?php echo $instructor_details['firstname'].' '.$instructor_details['lastname']; ?>
                      </p>
                      <div class="rating">
                          <?php

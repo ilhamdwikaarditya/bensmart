@@ -45,7 +45,7 @@ $class = $this->manajemen_kelas_model->get_materi_section('section', $param3)->r
     </div>
 
     <div class="text-center">
-        <button class = "btn btn-success" type="submit" name="button">Rubah Materi Detail</button>
+        <button class = "btn btn-success" type="submit" name="button">Ubah Materi Detail</button>
     </div>
 </form>
 
