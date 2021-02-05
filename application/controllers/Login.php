@@ -203,7 +203,14 @@ class Login extends CI_Controller {
             $this->db->update('ref_user', $updater);
             $this->session->set_flashdata('flash_message', get_phrase('congratulations').'!'.get_phrase('your_email_address_has_been_successfully_verified').'.');
             $this->session->set_userdata('register_email', null);
-            echo true;
+			
+			$dataverifikasi['nama']  = $user_details['firstname']." ".$user_details['lastname'];
+			$dataverifikasi['email'] = $user_details['email'];
+			
+			$dataverifikasi['page_name'] = "verification_code_byurl_success";
+			$dataverifikasi['page_title'] = "Verifikasi Email Sukses";
+			$this->load->view('frontend/'.get_frontend_settings('theme').'/index', $dataverifikasi);
+			
         }else{
             $this->session->set_flashdata('error_message', get_phrase('the_verification_code_is_wrong').'.');
             echo false;
