@@ -133,9 +133,9 @@
 											</div>
 										</div>
 										<div class="form-group row mb-3">
-											<label class="col-md-3 col-form-label" for="id_materi_group_sub">Materi Group<span class="required">*</span></label>
+											<label class="col-md-3 col-form-label" for="id_materi_group">Materi Group<span class="required">*</span></label>
 											<div class="col-md-9">
-											<select class="form-control select2" data-toggle="select2" name="id_materi_group_sub" id="id_materi_group_sub">
+											<select class="groupmateri form-control select2" data-toggle="select2" name="id_materi_group" id="id_materi_group">
 											  <option value="0">None</option>
 											  <?php foreach ($materi_group as $datamateri_group): ?>
 													  <option value="<?php echo $datamateri_group['id_materi_group']; ?>" <?php if($manajemen_kelas_data['id_materi_group'] == $datamateri_group['id_materi_group']) echo 'selected'; ?>><?php echo $datamateri_group['nm_materi_group']; ?></option>
@@ -146,7 +146,7 @@
 										<div class="form-group row mb-3">
 											<label class="col-md-3 col-form-label" for="id_materi_group_sub">Materi Sub Group<span class="required">*</span></label>
 											<div class="col-md-9">
-											<select class="form-control select2" data-toggle="select2" name="id_materi_group_sub" id="id_materi_group_sub">
+											<select class="subgroup form-control select2" data-toggle="select2" name="id_materi_group_sub" id="id_materi_group_sub">
 											  <option value="0">None</option>
 											  <?php foreach ($materi_group_sub as $datamateri_group_sub): ?>
 													  <option value="<?php echo $datamateri_group_sub['id_materi_group_sub']; ?>" <?php if($manajemen_kelas_data['id_materi_group_sub'] == $datamateri_group_sub['id_materi_group_sub']) echo 'selected'; ?>><?php echo $datamateri_group_sub['nm_materi_group_sub']; ?></option>
@@ -192,3 +192,50 @@
         </div> <!-- end card-->
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#id_jenjang').change(function(){
+            var id_jenjang = $(this).val();  
+            $.ajax({
+                url : "<?php echo base_url();?>Manajemen_kelas/get_chain/",
+                method : "POST",
+                data : {param: id_jenjang, table: 'ref_materi_group', where: 'id_jenjang'},
+                async : false,
+                dataType : 'json',
+                success: function(data){
+                    var html = '';
+                    var i;
+						html += "<option value='0'>None</option>";
+                    for(i=0; i<data.length; i++){
+                        
+                        html += "<option value='"+data[i].id_materi_group+"'>"+data[i].nm_materi_group+"</option>";
+                    }
+                    $('.groupmateri').html(html);
+                }
+            });
+        });
+		
+		$('#id_materi_group').change(function(){
+            var id_materi_group = $(this).val();  
+            $.ajax({
+                url : "<?php echo base_url();?>Manajemen_kelas/get_chain/",
+                method : "POST",
+                data : {param: id_materi_group, table: 'ref_materi_group_sub', where: 'id_materi_group'},
+                async : false,
+                dataType : 'json',
+                success: function(data){
+                    var html = '';
+                    var i;
+						html += "<option value='0'>None</option>";
+                    for(i=0; i<data.length; i++){
+                        html += "<option value='"+data[i].id_materi_group_sub+"'>"+data[i].nm_materi_group_sub+"</option>";
+                    }
+                    $('.subgroup').html(html);
+                }
+            });
+        });
+		
+    });
+</script>
+
