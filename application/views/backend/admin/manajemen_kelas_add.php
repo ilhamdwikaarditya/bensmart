@@ -183,7 +183,7 @@
         $('#id_jenjang').change(function(){
             var id_jenjang = $(this).val();  
             $.ajax({
-                url : "<?php echo base_url();?>/Manajemen_kelas/get_chain/",
+                url : "<?php echo base_url();?>Manajemen_kelas/get_chain/",
                 method : "POST",
                 data : {param: id_jenjang, table: 'ref_materi_group', where: 'id_jenjang'},
                 async : false,
@@ -202,7 +202,7 @@
 		$('#id_materi_group').change(function(){
             var id_materi_group = $(this).val();  
             $.ajax({
-                url : "<?php echo base_url();?>/Manajemen_kelas/get_chain/",
+                url : "<?php echo base_url();?>Manajemen_kelas/get_chain/",
                 method : "POST",
                 data : {param: id_materi_group, table: 'ref_materi_group_sub', where: 'id_materi_group'},
                 async : false,

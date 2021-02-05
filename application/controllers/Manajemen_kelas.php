@@ -257,4 +257,12 @@ class Manajemen_kelas extends CI_Controller {
         }
     }
   
+	function get_chain(){
+		$param = $this->input->post('param');
+		$table = $this->input->post('table');
+		$where = $this->input->post('where');
+        $data  = $this->manajemen_kelas_model->get_chain($param,$table,$where);
+        echo json_encode($data);
+    }
+	
 }
