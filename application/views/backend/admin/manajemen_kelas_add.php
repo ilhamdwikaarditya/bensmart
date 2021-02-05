@@ -191,8 +191,10 @@
                 success: function(data){
                     var html = '';
                     var i;
+						html += "<option value='0'>None</option>";
                     for(i=0; i<data.length; i++){
-                        html += '<option>'+data[i].nm_materi_group+'</option>';
+                        
+                        html += "<option value='"+data[i].id_materi_group+"'>"+data[i].nm_materi_group+"</option>";
                     }
                     $('.groupmateri').html(html);
                 }
@@ -210,8 +212,9 @@
                 success: function(data){
                     var html = '';
                     var i;
+						html += "<option value='0'>None</option>";
                     for(i=0; i<data.length; i++){
-                        html += '<option>'+data[i].nm_materi_group_sub+'</option>';
+                        html += "<option value='"+data[i].id_materi_group_sub+"'>"+data[i].nm_materi_group_sub+"</option>";
                     }
                     $('.subgroup').html(html);
                 }
