@@ -140,6 +140,7 @@ class Manajemen_kelas_model extends CI_Model
             $data['discount_price'] = html_escape($this->input->post('price')) - html_escape($this->input->post('discount'));
             $data['id_mapel'] = html_escape($this->input->post('id_mapel'));
             $data['id_jenjang'] = html_escape($this->input->post('id_jenjang'));
+            $data['id_materi_group'] = html_escape($this->input->post('id_materi_group'));
             $data['id_materi_group_sub'] = html_escape($this->input->post('id_materi_group_sub'));
             $data['cuser'] = html_escape($this->session->userdata('id_user'));
             $data['thumbnail'] = md5(rand(10000, 10000000));
