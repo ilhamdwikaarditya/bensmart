@@ -41,10 +41,10 @@
 
 				<!-- Text -->
 				<p class="mb-0 font-size-sm text-muted">
-					Lupa Password? <a href="javascript::" onclick="forgot_password()">Reset Password</a>.
+					Lupa Password? <a href="javascript:void(0)" onclick="forgot_password()">Reset Password</a>.
 				</p>
 				<p class="mb-0 font-size-sm text-muted">
-					Tidak mempunyai akun? <a href="javascript::" onclick="register()">Daftar</a>.
+					Tidak mempunyai akun? <a href="javascript:void(0)" onclick="register()">Daftar</a>.
 				</p>
 
 			</div>
@@ -146,7 +146,7 @@
 
 				<!-- Text -->
 				<p class="mb-0 font-size-sm text-muted">
-					Sudah mempunyai akun? <a href="javascript::" onclick="login()">Masuk</a>.
+					Sudah mempunyai akun? <a href="javascript:void(0)" onclick="login()">Masuk</a>.
 				</p>
 
 			</div>
@@ -201,7 +201,7 @@
 
 				<!-- Text -->
 				<p class="mb-0 font-size-sm text-muted">
-					Ingin kembali? <a href="javascript::" onclick="login()">Masuk</a>.
+					Ingin kembali? <a href="javascript:void(0)" onclick="login()">Masuk</a>.
 				</p>
 
 			</div>
