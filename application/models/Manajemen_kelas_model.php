@@ -242,12 +242,12 @@ class Manajemen_kelas_model extends CI_Model
 			if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['name'] != "") {
                 unlink('uploads/thumbnail_class/' . $this->db->get_where('tr_classx', array('id_class' => $class_id))->row('thumbnail').'.jpg');
                 $data['thumbnail'] = md5(rand(10000, 10000000));
+				$this->upload_thumbnail($data['thumbnail']);
             }
 
             
             $this->db->where('id_class', $class_id);
             $this->db->update('tr_class', $data);
-            $this->upload_thumbnail($data['thumbnail']);
             $this->session->set_flashdata('flash_message', 'Berhasil dirubah');
         
     }
