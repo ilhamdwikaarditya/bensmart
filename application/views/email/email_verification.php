@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="x-apple-disable-message-reformatting" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title><?= get_settings('system_name'); ?></title>
+        <title><?php echo get_settings('system_name'); ?></title>
         <style type="text/css" rel="stylesheet" media="all">
         /* Base ------------------------------ */
         
@@ -428,22 +428,22 @@
                                         <td class="content-cell">
                                             <div class="f-fallback">
                                               <div style="width: 100%; margin-bottom: 10px; text-align: center;">
-                                                <img src="<?= base_url('uploads/system/').get_frontend_settings('dark_logo'); ?>" style="width: 200px;">
+                                                <img src="<?php echo base_url('uploads/system/').get_frontend_settings('dark_logo'); ?>" style="width: 200px;">
                                               </div>
                                               <hr style="border: 1px solid #efefef; margin-top: 30px;">
                                               <p style="text-align: center;">Verify your email address</p>
                                               <div style="width: 100%; margin-bottom: 20px; text-align: center;">
-                                                <img src="<?= base_url('assets/global/mail/email-verification.png'); ?>" style="width: 160px; height: 150px;">
+                                                <img src="<?php echo base_url('assets/global/mail/email-verification.png'); ?>" style="width: 160px; height: 150px;">
                                               </div>
                                               <hr style="border: 1px solid #fff; margin-bottom: 10px;">
                                               
-                                              <h2 style="font-size: 20px;">Dear <?= $to_name; ?>,</h2>
-                                              <p>Welcome to <a title="<?= get_settings('system_name'); ?>" target="_blank" href="<?= site_url(); ?>"><?= get_settings('system_name'); ?></a>. We'd love to make sure we've got the right email for you.</p>
+                                              <h2 style="font-size: 20px;">Dear <?php echo $to_name; ?>,</h2>
+                                              <p>Welcome to <a title="<?php echo get_settings('system_name'); ?>" target="_blank" href="<?php echo site_url(); ?>"><?php echo get_settings('system_name'); ?></a>. We'd love to make sure we've got the right email for you.</p>
                                               <br>
-                                              <p>Your verification code is <b style="cursor: pointer;" ><u><?= $verification_code; ?></u></b></p>
+                                              <p>Your verification code is <b style="cursor: pointer;" ><u><?php echo $verification_code; ?></u></b></p>
                                               <hr style="border: 1px solid #efefef; margin-top: 50px;">
-                                              <p style="text-align: center;"><a title="<?= get_settings('system_name'); ?>" target="_blank" href="<?= site_url(); ?>"><?= get_settings('system_name'); ?></a></p>
-                                              <p style="text-align: center; color: #999999; font-size: 14px;"><?= get_frontend_settings('about_us'); ?></p>
+                                              <p style="text-align: center;"><a title="<?php echo get_settings('system_name'); ?>" target="_blank" href="<?php echo site_url(); ?>"><?php echo get_settings('system_name'); ?></a></p>
+                                              <p style="text-align: center; color: #999999; font-size: 14px;"><?php echo get_frontend_settings('about_us'); ?></p>
                                             </div>
                                         </td>
                                     </tr>
@@ -455,9 +455,9 @@
                                 <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
                                     <tr>
                                         <td class="content-cell" align="center">
-                                            <p class="f-fallback sub align-center">&copy; <?= get_settings('system_name'); ?>. All rights reserved.</p>
+                                            <p class="f-fallback sub align-center">&copy; <?php echo get_settings('system_name'); ?>. All rights reserved.</p>
                                             <p class="f-fallback sub align-center">
-                                              <?= get_settings("address"); ?>
+                                              <?php echo get_settings("address"); ?>
                                             </p>
                                         </td>
                                     </tr>

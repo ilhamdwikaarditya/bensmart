@@ -2,7 +2,7 @@
   <div class="container">
 
 	<!-- Brand -->
-	<a class="navbar-brand" href="index.html">
+	<a class="navbar-brand" href="<?php echo site_url() ?>">
 	  <img src="<?php echo base_url().'assets/frontend/bensmart/img/logo_text_bensmart.png' ?>" class="navbar-brand-img" height="17" alt="...">
 	</a>
 
@@ -47,7 +47,7 @@
 	  </ul>
 
 	  <!-- Button -->
-	  <a class="navbar-btn btn btn-sm btn-primary lift ml-auto" href="<?php echo site_url('home/login'); ?>" target="_blank">
+	  <a class="navbar-btn btn btn-sm btn-primary lift ml-auto" href="<?php echo site_url('home/login'); ?>" >
 		Masuk Kelas
 	  </a>
 

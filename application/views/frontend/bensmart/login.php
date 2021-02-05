@@ -82,10 +82,10 @@
 				<form action="<?php echo site_url('login/register'); ?>" method="post">
 
 					<div class="form-group">
-						<label for="fristname">
+						<label for="firstname">
 							Nama Depan
 						</label>
-						<input type="text" class="form-control" id="fristname" name="fristname" placeholder="Nama depan">
+						<input type="text" class="form-control" id="firstname" name="firstname" placeholder="Nama depan">
 					</div>
 					<div class="form-group">
 						<label for="lastname">
@@ -105,7 +105,15 @@
 						</label>
 						<textarea name="address" id="address" class="form-control"></textarea>
 					</div>
-
+					<div class="form-group">
+						<label for="jenjang"><span class="input-field-icon"><i class="fas fa-jenjang"></i></span> Jenjang:</label>
+						<select class="form-control select2" data-toggle="select2" name="id_jenjang" id="id_jenjang">
+							<option value="0">None</option>
+							<?php foreach ($jenjang as $datajenjang): ?>
+								  <option value="<?php echo $datajenjang['id_jenjang']; ?>"><?php echo $datajenjang['nm_jenjang']; ?></option>
+							<?php endforeach; ?>
+						</select>
+					</div>
 					<!-- Email -->
 					<div class="form-group">
 						<label for="email">
@@ -126,7 +134,7 @@
 						<label for="repassword">
 							Ulangi Password
 						</label>
-						<input type="repassword" class="form-control" id="registration-repassword" name="repassword" placeholder="Masukan lagi kata sandi">
+						<input type="password" class="form-control" id="registration-repassword" name="repassword" placeholder="Masukan lagi kata sandi">
 					</div>
 
 					<!-- Submit -->

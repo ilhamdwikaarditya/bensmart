@@ -10,7 +10,7 @@
                         <div class="user-box">
                             <img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('user_id')); ?>" alt="" class="img-fluid">
                             <div class="name">
-                                <div class="name"><?php echo $user_details['first_name'].' '.$user_details['last_name']; ?></div>
+                                <div class="name"><?php echo $user_details['firstname'].' '.$user_details['lastname']; ?></div>
                             </div>
                         </div>
                         <div class="user-dashboard-menu">
@@ -30,11 +30,11 @@
                             <div class="content-box">
                                 <div class="basic-group">
                                     <div class="form-group">
-                                        <label for="FristName"><?php echo site_phrase('basics'); ?>:</label>
-                                        <input type="text" class="form-control" name = "first_name" id="FristName" placeholder="<?php echo site_phrase('first_name'); ?>" value="<?php echo $user_details['first_name']; ?>">
+                                        <label for="firstname"><?php echo site_phrase('basics'); ?>:</label>
+                                        <input type="text" class="form-control" name = "firstname" id="firstname" placeholder="<?php echo site_phrase('firstname'); ?>" value="<?php echo $user_details['firstname']; ?>">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name = "last_name" placeholder="<?php echo site_phrase('last_name'); ?>" value="<?php echo $user_details['last_name']; ?>">
+                                        <input type="text" class="form-control" name = "lastname" placeholder="<?php echo site_phrase('lastname'); ?>" value="<?php echo $user_details['lastname']; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="Biography"><?php echo site_phrase('biography'); ?>:</label>
