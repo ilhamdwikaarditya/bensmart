@@ -342,139 +342,53 @@
           </div>
         </div> <!-- / .row -->
         <div class="row">
-          <div class="col-12 col-md-4" data-aos="fade-up">
-            
-            <!-- Card -->
-            <div class="card shadow-light-lg mb-6 mb-md-4 lift lift-lg">
-              
-              <!-- Image -->
-              <img src="<?php echo base_url().'assets/frontend/bensmart/img/photos/photo-5.jpg' ?>" alt="..." class="card-img-top">
-
-              <!-- Shape -->
-              <div class="position-relative">
-                <div class="shape shape-bottom shape-fluid-x svg-shim text-white">
-                  <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
-                </div>
-              </div>
-
-              <!-- Body -->
-              <div class="card-body position-relative">
-
-                <!-- Badge -->
-                <div class="position-relative text-right mt-n7 mr-n5 mb-2 px-3">
-                  <span class="badge badge-pill badge-primary">
-                    <span class="h6 fst-italic"><s></s></span>
-                    <span class="h5 font-weight">Rp 290.000</span>
-                  </span>
-                </div>
-                
-                <!-- Heading -->
-                
-                <h4 class="font-weight-bold">
-                  Belajar Matematika Sehari Semalam
-                </h4>
-
-                <!-- Text -->
-                <h6 class="text-muted">
-                  Belajar matematika tidak pernah semudah ini bersama Bensmart. Dari dulu belajar matematika gapernah paham?
-                  disini solusinya. dengan pengalaman mengajar lebih dari 25 Tahun joko selalu aktif.
-                </h6>
-
-               <div class="row align-items-center">
-                  <p>                
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle ml-5" viewBox="0 0 20 20">
-                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                      <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                    </svg>
-                    <h6 class="align-items-center pb-2 ml-1 text-gray-700">Jenjang Sekolah Dasar</h6>
-                  </p>
-                </div>
-
-                <div class="row align-items-center mt-n4">
-                  <p>                
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person ml-5" viewBox="0 0 20 20">
-                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                    </svg>
-                    <h6 class="align-items-center pb-2 ml-1 text-gray-700">Fauzan Pratama Putra</h6>
-                  </p>
-                </div>
-
-                <div class="row align-items-center mt-n4">
-                  <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-circle ml-5" viewBox="0 0 20 20">
-                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                      <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
-                    </svg>
-                    <h6 class="align-items-center pb-2 ml-1 text-gray-700">15 Materi, 20 Jam</h6>
-                  </p>
-                </div>
-
-                <div class="row align-items-center mt-n4">
-                  <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star ml-5" viewBox="0 0 20 20">
-                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                    </svg>
-                    <h6 class="align-items-center pb-2 ml-1 text-gray-700">
-                      <b>4.6</b>
-                       (410 reviews)</h6>
-                  </p>
-                </div>
-              </div>
-
-              <a href="#" class="card-btn btn btn-block btn-sm btn-primary mt-n4">
-                Ikuti Kelas
-              </a>
-
-            </div>
-
-            
-
-          </div>
+<?php $top_courses = $this->crud_model->get_top_courses()->result_array();
+foreach ($top_courses as $top_course):?>
           <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
-            
             <!-- Card -->
             <div class="card shadow-light-lg mb-6 mb-md-4 lift lift-lg">
-              
               <!-- Image -->
-              <img src="<?php echo base_url().'assets/frontend/bensmart/img/photos/photo-5.jpg' ?>" alt="..." class="card-img-top">
-
+              <img src="<?php echo $this->crud_model->get_course_thumbnail_url($top_course['id_class']); ?>" alt="kelas bensmart" class="card-img-top">
               <!-- Shape -->
               <div class="position-relative">
                 <div class="shape shape-bottom shape-fluid-x svg-shim text-white">
                   <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
                 </div>
               </div>
-
               <!-- Body -->
               <div class="card-body position-relative">
-
                 <!-- Badge -->
                 <div class="position-relative text-right mt-n7 mr-n5 mb-2 px-3">
                   <span class="badge badge-pill badge-primary">
-                    <span class="h6 fst-italic"><s>Rp 550.000</s></span>
-                    <span class="h5 font-weight">Rp 290.000</span>
-                  </span>
-                </div>
-                
+<?php if ($top_course['discount_price'] == 0): ?>
+						<span class="h6 fst-italic"><s></s></span>
+						<span class="h5 font-weight">Gratis</span>
+<?php else: ?>
+	<?php if ($top_course['discount'] <> 0): ?>
+						<span class="h6 fst-italic"><s><?php echo currency($top_course['price']); ?></s></span>
+						<span class="h5 font-weight"><?php echo currency($top_course['discount_price']); ?></span>
+	<?php else: ?>
+						<span class="h6 fst-italic"><s></s></span>
+						<span class="h5 font-weight"><?php echo currency($top_course['discount_price']); ?></span>
+	<?php endif; ?>
+<?php endif; ?>
+				  </span>
+                </div> 
                 <!-- Heading -->
-                
                 <h4 class="font-weight-bold">
-                  Belajar Matematika Sehari Semalam
+                  <?php echo $top_course['nm_class']; ?>
                 </h4>
-
                 <!-- Text -->
                 <h6 class="text-muted">
-                  Belajar matematika tidak pernah semudah ini bersama Bensmart. Dari dulu belajar matematika gapernah paham?
-                  disini solusinya. dengan pengalaman mengajar lebih dari 25 Tahun joko selalu aktif.
+                  <?php echo strip_tags(html_entity_decode($top_course['desc_class'])); ?>
                 </h6>
-
                <div class="row align-items-center">
                   <p>                
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle ml-5" viewBox="0 0 20 20">
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                       <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
                     </svg>
-                    <h6 class="align-items-center pb-2 ml-1 text-gray-700">Jenjang Sekolah Dasar</h6>
+                    <h6 class="align-items-center pb-2 ml-1 text-gray-700">Jenjang <?php echo $top_course['nm_jenjang']; ?></h6>
                   </p>
                 </div>
 
@@ -483,7 +397,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person ml-5" viewBox="0 0 20 20">
                       <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                     </svg>
-                    <h6 class="align-items-center pb-2 ml-1 text-gray-700">Fauzan Pratama Putra</h6>
+                    <h6 class="align-items-center pb-2 ml-1 text-gray-700"><?php echo $top_course['nm_mentor']; ?></h6>
                   </p>
                 </div>
 
@@ -508,104 +422,13 @@
                   </p>
                 </div>
               </div>
-
               <a href="#" class="card-btn btn btn-block btn-sm btn-primary mt-n4">
                 Ikuti Kelas
               </a>
-
             </div>
-
-            
-
           </div>
-          <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="200">
-            
-            <!-- Card -->
-            <div class="card shadow-light-lg mb-6 mb-md-4 lift lift-lg">
-              
-              <!-- Image -->
-              <img src="<?php echo base_url().'assets/frontend/bensmart/img/photos/photo-5.jpg' ?>" alt="..." class="card-img-top">
-
-              <!-- Shape -->
-              <div class="position-relative">
-                <div class="shape shape-bottom shape-fluid-x svg-shim text-white">
-                  <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
-                </div>
-              </div>
-
-              <!-- Body -->
-              <div class="card-body position-relative">
-
-                <!-- Badge -->
-                <div class="position-relative text-right mt-n7 mr-n5 mb-2 px-3">
-                  <span class="badge badge-pill badge-primary">
-                    <span class="h6 fst-italic"><s>Rp 550.000</s></span>
-                    <span class="h5 font-weight">Rp 290.000</span>
-                  </span>
-                </div>
-                
-                <!-- Heading -->
-                
-                <h4 class="font-weight-bold">
-                  Belajar Matematika Sehari Semalam
-                </h4>
-
-                <!-- Text -->
-                <h6 class="text-muted">
-                  Belajar matematika tidak pernah semudah ini bersama Bensmart. Dari dulu belajar matematika gapernah paham?
-                  disini solusinya. dengan pengalaman mengajar lebih dari 25 Tahun joko selalu aktif.
-                </h6>
-
-               <div class="row align-items-center">
-                  <p>                
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle ml-5" viewBox="0 0 20 20">
-                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                      <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                    </svg>
-                    <h6 class="align-items-center pb-2 ml-1 text-gray-700">Jenjang Sekolah Dasar</h6>
-                  </p>
-                </div>
-
-                <div class="row align-items-center mt-n4">
-                  <p>                
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person ml-5" viewBox="0 0 20 20">
-                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                    </svg>
-                    <h6 class="align-items-center pb-2 ml-1 text-gray-700">Fauzan Pratama Putra</h6>
-                  </p>
-                </div>
-
-                <div class="row align-items-center mt-n4">
-                  <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-circle ml-5" viewBox="0 0 20 20">
-                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                      <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
-                    </svg>
-                    <h6 class="align-items-center pb-2 ml-1 text-gray-700">15 Materi, 20 Jam</h6>
-                  </p>
-                </div>
-
-                <div class="row align-items-center mt-n4">
-                  <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star ml-5" viewBox="0 0 20 20">
-                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                    </svg>
-                    <h6 class="align-items-center pb-2 ml-1 text-gray-700">
-                      <b>4.6</b>
-                       (410 reviews)</h6>
-                  </p>
-                </div>
-              </div>
-
-              <a href="#" class="card-btn btn btn-block btn-sm btn-primary mt-n4">
-                Ikuti Kelas
-              </a>
-
-            </div>
-
-            
-
-          </div>
+<?php endforeach; ?>
+          
           
         </div> <!-- / .row -->
       </div> <!-- / .container -->

@@ -95,7 +95,7 @@
 												<th class="column" width="145" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
 													<table width="100%" border="0" cellspacing="0" cellpadding="0">
 														<tr>
-															<td class="img m-center" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="<?php echo base_url('assets/global/mail/logo_text_bensmart.png'); ?>" width="200" height="17.5" border="0" alt="" /></td>
+															<td class="img m-center" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="https://i.imgur.com/Sy22CiC.png" width="200" height="17.5" border="0" alt="" /></td>
 														</tr>
 													</table>
 												</th>
@@ -129,7 +129,7 @@
 											<tr>
 												<td class="fluid-img" style=" font-size:0pt; line-height:0pt; text-align:center; 
 												padding:0; margin:100">
-												<img src="<?php echo base_url('assets/global/mail/bg-email.png'); ?>" width="650" height="403" border="0" alt="" /></td>
+												<img src="https://i.imgur.com/D7UL5Ap.png" width="650" height="403" border="0" alt="" /></td>
 											</tr>
 											<tr>
 												<td class="bbrr" bgcolor="#f4f4f4" style="border-radius:0px 0px 12px 12px;">
@@ -200,10 +200,10 @@
 												<td align="center" style="padding-bottom: 30px;">
 													<table border="0" cellspacing="0" cellpadding="0">
 														<tr>
-															<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="<?php echo base_url('assets/global/mail/t7_ico_facebook.jpg'); ?>" width="34" height="34" border="0" alt="" /></a></td>
-															<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="<?php echo base_url('assets/global/mail/t7_ico_twitter.jpg'); ?>" width="34" height="34" border="0" alt="" /></a></td>
-															<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="<?php echo base_url('assets/global/mail/t7_ico_instagram.jpg'); ?>" width="34" height="34" border="0" alt="" /></a></td>
-															<td class="img" width="34" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="<?php echo base_url('assets/global/mail/t7_ico_linkedin.jpg'); ?>" width="34" height="34" border="0" alt="" /></a></td>
+															<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="https://i.imgur.com/XJUuWtY.jpg" width="34" height="34" border="0" alt="" /></a></td>
+															<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="https://i.imgur.com/Lo46Bel.jpg" width="34" height="34" border="0" alt="" /></a></td>
+															<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="https://i.imgur.com/Dg9yyEt.jpg" width="34" height="34" border="0" alt="" /></a></td>
+															<td class="img" width="34" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="https://i.imgur.com/AjDGCXt.jpg" width="34" height="34" border="0" alt="" /></a></td>
 														</tr>
 													</table>
 												</td>
