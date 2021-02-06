@@ -154,7 +154,7 @@ a {
     background-color: transparent;
 }
 a:hover {
-    color: #133bbd;
+    color: #FFCC00;
     text-decoration: underline;
 }
 a:not([href]) {
@@ -326,8 +326,8 @@ h4,
 h5,
 h6 {
     margin-bottom: 0.5rem;
-    font-weight: 400;
-    line-height: 1;
+    font-weight: 1000;
+    line-height: 2;
 }
 .h1,
 h1 {
@@ -339,7 +339,7 @@ h2 {
 }
 .h3,
 h3 {
-    font-size: 1.3125rem;
+    font-size: 1.5125rem;
 }
 .h4,
 h4 {
@@ -2463,7 +2463,7 @@ fieldset:disabled a.btn {
 .btn-primary {
     color: #fff;
     background-color: #f0ad4e;
-    border-color: #f0ad4e;
+    border-color: #ed8d1d;
     box-shadow: none;
 }
 .btn-primary:hover {
@@ -2488,8 +2488,8 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled):active,
 .show > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #1643d4;
-    border-color: #153fc9;
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
 }
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .btn-primary:not(:disabled):not(.disabled):active:focus,
@@ -4700,7 +4700,7 @@ input[type="submit"].btn-block {
     -webkit-box-flex: 1;
     flex: 1 1 auto;
     min-height: 1px;
-    padding: 2rem;
+    padding: 1.5rem;
 }
 .card-title {
     margin-bottom: 1.5rem;
@@ -17040,3 +17040,53 @@ body.compensate-for-scrollbar {
         right: 0;
     }
 }
+
+.checked {
+  color: #fdcc0d;
+}
+
+/* Rating & Review */
+
+  .btn-grey{
+      background-color:#D8D8D8;
+      color:#FFF;
+  }
+  .rating-block{
+      background-color:#FAFAFA;
+      border:1px solid #EFEFEF;
+      padding:15px 15px 20px 15px;
+      border-radius:3px;
+  }
+  .bold{
+      font-weight:700;
+  }
+  .padding-bottom-7{
+      padding-bottom:7px;
+  }
+  
+  .review-block{
+      background-color:#FAFAFA;
+      border:1px solid #EFEFEF;
+      padding:15px;
+      border-radius:3px;
+      margin-bottom:15px;
+  }
+  .review-block-name{
+      font-size:12px;
+      margin:10px 0;
+  }
+  .review-block-date{
+      font-size:12px;
+  }
+  .review-block-rate{
+      font-size:13px;
+      margin-bottom:15px;
+  }
+  .review-block-title{
+      font-size:15px;
+      font-weight:700;
+      margin-bottom:10px;
+  }
+  .review-block-description{
+      font-size:13px;
+  }
