@@ -253,10 +253,10 @@ isset($selected_price) ? "" : $selected_price = "all";
       <div class="modal-content">
         <div class="card card-row">
           <div class="row no-gutters">
-            <div class="col-12 col-md-6 bg-cover card-img-left" style="background-image: url(assets/img/photos/photo-1.jpg);">
+            <div class="col-12 col-md-6 bg-cover card-img-left" style="background-image: url(<?php echo base_url().'assets/frontend/bensmart/img/photos/photo-1.jpg' ?>);">
 
               <!-- Image (placeholder) -->
-              <img src="assets/img/photos/photo-1.jpg" alt="..." class="img-fluid d-md-none invisible">
+              <img src="<?php echo base_url().'assets/frontend/bensmart/img/photos/photo-1.jpg' ?>" alt="..." class="img-fluid d-md-none invisible">
 
               <!-- Shape -->
               <div class="shape shape-right shape-fluid-y svg-shim text-white d-none d-md-block">
@@ -457,7 +457,7 @@ isset($selected_price) ? "" : $selected_price = "all";
       <div class="row mt-8">
 
         <!-- Card Right -->
-        <div class="col-lg-4" data-aos="fade-up">
+        <div class="col-lg-3" data-aos="fade-up">
           <!-- Card -->
           <div class="card shadow-light-lg mb-6 mb-md-4 lift lift-lg">
             <a href="javascript::" style="color: unset;">
@@ -645,324 +645,198 @@ isset($selected_price) ? "" : $selected_price = "all";
               </div>
             </div>
           </div>
-          <!--   <div id="collapseFilter" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body pt-0">
-                <div class="filter_type">
-                  <h6>Materi</h6>
-                  <ul>
-                    <li class="ml-2">
-                      <div class="">
-                        <input type="radio" id="category_all" name="sub_category" class="categories custom-radio" value="all" onclick="filter(this)">
-                        <label for="category_all">Semua Materi</label>
-                      </div>
-                    </li>
-                  </ul>
-                  <a href="javascript::" id="city-toggle-btn" onclick="showToggle(this, 'hidden-categories')" style="font-size: 12px;"></a>
-                </div>
-                <hr>
-                <div class="filter_type">
-                  <div class="form-group">
-                    <h6>Harga</h6>
-                    <ul>
-                      <li>
-                        <div class="">
-                          <input type="radio" id="price_all" name="price" class="prices custom-radio" value="all" onclick="filter(this)" <?php if ($selected_price == 'all') echo 'checked'; ?>>
-                          <label for="price_all">Semua</label>
-                        </div>
-                        <div class="">
-                          <input type="radio" id="price_free" name="price" class="prices custom-radio" value="free" onclick="filter(this)" <?php if ($selected_price == 'free') echo 'checked'; ?>>
-                          <label for="price_free">Gratis</label>
-                        </div>
-                        <div class="">
-                          <input type="radio" id="price_paid" name="price" class="prices custom-radio" value="paid" onclick="filter(this)" <?php if ($selected_price == 'paid') echo 'checked'; ?>>
-                          <label for="price_paid">Berbayar</label>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <hr>
-                <div class="filter_type">
-                  <h6>Jenjang</h6>
-                  <ul>
-                    <li>
-                      <div class="">
-                        <input type="radio" id="all" name="level" class="level custom-radio" value="all" onclick="filter(this)" <?php if ($selected_level == 'all') echo 'checked'; ?>>
-                        <label for="all">Semua</label>
-                      </div>
-                      <div class="">
-                        <input type="radio" id="beginner" name="level" class="level custom-radio" value="beginner" onclick="filter(this)" <?php if ($selected_level == 'beginner') echo 'checked'; ?>>
-                        <label for="beginner">SD</label>
-                      </div>
-                      <div class="">
-                        <input type="radio" id="advanced" name="level" class="level custom-radio" value="advanced" onclick="filter(this)" <?php if ($selected_level == 'advanced') echo 'checked'; ?>>
-                        <label for="advanced">SMP</label>
-                      </div>
-                      <div class="">
-                        <input type="radio" id="intermediate" name="level" class="level custom-radio" value="intermediate" onclick="filter(this)" <?php if ($selected_level == 'intermediate') echo 'checked'; ?>>
-                        <label for="intermediate">SMA</label>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <hr>
-                <div class="filter_type">
-                  <h6><?php echo site_phrase('ratings'); ?></h6>
-                  <ul>
-                    <li>
-                      <div class="">
-                        <input type="radio" id="all_rating" name="rating" class="ratings custom-radio" value="<?php echo 'all'; ?>" onclick="filter(this)" <?php if ($selected_rating == "all") echo 'checked'; ?>>
-                        <label for="all_rating"><?php echo site_phrase('all'); ?></label>
-                      </div>
-                    </li>
-                    <?php for ($i = 1; $i <= 5; $i++) : ?>
-                      <li>
-                        <div class="">
-                          <input type="radio" id="rating_<?php echo $i; ?>" name="rating" class="ratings custom-radio" value="<?php echo $i; ?>" onclick="filter(this)" <?php if ($selected_rating == $i) echo 'checked'; ?>>
-                          <label for="rating_<?php echo $i; ?>">
-                            <?php for ($j = 1; $j <= $i; $j++) : ?>
-                              <i class="fas fa-star" style="color: #f4c150;"></i>
-                            <?php endfor; ?>
-                            <?php for ($j = $i; $j < 5; $j++) : ?>
-                              <i class="far fa-star" style="color: #dedfe0;"></i>
-                            <?php endfor; ?>
-                          </label>
-                        </div>
-                      </li>
-                    <?php endfor; ?>
-                  </ul>
-                </div>
-              </div>
-            </div> -->
         </div>
 
         <!-- Card Left -->
-        <div class="col-lg-8 mb-5">
-          <div class="card shadow-light-lg px-5 py-5">
-            <div class="card-header-class">
-              <h1 class="font-weight-bold">
-                Belajar Matematika Sehari Semalam
-              </h1>
+        <div class="col-lg-9 mb-5">
 
-              <div class="row ml-0 mt-n2 mb-5">
-                <h5>
-                  <span class="font-weight-bold">4.0 </span>
-
-                </h5>
-
-                <div class="star mt-0 ml-2">
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star"></span>
+            <div class="card card-row shadow-light-lg mb-6">
+              <div class="row no-gutters">
+                <!-- GAMBAR -->
+                <div class="col-12 col-md-4 ">
+                  <div class="limit">
+                    <img src="<?php echo base_url().'assets/frontend/bensmart/img/photos/photo-1.jpg' ?>" alt="..." class="card-img-left" style="display: block; margin: 0 auto;" >
+                  </div>
+                  <style type="text/css">
+                    .limit{
+                        width: 100%;
+                        height: 300px;
+                        max-height: 300px;
+                        overflow: hidden;
+                     }
+                    .limit img{
+                       width: 100%;
+                       height: 100%;
+                     }
+                 </style>
                 </div>
+                <!-- TEXT -->
+                <div class="col-12 col-md-8">
+                  <!-- Body -->
+                  <div class="px-6">
+                    <div class="d-flex justify-content-between">
 
-                <h5 class="text-muted mt-0 ml-2">(2.000 reviews)</h5>
+                      <h4 class="font-weight-bold mt-6">
+                        Belajar Matematika
+                      </h4>
 
-              </div>
-            </div>
-
-            <div class="card-body-class">
-              <p>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est laborum."
-              </p>
-            </div>
-            <hr>
-
-            <section>
-
-              <div class="row ml-0">
-                <h3 class="font-weight-bold">
-                  Daftar Kelas
-                </h3>
-              </div>
-
-              <div class="row justify-content-center">
-
-                <div class="col-12">
-
-                  <!-- Card -->
-                  <div class="card accordion" id="featuresAccordion">
-                    <div class="card-body shadow-light">
-
-                      <!-- List group -->
-                      <div class="list-group list-group-flush">
-                        <div class="list-group-item">
-
-                          <!-- Toggle -->
-                          <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresOne" role="button" aria-expanded="true" aria-controls="featuresOne">
-                            <div class="mr-auto">
-
-                              <!-- Title -->
-                              <p class="font-weight-bold mb-0">
-                                Flexible access to facilities.
-                              </p>
-
-                              <!-- Text -->
-                              <p class="font-size-sm text-muted mb-0">
-                                Our new key fobs make it so easy!
-                              </p>
-
-                            </div>
-
-                            <!-- Badge -->
-                            <span class="badge badge-pill badge-success-soft ml-4">
-                              <span class="h6 text-uppercase">New</span>
-                            </span>
-
-                            <!-- Chevron -->
-                            <span class="collapse-chevron text-muted ml-4">
-                              <i class="fe fe-lg fe-chevron-down"></i>
-                            </span>
-
-                          </a> <!-- / .row -->
-
-                          <!-- Collapse -->
-                          <div class="collapse show bg-light" id="featuresOne" data-parent="#featuresAccordion">
-                            <div class="py-5 py-md-6">
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
-                              </p>
-                              <a href="#!" class="font-weight-bold text-decoration-none">
-                                Check it out <i class="fe fe-arrow-right ml-3"></i>
-                              </a>
-                            </div>
-                          </div>
-
-                        </div>
-
-                        <div class="list-group-item">
-
-                          <!-- Toggle -->
-                          <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresTwo" role="button" aria-expanded="false" aria-controls="featuresTwo">
-                            <div class="mr-auto">
-
-                              <!-- Title -->
-                              <p class="font-weight-bold mb-0">
-                                Snacks, drinks, coffee, and more.
-                              </p>
-
-                              <!-- Text -->
-                              <p class="font-size-sm text-muted mb-0">
-                                Keep your engine going with free food and drinks.
-                              </p>
-
-                            </div>
-
-                            <!-- Chevron -->
-                            <span class="collapse-chevron text-muted ml-4">
-                              <i class="fe fe-lg fe-chevron-down"></i>
-                            </span>
-
-                          </a> <!-- / .row -->
-
-                          <!-- Collapse -->
-                          <div class="collapse" id="featuresTwo" data-parent="#featuresAccordion">
-                            <div class="py-5 py-md-6">
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
-                              </p>
-                              <a href="#!" class="font-weight-bold text-decoration-none">
-                                Check it out <i class="fe fe-arrow-right ml-3"></i>
-                              </a>
-                            </div>
-                          </div>
-
-                        </div>
-                        <div class="list-group-item">
-
-                          <!-- Toggle -->
-                          <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresThree" role="button" aria-expanded="false" aria-controls="featuresThree">
-                            <div class="mr-auto">
-
-                              <!-- Title -->
-                              <p class="font-weight-bold mb-0">
-                                On site tech support
-                              </p>
-
-                              <!-- Text -->
-                              <p class="font-size-sm text-muted mb-0">
-                                Connectivity, power, and IT issues solved in no time.
-                              </p>
-
-                            </div>
-
-                            <!-- Chevron -->
-                            <span class="collapse-chevron text-muted ml-4">
-                              <i class="fe fe-lg fe-chevron-down"></i>
-                            </span>
-
-                          </a> <!-- / .row -->
-
-                          <!-- Collapse -->
-                          <div class="collapse" id="featuresThree" data-parent="#featuresAccordion">
-                            <div class="py-5 py-md-6">
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
-                              </p>
-                              <a href="#!" class="font-weight-bold text-decoration-none">
-                                Check it out <i class="fe fe-arrow-right ml-3"></i>
-                              </a>
-                            </div>
-                          </div>
-
-                        </div>
+                      <div class="position-relative mt-n4 mt-md-3 text-right mb-2 mr-0">
+                        <span class="badge badge-pill badge-primary">
+                          <span class="h6 fst-italic"><s>Rp 550.000</s></span>
+                          <span class="h5 font-weight">Rp 290.000</span>
+                        </span>
                       </div>
-
+                    </div>
+    
+                    <!-- Text -->
+                    <h6 class="text-muted mt-0" style="font-size: 14px;">
+                      Belajar matematika tidak pernah semudah ini bersama Bensmart. Dari dulu belajar matematika gapernah paham?
+                      disini solusinya.
+                    </h6>
+    
+                   <div class="row align-items-center">
+                      <p>                
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle ml-5" viewBox="0 0 20 20">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                        </svg>
+                        <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 14px;">Jenjang Sekolah Dasar</h6>
+                      </p>
+                    </div>
+    
+                    <div class="row align-items-center mt-n4">
+                      <p>                
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person ml-5" viewBox="0 0 20 20">
+                          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                        </svg>
+                        <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 14px;">Fauzan Pratama Putra</h6>
+                      </p>
+                    </div>
+    
+                    <div class="row align-items-center mt-n4">
+                      <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-circle ml-5" viewBox="0 0 20 20">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                          <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                        </svg>
+                        <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 14px;">15 Materi, 20 Jam</h6>
+                      </p>
+                    </div>
+    
+                    <div class="row align-items-center mt-n4">
+                      <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star ml-5" viewBox="0 0 20 20">
+                          <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                        </svg>
+                        <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 14px;">
+                          <b>4.6</b>
+                           (410 reviews)</h6>
+                      </p>
                     </div>
                   </div>
-
+                  <a href="#!" class="d-flex align-items-center font-weight-bold text-decoration-none mt-n2 mr-7 mb-5 mb-md-0 justify-content-end">
+                    Ikuti Kelas <i class="fe fe-arrow-right ml-2"></i>
+                  </a>
                 </div>
               </div> <!-- / .row -->
+            </div>            
 
-            </section>
+		
 
-            <hr>
-
-            <div class="section">
-
-              <h3 class="font-weight-bold">
-                Mentor Kelas
-              </h3>
-
-              <div class="d-flex bd-highlight mb-3">
-                <div class="mr-auto bd-highlight">
-                  <div class="avatar avatar-xxl justify-content-center">
-                    <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-1.jpg" alt="...">
+            <div class="card card-row shadow-light-lg mb-6">
+              <div class="row no-gutters">
+                <!-- GAMBAR -->
+                <div class="col-12 col-md-4 ">
+                  <div class="limit">
+                    <img src="<?php echo base_url().'assets/frontend/bensmart/img/photos/photo-1.jpg' ?>" alt="..." class="card-img-left" style="display: block; margin: 0 auto;" >
                   </div>
+                  <style type="text/css">
+                    .limit{
+                        width: 100%;
+                        height: 300px;
+                        max-height: 300px;
+                        overflow: hidden;
+                     }
+                    .limit img{
+                       width: 100%;
+                       height: 100%;
+                     }
+                 </style>
+                </div>
+                <!-- TEXT -->
+                <div class="col-12 col-md-8">
+                  <!-- Body -->
+                  <div class="px-6">
+                    <div class="d-flex justify-content-between">
 
-                  <div class="d-flex bd-highlight justify-content-center">
-                    <p class="mr-1">4.7</p>
-                    <span class="fa fa-star checked mt-1 mb-0"></span>
+                      <h4 class="font-weight-bold mt-6">
+                        Belajar Matematika
+                      </h4>
+
+                      <div class="position-relative mt-n4 mt-md-3 text-right mb-2 mr-0">
+                        <span class="badge badge-pill badge-primary">
+                          <span class="h6 fst-italic"><s>Rp 550.000</s></span>
+                          <span class="h5 font-weight">Rp 290.000</span>
+                        </span>
+                      </div>
+                    </div>
+    
+                    <!-- Text -->
+                    <h6 class="text-muted mt-0" style="font-size: 14px;">
+                      Belajar matematika tidak pernah semudah ini bersama Bensmart. Dari dulu belajar matematika gapernah paham?
+                      disini solusinya.
+                    </h6>
+    
+                   <div class="row align-items-center">
+                      <p>                
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle ml-5" viewBox="0 0 20 20">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                        </svg>
+                        <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 14px;">Jenjang Sekolah Dasar</h6>
+                      </p>
+                    </div>
+    
+                    <div class="row align-items-center mt-n4">
+                      <p>                
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person ml-5" viewBox="0 0 20 20">
+                          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                        </svg>
+                        <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 14px;">Fauzan Pratama Putra</h6>
+                      </p>
+                    </div>
+    
+                    <div class="row align-items-center mt-n4">
+                      <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-circle ml-5" viewBox="0 0 20 20">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                          <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                        </svg>
+                        <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 14px;">15 Materi, 20 Jam</h6>
+                      </p>
+                    </div>
+    
+                    <div class="row align-items-center mt-n4">
+                      <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star ml-5" viewBox="0 0 20 20">
+                          <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                        </svg>
+                        <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 14px;">
+                          <b>4.6</b>
+                           (410 reviews)</h6>
+                      </p>
+                    </div>
                   </div>
+                  <a href="#!" class="d-flex align-items-center font-weight-bold text-decoration-none mt-n2 mr-7 mb-5 mb-md-0 justify-content-end">
+                    Ikuti Kelas <i class="fe fe-arrow-right ml-2"></i>
+                  </a>
                 </div>
+              </div> <!-- / .row -->
+            </div>            
 
-                <div class="ml-5 bd-highlight">
-                  <h4 class="mb-0 ">
-                    Cristananda Ratnady
-                  </h4>
 
-                  <p class="text-muted mb-1" style="font-size: 16px; font-style: italic;">
-                    "Manusia terbaik adalah manusia yang bermanfaat bagi manusia lainnya"
-                  </p>
-
-                  <p style="font-size: 17px;">
-                    Merupakan seorang pengajar lulusan Universitas Bensmart. Selama ini selalu memenangkan perlombaan.
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </p>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
+		
+		
         </div>
 
       </div>
