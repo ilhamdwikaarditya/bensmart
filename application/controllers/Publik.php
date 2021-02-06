@@ -46,6 +46,30 @@ class Publik extends CI_Controller {
         $this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
     }
 
+    public function class_all() {
+        if (!$this->session->userdata('layout')) {
+            $this->session->set_userdata('layout', 'list');
+        }
+        $layout = $this->session->userdata('layout');
+        
+        $page_data['page_name']  = "class_all";
+        $page_data['page_title'] = 'Deskripsi Kelas';
+        $page_data['layout']     = $layout;
+        $this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
+    }
+
+    public function desc_class() {
+        if (!$this->session->userdata('layout')) {
+            $this->session->set_userdata('layout', 'list');
+        }
+        $layout = $this->session->userdata('layout');
+        
+        $page_data['page_name']  = "bensmart_class_desc";
+        $page_data['page_title'] = 'Deskripsi Kelas';
+        $page_data['layout']     = $layout;
+        $this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
+    }
+
     public function courses() {
         if (!$this->session->userdata('layout')) {
             $this->session->set_userdata('layout', 'list');
