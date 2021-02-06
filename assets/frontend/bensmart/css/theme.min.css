@@ -17045,17 +17045,6 @@ body.compensate-for-scrollbar {
   color: #fdcc0d;
 }
 
-.accordion .card-header:after {
-    font-family: 'FontAwesome';  
-    content: "\f107";
-    float: right; 
-}
-.accordion .card-header.collapsed:after {
-    /* symbol for "collapsed" panels */
-    content: "\f106"; 
-}
-
-
 /* Rating & Review */
 
   .btn-grey{
