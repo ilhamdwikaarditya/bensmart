@@ -83,7 +83,7 @@ class User_model extends CI_Model {
 
         if ($action == 'on_create') {
             if ($duplicate_email_check->num_rows() > 0) {
-                if($duplicate_email_check->row()->status == 1){
+                if($duplicate_email_check->row()->status_verification == 1){
                     return false;
                 }else{
                     return 'unverified_user';
@@ -93,7 +93,7 @@ class User_model extends CI_Model {
             }
         }elseif ($action == 'on_update') {
             if ($duplicate_email_check->num_rows() > 0) {
-                if ($duplicate_email_check->row()->id == $user_id) {
+                if ($duplicate_email_check->row()->id_user == $user_id) {
                     return true;
                 }else {
                     return false;

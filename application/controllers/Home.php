@@ -30,6 +30,15 @@ class Home extends CI_Controller {
         $page_data['page_title'] = site_phrase('verification_code');
         $this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
     }
+	
+	public function verification_code_byurl() {
+        if(!$this->session->userdata('register_email')){
+            redirect(site_url('home/sign_up'), 'refresh');
+        }
+        $page_data['page_name'] = "verification_code_byurl";
+        $page_data['page_title'] = 'Verifikasi Email';
+        $this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
+    }
 
     public function home() {
         $page_data['page_name'] = "home";
@@ -732,6 +741,7 @@ class Home extends CI_Controller {
         }elseif ($this->session->userdata('user_login')) {
             redirect(site_url('user'), 'refresh');
         }
+		$page_data['jenjang'] = $this->master_model->get_all_jenjang()->result_array();
         $page_data['page_name'] = 'login';
         $page_data['page_title'] = site_phrase('login');
         $this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);

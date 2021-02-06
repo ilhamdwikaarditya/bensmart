@@ -27,7 +27,7 @@ class Login extends CI_Controller {
     public function validate_login($from = "") {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
-        $credential = array('email' => $email, 'password' => sha1($password));
+        $credential = array('email' => $email, 'password' => sha1($password), 'status_verification' => 1);
 
         // Checking login credential for admin
         // $query = $this->db->get_where('ref_user', $credential);
@@ -64,20 +64,21 @@ class Login extends CI_Controller {
 
     public function register() {
         $data['firstname'] = html_escape($this->input->post('firstname'));
-        $data['lastname'] = html_escape($this->input->post('lastname'));
-        $data['phone']  = html_escape($this->input->post('phone'));
-        $data['address']  = html_escape($this->input->post('address'));
-        $data['id_jenjang']  = html_escape($this->input->post('id_jenjang'));
-        $data['email']  = html_escape($this->input->post('email'));
+        $data['lastname']  = html_escape($this->input->post('lastname'));
+        $data['phone']     = html_escape($this->input->post('phone'));
+        $data['address']   = html_escape($this->input->post('address'));
+        $data['id_jenjang']= html_escape($this->input->post('id_jenjang'));
+        $data['email']     = html_escape($this->input->post('email'));
         $data['password']  = sha1($this->input->post('password'));
+        $data['rand_code'] = rand(100000000,20000000000);
         
-		
+
         if(empty($data['firstname']) || empty($data['lastname']) || empty($data['phone']) || empty($data['address']) || empty($data['email']) || empty($data['password'])){
             $this->session->set_flashdata('error_message','formulir pendaftaran Anda kosong'.'. '.'isi formulir dengan data valid Anda');
             redirect(site_url('home/sign_up'), 'refresh');
         }
 
-        $verification_code =  rand(100000, 200000);
+        $verification_code =  md5(sha1($this->input->post('password')));
         $data['verification_code'] = $verification_code;
 
         if (get_settings('student_email_verification') == 'enable') {
@@ -98,7 +99,7 @@ class Login extends CI_Controller {
             }
 
             if (get_settings('student_email_verification') == 'enable') {
-                $this->email_model->send_email_verification_mail($data['email'], $verification_code);
+                $this->email_model->send_email_verification_mail_bensmart($data['email'], $verification_code);
 
                 if($validity === 'unverified_user'){
                     $this->session->set_flashdata('info_message', get_phrase('you_have_already_registered').'. '.get_phrase('please_verify_your_email_address'));
@@ -106,7 +107,7 @@ class Login extends CI_Controller {
                     $this->session->set_flashdata('flash_message', get_phrase('your_registration_has_been_successfully_done').'. '.get_phrase('please_check_your_mail_inbox_to_verify_your_email_address').'.');
                 }
                 $this->session->set_userdata('register_email', $this->input->post('email'));
-                redirect(site_url('home/verification_code'), 'refresh');
+                redirect(site_url('home/verification_code_byurl'), 'refresh');
             }else {
                 $this->session->set_flashdata('flash_message', get_phrase('your_registration_has_been_successfully_done'));
                 redirect(site_url('home/login'), 'refresh');
@@ -143,11 +144,11 @@ class Login extends CI_Controller {
         $new_password = substr( md5( rand(100000000,20000000000) ) , 0,7);
 
         // Checking credential for admin
-        $query = $this->db->get_where('users' , array('email' => $email));
+        $query = $this->db->get_where('ref_user' , array('email' => $email));
         if ($query->num_rows() > 0)
         {
             $this->db->where('email' , $email);
-            $this->db->update('users' , array('password' => sha1($new_password)));
+            $this->db->update('ref_user' , array('password' => sha1($new_password)));
             // send new password to user email
             $this->email_model->password_reset_email($new_password, $email);
             $this->session->set_flashdata('flash_message', get_phrase('please_check_your_email_for_new_password'));
@@ -168,8 +169,8 @@ class Login extends CI_Controller {
 
     public function resend_verification_code(){
         $email = $this->input->post('email');
-        $verification_code = $this->db->get_where('users', array('email' => $email))->row('verification_code');
-        $this->email_model->send_email_verification_mail($email, $verification_code);
+        $verification_code = $this->db->get_where('ref_user', array('email' => $email))->row('verification_code');
+        $this->email_model->send_email_verification_mail_bensmart($email, $verification_code);
         
         return true;
     }
@@ -193,4 +194,46 @@ class Login extends CI_Controller {
             echo false;
         }
     }
+	
+	public function verify_email_address_byurl() {
+        $email	= $this->input->get('fg');
+        $verification_code = $this->input->get('rd');
+		
+        $user_details = $this->db->get_where('ref_user', array('rand_code' => $email, 'verification_code' => $verification_code));
+        if($user_details->num_rows() > 0) {
+            $user_details = $user_details->row_array();
+            $updater = array(
+                'status_verification' => 1
+            );
+            $this->db->where('id_user', $user_details['id_user']);
+            $this->db->update('ref_user', $updater);
+            $this->session->set_flashdata('flash_message', get_phrase('congratulations').'!'.get_phrase('your_email_address_has_been_successfully_verified').'.');
+            $this->session->set_userdata('register_email', null);
+			
+			$dataverifikasi['nama']  = $user_details['firstname']." ".$user_details['lastname'];
+			$dataverifikasi['email'] = $user_details['email'];
+			
+			$dataverifikasi['page_name'] = "verification_code_byurl_success";
+			$dataverifikasi['page_title'] = "Verifikasi Email Sukses";
+			$this->load->view('frontend/'.get_frontend_settings('theme').'/index', $dataverifikasi);
+			
+        }else{
+            $this->session->set_flashdata('error_message', get_phrase('the_verification_code_is_wrong').'.');
+            echo false;
+        }
+    }
+	
+	function tes(){
+		$email_data['subject'] = "Bensmart Verifikasi Email";
+		$email_data['from'] = 'dariidaidii';
+		$email_data['to'] = 'kepadadadadadad';
+		$email_data['to_name'] = 'NAMAKU';
+		$verification_code = '12332123123';
+		$fake_verify = md5( rand(100000000,20000000000) );
+		$fake_verifyy = sha1( rand(100000000,20000000000) );
+		$fake_verifyyy = md5( sha1(rand(200000000,30000000000) ) );
+		$email_data['page_verification'] = site_url()."login/verify_email_address_byurl?verify=".$fake_verify."&init=".$fake_verifyy."&schm=".$fake_verifyyy."&rd=".$verification_code;
+		$this->load->view('email/email_verification_bensmart', $email_data, TRUE);
+	}
+	
 }

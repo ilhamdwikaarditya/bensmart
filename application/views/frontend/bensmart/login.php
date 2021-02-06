@@ -41,10 +41,10 @@
 
 				<!-- Text -->
 				<p class="mb-0 font-size-sm text-muted">
-					Lupa Password? <a href="javascript::" onclick="forgot_password()">Reset Password</a>.
+					Lupa Password? <a href="javascript:void(0)" onclick="forgot_password()">Reset Password</a>.
 				</p>
 				<p class="mb-0 font-size-sm text-muted">
-					Tidak mempunyai akun? <a href="javascript::" onclick="register()">Daftar</a>.
+					Tidak mempunyai akun? <a href="javascript:void(0)" onclick="register()">Daftar</a>.
 				</p>
 
 			</div>
@@ -105,7 +105,15 @@
 						</label>
 						<textarea name="address" id="address" class="form-control"></textarea>
 					</div>
-
+					<div class="form-group">
+						<label for="jenjang"><span class="input-field-icon"><i class="fas fa-jenjang"></i></span> Jenjang:</label>
+						<select class="form-control select2" data-toggle="select2" name="id_jenjang" id="id_jenjang">
+							<option value="0">None</option>
+							<?php foreach ($jenjang as $datajenjang): ?>
+								  <option value="<?php echo $datajenjang['id_jenjang']; ?>"><?php echo $datajenjang['nm_jenjang']; ?></option>
+							<?php endforeach; ?>
+						</select>
+					</div>
 					<!-- Email -->
 					<div class="form-group">
 						<label for="email">
@@ -126,7 +134,7 @@
 						<label for="repassword">
 							Ulangi Password
 						</label>
-						<input type="repassword" class="form-control" id="registration-repassword" name="repassword" placeholder="Masukan lagi kata sandi">
+						<input type="password" class="form-control" id="registration-repassword" name="repassword" placeholder="Masukan lagi kata sandi">
 					</div>
 
 					<!-- Submit -->
@@ -138,7 +146,7 @@
 
 				<!-- Text -->
 				<p class="mb-0 font-size-sm text-muted">
-					Sudah mempunyai akun? <a href="javascript::" onclick="login()">Masuk</a>.
+					Sudah mempunyai akun? <a href="javascript:void(0)" onclick="login()">Masuk</a>.
 				</p>
 
 			</div>
@@ -193,7 +201,7 @@
 
 				<!-- Text -->
 				<p class="mb-0 font-size-sm text-muted">
-					Ingin kembali? <a href="javascript::" onclick="login()">Masuk</a>.
+					Ingin kembali? <a href="javascript:void(0)" onclick="login()">Masuk</a>.
 				</p>
 
 			</div>

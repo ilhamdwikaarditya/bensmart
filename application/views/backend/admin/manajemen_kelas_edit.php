@@ -111,6 +111,7 @@ $manajemen_kelas_data = $this->db->get_where('tr_class', array('id_class' => $id
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group row mb-3">
+
                                             <label class="col-md-3 col-form-label" for="id_mapel">Mata pelajaran<span class="required">*</span></label>
                                             <div class="col-md-9">
                                                 <select class="form-control select2" data-toggle="select2" name="id_mapel" id="id_mapel">
@@ -220,6 +221,7 @@ $manajemen_kelas_data = $this->db->get_where('tr_class', array('id_class' => $id
             });
         });
 
+
         $('#id_materi_group').change(function() {
             var id_materi_group = $(this).val();
             $.ajax({
@@ -243,6 +245,5 @@ $manajemen_kelas_data = $this->db->get_where('tr_class', array('id_class' => $id
                 }
             });
         });
-
     });
 </script>
