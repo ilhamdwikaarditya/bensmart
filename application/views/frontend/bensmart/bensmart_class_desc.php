@@ -1,5 +1,10 @@
 <head>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .checked {
+      color: #fdcc0d;
+    }
+  </style>
 </head>
 
 <body>
@@ -472,7 +477,7 @@
                   <span class="fa fa-star"></span>
                 </div>
 
-                <h5 class="text-muted mt-0 ml-2">(2.000 reviews)</h5>
+                <h5 class="text-muted mt-0 ml-2">(4.000 reviews)</h5>
 
               </div>
             </div>
@@ -647,7 +652,8 @@
               <div class="d-flex bd-highlight mb-3">
                 <div class="mr-auto bd-highlight">
                   <div class="avatar avatar-xxl justify-content-center">
-                    <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-1.jpg" alt="...">
+                    <img src="<?php echo base_url() . 'assets/frontend/bensmart/img/avatars/avatar-4.jpg' ?>" alt="..." class="card-img-top">
+                    <!-- <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-1.jpg" alt="..."> -->
                   </div>
 
                   <div class="d-flex bd-highlight justify-content-center">
@@ -686,7 +692,7 @@
           <div class="card shadow-light-lg mb-6 mb-md-4 lift lift-lg">
 
             <!-- Image -->
-            <img src="<?php echo base_url(). 'assets/frontend/bensmart/img/logo_text_bensmart.png'?>" alt="..." class="card-img-top">
+            <img src="<?php echo base_url() . 'assets/frontend/bensmart/img/covers/cover-13.jpg' ?>" alt="..." class="card-img-top">
 
             <!-- Shape -->
             <div class="position-relative">

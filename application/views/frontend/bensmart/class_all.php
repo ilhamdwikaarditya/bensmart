@@ -474,11 +474,9 @@ isset($selected_price) ? "" : $selected_price = "all";
                 <!-- List group -->
                 <div class="list-group list-group-flush">
                   <div class="list-group-item">
-
                     <!-- Toggle -->
-                    <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresOne" role="button" aria-expanded="true" aria-controls="featuresOne">
+                    <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresJenjang" role="button" aria-expanded="true" aria-controls="featuresOne">
                       <div class="mr-auto">
-
                         <!-- Title -->
                         <p class="font-weight-bold mb-0">
                           Jenjang
@@ -488,13 +486,7 @@ isset($selected_price) ? "" : $selected_price = "all";
                         <!-- <p class="font-size-sm text-muted mb-0">
                           Our new key fobs make it so easy!
                         </p> -->
-
                       </div>
-
-                      <!-- Badge -->
-                      <!-- <span class="badge badge-pill badge-success-soft ml-4">
-                        <span class="h6 text-uppercase">New</span>
-                      </span> -->
 
                       <!-- Chevron -->
                       <span class="collapse-chevron text-muted ml-4">
@@ -504,7 +496,7 @@ isset($selected_price) ? "" : $selected_price = "all";
                     </a> <!-- / .row -->
 
                     <!-- Collapse -->
-                    <div class="collapse show" id="featuresOne" data-parent="#featuresAccordion">
+                    <div class="collapse show" id="featuresJenjang" data-parent="#featuresAccordion">
                       <div class="py-5 py-md-6">
                         <div class="">
                           <input type="radio" id="all" name="level" class="level custom-radio" value="all" onclick="filter(this)" <?php if ($selected_level == 'all') echo 'checked'; ?>>
@@ -524,26 +516,76 @@ isset($selected_price) ? "" : $selected_price = "all";
                         </div>
                       </div>
                     </div>
+                  </div>
 
+                  <div class="list-group-item">
+                    <!-- Toggle -->
+                    <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresMateri" role="button" aria-expanded="true" aria-controls="featuresOne">
+                      <div class="mr-auto">
+
+                        <!-- Title -->
+                        <p class="font-weight-bold mb-0">
+                          Materi
+                        </p>
+                        <!-- Text -->
+                        <!-- <p class="font-size-sm text-muted mb-0">
+                          Our new key fobs make it so easy!
+                        </p> -->
+                      </div>
+
+                      <!-- Badge -->
+                      <!-- <span class="badge badge-pill badge-success-soft ml-4">
+                        <span class="h6 text-uppercase">New</span>
+                      </span> -->
+
+                      <!-- Chevron -->
+                      <span class="collapse-chevron text-muted ml-4">
+                        <i class="fe fe-lg fe-chevron-down"></i>
+                      </span>
+                    </a> <!-- / .row -->
+
+                    <!-- Collapse -->
+                    <div class="collapse show" id="featuresMateri" data-parent="#featuresAccordion">
+                      <div class="py-5 py-md-6">
+                        <div class="">
+                          <input type="radio" id="all" name="level" class="level custom-radio" value="all" onclick="filter(this)" <?php if ($selected_level == 'all') echo 'checked'; ?>>
+                          <label for="all">Semua</label>
+                        </div>
+                        <div class="">
+                          <input type="radio" id="beginner" name="level" class="level custom-radio" value="beginner" onclick="filter(this)" <?php if ($selected_level == 'beginner') echo 'checked'; ?>>
+                          <label for="beginner">SD</label>
+                        </div>
+                        <div class="">
+                          <input type="radio" id="advanced" name="level" class="level custom-radio" value="advanced" onclick="filter(this)" <?php if ($selected_level == 'advanced') echo 'checked'; ?>>
+                          <label for="advanced">SMP</label>
+                        </div>
+                        <div class="">
+                          <input type="radio" id="intermediate" name="level" class="level custom-radio" value="intermediate" onclick="filter(this)" <?php if ($selected_level == 'intermediate') echo 'checked'; ?>>
+                          <label for="intermediate">SMA</label>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   <div class="list-group-item">
 
                     <!-- Toggle -->
-                    <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresTwo" role="button" aria-expanded="false" aria-controls="featuresTwo">
+                    <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresSubMateri" role="button" aria-expanded="true" aria-controls="featuresOne">
                       <div class="mr-auto">
-
                         <!-- Title -->
                         <p class="font-weight-bold mb-0">
-                          Harga
+                          Sub Materi
                         </p>
-
                         <!-- Text -->
                         <!-- <p class="font-size-sm text-muted mb-0">
-                          Keep your engine going with free food and drinks.
+                          Our new key fobs make it so easy!
                         </p> -->
-
                       </div>
+
+                      <!-- Badge -->
+                      <!-- <span class="badge badge-pill badge-success-soft ml-4">
+                        <span class="h6 text-uppercase">New</span>
+                      </span> -->
 
                       <!-- Chevron -->
                       <span class="collapse-chevron text-muted ml-4">
@@ -553,7 +595,56 @@ isset($selected_price) ? "" : $selected_price = "all";
                     </a> <!-- / .row -->
 
                     <!-- Collapse -->
-                    <div class="collapse" id="featuresTwo" data-parent="#featuresAccordion">
+                    <div class="collapse show" id="featuresSubMateri" data-parent="#featuresAccordion">
+                      <div class="py-5 py-md-6">
+                        <div class="">
+                          <input type="radio" id="all" name="level" class="level custom-radio" value="all" onclick="filter(this)" <?php if ($selected_level == 'all') echo 'checked'; ?>>
+                          <label for="all">Semua</label>
+                        </div>
+                        <div class="">
+                          <input type="radio" id="beginner" name="level" class="level custom-radio" value="beginner" onclick="filter(this)" <?php if ($selected_level == 'beginner') echo 'checked'; ?>>
+                          <label for="beginner">SD</label>
+                        </div>
+                        <div class="">
+                          <input type="radio" id="advanced" name="level" class="level custom-radio" value="advanced" onclick="filter(this)" <?php if ($selected_level == 'advanced') echo 'checked'; ?>>
+                          <label for="advanced">SMP</label>
+                        </div>
+                        <div class="">
+                          <input type="radio" id="intermediate" name="level" class="level custom-radio" value="intermediate" onclick="filter(this)" <?php if ($selected_level == 'intermediate') echo 'checked'; ?>>
+                          <label for="intermediate">SMA</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="list-group-item">
+                    <!-- Toggle -->
+                    <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresHarga" role="button" aria-expanded="true" aria-controls="featuresOne">
+                      <div class="mr-auto">
+                        <!-- Title -->
+                        <p class="font-weight-bold mb-0">
+                          Harga
+                        </p>
+                        <!-- Text -->
+                        <!-- <p class="font-size-sm text-muted mb-0">
+                          Our new key fobs make it so easy!
+                        </p> -->
+
+                      </div>
+
+                      <!-- Badge -->
+                      <!-- <span class="badge badge-pill badge-success-soft ml-4">
+                        <span class="h6 text-uppercase">New</span>
+                      </span> -->
+
+                      <!-- Chevron -->
+                      <span class="collapse-chevron text-muted ml-4">
+                        <i class="fe fe-lg fe-chevron-down"></i>
+                      </span>
+                    </a> <!-- / .row -->
+
+                    <!-- Collapse -->
+                    <div class="collapse show" id="featuresHarga" data-parent="#featuresAccordion">
                       <div class="py-5 py-md-6">
                         <div class="">
                           <input type="radio" id="price_all" name="price" class="prices custom-radio" value="all" onclick="filter(this)" <?php if ($selected_price == 'all') echo 'checked'; ?>>
@@ -571,169 +662,70 @@ isset($selected_price) ? "" : $selected_price = "all";
                     </div>
 
                   </div>
+
                   <div class="list-group-item">
-
                     <!-- Toggle -->
-                    <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresThree" role="button" aria-expanded="false" aria-controls="featuresThree">
+                    <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresRating" role="button" aria-expanded="true" aria-controls="featuresOne">
                       <div class="mr-auto">
-
                         <!-- Title -->
                         <p class="font-weight-bold mb-0">
                           Rating
                         </p>
-
                         <!-- Text -->
                         <!-- <p class="font-size-sm text-muted mb-0">
-                          Connectivity, power, and IT issues solved in no time.
+                          Our new key fobs make it so easy!
                         </p> -->
 
                       </div>
+
+                      <!-- Badge -->
+                      <!-- <span class="badge badge-pill badge-success-soft ml-4">
+                        <span class="h6 text-uppercase">New</span>
+                      </span> -->
 
                       <!-- Chevron -->
                       <span class="collapse-chevron text-muted ml-4">
                         <i class="fe fe-lg fe-chevron-down"></i>
                       </span>
-
                     </a> <!-- / .row -->
 
                     <!-- Collapse -->
-                    <div class="collapse" id="featuresThree" data-parent="#featuresAccordion">
+                    <div class="collapse show" id="featuresRating" data-parent="#featuresAccordion">
                       <div class="py-5 py-md-6">
-                        <div class="">
-                          <input type="radio" id="all_rating" name="rating" class="ratings custom-radio" value="<?php echo 'all'; ?>" onclick="filter(this)" <?php if ($selected_rating == "all") echo 'checked'; ?>>
-                          <label for="all_rating">Semua Rating</label>
-                        </div>
-                        <div class="">
-                          <input type="radio" id="rating1" name="rating" class="ratings custom-radio" value="<?php echo '1'; ?>" onclick="filter(this)" <?php if ($selected_rating == "1") echo 'checked'; ?>>
-                          <label for="all_rating">&#9734;</label>
-                        </div>
-                        <div class="">
-                          <input type="radio" id="rating2" name="rating" class="ratings custom-radio" value="<?php echo '2'; ?>" onclick="filter(this)" <?php if ($selected_rating == "2") echo 'checked'; ?>>
-                          <label for="all_rating">&#9734;&#9734;</label>
-                        </div>
-                        <div class="">
-                          <input type="radio" id="rating3" name="rating" class="ratings custom-radio" value="<?php echo '3'; ?>" onclick="filter(this)" <?php if ($selected_rating == "3") echo 'checked'; ?>>
-                          <label for="all_rating">&#9734;&#9734;&#9734;</label>
-                        </div>
-                        <div class="">
-                          <input type="radio" id="rating4" name="rating" class="ratings custom-radio" value="<?php echo '4'; ?>" onclick="filter(this)" <?php if ($selected_rating == "4") echo 'checked'; ?>>
-                          <label for="all_rating">&#9734;&#9734;&#9734;&#9734;</label>
-                        </div>
-                        <div class="">
-                          <input type="radio" id="rating5" name="rating" class="ratings custom-radio" value="<?php echo '5'; ?>" onclick="filter(this)" <?php if ($selected_rating == "5") echo 'checked'; ?>>
-                          <label for="all_rating">&#9734;&#9734;&#9734;&#9734;&#9734;</label>
-                        </div>
-                        <!-- <?php for ($i = 1; $i <= 5; $i++) : ?>
+                        <div class="py-5 py-md-6">
                           <div class="">
-                            <input type="radio" id="rating_<?php echo $i; ?>" name="rating" class="ratings custom-radio" value="<?php echo $i; ?>" onclick="filter(this)" <?php if ($selected_rating == $i) echo 'checked'; ?>>
-                            <label for="rating_<?php echo $i; ?>">
-                              <?php for ($j = 1; $j <= $i; $j++) : ?>
-                                <i class="bi bi-star" style="color: #f4c150;"></i>
-                              <?php endfor; ?>
-                              <?php for ($j = $i; $j < 5; $j++) : ?>
-                                <i class="bi bi-star" style="color: #dedfe0;"></i>
-                              <?php endfor; ?>
-                            </label>
+                            <input type="radio" id="all_rating" name="rating" class="ratings custom-radio" value="<?php echo 'all'; ?>" onclick="filter(this)" <?php if ($selected_rating == "all") echo 'checked'; ?>>
+                            <label for="all_rating">Semua Rating</label>
                           </div>
-                        <?php endfor; ?> -->
+                          <div class="">
+                            <input type="radio" id="rating1" name="rating" class="ratings custom-radio" value="<?php echo '1'; ?>" onclick="filter(this)" <?php if ($selected_rating == "1") echo 'checked'; ?>>
+                            <label for="all_rating">&#9734;</label>
+                          </div>
+                          <div class="">
+                            <input type="radio" id="rating2" name="rating" class="ratings custom-radio" value="<?php echo '2'; ?>" onclick="filter(this)" <?php if ($selected_rating == "2") echo 'checked'; ?>>
+                            <label for="all_rating">&#9734;&#9734;</label>
+                          </div>
+                          <div class="">
+                            <input type="radio" id="rating3" name="rating" class="ratings custom-radio" value="<?php echo '3'; ?>" onclick="filter(this)" <?php if ($selected_rating == "3") echo 'checked'; ?>>
+                            <label for="all_rating">&#9734;&#9734;&#9734;</label>
+                          </div>
+                          <div class="">
+                            <input type="radio" id="rating4" name="rating" class="ratings custom-radio" value="<?php echo '4'; ?>" onclick="filter(this)" <?php if ($selected_rating == "4") echo 'checked'; ?>>
+                            <label for="all_rating">&#9734;&#9734;&#9734;&#9734;</label>
+                          </div>
+                          <div class="">
+                            <input type="radio" id="rating5" name="rating" class="ratings custom-radio" value="<?php echo '5'; ?>" onclick="filter(this)" <?php if ($selected_rating == "5") echo 'checked'; ?>>
+                            <label for="all_rating">&#9734;&#9734;&#9734;&#9734;&#9734;</label>
+                          </div>
+                        </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
 
               </div>
             </div>
           </div>
-          <!--   <div id="collapseFilter" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body pt-0">
-                <div class="filter_type">
-                  <h6>Materi</h6>
-                  <ul>
-                    <li class="ml-2">
-                      <div class="">
-                        <input type="radio" id="category_all" name="sub_category" class="categories custom-radio" value="all" onclick="filter(this)">
-                        <label for="category_all">Semua Materi</label>
-                      </div>
-                    </li>
-                  </ul>
-                  <a href="javascript::" id="city-toggle-btn" onclick="showToggle(this, 'hidden-categories')" style="font-size: 12px;"></a>
-                </div>
-                <hr>
-                <div class="filter_type">
-                  <div class="form-group">
-                    <h6>Harga</h6>
-                    <ul>
-                      <li>
-                        <div class="">
-                          <input type="radio" id="price_all" name="price" class="prices custom-radio" value="all" onclick="filter(this)" <?php if ($selected_price == 'all') echo 'checked'; ?>>
-                          <label for="price_all">Semua</label>
-                        </div>
-                        <div class="">
-                          <input type="radio" id="price_free" name="price" class="prices custom-radio" value="free" onclick="filter(this)" <?php if ($selected_price == 'free') echo 'checked'; ?>>
-                          <label for="price_free">Gratis</label>
-                        </div>
-                        <div class="">
-                          <input type="radio" id="price_paid" name="price" class="prices custom-radio" value="paid" onclick="filter(this)" <?php if ($selected_price == 'paid') echo 'checked'; ?>>
-                          <label for="price_paid">Berbayar</label>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <hr>
-                <div class="filter_type">
-                  <h6>Jenjang</h6>
-                  <ul>
-                    <li>
-                      <div class="">
-                        <input type="radio" id="all" name="level" class="level custom-radio" value="all" onclick="filter(this)" <?php if ($selected_level == 'all') echo 'checked'; ?>>
-                        <label for="all">Semua</label>
-                      </div>
-                      <div class="">
-                        <input type="radio" id="beginner" name="level" class="level custom-radio" value="beginner" onclick="filter(this)" <?php if ($selected_level == 'beginner') echo 'checked'; ?>>
-                        <label for="beginner">SD</label>
-                      </div>
-                      <div class="">
-                        <input type="radio" id="advanced" name="level" class="level custom-radio" value="advanced" onclick="filter(this)" <?php if ($selected_level == 'advanced') echo 'checked'; ?>>
-                        <label for="advanced">SMP</label>
-                      </div>
-                      <div class="">
-                        <input type="radio" id="intermediate" name="level" class="level custom-radio" value="intermediate" onclick="filter(this)" <?php if ($selected_level == 'intermediate') echo 'checked'; ?>>
-                        <label for="intermediate">SMA</label>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <hr>
-                <div class="filter_type">
-                  <h6><?php echo site_phrase('ratings'); ?></h6>
-                  <ul>
-                    <li>
-                      <div class="">
-                        <input type="radio" id="all_rating" name="rating" class="ratings custom-radio" value="<?php echo 'all'; ?>" onclick="filter(this)" <?php if ($selected_rating == "all") echo 'checked'; ?>>
-                        <label for="all_rating"><?php echo site_phrase('all'); ?></label>
-                      </div>
-                    </li>
-                    <?php for ($i = 1; $i <= 5; $i++) : ?>
-                      <li>
-                        <div class="">
-                          <input type="radio" id="rating_<?php echo $i; ?>" name="rating" class="ratings custom-radio" value="<?php echo $i; ?>" onclick="filter(this)" <?php if ($selected_rating == $i) echo 'checked'; ?>>
-                          <label for="rating_<?php echo $i; ?>">
-                            <?php for ($j = 1; $j <= $i; $j++) : ?>
-                              <i class="fas fa-star" style="color: #f4c150;"></i>
-                            <?php endfor; ?>
-                            <?php for ($j = $i; $j < 5; $j++) : ?>
-                              <i class="far fa-star" style="color: #dedfe0;"></i>
-                            <?php endfor; ?>
-                          </label>
-                        </div>
-                      </li>
-                    <?php endfor; ?>
-                  </ul>
-                </div>
-              </div>
-            </div> -->
         </div>
 
         <!-- Card Left -->
