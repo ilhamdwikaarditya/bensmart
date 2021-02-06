@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="page-title"> <i class="mdi mdi-apple-keyboard-command title_icon"></i> <?php echo $page_title; ?>
-                <a href = "<?php echo site_url('master/materi_group_form/add_materi_group_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i>Add Materi Group</a>
+                <a href = "<?php echo site_url('master/materi_group_form/add_materi_group_form'); ?>" class="btn btn-outline-primary btn-rounded alignToTitle"><i class="mdi mdi-plus"></i>Tambah Grup Materi</a>
             </h4>
             </div> <!-- end card body-->
         </div> <!-- end card -->
@@ -20,12 +20,9 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Id</th>
                       <th>Nama</th>
                       <th>Jenjang</th>
-                      <th>Cdate</th>
-                      <th>Cuser</th>
-                      <th>Action</th>
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -33,11 +30,8 @@
                        foreach ($materi_group->result_array() as $key => $materi_group): ?>
                           <tr>
                               <td><?php echo $key+1; ?></td>
-                              <td><?php echo $materi_group['id_materi_group'] ?></td>
                               <td><?php echo $materi_group['nm_materi_group'] ?></td>
-                              <td><?php echo $materi_group['nm_jenjang'] ?></td>
-                              <td><?php echo $materi_group['cdate'] ?></td>
-                              <td><?php echo $materi_group['cuser'] ?></td>
+                              <td><?php echo $materi_group['kd_jenjang'] ?></td>
                               <td>
                                   <div class="dropright dropright">
                                     <button type="button" class="btn btn-sm btn-outline-primary btn-rounded btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -30,12 +30,18 @@ class Login extends CI_Controller {
         $credential = array('email' => $email, 'password' => sha1($password));
 
         // Checking login credential for admin
-        $query = $this->db->get_where('ref_user', $credential);
+        // $query = $this->db->get_where('ref_user', $credential);
+        $this->db->from('ref_user a');
+        $this->db->join('ref_mentor b','a.id_user = b.id_user','left');
+        $this->db->where('email', $email);
+        $this->db->where('password', sha1($password));
+        $query = $this->db->get();
 
         if ($query->num_rows() > 0) {
             $row = $query->row();
             $this->session->set_userdata('id_user', $row->id_user);
             $this->session->set_userdata('id_level', $row->id_level);
+            $this->session->set_userdata('id_mentor', $row->id_mentor);
             $this->session->set_userdata('role', get_user_role('user_role', $row->id_user));
             $this->session->set_userdata('firstname', $row->firstname);
             $this->session->set_userdata('lastname', $row->lastname);

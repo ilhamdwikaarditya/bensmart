@@ -15,7 +15,7 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="header-title mb-3">Form Edit Level</h4>
+                <h4 class="header-title mb-3">Form Ubah Level</h4>
 
                 <form class="required-form" action="<?php echo site_url('master/level/edit/'.$level_id); ?>" enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
@@ -23,7 +23,7 @@
                             <li class="nav-item">
                                 <a href="#basic_info" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                     <i class="mdi mdi-face-profile mr-1"></i>
-                                    <span class="d-none d-sm-inline"><?php echo get_phrase('basic_info'); ?></span>
+                                    <span class="d-none d-sm-inline">Level</span>
                                 </a>
                             </li>
                             
@@ -47,7 +47,7 @@
                                             <br/>
 
                                             <div class="mb-3">
-                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button"><?php echo get_phrase('submit'); ?></button>
+                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button">Simpan</button>
                                             </div>
                                         </div>
                                     </div> <!-- end col -->

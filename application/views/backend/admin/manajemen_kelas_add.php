@@ -152,7 +152,7 @@
                                             <p class="w-75 mb-2 mx-auto">Kamu tinggal satu klik lagi :)</p>
 
                                             <div class="mb-3">
-                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button">Submit</button>
+                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button">Simpan</button>
                                             </div>
                                         </div>
                                     </div> <!-- end col -->
@@ -161,10 +161,10 @@
 
                             <ul class="list-inline mb-0 wizard text-center">
                                 <li class="previous list-inline-item">
-                                    <a href="javascript::" class="btn btn-info"> <i class="mdi mdi-arrow-left-bold"></i> </a>
+                                    <a href="javascript:void(0)" class="btn btn-info"> <i class="mdi mdi-arrow-left-bold"></i> </a>
                                 </li>
                                 <li class="next list-inline-item">
-                                    <a href="javascript::" class="btn btn-info"> <i class="mdi mdi-arrow-right-bold"></i> </a>
+                                    <a href="javascript:void(0)" class="btn btn-info"> <i class="mdi mdi-arrow-right-bold"></i> </a>
                                 </li>
                             </ul>
 
@@ -191,8 +191,9 @@
                 success: function(data){
                     var html = '';
                     var i;
+                        html += '<option value="0">'+'none'+'</option>';
                     for(i=0; i<data.length; i++){
-                        html += '<option>'+data[i].nm_materi_group+'</option>';
+                        html += '<option value='+data[i].id_materi_group+'>'+data[i].nm_materi_group+'</option>';
                     }
                     $('.groupmateri').html(html);
                 }
@@ -210,8 +211,9 @@
                 success: function(data){
                     var html = '';
                     var i;
+                        html += '<option value="0">'+'none'+'</option>';
                     for(i=0; i<data.length; i++){
-                        html += '<option>'+data[i].nm_materi_group_sub+'</option>';
+                        html += '<option value='+data[i].id_materi_group_sub+'>'+data[i].nm_materi_group_sub+'</option>';
                     }
                     $('.subgroup').html(html);
                 }

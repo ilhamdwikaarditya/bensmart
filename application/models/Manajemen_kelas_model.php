@@ -16,12 +16,13 @@ class Manajemen_kelas_model extends CI_Model
         if ($id > 0) {
             return $this->db->get_where('tr_class', array('id_class' => $id));
         }else{
-			$this->db->select("a.id_class, nm_class, price, discount, nm_mapel, nm_jenjang, nm_materi_group_sub, group_concat(nm_mentor) nm_mentor");
+			$this->db->select("a.id_class, nm_class, price, discount, nm_mapel, nm_jenjang, nm_materi_group, nm_materi_group_sub, group_concat(nm_mentor) nm_mentor, c.kd_jenjang, a.active");
 			$this->db->from('tr_class a');
 			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub');
 			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang');
 			$this->db->join('ref_mapel d', 'a.id_mapel = d.id_mapel');
 			$this->db->join('tr_class_mentor e', 'a.id_class = e.id_class', 'left');
+			$this->db->join('ref_materi_group f', 'a.id_materi_group = f.id_materi_group');
 			$this->db->group_by('a.id_class');
 			$this->db->order_by('a.id_class');
 			
@@ -29,14 +30,31 @@ class Manajemen_kelas_model extends CI_Model
         }
     }
 
+    public function get_manajemen_kelas_mentor($id = 0) {
+        
+			$this->db->select("a.id_class, nm_class, price, discount, nm_mapel, nm_jenjang, nm_materi_group, nm_materi_group_sub, group_concat(nm_mentor) nm_mentor, c.kd_jenjang, a.active");
+			$this->db->from('tr_class a');
+			// $this->db->join('tr_class a', 'a.id_class = x.id_class');
+			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub');
+			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang');
+			$this->db->join('ref_mapel d', 'a.id_mapel = d.id_mapel');
+			$this->db->join('tr_class_mentor e', 'a.id_class = e.id_class', 'left');
+			$this->db->join('ref_materi_group f', 'a.id_materi_group = f.id_materi_group');
+			$this->db->where('e.id_mentor', $this->session->userdata('id_mentor'));
+			$this->db->group_by('a.id_class');
+			$this->db->order_by('a.id_class');
+			return $this->db->get();
+    }
+
     public function get_manajemen_bundling($id = 0) {
         if ($id > 0) {
             return $this->db->get_where('tr_bundling', array('id_bundling' => $id));
         }else{
-			$this->db->select("a.id_bundling, a.nm_bundling, price, discount, nm_jenjang, nm_materi_group_sub");
+			$this->db->select("a.id_bundling, a.nm_bundling, price, discount, a.id_jenjang, nm_jenjang, a.id_materi_group, nm_materi_group, a.id_materi_group_sub, nm_materi_group_sub, c.kd_jenjang, a.active");
 			$this->db->from('tr_bundling a');
 			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub');
 			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang');
+			$this->db->join('ref_materi_group d', 'a.id_materi_group = d.id_materi_group');
 			$this->db->group_by('a.id_bundling');
 			$this->db->order_by('a.id_bundling');	
 			return $this->db->get();
@@ -45,7 +63,7 @@ class Manajemen_kelas_model extends CI_Model
 
     public function get_manajemen_bundling_kelas($id = 0) {
         if ($id > 0) {
-            $this->db->select("a.id_bundling_detail, a.id_class, b.nm_class, b.price, b.discount, e.nm_jenjang, nm_materi_group_sub");
+            $this->db->select("a.id_bundling_detail, a.id_class, b.nm_class, b.price, b.discount, e.kd_jenjang, e.nm_jenjang, nm_materi_group, nm_materi_group_sub");
 			$this->db->from('tr_bundling_detail a');
 			$this->db->join('tr_class b', 'a.id_class = b.id_class');
 			$this->db->join('ref_materi_group c', 'b.id_materi_group = c.id_materi_group');
@@ -58,7 +76,7 @@ class Manajemen_kelas_model extends CI_Model
 			$this->db->order_by('a.id_bundling_detail');	
 			return $this->db->get();
         }else{
-			$this->db->select("a.id_bundling_detail, a.id_class, b.nm_class, b.price, b.discount, e.nm_jenjang, nm_materi_group_sub");
+			$this->db->select("a.id_bundling_detail, a.id_class, b.nm_class, b.price, b.discount, e.kd_jenjang, e.nm_jenjang, nm_materi_group, nm_materi_group_sub");
 			$this->db->from('tr_bundling_detail a');
 			$this->db->join('tr_class b', 'a.id_class = b.id_class');
 			$this->db->join('ref_materi_group c', 'b.id_materi_group = c.id_materi_group');
@@ -140,6 +158,7 @@ class Manajemen_kelas_model extends CI_Model
             $data['discount_price'] = html_escape($this->input->post('price')) - html_escape($this->input->post('discount'));
             $data['id_mapel'] = html_escape($this->input->post('id_mapel'));
             $data['id_jenjang'] = html_escape($this->input->post('id_jenjang'));
+            $data['id_materi_group'] = html_escape($this->input->post('id_materi_group'));
             $data['id_materi_group_sub'] = html_escape($this->input->post('id_materi_group_sub'));
             $data['cuser'] = html_escape($this->session->userdata('id_user'));
             $data['thumbnail'] = md5(rand(10000, 10000000));
@@ -158,6 +177,7 @@ class Manajemen_kelas_model extends CI_Model
         $data['discount'] = html_escape($this->input->post('discount'));
         $data['discount_price'] = html_escape($this->input->post('price')) - html_escape($this->input->post('discount'));
         $data['id_jenjang'] = html_escape($this->input->post('id_jenjang'));
+        $data['id_materi_group'] = html_escape($this->input->post('id_materi_group'));
         $data['id_materi_group_sub'] = html_escape($this->input->post('id_materi_group_sub'));
         $data['cuser'] = html_escape($this->session->userdata('id_user'));
         $data['thumbnail'] = md5(rand(10000, 10000000));
@@ -185,6 +205,7 @@ class Manajemen_kelas_model extends CI_Model
     {
         $data['nm_class_materi_section'] = html_escape($this->input->post('nm_class_materi_section'));
         $data['position'] = html_escape($this->input->post('position'));
+        $data['cuser']     = html_escape($this->session->userdata('id_user'));
         $data['id_class'] = $id_class;
         $this->db->insert('tr_class_materi_section', $data);
         $id_class = $this->db->insert_id();
@@ -198,6 +219,7 @@ class Manajemen_kelas_model extends CI_Model
         $data['url_materi'] = html_escape($this->input->post('url_materi'));
         $data['desc'] = html_escape($this->input->post('desc'));
         $data['id_class_materi_section'] = html_escape($this->input->post('id_class_materi_section'));
+        $data['cuser']     = html_escape($this->session->userdata('id_user'));
         $this->db->insert('tr_class_materi_detail', $data);
         $id_class_materi_section = $this->db->insert_id();
     }
@@ -207,7 +229,10 @@ class Manajemen_kelas_model extends CI_Model
         $data['nm_materi_dokumen'] = html_escape($this->input->post('nm_materi_dokumen'));
         $data['id_class_materi_detail'] = $param1;
         $data['cuser'] = html_escape($this->session->userdata('id_user'));
-        $data['file_materi_dokumen'] = html_escape($this->input->post('nm_materi_dokumen'));
+        $data['cuser']     = html_escape($this->session->userdata('id_user'));
+        $filename = $_FILES['file_materi_dokumen']['name'];
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        $data['file_materi_dokumen'] = md5(rand(10000, 10000000)).'.'.$ext;
 
         $this->db->insert('tr_class_materi_dokumen', $data);
         $id_class_materi_dokumen = $this->db->insert_id();
@@ -241,12 +266,11 @@ class Manajemen_kelas_model extends CI_Model
 			if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['name'] != "") {
                 unlink('uploads/thumbnail_class/' . $this->db->get_where('tr_classx', array('id_class' => $class_id))->row('thumbnail').'.jpg');
                 $data['thumbnail'] = md5(rand(10000, 10000000));
+                $this->upload_thumbnail($data['thumbnail']);
             }
 
-            
             $this->db->where('id_class', $class_id);
             $this->db->update('tr_class', $data);
-            $this->upload_thumbnail($data['thumbnail']);
             $this->session->set_flashdata('flash_message', 'Berhasil dirubah');
         
     }
@@ -258,7 +282,6 @@ class Manajemen_kelas_model extends CI_Model
         $data['price'] = html_escape($this->input->post('price'));
         $data['discount'] = html_escape($this->input->post('discount'));
         $data['discount_price'] = html_escape($this->input->post('price')) - html_escape($this->input->post('discount'));
-        $data['id_mapel'] = html_escape($this->input->post('id_mapel'));
         $data['id_jenjang'] = html_escape($this->input->post('id_jenjang'));
         $data['id_materi_group_sub'] = html_escape($this->input->post('id_materi_group_sub'));
         $data['cuser'] = $this->session->userdata('id_user');
@@ -266,12 +289,11 @@ class Manajemen_kelas_model extends CI_Model
         if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['name'] != "") {
             unlink('uploads/thumbnail_bundling/' . $this->db->get_where('tr_bundling', array('id_bundling' => $bundling_id))->row('thumbnail').'.jpg');
             $data['thumbnail'] = md5(rand(10000, 10000000));
+            $this->upload_thumbnail_bundling($data['thumbnail']);
         }
-
         
         $this->db->where('id_bundling', $bundling_id);
         $this->db->update('tr_bundling', $data);
-        $this->upload_thumbnail_bundling($data['thumbnail']);
         $this->session->set_flashdata('flash_message', 'Berhasil dirubah');
     
 }
@@ -334,7 +356,9 @@ class Manajemen_kelas_model extends CI_Model
     }
 
     public function delete_materi_detail_dokumen($id_class_materi_detail, $id_class_materi_dokumen)
-    {
+    {   
+        unlink('uploads/materi_detail_dokumen/' . $this->db->get_where('tr_class_materi_dokumen', array('id_class_materi_dokumen' => $id_class_materi_dokumen))->row('file_materi_dokumen'));
+        
         $this->db->where('id_class_materi_dokumen', $id_class_materi_dokumen);
         $this->db->delete('tr_class_materi_dokumen');
     }
@@ -343,6 +367,48 @@ class Manajemen_kelas_model extends CI_Model
         $this->db->where('id_bundling_detail', $class_bundling_id);
         $this->db->delete('tr_bundling_detail');
         $this->session->set_flashdata('flash_message', 'Berhasil dihapus');
+    }
+
+    public function nonactive_manajemen_kelas($id_class = "")
+    {
+        $this->db->where('id_class', $id_class);
+        $this->db->update('tr_class', array('active' => '2'));
+        $this->session->set_flashdata('flash_message', 'Berhasil Di Non Aktifkan');
+    }
+
+    public function active_manajemen_kelas($id_class = "")
+    {
+        $this->db->where('id_class', $id_class);
+        $this->db->update('tr_class', array('active' => '1'));
+        $this->session->set_flashdata('flash_message', 'Berhasil Di Aktifkan');
+    }
+
+    public function publish_manajemen_kelas($id_class = "")
+    {
+        $this->db->where('id_class', $id_class);
+        $this->db->update('tr_class', array('active' => '3'));
+        $this->session->set_flashdata('flash_message', 'Berhasil Di Terbitkan');
+    }
+
+    public function nonactive_manajemen_bundling($id_bundling = "")
+    {
+        $this->db->where('id_bundling', $id_bundling);
+        $this->db->update('tr_bundling', array('active' => '2'));
+        $this->session->set_flashdata('flash_message', 'Berhasil Di Non Aktifkan');
+    }
+
+    public function active_manajemen_bundling($id_bundling = "")
+    {
+        $this->db->where('id_bundling', $id_bundling);
+        $this->db->update('tr_bundling', array('active' => '1'));
+        $this->session->set_flashdata('flash_message', 'Berhasil Di Aktifkan');
+    }
+
+    public function publish_manajemen_bundling($id_bundling = "")
+    {
+        $this->db->where('id_bundling', $id_bundling);
+        $this->db->update('tr_bundling', array('active' => '3'));
+        $this->session->set_flashdata('flash_message', 'Berhasil Di Terbitkan');
     }
 
     public function send_materi_detail($id_class, $id_class_materi_detail)

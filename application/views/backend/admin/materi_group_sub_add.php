@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="header-title mb-3">Materi Group Add Form</h4>
+                <h4 class="header-title mb-3">Tambah Sub Grup Materi</h4>
 
                 <form class="required-form" action="<?php echo site_url('master/materi_group_sub/add'); ?>" enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
@@ -20,7 +20,7 @@
                             <li class="nav-item">
                                 <a href="#basic_info" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                     <i class="mdi mdi-face-profile mr-1"></i>
-                                    <span class="d-none d-sm-inline"><?php echo get_phrase('basic_info'); ?></span>
+                                    <span class="d-none d-sm-inline">Sub Grup Materi</span>
                                 </a>
                             </li>
                             <!-- <li class="nav-item">
@@ -52,10 +52,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row mb-3">
-                                            <label class="col-md-3 col-form-label" for="id_materi_group">Materi Group<span class="required">*</span></label>
+                                            <label class="col-md-3 col-form-label" for="id_materi_group">Grup Materi<span class="required">*</span></label>
                                             <div class="col-md-9">
                                                 <select class="form-control select2" data-toggle="select2" name="id_materi_group" id="id_materi_group" onchange="checkDataType(this.value)">
-                                                    <option value="0">-- Pilih Materi Group --</option>
+                                                    <!-- <option value="0">-- Pilih Grup Materi --</option> -->
                                                     <?php foreach ($materi_group as $row) : ?>
                                                         <option value="<?php echo $row['id_materi_group']; ?>" required><?php echo $row['nm_materi_group']; ?> - ( <?php echo $row['nm_jenjang']; ?> )</option>
                                                     <?php endforeach; ?>

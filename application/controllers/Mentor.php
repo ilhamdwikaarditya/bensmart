@@ -94,7 +94,7 @@ class Mentor extends CI_Controller {
 
         $page_data['page_name'] = 'manajemen_kelas';
         $page_data['page_title'] = 'Manajemen Kelas';
-        $page_data['manajemen_kelas'] = $this->manajemen_kelas_model->get_manajemen_kelas($param2);
+        $page_data['manajemen_kelas'] = $this->manajemen_kelas_model->get_manajemen_kelas_mentor($param2);
         $this->load->view('backend/index', $page_data);
     }
 

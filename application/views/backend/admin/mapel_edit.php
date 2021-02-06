@@ -15,7 +15,7 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="header-title mb-3">Jenjang Edit Form</h4>
+                <h4 class="header-title mb-3">Form Ubah Mata Pelajaran</h4>
 
                 <form class="required-form" action="<?php echo site_url('master/mapel/edit/'.$id_mapel); ?>" enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
@@ -23,7 +23,7 @@
                             <li class="nav-item">
                                 <a href="#basic_info" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                     <i class="mdi mdi-face-profile mr-1"></i>
-                                    <span class="d-none d-sm-inline"><?php echo get_phrase('basic_info'); ?></span>
+                                    <span class="d-none d-sm-inline">Mata Pelajaran</span>
                                 </a>
                             </li>
                         </ul>
@@ -51,7 +51,7 @@
                                         <div class="text-center">
                                             <br/>
                                             <div class="mb-3">
-                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button">Submit</button>
+                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button">Simpan</button>
                                             </div>
                                         </div>
                                     </div> <!-- end col -->

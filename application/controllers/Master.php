@@ -71,13 +71,13 @@ class Master extends CI_Controller {
 
         if ($param1 == 'add_jenjang_form') {
             $page_data['page_name'] = 'jenjang_add';
-            $page_data['page_title'] = 'Jenjang Add';
+            $page_data['page_title'] = 'Tambah Jenjang';
             $this->load->view('backend/index', $page_data);
         }
         elseif ($param1 == 'edit_jenjang_form') {
             $page_data['page_name'] = 'jenjang_edit';
             $page_data['id_jenjang'] = $param2;
-            $page_data['page_title'] = 'Jenjang Edit';
+            $page_data['page_title'] = 'Ubah Jenjang';
             $this->load->view('backend/index', $page_data);
         }
     }
@@ -100,7 +100,7 @@ class Master extends CI_Controller {
         }
 
         $page_data['page_name'] = 'materi_group';
-        $page_data['page_title'] = 'Materi Group';
+        $page_data['page_title'] = 'Grup Materi';
         $page_data['materi_group'] = $this->master_model->get_all_materi_group($param2);
         $this->load->view('backend/index', $page_data);
     }
@@ -112,14 +112,14 @@ class Master extends CI_Controller {
 
         if ($param1 == 'add_materi_group_form') {
             $page_data['page_name'] = 'materi_group_add';
-            $page_data['page_title'] = 'Materi Group Add';
+            $page_data['page_title'] = 'Tambah Grup Materi';
             $page_data['jenjang'] = $this->master_model->get_jenjang()->result_array();
             $this->load->view('backend/index', $page_data);
         }
         elseif ($param1 == 'edit_materi_group_form') {
             $page_data['page_name'] = 'materi_group_edit';
             $page_data['id_materi_group'] = $param2;
-            $page_data['page_title'] = 'Materi Group Edit';
+            $page_data['page_title'] = 'Ubah Grup Materi';
             $page_data['jenjang'] = $this->master_model->get_jenjang()->result_array();
             $this->load->view('backend/index', $page_data);
         }
@@ -143,7 +143,7 @@ class Master extends CI_Controller {
         }
 
         $page_data['page_name'] = 'materi_group_sub';
-        $page_data['page_title'] = 'Materi Group Sub';
+        $page_data['page_title'] = 'Sub Grup Materi';
         $page_data['materi_group_sub'] = $this->master_model->get_all_materi_group_sub($param2);
         $this->load->view('backend/index', $page_data);
     }
@@ -155,14 +155,14 @@ class Master extends CI_Controller {
 
         if ($param1 == 'add_materi_group_sub_form') {
             $page_data['page_name'] = 'materi_group_sub_add';
-            $page_data['page_title'] = 'Materi Group Sub Add';
+            $page_data['page_title'] = 'Tambah Sub Grub Materi';
             $page_data['materi_group'] = $this->master_model->get_materi_group()->result_array();
             $this->load->view('backend/index', $page_data);
         }
         elseif ($param1 == 'edit_materi_group_sub_form') {
             $page_data['page_name'] = 'materi_group_sub_edit';
             $page_data['id_materi_group_sub'] = $param2;
-            $page_data['page_title'] = 'Materi Group Sub Edit';
+            $page_data['page_title'] = 'Ubah Sub Grub Materi';
             $page_data['materi_group'] = $this->master_model->get_materi_group()->result_array();
             $this->load->view('backend/index', $page_data);
         }
@@ -198,13 +198,13 @@ class Master extends CI_Controller {
 
         if ($param1 == 'add_mapel_form') {
             $page_data['page_name'] = 'mapel_add';
-            $page_data['page_title'] = 'Mata Pelajaran Add';
+            $page_data['page_title'] = 'Tambah Mata Pelajaran';
             $this->load->view('backend/index', $page_data);
         }
         elseif ($param1 == 'edit_mapel_form') {
             $page_data['page_name'] = 'mapel_edit';
             $page_data['id_mapel'] = $param2;
-            $page_data['page_title'] = 'Mata Pelajaran Edit';
+            $page_data['page_title'] = 'Ubah Mata Pelajaran';
             $this->load->view('backend/index', $page_data);
         }
     }
@@ -264,8 +264,12 @@ class Master extends CI_Controller {
             $this->master_model->edit_mentor($param2);
             redirect(site_url('master/mentor'), 'refresh');
         }
-        elseif ($param1 == "delete") {
+        elseif ($param1 == "nonactive") {
             $this->master_model->delete_mentor($param2);
+            redirect(site_url('master/mentor'), 'refresh');
+        }
+        elseif ($param1 == "active") {
+            $this->master_model->active_mentor($param2);
             redirect(site_url('master/mentor'), 'refresh');
         }
 
@@ -290,7 +294,7 @@ class Master extends CI_Controller {
 			$page_data['user'] = $this->master_model->get_member()->result_array();
             $page_data['page_name'] = 'mentor_edit';
             $page_data['mentor_id'] = $param2;
-            $page_data['page_title'] = 'Edit Mentor';
+            $page_data['page_title'] = 'Ubah Mentor';
             $this->load->view('backend/index', $page_data);
         }
     }
@@ -314,7 +318,7 @@ class Master extends CI_Controller {
         }
 
         $page_data['page_name'] = 'tipe_payment';
-        $page_data['page_title'] = 'Tipe Payment';
+        $page_data['page_title'] = 'Tipe Pembayaran';
 		
         $page_data['tipe_payment'] = $this->master_model->get_tipe_payment($param2);
 
@@ -328,13 +332,13 @@ class Master extends CI_Controller {
 
         if ($param1 == 'add_tipe_payment_form') {
             $page_data['page_name'] = 'tipe_payment_add';
-            $page_data['page_title'] = 'Tambah Tipe Payment';
+            $page_data['page_title'] = 'Tambah Tipe Pembayaran';
             $this->load->view('backend/index', $page_data);
         }
         elseif ($param1 == 'edit_tipe_payment_form') {
             $page_data['page_name'] = 'tipe_payment_edit';
             $page_data['id_type_payment'] = $param2;
-            $page_data['page_title'] = 'Edit Tipe Payment';
+            $page_data['page_title'] = 'Edit Tipe Pembayaran';
             $this->load->view('backend/index', $page_data);
         }
     }
@@ -351,8 +355,12 @@ class Master extends CI_Controller {
             $this->master_model->edit_member($param2);
             redirect(site_url('master/member'), 'refresh');
         }
-        elseif ($param1 == "delete") {
+        elseif ($param1 == "nonactive") {
             $this->master_model->delete_member($param2);
+            redirect(site_url('master/member'), 'refresh');
+        }
+        elseif ($param1 == "active") {
+            $this->master_model->active_member($param2);
             redirect(site_url('master/member'), 'refresh');
         }
 

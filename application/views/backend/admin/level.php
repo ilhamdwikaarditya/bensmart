@@ -20,8 +20,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>ID Level</th>
-                      <th>Nama Level</th>
+                      <th>Nama</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -30,7 +29,6 @@
                        foreach ($level->result_array() as $key => $datalevel): ?>
                           <tr>
                               <td><?php echo $key+1; ?></td>
-                              <td><?php echo $datalevel['id_level']; ?></td>
                               <td><?php echo $datalevel['nm_level']; ?></td>
                               <td>
                                   <div class="dropright dropright">
@@ -38,8 +36,8 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="<?php echo site_url('master/level_form/edit_level_form/'.$datalevel['id_level']) ?>">Edit</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('master/level/delete/'.$datalevel['id_level']); ?>');">Delete</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('master/level_form/edit_level_form/'.$datalevel['id_level']) ?>">Ubah</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('master/level/delete/'.$datalevel['id_level']); ?>');">Hapus</a></li>
                                     </ul>
                                 </div>
                               </td>

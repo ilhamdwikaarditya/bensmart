@@ -1,17 +1,17 @@
 <?php
 isset($layout) ? "": $layout = "list";
-isset($selected_category_id) ? "": $selected_category_id = "all";
+isset($selected_materi_id) ? "": $selected_materi_id = "all";
 isset($selected_level) ? "": $selected_level = "all";
 isset($selected_language) ? "": $selected_language = "all";
 isset($selected_rating) ? "": $selected_rating = "all";
 isset($selected_price) ? "": $selected_price = "all";
-// echo $selected_category_id.'-'.$selected_level.'-'.$selected_language.'-'.$selected_rating.'-'.$selected_price;
+// echo $selected_materi_id.'-'.$selected_level.'-'.$selected_language.'-'.$selected_rating.'-'.$selected_price;
 $number_of_visible_categories = 10;
-if (isset($sub_category_id)) {
-    $sub_category_details = $this->crud_model->get_category_details_by_id($sub_category_id)->row_array();
-    $category_details     = $this->crud_model->get_categories($sub_category_details['parent'])->row_array();
-    $category_name        = $category_details['name'];
-    $sub_category_name    = $sub_category_details['name'];
+if (isset($id_materi_group_sub)) {
+    $materi_group_sub = $this->master_model->get_all_materi_group_sub($id_materi_group_sub)->row_array();
+    $materi_group     = $this->master_model->get_categories($materi_group_sub['id_materi_group'])->row_array();
+    $nm_materi_group        = $materi_group['nm_materi_group'];
+    $nm_materi_group_sub    = $materi_group_sub['nm_materi_group_sub'];
 }
 ?>
 
@@ -29,11 +29,11 @@ if (isset($sub_category_id)) {
                         </li>
                         <li class="breadcrumb-item active">
                             <?php
-                                if ($selected_category_id == "all") {
+                                if ($selected_materi_id == "all") {
                                     echo site_phrase('all_category');
                                 }else {
-                                    $category_details = $this->crud_model->get_category_details_by_id($selected_category_id)->row_array();
-                                    echo $category_details['name'];
+                                    $materi_group     = $this->master_model->get_materi_group_by_id($selected_materi_id)->row_array();
+                                    echo $materi_group['nm_materi_group'];
                                 }
                              ?>
                         </li>
@@ -54,12 +54,12 @@ if (isset($sub_category_id)) {
             <a href="<?php echo site_url('home/courses'); ?>" style="float: right; font-size: 19px; margin-right: 5px;"><i class="fas fa-sync-alt"></i></a>
         </div>
         <div class="row">
-            <div class="col-lg-3 filter-area">
+            <div class="col-lg-4 filter-area">
                 <div class="card">
                     <a href="javascript::"  style="color: unset;">
                         <div class="card-header filter-card-header" id="headingOne" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="true" aria-controls="collapseFilter">
                             <h6 class="mb-0">
-                                <?php echo site_phrase('filter'); ?>
+                                Filter
                                 <i class="fas fa-sliders-h" style="float: right;"></i>
                             </h6>
                         </div>
@@ -67,31 +67,33 @@ if (isset($sub_category_id)) {
                     <div id="collapseFilter" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body pt-0">
                             <div class="filter_type">
-                                <h6><?php echo site_phrase('categories'); ?></h6>
+                                <h6>Materi</h6>
                                 <ul>
                                     <li class="ml-2">
                                         <div class="">
-                                            <input type="radio" id="category_all" name="sub_category" class="categories custom-radio" value="all" onclick="filter(this)" <?php if($selected_category_id == 'all') echo 'checked'; ?>>
-                                            <label for="category_all"><?php echo site_phrase('all_category'); ?></label>
+                                            <input type="radio" id="category_all" name="sub_category" class="categories custom-radio" value="all" onclick="filter(this)" <?php if($selected_materi_id == 'all') echo 'checked'; ?>>
+                                            <label for="category_all">Semua Materi</label>
                                         </div>
                                     </li>
                                     <?php
                                     $counter = 1;
-                                    $total_number_of_categories = $this->db->get('category')->num_rows();
-                                    $categories = $this->crud_model->get_categories()->result_array();
-                                    foreach ($categories as $category): ?>
+                                    $total_number_of_categories = $this->db->get('ref_materi_group')->num_rows();
+                                    $materi_group = $this->master_model->get_all_materi_group()->result_array();
+                                    foreach ($materi_group as $materi): ?>
                                         <li class="">
                                             <div class="<?php if ($counter > $number_of_visible_categories): ?> hidden-categories hidden <?php endif; ?>">
-                                                <input type="radio" id="category-<?php echo $category['id'];?>" name="sub_category" class="categories custom-radio" value="<?php echo $category['slug']; ?>" onclick="filter(this)" <?php if($selected_category_id == $category['id']) echo 'checked'; ?>>
-                                                <label for="category-<?php echo $category['id'];?>"><?php echo $category['name']; ?></label>
+                                                <input type="radio" id="category-<?php echo $materi['id_materi_group'];?>" name="sub_category" class="categories custom-radio" value="<?php echo $materi['id_materi_group']; ?>" onclick="filter(this)" <?php if($selected_materi_id == $materi['id_materi_group']) echo 'checked'; ?>>
+                                                <label for="category-<?php echo $materi['id_materi_group'];?>"><?php echo $materi['nm_materi_group']; ?></label>
                                             </div>
                                         </li>
-                                        <?php foreach ($this->crud_model->get_sub_categories($category['id']) as $sub_category):
+                                        <?php 
+                                        $materi_group_sub = $this->master_model->get_all_materi_group_sub()->result_array();
+                                        foreach ($materi_group_sub as $materi_sub):
                                             $counter++; ?>
                                             <li class="ml-2">
                                                 <div class="<?php if ($counter > $number_of_visible_categories): ?> hidden-categories hidden <?php endif; ?>">
-                                                    <input type="radio" id="sub_category-<?php echo $sub_category['id'];?>" name="sub_category" class="categories custom-radio" value="<?php echo $sub_category['slug']; ?>" onclick="filter(this)" <?php if($selected_category_id == $sub_category['id']) echo 'checked'; ?>>
-                                                    <label for="sub_category-<?php echo $sub_category['id'];?>"><?php echo $sub_category['name']; ?></label>
+                                                    <input type="radio" id="sub_category-<?php echo $materi_sub['id_materi_group_sub'];?>" name="sub_category" class="categories custom-radio" value="<?php echo $materi_sub['id_materi_group_sub']; ?>" onclick="filter(this)" <?php if($selected_materi_id == $materi_sub['id_materi_group_sub']) echo 'checked'; ?>>
+                                                    <label for="sub_category-<?php echo $materi_sub['id_materi_group_sub'];?>"><?php echo $materi_sub['nm_materi_group_sub']; ?></label>
                                                 </div>
                                             </li>
                                         <?php endforeach; ?>
@@ -102,7 +104,7 @@ if (isset($sub_category_id)) {
                             <hr>
                             <div class="filter_type">
                                 <div class="form-group">
-                                    <h6><?php echo site_phrase('price'); ?></h6>
+                                    <h6>Harga</h6>
                                     <ul>
                                         <li>
                                             <div class="">
@@ -123,7 +125,7 @@ if (isset($sub_category_id)) {
                             </div>
                             <hr>
                             <div class="filter_type">
-                                <h6><?php echo site_phrase('level'); ?></h6>
+                                <h6>Jenjang</h6>
                                 <ul>
                                     <li>
                                         <div class="">
@@ -198,7 +200,7 @@ if (isset($sub_category_id)) {
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-8">
                 <div class="category-course-list">
                     <?php include 'category_wise_course_'.$layout.'_layout.php'; ?>
                     <?php if (count($courses) == 0): ?>
@@ -206,7 +208,7 @@ if (isset($sub_category_id)) {
                     <?php endif; ?>
                 </div>
                 <nav>
-                    <?php if ($selected_category_id == "all" && $selected_price == 0 && $selected_level == 'all' && $selected_language == 'all' && $selected_rating == 'all'){
+                    <?php if ($selected_materi_id == "all" && $selected_price == 0 && $selected_level == 'all' && $selected_language == 'all' && $selected_rating == 'all'){
                         echo $this->pagination->create_links();
                     }?>
                 </nav>

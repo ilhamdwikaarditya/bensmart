@@ -16,7 +16,7 @@ $materi_group_sub_data = $this->master_model->get_materi_group_sub_by_id($id_mat
         <div class="card">
             <div class="card-body">
 
-                <h4 class="header-title mb-3">Materi Group Edit Form</h4>
+                <h4 class="header-title mb-3">Form Ubah Sub Grup Materi</h4>
 
                 <form class="required-form" action="<?php echo site_url('master/materi_group_sub/edit/' . $id_materi_group_sub); ?>" enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
@@ -24,7 +24,7 @@ $materi_group_sub_data = $this->master_model->get_materi_group_sub_by_id($id_mat
                             <li class="nav-item">
                                 <a href="#basic_info" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                     <i class="mdi mdi-face-profile mr-1"></i>
-                                    <span class="d-none d-sm-inline"><?php echo get_phrase('basic_info'); ?></span>
+                                    <span class="d-none d-sm-inline">Sub Grup Materi</span>
                                 </a>
                             </li>
                         </ul>
@@ -53,7 +53,7 @@ $materi_group_sub_data = $this->master_model->get_materi_group_sub_by_id($id_mat
                                         <label class="col-md-3 col-form-label" for="parent">Materi Group<span class="required">*</span></label>
                                             <div class="col-md-9">
                                                 <select class="form-control select2" data-toggle="select2" name="id_materi_group" id="id_materi_group">
-                                                    <option value="0"><?php echo get_phrase('none'); ?></option>
+                                                    <!-- <option value="0">none</option> -->
                                                     <?php foreach ($materi_group as $row) : ?>
                                                         <option value="<?php echo $row['id_materi_group']; ?>" <?php if ($materi_group_sub_data['id_materi_group'] == $row['id_materi_group']) echo 'selected'; ?>><?php echo $row['nm_materi_group']; ?> - ( <?php echo $row['nm_jenjang']; ?> )</option>
                                                     <?php endforeach; ?>

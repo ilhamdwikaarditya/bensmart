@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="header-title mb-3">Form Tambah Tipe Payment</h4>
+                <h4 class="header-title mb-3">Form Tambah Tipe Pembayaran</h4>
 
                 <form class="required-form" action="<?php echo site_url('master/tipe_payment/add'); ?>" enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
@@ -20,7 +20,7 @@
                             <li class="nav-item">
                                 <a href="#basic_info" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                     <i class="mdi mdi-face-profile mr-1"></i>
-                                    <span class="d-none d-sm-inline"><?php echo get_phrase('basic_info'); ?></span>
+                                    <span class="d-none d-sm-inline">Tipe Pembayaran</span>
                                 </a>
                             </li>
                             

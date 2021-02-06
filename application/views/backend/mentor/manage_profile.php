@@ -95,7 +95,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div class="col-xl-6">
+	<div class="col-xl-6">
 		<div class="card">
 			<div class="card-body">
 				<?php foreach ($edit_data as $row) : ?>
@@ -119,7 +119,7 @@
 				<?php endforeach; ?>
 			</div>
 		</div>
-	</div> -->
+	</div>
 </div>
 
 <script type="text/javascript">

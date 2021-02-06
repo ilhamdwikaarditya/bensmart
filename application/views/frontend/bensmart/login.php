@@ -21,7 +21,7 @@
 						<label for="email">
 							Alamat Email
 						</label>
-						<input type="email" class="form-control" id="email" name="email" placeholder="email@gmail.com">
+						<input type="email" class="form-control" id="email" name="email" placeholder="email@gmail.com" required>
 					</div>
 
 					<!-- Password -->
@@ -29,7 +29,7 @@
 						<label for="password">
 							Password
 						</label>
-						<input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+						<input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
 					</div>
 
 					<!-- Submit -->
@@ -82,10 +82,10 @@
 				<form action="<?php echo site_url('login/register'); ?>" method="post">
 
 					<div class="form-group">
-						<label for="fristname">
+						<label for="firstname">
 							Nama Depan
 						</label>
-						<input type="text" class="form-control" id="fristname" name="fristname" placeholder="Nama depan">
+						<input type="text" class="form-control" id="firstname" name="firstname" placeholder="Nama depan">
 					</div>
 					<div class="form-group">
 						<label for="lastname">

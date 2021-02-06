@@ -16,7 +16,7 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="header-title mb-3">Jenjang Edit Form</h4>
+                <h4 class="header-title mb-3">Form Ubah Jenjang</h4>
 
                 <form class="required-form" action="<?php echo site_url('master/jenjang/edit/'.$id_jenjang); ?>" enctype="multipart/form-data" method="post">
                     <div id="progressbarwizard">
@@ -53,7 +53,7 @@
                                             <br/>
 
                                             <div class="mb-3">
-                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button">Submit</button>
+                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button">Simpan</button>
                                             </div>
                                         </div>
                                     </div> <!-- end col -->

@@ -513,7 +513,7 @@
 		</p>
 
 		<!-- Button -->
-		<a href="#" target="_blank" class="btn btn-primary lift">
+		<a href="<?php echo site_url('home/login'); ?>" target="" class="btn btn-primary lift">
 		  Masuk Kelas <i class="fe fe-arrow-right"></i>
 		</a>
 

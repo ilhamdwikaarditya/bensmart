@@ -41,6 +41,14 @@ class Manajemen_kelas extends CI_Controller {
         $this->load->view('backend/index.php', $page_data);
     }
 
+    function get_chain(){
+		$param = $this->input->post('param');
+		$table = $this->input->post('table');
+		$where = $this->input->post('where');
+        $data  = $this->manajemen_kelas_model->get_chain($param,$table,$where);
+        echo json_encode($data);
+    }
+
     public function manajemen_kelas($param1 = "", $param2 = "") {
         if ($this->session->userdata('admin_login') != true) {
             redirect(site_url('login'), 'refresh');
@@ -61,9 +69,21 @@ class Manajemen_kelas extends CI_Controller {
             $this->manajemen_kelas_model->add_mentor_manajemen_kelas($param2);
             redirect(site_url('manajemen_kelas/manajemen_kelas'), 'refresh');
         }
+        elseif ($param1 == "nonactive") {
+            $this->manajemen_kelas_model->nonactive_manajemen_kelas($param2);
+            redirect(site_url('manajemen_kelas/manajemen_kelas'), 'refresh');
+        }
+        elseif ($param1 == "active") {
+            $this->manajemen_kelas_model->active_manajemen_kelas($param2);
+            redirect(site_url('manajemen_kelas/manajemen_kelas'), 'refresh');
+        }
+        elseif ($param1 == "publish") {
+            $this->manajemen_kelas_model->publish_manajemen_kelas($param2);
+            redirect(site_url('manajemen_kelas/manajemen_kelas'), 'refresh');
+        }
 
         $page_data['page_name'] = 'manajemen_kelas';
-        $page_data['page_title'] = 'Manajemen Kelas';
+        $page_data['page_title'] = 'Manajemen Kelas'; 
         $page_data['manajemen_kelas'] = $this->manajemen_kelas_model->get_manajemen_kelas($param2);
         $this->load->view('backend/index', $page_data);
     }
@@ -179,7 +199,7 @@ class Manajemen_kelas extends CI_Controller {
         }
         elseif ($param2 == 'edit') {
             $this->manajemen_kelas_model->edit_materi_detail_dokumen($param3);
-            $this->session->set_flashdata('flash_message', 'Materi Detail Dokumen Berhasil Dirubah');
+            $this->session->set_flashdata('flash_message', 'Materi Detail Dokumen Berhasil Diubah');
         }
         elseif ($param2 == 'delete') {
             $this->manajemen_kelas_model->delete_materi_detail_dokumen($param1, $param3);
@@ -204,6 +224,18 @@ class Manajemen_kelas extends CI_Controller {
             $this->manajemen_kelas_model->delete_manajemen_bundling($param2);
             redirect(site_url('manajemen_kelas/manajemen_bundling'), 'refresh');
         }
+        elseif ($param1 == "nonactive") {
+            $this->manajemen_kelas_model->nonactive_manajemen_bundling($param2);
+            redirect(site_url('manajemen_kelas/manajemen_bundling'), 'refresh');
+        }
+        elseif ($param1 == "active") {
+            $this->manajemen_kelas_model->active_manajemen_bundling($param2);
+            redirect(site_url('manajemen_kelas/manajemen_bundling'), 'refresh');
+        }
+        elseif ($param1 == "publish") {
+            $this->manajemen_kelas_model->publish_manajemen_bundling($param2);
+            redirect(site_url('manajemen_kelas/manajemen_bundling'), 'refresh');
+        }
 		elseif ($param1 == "add_kelas") {
             $this->manajemen_kelas_model->add_kelas_manajemen_bundling($param2);
             redirect(site_url('manajemen_kelas/manajemen_bundling_form/class_manajemen_bundling_form/'.$param1), 'refresh');
@@ -226,7 +258,7 @@ class Manajemen_kelas extends CI_Controller {
 			$page_data['materi_group'] = $this->master_model->get_all_materi_group()->result_array();
 			$page_data['materi_group_sub'] = $this->master_model->get_all_materi_group_sub()->result_array();
             $page_data['page_name'] = 'manajemen_bundling_add';
-            $page_data['page_title'] = 'Tambah Paket Belajar';
+            $page_data['page_title'] = 'Tambah Paket Pembelajaran';
             $this->load->view('backend/index', $page_data);
         }
         elseif ($param1 == 'edit_manajemen_bundling_form') {
@@ -236,7 +268,7 @@ class Manajemen_kelas extends CI_Controller {
 			$page_data['materi_group_sub'] = $this->master_model->get_all_materi_group_sub()->result_array();
             $page_data['page_name'] = 'manajemen_bundling_edit';
             $page_data['id_bundling'] = $param2;
-            $page_data['page_title'] = 'Edit kelas';
+            $page_data['page_title'] = 'Ubah Paket Pembelajaran';
             $this->load->view('backend/index', $page_data);
         }
         elseif ($param1 == 'class_manajemen_bundling_form') {

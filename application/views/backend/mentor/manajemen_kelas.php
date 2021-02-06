@@ -15,7 +15,7 @@
         <div class="card">
             <div class="card-body">
               <h4 class="mb-3 header-title">Data Kelas</h4>
-              <div class="table-responsive-sm mt-4">
+              <div class="table-responsive-sm mt-4" style="overflow-x:auto;">
                 <table id="basic-datatable" class="table table-striped table-centered mb-0">
                   <thead>
                     <tr>
@@ -27,7 +27,6 @@
                       <th>Mata pelajaran</th>
                       <th>Jenjang</th>
                       <th>Materi</th>
-                      <th>Mentor</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -45,7 +44,6 @@
                               <td><?php echo $datamanajemenkelas['nm_mapel']; ?></td>
                               <td><?php echo $datamanajemenkelas['nm_jenjang']; ?></td>
                               <td><?php echo $datamanajemenkelas['nm_materi_group_sub']; ?></td>
-                              <td><?php echo $datamanajemenkelas['nm_mentor']; ?></td>
                               
                               <td>
                                   <div class="dropright dropright">

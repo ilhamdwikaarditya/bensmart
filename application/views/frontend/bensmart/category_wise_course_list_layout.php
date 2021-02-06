@@ -1,7 +1,7 @@
 <ul>
 
     <?php foreach($courses as $course):
-     $instructor_details = $this->user_model->get_all_user($course['user_id'])->row_array();?>
+    //  $instructor_details = $this->user_model->get_all_user($course['user_id'])->row_array();?>
     <li>
         <div class="course-box-2">
             <div class="course-image">
@@ -11,9 +11,9 @@
             </div>
             <div class="course-details">
                 <a href="<?php echo site_url('home/course/'.rawurlencode(slugify($course['title'])).'/'.$course['id']); ?>" class="course-title"><?php echo $course['title']; ?></a>
-                <a href="<?php echo site_url('home/instructor_page/'.$instructor_details['id']) ?>" class="course-instructor">
+                <!-- <a href="<?php echo site_url('home/instructor_page/'.$instructor_details['id']) ?>" class="course-instructor">
                     <span class="instructor-name"><?php echo $instructor_details['first_name'].' '.$instructor_details['last_name']; ?></span>
-                </a>
+                </a> -->
                 <div class="course-subtitle">
                     <?php echo $course['short_description']; ?>
                 </div>

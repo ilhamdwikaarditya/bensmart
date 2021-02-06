@@ -47,7 +47,7 @@
 	  </ul>
 
 	  <!-- Button -->
-	  <a class="navbar-btn btn btn-sm btn-primary lift ml-auto" href="<?php echo site_url('home/login'); ?>" target="_blank">
+	  <a class="navbar-btn btn btn-sm btn-primary lift ml-auto" href="<?php echo site_url('home/login'); ?>" target="">
 		Masuk Kelas
 	  </a>
 

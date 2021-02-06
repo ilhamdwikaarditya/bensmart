@@ -40,7 +40,7 @@
 											<select class="form-control select2" data-toggle="select2" name="id_class" id="id_class" onchange="setnamakelas(this)">
 											  <option value="0">None</option>
 											  <?php foreach ($kelas as $data): ?>
-													  <option value="<?php echo $data['id_class']; ?>"><?php echo $data['nm_jenjang']." - ".$data['nm_materi_group_sub']." - ".$data['nm_class']; ?></option>
+													  <option value="<?php echo $data['id_class']; ?>"><?php echo $data['kd_jenjang']." - ".$data['nm_materi_group']." - ".$data['nm_materi_group_sub']." - ".$data['nm_class']; ?></option>
 											  <?php endforeach; ?>
 											</select>
 											</div>
@@ -49,7 +49,7 @@
                                         <div class="text-center">
                                             
                                             <div class="mb-3">
-                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button">Submit</button>
+                                                <button type="button" class="btn btn-primary" onclick="checkRequiredFields()" name="button">Simpan</button>
                                             </div>
                                         </div>
                                     </div> <!-- end col -->
@@ -66,7 +66,7 @@
 	 <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-              <h4 class="mb-3 header-title">List Kelas Paket Belajar</h4>
+              <h4 class="mb-3 header-title">Daftar Kelas Paket Belajar</h4>
               <div class="table-responsive-sm mt-4">
                 <table id="basic-datatable" class="table table-striped table-centered mb-0">
                   <thead>
@@ -74,7 +74,8 @@
                       <th>#</th>
                       <th>Foto</th>
                       <th>Jenjang</th>
-                      <th>Sub Kategori</th>
+                      <th>Materi</th>
+                      <th>Sub Materi</th>
                       <th>Kelas</th>
                       <th>Aksi</th>
                     </tr>
@@ -87,13 +88,14 @@
                               <td>
                                   <img src="<?php echo $this->manajemen_kelas_model->get_thumbnail_url($datakelas['id_class']);?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
                               </td>
-                              <td><?php echo $datakelas['nm_jenjang']; ?></td>
+                              <td><?php echo $datakelas['kd_jenjang']; ?></td>
+                              <td><?php echo $datakelas['nm_materi_group']; ?></td>
                               <td><?php echo $datakelas['nm_materi_group_sub']; ?></td>
                               <td><?php echo $datakelas['nm_class']; ?></td>
                               <td>
                                 <div class="dropright dropright">
                                     <button type="button" class="btn btn-sm btn-outline-primary btn-rounded btn-icon" href="#" onclick="confirm_modal('<?php echo site_url('manajemen_kelas/manajemen_bundling_form/delete_kelas_manajemen_bundling/'.$datakelas['id_bundling_detail']); ?>');">
-                                        Delete
+                                        Hapus
                                     </button>
                                 </div>
                               </td>
