@@ -31,12 +31,15 @@ class Login extends CI_Controller {
 
         // Checking login credential for admin
         // $query = $this->db->get_where('ref_user', $credential);
+		
+		$this->db->select('a.id_user, firstname, lastname, password, email, phone, photo, id_level, address, a.id_jenjang, id_mentor');
         $this->db->from('ref_user a');
         $this->db->join('ref_mentor b','a.id_user = b.id_user','left');
         $this->db->where('email', $email);
         $this->db->where('password', sha1($password));
-        $query = $this->db->get();
-
+        $this->db->where('a.status_verification', '1');
+		$query = $this->db->get();
+		
         if ($query->num_rows() > 0) {
             $row = $query->row();
             $this->session->set_userdata('id_user', $row->id_user);

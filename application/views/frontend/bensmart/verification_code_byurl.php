@@ -5,6 +5,8 @@
             <div class="col-lg-9">
               <div class="user-dashboard-box mt-3">
                   <div class="user-dashboard-content w-100 login-form">
+					  <center><img src="https://i.imgur.com/D7UL5Ap.png" width="650" height="403" border="0" alt="" /></center>
+					  <br>
                       <div class="content-title-box">
                           <div class="title">Verifikasi email anda</div>
                           <div class="subtitle">Beri tahu kami bahwa alamat email ini milik Anda. Link verifikasi telah dikirimkan ke email <br> <?php echo $this->session->userdata('register_email'); ?>.</div>

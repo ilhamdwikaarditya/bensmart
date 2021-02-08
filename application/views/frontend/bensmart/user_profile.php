@@ -1,4 +1,3 @@
-<?php $social_links = json_decode($user_details['social_links'], true); ?>
 <?php include "profile_menus.php"; ?>
 
 <section class="user-dashboard-area">
@@ -43,15 +42,15 @@
                                 </div>
                                 <div class="link-group">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" maxlength="60" name = "twitter_link" placeholder="<?php echo site_phrase('twitter_link'); ?>" value="<?php echo $social_links['twitter']; ?>">
+                                        <input type="text" class="form-control" maxlength="60" name = "twitter_link" placeholder="<?php echo site_phrase('twitter_link'); ?>" value="">
                                         <small class="form-text text-muted"><?php echo site_phrase('add_your_twitter_link'); ?>.</small>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" maxlength="60" name = "facebook_link" placeholder="<?php echo site_phrase('facebook_link'); ?>" value="<?php echo $social_links['facebook']; ?>">
+                                        <input type="text" class="form-control" maxlength="60" name = "facebook_link" placeholder="<?php echo site_phrase('facebook_link'); ?>" value="">
                                         <small class="form-text text-muted"><?php echo site_phrase('add_your_facebook_link'); ?>.</small>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" maxlength="60" name = "linkedin_link" placeholder="<?php echo site_phrase('linkedin_link'); ?>" value="<?php echo $social_links['linkedin']; ?>">
+                                        <input type="text" class="form-control" maxlength="60" name = "linkedin_link" placeholder="<?php echo site_phrase('linkedin_link'); ?>" value="">
                                         <small class="form-text text-muted"><?php echo site_phrase('add_your_linkedin_link'); ?>.</small>
                                     </div>
                                 </div>

@@ -344,24 +344,38 @@ class Master extends CI_Controller {
     }
 	
 	public function member($param1 = "", $param2 = "") {
-        if ($this->session->userdata('admin_login') != true) {
-            redirect(site_url('login'), 'refresh');
-        }
+
         if ($param1 == "add") {
             $this->master_model->add_member();
-            redirect(site_url('master/member'), 'refresh');
+			if($this->session->userdata('admin_login') ){
+				redirect(site_url('master/member'), 'refresh');
+			}else{
+				redirect(site_url("user/akun_saya"), 'refresh');
+			}
         }
         elseif ($param1 == "edit") {
             $this->master_model->edit_member($param2);
-            redirect(site_url('master/member'), 'refresh');
+            if($this->session->userdata('admin_login') ){
+				redirect(site_url('master/member'), 'refresh');
+			}else{
+				redirect(site_url("user/akun_saya"), 'refresh');
+			}
         }
         elseif ($param1 == "nonactive") {
             $this->master_model->delete_member($param2);
-            redirect(site_url('master/member'), 'refresh');
+            if($this->session->userdata('admin_login') ){
+				redirect(site_url('master/member'), 'refresh');
+			}else{
+				redirect(site_url("user/akun_saya"), 'refresh');
+			}
         }
         elseif ($param1 == "active") {
             $this->master_model->active_member($param2);
-            redirect(site_url('master/member'), 'refresh');
+            if($this->session->userdata('admin_login') ){
+				redirect(site_url('master/member'), 'refresh');
+			}else{
+				redirect(site_url("user/akun_saya"), 'refresh');
+			}
         }
 
         $page_data['page_name'] = 'member';
