@@ -51,7 +51,7 @@
 			<div class="col-lg-7 offset-lg-1 align-self-stretch d-none d-lg-block">
 
 				<!-- Image -->
-				<div class="h-100 w-cover bg-cover" style="background-image: url(<?php echo base_url() . 'assets/frontend/' . get_frontend_settings('theme') . '/img/covers/cover-14.jpg' ?>);"></div>
+				<div class="h-100 w-cover bg-cover" style="background-image: url(<?php echo base_url() . 'assets/frontend/' . get_frontend_settings('theme') . '/img/covers/cover-bensmart.jfif' ?>);"></div>
 
 				<!-- Shape -->
 				<div class="shape shape-left shape-fluid-y svg-shim text-white">

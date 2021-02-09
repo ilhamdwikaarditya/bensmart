@@ -345,7 +345,7 @@ class Master_model extends CI_Model
             $data['address'] = html_escape($this->input->post('address'));
             $data['phone'] = html_escape($this->input->post('phone'));
             if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
-                unlink('uploads/photo/' . $this->db->get_where('ref_user', array('id_user' => $id_user))->row('photo') . '.jpg');
+                unlink('uploads/user_image/' . $this->db->get_where('ref_user', array('id_user' => $id_user))->row('photo') . '.jpg');
                 $data['photo'] = md5(rand(10000, 10000000));
                 $this->upload_photo($data['photo']);
             }
@@ -353,7 +353,6 @@ class Master_model extends CI_Model
             if (isset($_POST['email'])) {
                 $data['email'] = html_escape($this->input->post('email'));
             }
-
 
             $this->db->where('id_user', $id_user);
             $this->db->update('ref_user', $data);
@@ -399,7 +398,7 @@ class Master_model extends CI_Model
         $data['address'] = html_escape($this->input->post('address'));
 
         if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
-            unlink('uploads/photo/' . $this->db->get_where('ref_user', array('id_user' => $id_user))->row('photo') . '.jpg');
+            unlink('uploads/user_image/' . $this->db->get_where('ref_user', array('id_user' => $id_user))->row('photo') . '.jpg');
             $data['photo'] = md5(rand(10000, 10000000));
             $this->upload_photo($data['photo']);
         }
@@ -529,7 +528,7 @@ class Master_model extends CI_Model
     public function upload_photo($image_code)
     {
         if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
-            move_uploaded_file($_FILES['photo']['tmp_name'], 'uploads/photo/' . $image_code . '.jpg');
+            move_uploaded_file($_FILES['photo']['tmp_name'], 'uploads/user_image/' . $image_code . '.jpg');
             $this->session->set_flashdata('flash_message', 'Berhasil');
         }
     }
@@ -538,10 +537,10 @@ class Master_model extends CI_Model
     {
 
         $user_profile_image = $this->db->get_where('ref_user', array('id_user' => $user_id))->row('photo');
-        if (file_exists('uploads/photo/' . $user_profile_image . '.jpg'))
-            return base_url() . 'uploads/photo/' . $user_profile_image . '.jpg';
+        if (file_exists('uploads/user_image/' . $user_profile_image . '.jpg'))
+            return base_url() . 'uploads/user_image/' . $user_profile_image . '.jpg';
         else
-            return base_url() . 'uploads/photo/placeholder.png';
+            return base_url() . 'uploads/user_image/placeholder.png';
     }
 
     public function check_duplication($action = "", $email = "", $id_user = "") {

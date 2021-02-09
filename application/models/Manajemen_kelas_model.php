@@ -461,7 +461,7 @@ class Manajemen_kelas_model extends CI_Model
         if (file_exists('uploads/thumbnail_class/'.$user_profile_image.'.jpg'))
              return base_url().'uploads/thumbnail_class/'.$user_profile_image.'.jpg';
         else
-            return base_url().'uploads/photo/placeholder.png';
+            return base_url().'uploads/user_image/placeholder.png';
     }
 
     public function get_thumbnail_bundling($user_id) {
@@ -470,7 +470,7 @@ class Manajemen_kelas_model extends CI_Model
         if (file_exists('uploads/thumbnail_bundling/'.$user_profile_image.'.jpg'))
              return base_url().'uploads/thumbnail_bundling/'.$user_profile_image.'.jpg';
         else
-            return base_url().'uploads/photo/placeholder.png';
+            return base_url().'uploads/user_image/placeholder.png';
     }
 	
 	

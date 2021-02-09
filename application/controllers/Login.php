@@ -31,38 +31,44 @@ class Login extends CI_Controller {
 
         // Checking login credential for admin
         // $query = $this->db->get_where('ref_user', $credential);
-        
-        $this->db->select('a.id_user, firstname, lastname, password, email, phone, photo, id_level, address, a.id_jenjang, id_mentor');
+		$this->db->select('a.id_user, firstname, lastname, password, email, phone, photo, id_level, address, a.id_jenjang, id_mentor, status_verification');
         $this->db->from('ref_user a');
         $this->db->join('ref_mentor b','a.id_user = b.id_user','left');
         $this->db->where('email', $email);
         $this->db->where('password', sha1($password));
-        $this->db->where('a.status_verification', '1');
-		$query = $this->db->get();
+        $query = $this->db->get();
+		$row = $query->row();
 
-        if ($query->num_rows() > 0) {
-            $row = $query->row();
-            $this->session->set_userdata('id_user', $row->id_user);
-            $this->session->set_userdata('id_level', $row->id_level);
-            $this->session->set_userdata('id_mentor', $row->id_mentor);
-            $this->session->set_userdata('role', get_user_role('user_role', $row->id_user));
-            $this->session->set_userdata('firstname', $row->firstname);
-            $this->session->set_userdata('lastname', $row->lastname);
-            $this->session->set_flashdata('flash_message', get_phrase('welcome').' '.$row->firstname);
-            if ($row->id_level == 1) { //Administrator
-                $this->session->set_userdata('admin_login', '1');
-                redirect(site_url('admin/dashboard'), 'refresh');
-            }else if($row->id_level == 2){ //Mentor
-                $this->session->set_userdata('mentor_login', '1');
-                redirect(site_url('mentor/dashboard'), 'refresh');
-            }else{
-				$this->session->set_userdata('user_login', '1');
-                redirect(site_url('home'), 'refresh');
+		
+			if ($query->num_rows() > 0) {
+				if($row->status_verification == 1){
+					$this->session->set_userdata('id_user', $row->id_user);
+					$this->session->set_userdata('id_level', $row->id_level);
+					$this->session->set_userdata('id_mentor', $row->id_mentor);
+					$this->session->set_userdata('role', get_user_role('user_role', $row->id_user));
+					$this->session->set_userdata('firstname', $row->firstname);
+					$this->session->set_userdata('lastname', $row->lastname);
+					$this->session->set_flashdata('flash_message', 'Selamat Datang '.$row->firstname);
+					if ($row->id_level == 1) { //Administrator
+						$this->session->set_userdata('admin_login', '1');
+						redirect(site_url('admin/dashboard'), 'refresh');
+					}else if($row->id_level == 2){ //Mentor
+						$this->session->set_userdata('mentor_login', '1');
+						redirect(site_url('mentor/dashboard'), 'refresh');
+					}else{
+						$this->session->set_userdata('user_login', '1');
+						redirect(site_url('home'), 'refresh');
+					}
+				}else{
+					$this->session->unset_userdata('error_message');
+					$this->session->set_flashdata('error_message','Email anda belum terverifikasi');
+					redirect(site_url('home/login'), 'refresh');
+				}
+			}else {
+				$this->session->unset_userdata('error_message');
+				$this->session->set_flashdata('error_message','Username atau password salah');
+				redirect(site_url('home/login'), 'refresh');
 			}
-        }else {
-            $this->session->set_flashdata('error_message',get_phrase('invalid_login_credentials'));
-            redirect(site_url('home/login'), 'refresh');
-        }
     }
 
     public function register() {

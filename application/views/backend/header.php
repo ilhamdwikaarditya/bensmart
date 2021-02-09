@@ -16,61 +16,61 @@
 
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" id="topbar-userdrop"
-                href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <span class="account-user-avatar">
-                    <img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('id_user')); ?>" alt="user-image" class="rounded-circle">
-                </span>
-                <span  style="color: #fff;">
-                    <?php
-                    $logged_in_user_details = $this->user_model->get_all_user($this->session->userdata('id_user'))->row_array();;
-                    ?>
-                    <span class="account-user-name"><?php echo $logged_in_user_details['firstname'];?></span>
-                    <span class="account-position">
-					<?php  if (strtolower($this->session->userdata('role')) == 'user'){
-								echo "user";
-							}else if(strtolower($this->session->userdata('role')) == 'mentor'){
-								echo "mentor";
-							}else{
-								echo "admin";
-							}
-					?>
-					
+					href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					<span class="account-user-avatar">
+						<img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('id_user')); ?>" alt="user-image" class="rounded-circle">
 					</span>
-                </span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown"
-            aria-labelledby="topbar-userdrop">
-            <!-- item-->
-            <div class=" dropdown-header noti-title">
-                <h6 class="text-overflow m-0"><?php echo get_phrase('welcome'); ?> !</h6>
-            </div>
+					<span  style="color: #fff;">
+						<?php
+						$logged_in_user_details = $this->user_model->get_all_user($this->session->userdata('id_user'))->row_array();;
+						?>
+						<span class="account-user-name"><?php echo $logged_in_user_details['firstname'];?></span>
+						<span class="account-position">
+						<?php  if (strtolower($this->session->userdata('role')) == 'user'){
+									echo "user";
+								}else if(strtolower($this->session->userdata('role')) == 'mentor'){
+									echo "mentor";
+								}else{
+									echo "admin";
+								}
+						?>
+						
+						</span>
+					</span>
+				</a>
+				<div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown"
+					aria-labelledby="topbar-userdrop">
+					<!-- item-->
+					<div class=" dropdown-header noti-title">
+						<h6 class="text-overflow m-0"><?php echo get_phrase('welcome'); ?> !</h6>
+					</div>
 
-            <!-- Account -->
-            <a href="<?php echo site_url(strtolower($this->session->userdata('role')).'/manage_profile'); ?>" class="dropdown-item notify-item">
-                <i class="mdi mdi-account-circle mr-1"></i>
-                <span><?php echo get_phrase('my_account'); ?></span>
-            </a>
+					<!-- Account -->
+					<a href="<?php echo site_url(strtolower($this->session->userdata('role')).'/manage_profile'); ?>" class="dropdown-item notify-item">
+						<i class="mdi mdi-account-circle mr-1"></i>
+						<span><?php echo get_phrase('my_account'); ?></span>
+					</a>
 
-            <?php if (strtolower($this->session->userdata('role')) == 'admin'): ?>
-                <!-- settings-->
-                <a href="<?php echo site_url('admin/system_settings'); ?>" class="dropdown-item notify-item">
-                    <i class="mdi mdi-settings mr-1"></i>
-                    <span><?php echo get_phrase('settings'); ?></span>
-                </a>
+					<?php if (strtolower($this->session->userdata('role')) == 'admin'): ?>
+						<!-- settings-->
+						<a href="<?php echo site_url('admin/system_settings'); ?>" class="dropdown-item notify-item">
+							<i class="mdi mdi-settings mr-1"></i>
+							<span><?php echo get_phrase('settings'); ?></span>
+						</a>
 
-            <?php endif; ?>
+					<?php endif; ?>
 
 
-            <!-- Logout-->
-            <a href="<?php echo site_url('login/logout'); ?>" class="dropdown-item notify-item">
-                <i class="mdi mdi-logout mr-1"></i>
-                <span><?php echo get_phrase('logout'); ?></span>
-            </a>
+					<!-- Logout-->
+					<a href="<?php echo site_url('login/logout'); ?>" class="dropdown-item notify-item">
+						<i class="mdi mdi-logout mr-1"></i>
+						<span><?php echo get_phrase('logout'); ?></span>
+					</a>
 
-        </div>
-    </li>
+				</div>
+			</li>
 
-</ul>
+		</ul>
 <a class="button-menu-mobile disable-btn">
     <div class="lines">
         <span></span>

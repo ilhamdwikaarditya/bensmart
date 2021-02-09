@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo get_phrase($page_title); ?> | <?php echo $system_title; ?></title>
+    <title><?php echo get_phrase($page_title); ?> | Bensmart</title>
     <!-- all the meta tags -->
     <?php include 'metas.php'; ?>
     <!-- all the css files -->

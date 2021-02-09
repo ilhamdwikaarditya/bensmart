@@ -1,105 +1,99 @@
 <?php
 $user_details = $this->user_model->get_user($this->session->userdata('id_user'),$this->session->userdata('id_level'))->row_array();
 ?>
-<section class="menu-area">
-    <div class="container-xl">
-        <div class="row">
-            <div class="col">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+	<div class="container">
 
-                    <ul class="mobile-header-buttons">
-                        <li><a class="mobile-nav-trigger" href="#mobile-primary-nav">Menu<span></span></a></li>
-                        <li><a class="mobile-search-trigger" href="#mobile-search">Search<span></span></a></li>
-                    </ul>
+		<!-- Brand -->
+		<a class="navbar-brand" href="<?php echo site_url() ?>">
+			<img src="<?php echo base_url() . 'assets/frontend/bensmart/img/logo_text_bensmart.png' ?>" class="navbar-brand-img" height="17" alt="...">
+		</a>
 
-                    <a href="<?php echo site_url(''); ?>" class="navbar-brand" href="#">
-                        <img src="<?php echo base_url('uploads/system/'.get_frontend_settings('dark_logo')); ?>" alt="" height="25">
-                    </a>
+		<!-- Toggler -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-                    <?php  include 'menu.php'; ?>
+		<!-- Collapse -->
+		<div class="collapse navbar-collapse" id="navbarCollapse">
 
+			<!-- Toggler -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<i class="fe fe-x"></i>
+			</button>
 
-                    <form class="inline-form" action="<?php echo site_url('home/search'); ?>" method="get" style="width: 100%;">
-                        <div class="input-group search-box mobile-search">
-                            <input type="text" name = 'query' class="form-control" placeholder="Pencarian Kelas">
-                            <div class="input-group-append">
-                                <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-                            </div>
-                        </div>
-                    </form>
+			<!-- Navigation -->
+			<ul class="navbar-nav ml-auto">
+				<?php if ($this->session->userdata('admin_login')) : ?>
+					<li class="nav-item">
+						<a class="nav-link" id="navbarLandings" href="#" aria-haspopup="true" aria-expanded="false">
+							Administrator
+						</a>
+					</li>
+				<?php endif; ?>
+				<li class="nav-item">
+					<a class="nav-link" id="navbarLandings" href="#" aria-haspopup="true" aria-expanded="false">
+						Tentang Kami
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="navbarLandings" href="#" aria-haspopup="true" aria-expanded="false">
+						Belajar Apa Saja
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="navbarLandings" href="#" aria-haspopup="true" aria-expanded="false">
+						Keunggulan
+					</a>
+				</li>
 
-                    <?php if (get_settings('allow_instructor') == 1): ?>
-                        <div class="instructor-box menu-icon-box">
-                            <div class="icon">
-                                <a href="<?php echo site_url('user'); ?>" style="border: 1px solid transparent; margin: 10px 10px; font-size: 14px; width: 100%; border-radius: 0;"><?php echo site_phrase('instructor'); ?></a>
-                            </div>
-                        </div>
-                    <?php endif; ?>
+			</ul>
+			<ul class="list-unstyled topbar-right-menu float-right mb-0">
+				<li class="dropdown notification-list">
+					<a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" id="topbar-userdrop"
+						href="#" role="button" aria-haspopup="true" aria-expanded="false">
+						<span class="account-user-avatar">
+							<img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('id_user')); ?>" alt="user-image" class="rounded-circle" style="width:35px; height:35px;">
+						</span>
+						&nbsp;
+						<span style="color: #506690; ">
+							<?php
+							$logged_in_user_details = $this->user_model->get_all_user($this->session->userdata('id_user'))->row_array();;
+							?>
+							<span class="account-user-name"><b><?php echo $logged_in_user_details['firstname'];?></b></span>
+						</span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown"
+						aria-labelledby="topbar-userdrop">
+						<?php if (strtolower($this->session->userdata('role')) == 'user'): ?>
+							<!-- Account -->
+							<a href="<?php echo site_url(strtolower($this->session->userdata('role'))); ?>" class="dropdown-item notify-item">
+								<i class="mdi mdi-account-circle mr-1"></i>
+								<span>Akun saya</span>
+							</a>
+						<?php endif; ?>
+						<?php if (strtolower($this->session->userdata('role')) == 'admin'): ?>
+							<!-- Account -->
+							<a href="<?php echo site_url(strtolower($this->session->userdata('role')).'/manage_profile'); ?>" class="dropdown-item notify-item">
+								<i class="mdi mdi-account-circle mr-1"></i>
+								<span>Akun saya</span>
+							</a>
+							<!-- settings-->
+							<a href="<?php echo site_url('admin/system_settings'); ?>" class="dropdown-item notify-item">
+								<i class="mdi mdi-settings mr-1"></i>
+								<span><?php echo get_phrase('settings'); ?></span>
+							</a>
 
-                    <div class="instructor-box menu-icon-box">
-                        <div class="icon">
-                            <a href="<?php echo site_url('home/my_courses'); ?>" style="border: 1px solid transparent; margin: 10px 10px; font-size: 14px; width: 100%; border-radius: 0; min-width: 100px;">Kelas Saya</a>
-                        </div>
-                    </div>
-
-                    <div class="cart-box menu-icon-box" id = "cart_items">
-                        <?php include 'cart_items.php'; ?>
-                    </div>
-
-                    <?php //include 'notifications.php'; ?>
-
-
-                    <div class="user-box menu-icon-box">
-                        <div class="icon">
-                            <a href="javascript::">
-                            <img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('id_user')); ?>" alt="" class="img-fluid">
-                        </a>
-                    </div>
-                    <div class="dropdown user-dropdown corner-triangle top-right">
-                        <ul class="user-dropdown-menu">
-
-                            <li class="dropdown-user-info">
-                                <a href="">
-                                    <div class="clearfix">
-                                        <div class="user-image float-left">
-                                            <img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('id_user')); ?>" alt="" >
-                                        </div>
-                                        <div class="user-details">
-                                            <div class="user-name">
-                                                <span class="hi"><?php echo site_phrase('hi'); ?>,</span>
-                                                <?php echo $user_details['firstname']; ?>
-                                            </div>
-                                            <div class="user-email">
-                                                <span class="email"><?php echo $user_details['email']; ?></span>
-                                                <span class="welcome"><?php echo site_phrase("welcome_back"); ?></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-
-                            <li class="user-dropdown-menu-item"><a href="<?php echo site_url('home/my_courses'); ?>"><i class="far fa-gem"></i>Kelas saya</a></li>
-                            <li class="user-dropdown-menu-item"><a href="<?php echo site_url('home/purchase_history'); ?>"><i class="fas fa-shopping-cart"></i>Riwayat pembelian</a></li>
-                            <li class="user-dropdown-menu-item"><a href="<?php echo site_url('home/profile/user_profile'); ?>"><i class="fas fa-user"></i>Profil</a></li>
-                            <li class="dropdown-user-logout user-dropdown-menu-item"><a href="<?php echo site_url('login/logout/user'); ?>">Keluar</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-
-
-                <span class="signin-box-move-desktop-helper"></span>
-                <div class="sign-in-box btn-group d-none">
-
-                    <button type="button" class="btn btn-sign-in" data-toggle="modal" data-target="#signInModal">Masuk</button>
-
-                    <button type="button" class="btn btn-sign-up" data-toggle="modal" data-target="#signUpModal">Daftar</button>
-
-                </div> <!--  sign-in-box end -->
+						<?php endif; ?>
 
 
-            </nav>
-        </div>
-    </div>
-</div>
-</section>
+						<!-- Logout-->
+						<a href="<?php echo site_url('login/logout'); ?>" class="dropdown-item notify-item">
+							<i class="mdi mdi-logout mr-1"></i>
+							<span><?php echo get_phrase('logout'); ?></span>
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+</nav>
