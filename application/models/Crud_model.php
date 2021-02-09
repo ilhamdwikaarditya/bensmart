@@ -704,7 +704,7 @@ class Crud_model extends CI_Model
 
     public function get_top_courses()
     {
-		$this->db->select('a.id_class, a.discount_price, a.discount, a.price, a.nm_class, a.desc_class, b.nm_jenjang, c.nm_mentor, count(e.id_class_materi_section) jmlmateri ');
+		$this->db->select('a.id_class, a.discount_price, a.discount, a.price, a.nm_class, a.desc_class, b.nm_jenjang, c.nm_mentor, count(e.id_class_materi_section) jmlmateri, SEC_TO_TIME( SUM( TIME_TO_SEC( `duration` ) ) ) sumduration ');
 		$this->db->from('tr_class a');
 		$this->db->join('ref_jenjang b','a.id_jenjang = b.id_jenjang');
 		$this->db->join('tr_class_mentor c','a.id_class = c.id_class');
