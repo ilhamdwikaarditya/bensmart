@@ -973,5 +973,8 @@
     "ubah_mentor": "Ubah mentor",
     "ubah_member": "Ubah member",
     "ubah_paket_pembelajaran": "Ubah paket pembelajaran",
-    "password_updated": "Password updated"
+    "password_updated": "Password updated",
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "mismatch_password": "Mismatch password"
 }

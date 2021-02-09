@@ -354,7 +354,6 @@ class Master_model extends CI_Model
                 $data['email'] = html_escape($this->input->post('email'));
             }
 
-
             $this->db->where('id_user', $id_user);
             $this->db->update('ref_user', $data);
             $this->session->set_flashdata('flash_message', 'Berhasil diubah');
