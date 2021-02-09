@@ -288,13 +288,5 @@ class Manajemen_kelas extends CI_Controller {
             redirect(site_url('manajemen_kelas/manajemen_bundling'), 'refresh');
         }
     }
-  
-	function get_chain(){
-		$param = $this->input->post('param');
-		$table = $this->input->post('table');
-		$where = $this->input->post('where');
-        $data  = $this->manajemen_kelas_model->get_chain($param,$table,$where);
-        echo json_encode($data);
-    }
 	
 }

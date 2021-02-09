@@ -35,7 +35,7 @@
 
 		<!-- Buttons -->
 		<div class="text-center text-md-left">
-		  <a href="#" class="btn btn-primary shadow lift mr-1">
+		  <a href="<?php echo base_url()?>publik/class_all" class="btn btn-primary shadow lift mr-1">
 			Lihat seluruh kelas<i class="fe fe-arrow-right d-none d-md-inline ml-3"></i>
 		  </a>
 		</div>

@@ -460,7 +460,7 @@
           <div class="card shadow-light-lg px-5 py-5">
             <div class="card-header-class">
               <h1 class="font-weight-bold">
-                Belajar Matematika Sehari Semalam
+                <?php echo $course['nm_class'] ?>
               </h1>
 
               <div class="row ml-0 mt-n2 mb-5">
@@ -484,12 +484,8 @@
 
             <div class="card-body-class">
               <p>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est laborum."
-              </p>
+                <?php echo strip_tags(html_entity_decode($course['desc_class'])); ?>
+                </>
             </div>
             <hr>
 
@@ -497,7 +493,7 @@
 
               <div class="row ml-0">
                 <h3 class="font-weight-bold">
-                  Daftar Kelas
+                  Daftar Materi
                 </h3>
               </div>
 
@@ -510,127 +506,46 @@
                     <div class="card-body shadow-light">
 
                       <!-- List group -->
-                      <div class="list-group list-group-flush">
-                        <div class="list-group-item">
+                      <div class="list-group list-group-flush mb-0">
+                        <?php
+                        $materi_group = $this->manajemen_kelas_model->get_materi_section('class', $course['id_class'])->result_array();
+                        foreach ($materi_group as $index => $materi) : ?>
+                          <div class="list-group-item">
+                            <!-- Toggle -->
+                            <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresOne-<?php echo $materi['id_class_materi_section']?>" role="button" aria-expanded="true" aria-controls="featuresOne">
+                              <div class="mr-auto">
 
-                          <!-- Toggle -->
-                          <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresOne" role="button" aria-expanded="true" aria-controls="featuresOne">
-                            <div class="mr-auto">
+                                <!-- Title -->
+                                <p class="font-weight-bold mb-2">
+                                  <?php echo $materi['nm_class_materi_section'] ?>
+                                </p>
+                                <!-- Text -->
+                                <!-- <p class="font-size-sm text-muted mb-0">
+                                  Our new key fobs make it so easy!
+                                </p> -->
+                              </div>
 
-                              <!-- Title -->
-                              <p class="font-weight-bold mb-0">
-                                Flexible access to facilities.
-                              </p>
+                              <!-- Chevron -->
+                              <span class="collapse-chevron text-muted ml-4">
+                                <i class="fe fe-lg fe-chevron-down"></i>
+                              </span>
+                            </a> <!-- / .row -->
 
-                              <!-- Text -->
-                              <p class="font-size-sm text-muted mb-0">
-                                Our new key fobs make it so easy!
-                              </p>
-
-                            </div>
-
-                            <!-- Badge -->
-                            <span class="badge badge-pill badge-success-soft ml-4">
-                              <span class="h6 text-uppercase">New</span>
-                            </span>
-
-                            <!-- Chevron -->
-                            <span class="collapse-chevron text-muted ml-4">
-                              <i class="fe fe-lg fe-chevron-down"></i>
-                            </span>
-
-                          </a> <!-- / .row -->
-
-                          <!-- Collapse -->
-                          <div class="collapse show bg-light" id="featuresOne" data-parent="#featuresAccordion">
-                            <div class="py-5 py-md-6">
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
-                              </p>
-                              <a href="#!" class="font-weight-bold text-decoration-none">
-                                Check it out <i class="fe fe-arrow-right ml-3"></i>
-                              </a>
+                            <!-- Collapse -->
+                            <div class="collapse show bg-light" id="featuresOne-<?php echo $materi['id_class_materi_section']?>" data-parent="#featuresAccordion">
+                              <?php
+                              $materi_detail = $this->manajemen_kelas_model->get_materi_detail('section', $materi['id_class_materi_section'])->result_array();
+                              foreach ($materi_detail as $index => $detail) : ?>
+                                <div class="py-5 py-md-2">
+                                  <p class="ml-5">
+                                    <?php echo $detail['nm_class_materi_detail']?>
+                                  </p>
+                                </div>
+                              <?php endforeach; ?>
                             </div>
                           </div>
+                        <?php endforeach; ?>
 
-                        </div>
-
-                        <div class="list-group-item">
-
-                          <!-- Toggle -->
-                          <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresTwo" role="button" aria-expanded="false" aria-controls="featuresTwo">
-                            <div class="mr-auto">
-
-                              <!-- Title -->
-                              <p class="font-weight-bold mb-0">
-                                Snacks, drinks, coffee, and more.
-                              </p>
-
-                              <!-- Text -->
-                              <p class="font-size-sm text-muted mb-0">
-                                Keep your engine going with free food and drinks.
-                              </p>
-
-                            </div>
-
-                            <!-- Chevron -->
-                            <span class="collapse-chevron text-muted ml-4">
-                              <i class="fe fe-lg fe-chevron-down"></i>
-                            </span>
-
-                          </a> <!-- / .row -->
-
-                          <!-- Collapse -->
-                          <div class="collapse" id="featuresTwo" data-parent="#featuresAccordion">
-                            <div class="py-5 py-md-6">
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
-                              </p>
-                              <a href="#!" class="font-weight-bold text-decoration-none">
-                                Check it out <i class="fe fe-arrow-right ml-3"></i>
-                              </a>
-                            </div>
-                          </div>
-
-                        </div>
-                        <div class="list-group-item">
-
-                          <!-- Toggle -->
-                          <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresThree" role="button" aria-expanded="false" aria-controls="featuresThree">
-                            <div class="mr-auto">
-
-                              <!-- Title -->
-                              <p class="font-weight-bold mb-0">
-                                On site tech support
-                              </p>
-
-                              <!-- Text -->
-                              <p class="font-size-sm text-muted mb-0">
-                                Connectivity, power, and IT issues solved in no time.
-                              </p>
-
-                            </div>
-
-                            <!-- Chevron -->
-                            <span class="collapse-chevron text-muted ml-4">
-                              <i class="fe fe-lg fe-chevron-down"></i>
-                            </span>
-
-                          </a> <!-- / .row -->
-
-                          <!-- Collapse -->
-                          <div class="collapse" id="featuresThree" data-parent="#featuresAccordion">
-                            <div class="py-5 py-md-6">
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt rerum minima a possimus, amet perferendis, temporibus obcaecati pariatur. Reprehenderit magnam necessitatibus vel culpa provident quas nesciunt sunt aut cupiditate fugiat!
-                              </p>
-                              <a href="#!" class="font-weight-bold text-decoration-none">
-                                Check it out <i class="fe fe-arrow-right ml-3"></i>
-                              </a>
-                            </div>
-                          </div>
-
-                        </div>
                       </div>
 
                     </div>
@@ -692,7 +607,8 @@
           <div class="card shadow-light-lg mb-6 mb-md-4 lift lift-lg">
 
             <!-- Image -->
-            <img src="<?php echo base_url() . 'assets/frontend/bensmart/img/covers/cover-13.jpg' ?>" alt="..." class="card-img-top">
+            <img src="<?php echo base_url() . 'uploads/thumbnail_class/' . $course['thumbnail'] . '.jpg' ?>" alt="..." class="card-img-top">
+            <!-- <img src="<?php echo base_url() . 'assets/frontend/bensmart/img/covers/cover-13.jpg' ?>" alt="..." class="card-img-top"> -->
 
             <!-- Shape -->
             <div class="position-relative">
@@ -709,8 +625,8 @@
               <!-- Badge -->
               <div class="position-relative text-right mt-n7 mr-n5 mb-2 px-3">
                 <span class="badge badge-pill badge-primary">
-                  <span class="h6 fst-italic"><s></s></span>
-                  <span class="h5 font-weight">Rp 290.000</span>
+                  <span class="h6 fst-italic"><s>Rp <?php echo number_format($course['price'], 0, ",", ".") ?></s></span>
+                  <span class="h5 font-weight">Rp <?php echo number_format($course['discount_price'], 0, ",", ".") ?></span>
                 </span>
               </div>
 

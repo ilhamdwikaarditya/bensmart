@@ -591,12 +591,23 @@ class Master_model extends CI_Model
         $this->session->set_flashdata('flash_message', get_phrase('password_updated'));
     }
 
-    function filter_class($selected_materi_id = "", $selected_price = "", $selected_level = "", $selected_language = "", $selected_rating = "")
+    function filter_class($selected_jenjang = "", $selected_materi = "", $selected_materisub = "", $selected_price = "", $selected_rating = "")
     {
         //echo $selected_materi_id.' '.$selected_price.' '.$selected_level.' '.$selected_language.' '.$selected_rating;
+        $this->db->select('a.*, b.kd_jenjang');
+        $this->db->from('tr_class a');
+        $this->db->join('ref_jenjang b','a.id_jenjang = b.id_jenjang','left');
+        
+        if ($selected_jenjang != "all") {
+            $this->db->where("b.id_jenjang = '$selected_jenjang'");
+        }
 
-        if ($selected_materi_id != "all") {
-            $this->db->where('id_materi_group', $selected_materi_id);
+        if ($selected_materi != "all") {
+            $this->db->where("a.id_materi_group = '$selected_materi'");
+        }
+
+        if ($selected_materisub != "all") {
+            $this->db->where("a.id_materi_group_sub = '$selected_jenjang'");
         }
 
         // if ($selected_price != "all") {
@@ -607,12 +618,13 @@ class Master_model extends CI_Model
         //     }
         // }
 
-        if ($selected_level != "all") {
-            $this->db->where('id_jenjang', $selected_level);
-        }
+        // if ($selected_level != "all") {
+        //     $this->db->where('id_jenjang', $selected_level);
+        // }
 
-        $this->db->where('active', '1');
-        $courses = $this->db->get('tr_class')->result_array();
+        $this->db->where('a.active', '1');
+        // $courses = $this->db->get('tr_class')->result_array();
+        $courses = $this->db->get()->result_array();
         return array();
     }
 
