@@ -9,8 +9,9 @@
 <link rel="stylesheet" href="<?php echo base_url().'assets/frontend/bensmart/libs/jarallax/dist/jarallax.css' ?>">
 <link rel="stylesheet" href="<?php echo base_url().'assets/frontend/bensmart/libs/quill/dist/quill.core.css' ?>"/>
 
-<!-- Map -->
+<!-- Map 
 <link href='../api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+-->
 
 <!-- Theme CSS -->
 <link rel="stylesheet" href="<?php echo base_url().'assets/frontend/bensmart/css/theme.min.css' ?>">

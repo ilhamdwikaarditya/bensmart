@@ -61,17 +61,6 @@ $user_details = $this->user_model->get_user($this->session->userdata('id_user'),
 							$logged_in_user_details = $this->user_model->get_all_user($this->session->userdata('id_user'))->row_array();;
 							?>
 							<span class="account-user-name"><b><?php echo $logged_in_user_details['firstname'];?></b></span>
-							<span class="account-position">
-							<?php  if (strtolower($this->session->userdata('role')) == 'user'){
-										echo "user";
-									}else if(strtolower($this->session->userdata('role')) == 'mentor'){
-										echo "mentor";
-									}else{
-										echo "admin";
-									}
-							?>
-							
-							</span>
 						</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown"

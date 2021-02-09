@@ -81,7 +81,7 @@ $data_akun = $this->db->get_where('ref_user', array('id_user' => $this->session-
                       <!-- Email -->
                       <div class="form-group">
                         <label for="email">&nbsp;Email</label>
-                        <input class="form-control" id="email" name="email" type="email" placeholder="name@address.com" value="<?php echo $data_akun['email']; ?>">
+                        <input class="form-control" id="email" name="email" type="email" placeholder="name@address.com" value="<?php echo $data_akun['email']; ?>" readonly>
                       </div>
 
                     </div>
@@ -98,8 +98,8 @@ $data_akun = $this->db->get_where('ref_user', array('id_user' => $this->session-
 						<div class="row align-items-center">
 						  <div class="col-auto">
 							<!-- Avatar -->
-							<div class="avatar avatar-xl">
-							  <img class = "rounded-circle img-thumbnail" src="<?php echo $this->master_model->get_user_photo_url($data_akun['id_user']);?>" alt="" style="height: 60px; width: 60px;">
+							<div class="avatar avatar-xl ml-5">
+							  <img class = "avatar-img rounded-circle" src="<?php echo $this->master_model->get_user_photo_url($data_akun['id_user']);?>" alt="user bensmart" style="height: 60px; width: 60px;">
 							</div>
 						  </div>
 						</div>

@@ -252,12 +252,13 @@ class User_model extends CI_Model {
     }
 
     public function get_user_image_url($user_id) {
-        $user_profile_image = $this->db->get_where('ref_user', array('id_user' => $user_id))->row('image');
-        if (file_exists('uploads/user_image/'.$user_profile_image.'.jpg'))
-             return base_url().'uploads/user_image/'.$user_profile_image.'.jpg';
-        else
+        $user_profile_image = $this->db->get_where('ref_user', array('id_user' => $user_id))->row('photo');
+        if (file_exists(base_url().'uploads/user_image/'.$user_profile_image.'.jpg')){
+            return base_url().'uploads/user_image/'.$user_profile_image.'.jpg';
+        }else{
             return base_url().'uploads/user_image/placeholder.png';
-    }
+		}
+	}
     public function get_instructor_list() {
         $query1 = $this->db->get_where('course', array('status' => 'active'))->result_array();
         $instructor_ids = array();
