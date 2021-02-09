@@ -343,6 +343,7 @@
         </div> <!-- / .row -->
         <div class="row">
 <?php $top_courses = $this->crud_model->get_top_courses()->result_array();
+
 foreach ($top_courses as $top_course):?>
           <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
             <!-- Card -->
@@ -407,7 +408,20 @@ foreach ($top_courses as $top_course):?>
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                       <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
                     </svg>
-                    <h6 class="align-items-center pb-2 ml-1 text-gray-700"><?php echo $top_course['jmlmateri']; ?> Materi, Durasi: <?php echo $top_course['sumduration']; ?></h6>
+                    <h6 class="align-items-center pb-2 ml-1 text-gray-700"><?php echo $top_course['jmlmateri']; ?> Materi, Durasi: 
+					<?php
+					$hitduration = explode(":", $top_course['sumduration']);
+					$jam   = $hitduration[0];
+					$menit = $hitduration[1];
+					$detik = $hitduration[2];
+					if($jam == '00'){
+						echo $menit. " Menit";
+					}else{
+						echo $jam ." Jam ".$menit. " Menit";
+					}
+					?>
+					
+					</h6>
                   </p>
                 </div>
 
