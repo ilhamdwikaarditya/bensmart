@@ -238,7 +238,7 @@ class Manajemen_kelas extends CI_Controller {
         }
 		elseif ($param1 == "add_kelas") {
             $this->manajemen_kelas_model->add_kelas_manajemen_bundling($param2);
-            redirect(site_url('manajemen_kelas/manajemen_bundling_form/class_manajemen_bundling_form/'.$param1), 'refresh');
+            redirect(site_url('manajemen_kelas/manajemen_bundling_form/class_manajemen_bundling_form/'.$param2), 'refresh');
         }
 
         $page_data['page_name'] = 'manajemen_bundling';
