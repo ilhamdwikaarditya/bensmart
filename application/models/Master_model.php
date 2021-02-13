@@ -41,6 +41,14 @@ class Master_model extends CI_Model
         }
         return $this->db->get('ref_jenjang');
     }
+	
+	public function get_all_kota($id_kota = 0)
+    {
+        if ($id_kota > 0) {
+            $this->db->where('id_kab', $id_kota);
+        }
+        return $this->db->get('ref_kab');
+    }
 
     public function get_all_materi_group($id_materi_group = 0)
     {

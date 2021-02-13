@@ -76,6 +76,7 @@ class Login extends CI_Controller {
         $data['lastname']  = html_escape($this->input->post('lastname'));
         $data['phone']     = html_escape($this->input->post('phone'));
         $data['address']   = html_escape($this->input->post('address'));
+        $data['id_kota']   = html_escape($this->input->post('id_kota'));
         $data['id_jenjang']= html_escape($this->input->post('id_jenjang'));
         $data['email']     = html_escape($this->input->post('email'));
         $data['password']  = sha1($this->input->post('password'));

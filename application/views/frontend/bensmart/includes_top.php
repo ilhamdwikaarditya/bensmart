@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="<?php echo base_url().'assets/frontend/bensmart/libs/highlightjs/styles/vs2015.css' ?>">
 <link rel="stylesheet" href="<?php echo base_url().'assets/frontend/bensmart/libs/jarallax/dist/jarallax.css' ?>">
 <link rel="stylesheet" href="<?php echo base_url().'assets/frontend/bensmart/libs/quill/dist/quill.core.css' ?>"/>
-
+<link rel="stylesheet" href="<?php echo base_url().'assets/frontend/default/css/select2.min.css'; ?>">
 <!-- Map 
 <link href='../api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
 -->

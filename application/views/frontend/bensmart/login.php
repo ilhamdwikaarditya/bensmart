@@ -106,6 +106,15 @@
 						<textarea name="address" id="address" class="form-control"></textarea>
 					</div>
 					<div class="form-group">
+						<label for="kota"><span class="input-field-icon"><i class="fas fa-city"></i></span> Kota:</label>
+						<select class="form-control select2" data-toggle="select2" name="id_kota" id="id_kota">
+							<option value="0">None</option>
+							<?php foreach ($kota as $datakota): ?>
+								  <option value="<?php echo $datakota['id_kab']; ?>"><?php echo $datakota['nama']; ?></option>
+							<?php endforeach; ?>
+						</select>
+					</div>
+					<div class="form-group">
 						<label for="jenjang"><span class="input-field-icon"><i class="fas fa-jenjang"></i></span> Jenjang:</label>
 						<select class="form-control select2" data-toggle="select2" name="id_jenjang" id="id_jenjang">
 							<option value="0">None</option>
@@ -254,4 +263,9 @@
 			return false;
 		}
 	}
+	
+	$(document).ready(function() {
+		$('.select2').select2({ width: '100%' });
+	});
+	
 </script>
