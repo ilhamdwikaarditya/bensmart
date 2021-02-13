@@ -512,7 +512,7 @@
                         foreach ($materi_group as $index => $materi) : ?>
                           <div class="list-group-item">
                             <!-- Toggle -->
-                            <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresOne-<?php echo $materi['id_class_materi_section']?>" role="button" aria-expanded="true" aria-controls="featuresOne">
+                            <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresOne-<?php echo $materi['id_class_materi_section'] ?>" role="button" aria-expanded="true" aria-controls="featuresOne">
                               <div class="mr-auto">
 
                                 <!-- Title -->
@@ -532,13 +532,13 @@
                             </a> <!-- / .row -->
 
                             <!-- Collapse -->
-                            <div class="collapse show bg-light" id="featuresOne-<?php echo $materi['id_class_materi_section']?>" data-parent="#featuresAccordion">
+                            <div class="collapse show bg-light" id="featuresOne-<?php echo $materi['id_class_materi_section'] ?>" data-parent="#featuresAccordion">
                               <?php
                               $materi_detail = $this->manajemen_kelas_model->get_materi_detail('section', $materi['id_class_materi_section'])->result_array();
                               foreach ($materi_detail as $index => $detail) : ?>
                                 <div class="py-5 py-md-2">
                                   <p class="ml-5">
-                                    <?php echo $detail['nm_class_materi_detail']?>
+                                    <?php echo $detail['nm_class_materi_detail'] ?>
                                   </p>
                                 </div>
                               <?php endforeach; ?>
@@ -579,17 +579,15 @@
 
                 <div class="ml-5 bd-highlight">
                   <h4 class="mb-0 ">
-                    Cristananda Ratnady
+                    <?php echo $course['nm_mentor']; ?>
                   </h4>
 
                   <p class="text-muted mb-1" style="font-size: 16px; font-style: italic;">
-                    "Manusia terbaik adalah manusia yang bermanfaat bagi manusia lainnya"
+                    "<?php echo $course['bio']; ?>"
                   </p>
 
                   <p style="font-size: 17px;">
-                    Merupakan seorang pengajar lulusan Universitas Bensmart. Selama ini selalu memenangkan perlombaan.
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    <?php echo $course['quotes']; ?>
                   </p>
                 </div>
               </div>
@@ -652,7 +650,18 @@
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                     <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
                   </svg>
-                <p class="align-items-center ml-1">Materi durasi 20 Jam 30 Menit</p>
+                <p class="align-items-center ml-1"><?php echo $course['jmlmateri']; ?> Materi, Durasi:
+                  <?php
+                  $hitduration = explode(":", $course['sumduration']);
+                  $jam   = $hitduration[0];
+                  $menit = $hitduration[1];
+                  $detik = $hitduration[2];
+                  if ($jam == '00') {
+                    echo $menit . " Menit";
+                  } else {
+                    echo $jam . " Jam " . $menit . " Menit";
+                  }
+                  ?></p>
                 </p>
               </div>
 
