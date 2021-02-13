@@ -21,6 +21,12 @@ class Home extends CI_Controller {
     public function index() {
         $this->home();
     }
+	
+	public function tentang() {
+        $page_data['page_name'] = "tentang";
+        $page_data['page_title'] = "Tentang";
+        $this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
+    }
 
     public function verification_code() {
         if(!$this->session->userdata('register_email')){

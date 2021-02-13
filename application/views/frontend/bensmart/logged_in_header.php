@@ -32,7 +32,7 @@ $user_details = $this->user_model->get_user($this->session->userdata('id_user'),
 					</li>
 				<?php endif; ?>
 				<li class="nav-item">
-					<a class="nav-link" id="navbarLandings" href="#" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link" id="navbarLandings" href="<?php echo site_url('home/tentang'); ?>" aria-haspopup="true" aria-expanded="false">
 						Tentang Kami
 					</a>
 				</li>
