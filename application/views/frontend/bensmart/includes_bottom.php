@@ -22,6 +22,7 @@
 <script src="<?php echo base_url().'assets/frontend/bensmart/libs/typed.js/lib/typed.min.js' ?>"></script>
 <script src="<?php echo base_url().'assets/global/toastr/toastr.min.js'; ?>"></script>
 
+<script src="<?php echo base_url().'assets/frontend/default/js/select2.min.js'; ?>"></script>
 <!-- Map 
 <script src='../api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 -->
