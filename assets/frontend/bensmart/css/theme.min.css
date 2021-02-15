@@ -639,9 +639,8 @@ pre code {
 .col-xl-auto {
     position: relative;
     width: 100%;
-    padding-right: 5px;
-    padding-left: 10px;
-    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 .col {
     flex-basis: 0;
@@ -17046,53 +17045,8 @@ body.compensate-for-scrollbar {
   color: #fdcc0d;
 }
 
-/* Rating & Review */
 
-  .btn-grey{
-      background-color:#D8D8D8;
-      color:#FFF;
-  }
-  .rating-block{
-      background-color:#FAFAFA;
-      border:1px solid #EFEFEF;
-      padding:15px 15px 20px 15px;
-      border-radius:3px;
-  }
-  .bold{
-      font-weight:700;
-  }
-  .padding-bottom-7{
-      padding-bottom:7px;
-  }
-  
-  .review-block{
-      background-color:#FAFAFA;
-      border:1px solid #EFEFEF;
-      padding:15px;
-      border-radius:3px;
-      margin-bottom:15px;
-  }
-  .review-block-name{
-      font-size:12px;
-      margin:10px 0;
-  }
-  .review-block-date{
-      font-size:12px;
-  }
-  .review-block-rate{
-      font-size:13px;
-      margin-bottom:15px;
-  }
-  .review-block-title{
-      font-size:15px;
-      font-weight:700;
-      margin-bottom:10px;
-  }
-  .review-block-description{
-      font-size:13px;
-  }
-  
- /* Circle Progress Bar */
+/* Circle Progress Bar */
 .flex {
     -webkit-box-flex: 1;
     -ms-flex: 1 1 auto;
@@ -17110,8 +17064,6 @@ body.compensate-for-scrollbar {
         padding: 1rem
     }
 }
-
-
 
 .progress.progress-md {
     height: 16px
@@ -17142,4 +17094,56 @@ body.compensate-for-scrollbar {
 .template-demo .circle-progress-block,
 .my-3 {
     margin-bottom: 1rem !important
+}
+
+/*
+ * Off Canvas sidebar at medium breakpoint
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 992px) {
+
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -33%;
+  }
+
+  .row-offcanvas-left.active {
+    left: 33%;
+    margin-left: -6px;
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 33%;
+    height: 100%;
+    overflow: scroll;
+  }
+}
+
+/*
+ * Off Canvas wider at sm breakpoint
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 34em) {
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -45%;
+  }
+
+  .row-offcanvas-left.active {
+    left: 45%;
+    margin-left: -6px;
+  }
+  
+  .sidebar-offcanvas {
+    width: 45%;
+  }
 }
