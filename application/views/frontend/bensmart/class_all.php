@@ -563,7 +563,7 @@ if (isset($id_materi_group_sub)) {
                         $materi_group = $this->master_model->get_all_materi_group()->result_array();
                         foreach ($materi_group as $materi) : ?>
                           <div class="">
-                            <input type="radio" id="materi-<?php echo $materi['id_materi_group']; ?>" name="materi" class="materis custom-radio" value="<?php echo $materi['id_materi_group']; ?>" onclick="filter(this)" <?php if ($selected_materi == '1') echo 'checked'; ?>>
+                            <input type="radio" id="materi-<?php echo $materi['id_materi_group']; ?>" name="materi" class="materis custom-radio" value="<?php echo $materi['id_materi_group']; ?>" onclick="filter(this)" <?php if ($selected_materi == $materi['id_materi_group']) echo 'checked'; ?>>
                             <label for="beginner"><?php echo $materi['nm_materi_group']; ?></label>
                           </div>
                         <?php endforeach; ?>
