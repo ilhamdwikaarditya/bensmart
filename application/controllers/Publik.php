@@ -138,6 +138,11 @@ class Publik extends CI_Controller
         $page_data['page_name']  = "class_all";
         $page_data['page_title'] = 'Deskripsi Kelas';
         $page_data['layout']     = $layout;
+        $page_data['selected_jenjang']    = $selected_jenjang;
+        $page_data['selected_materi']     = $selected_materi;
+        // $page_data['selected_materisub']  = $selected_materisub;
+        $page_data['selected_price']      = $selected_price;
+        $page_data['selected_rating']     = $selected_rating;
         $this->load->view('frontend/' . get_frontend_settings('theme') . '/index', $page_data);
     }
 

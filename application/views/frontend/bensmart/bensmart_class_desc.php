@@ -583,11 +583,11 @@
                   </h4>
 
                   <p class="text-muted mb-1" style="font-size: 16px; font-style: italic;">
-                    "<?php echo $course['bio']; ?>"
+                    "<?php echo strip_tags(html_entity_decode($course['quotes'])) ?>"
                   </p>
 
                   <p style="font-size: 17px;">
-                    <?php echo $course['quotes']; ?>
+                    <?php echo strip_tags(html_entity_decode($course['bio'])) ?>
                   </p>
                 </div>
               </div>
