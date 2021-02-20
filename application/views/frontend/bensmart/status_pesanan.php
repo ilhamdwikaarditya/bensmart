@@ -45,7 +45,7 @@
               </div>
               <div class="card-body">
 <?php
-$this->db->select("kd_booking, f_formatTanggalindo(date(a.cdate)) dt , time(a.cdate) tm, b.status sts_pay");
+$this->db->select("a.kd_booking, f_formatTanggalindo(date(a.cdate)) dt , time(a.cdate) tm, b.status sts_pay");
 $this->db->from("tr_payment a");
 $this->db->join("tr_class_member b", "a.id_class_member = b.id_class_member");
 $this->db->where("b.cuser", $id_user);
@@ -63,7 +63,7 @@ if(empty($inv_datas)){
 
                         <!-- Heading -->
                         <p class="mb-0">
-                          <a href="#!"><?php echo $inv_data['kd_booking']; ?></a>
+                          <a href="<?php echo site_url('user/invoice_pesanan/').$inv_data['kd_booking']; ?>"><?php echo $inv_data['kd_booking']; ?></a>
                         </p>
 
                         <!-- Text -->

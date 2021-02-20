@@ -29,7 +29,12 @@
             <p class="text-left">
 			  
 			  <?php 
-			  $jmlstar = floor($allratting['totrating']/$allratting['tottanggapan']);    
+			  if($allratting['totrating'] == 0){
+				$jmlstar = 0;
+			  }else{
+				$jmlstar = floor($allratting['totrating']/$allratting['tottanggapan']);      
+			  }
+
 			  $totstar = 5;
 			  
 			  for($s = 0; $s < $jmlstar; $s++){
@@ -42,7 +47,7 @@
 				<span class="fa fa-star star-inactive"></span>
 			  <?php } ?>
               <span class="text-white ml-2 small">
-                <?php echo $allratting['totrating']/$allratting['tottanggapan']; ?> dari <?php echo number_format($allratting['tottanggapan']); ?> tanggapan
+                <?php echo $jmlstar; ?> dari <?php echo number_format($allratting['tottanggapan']); ?> tanggapan
               </span>
             </p>
           </div>
@@ -174,7 +179,14 @@ foreach ($class_mentor as $index => $mentor) :
 
                           <div class="d-flex bd-highlight justify-content-center">
                             <p class="mr-1">
-							<?php echo $allrattingmentor['totratingmentor']/$allrattingmentor['tottanggapanmentor'] ?>
+							<?php 
+							if($allrattingmentor['totratingmentor'] == 0){
+								$jmlstarmentor = 0;
+							}else{
+								$jmlstarmentor = $allrattingmentor['totratingmentor']/$allrattingmentor['tottanggapanmentor'];
+							}
+							echo $jmlstarmentor;
+							?>
 							
 							</p>
                             <span class="fa fa-star checked mt-1 mb-0"></span>
@@ -224,7 +236,16 @@ foreach ($class_mentor as $index => $mentor) :
                   <div class="row justify-content-left d-flex">
                     <div class="col-md-4 d-flex flex-column">
                       <div class="rating-box">
-                        <h1 class="pt-4"><?php echo $allratting['totrating']/$allratting['tottanggapan']; ?></h1>
+                        <h1 class="pt-4">
+						<?php 
+						if($allratting['totrating'] == 0){
+							$jmltotrat = 0;
+						}else{
+							$jmltotrat = $allratting['totrating']/$allratting['tottanggapan'];
+						}
+						echo $jmltotrat;
+						?>
+						</h1>
                         <p class="">out of 5</p>
                       </div>
 						<div>
@@ -252,38 +273,50 @@ foreach ($class_mentor as $index => $mentor) :
 	");
 	$this->db->from("tr_class_rating");
 	$groupingratting = $this->db->get()->row_array();
+	$groupingratting['counttotrat'];
+	if($groupingratting['rat1'] == 0){ $rat1 = 0; }else{ $rat1 = $groupingratting['rat1']/$groupingratting['counttotrat']; }
+	if($rat1 == 0){ $bar1 = 0; }else{ $bar1 = $rat1*100; }
+	if($groupingratting['rat2'] == 0){ $rat2 = 0; }else{ $rat2 = $groupingratting['rat2']/$groupingratting['counttotrat']; }
+	if($rat2 == 0){ $bar2 = 0; }else{ $bar2 = $rat2*100; }
+	if($groupingratting['rat3'] == 0){ $rat3 = 0; }else{ $rat3 = $groupingratting['rat3']/$groupingratting['counttotrat']; }
+	if($rat3 == 0){ $bar3 = 0; }else{ $bar3 = $rat3*100; }
+	if($groupingratting['rat4'] == 0){ $rat4 = 0; }else{ $rat4 = $groupingratting['rat4']/$groupingratting['counttotrat']; }
+	if($rat4 == 0){ $bar4 = 0; }else{ $bar4 = $rat4*100; }
+	if($groupingratting['rat5'] == 0){ $rat5 = 0; }else{ $rat5 = $groupingratting['rat5']/$groupingratting['counttotrat']; }
+	if($rat5 == 0){ $bar5 = 0; }else{ $bar5 = $rat5*100; }
+	
 ?>
 <style>
 .bar-5 {
-	width: <?php echo ($groupingratting['rat5']/$groupingratting['counttotrat'])*100; ?>%;
+	width: <?php echo $bar5; ?>%;
 	height: 13px;
 	background-color: #FBC02D;
 	border-radius: 20px
 }
 
 .bar-4 {
-	width: <?php echo ($groupingratting['rat4']/$groupingratting['counttotrat'])*100; ?>%;
+	width: <?php echo $bar4; ?>%;
 	height: 13px;
 	background-color: #FBC02D;
 	border-radius: 20px
 }
 
 .bar-3 {
-	width: <?php echo ($groupingratting['rat3']/$groupingratting['counttotrat'])*100; ?>%;
+	width: <?php echo $bar3; ?>%;
 	height: 13px;
 	background-color: #FBC02D;
 	border-radius: 20px
 }
 
 .bar-2 {
-	width: <?php echo ($groupingratting['rat2']/$groupingratting['counttotrat'])*100; ?>%;
+	width: <?php echo $bar2; ?>%;
 	height: 13px;
 	background-color: #FBC02D;
 	border-radius: 20px
 }
 
 .bar-1 {
-	width: <?php echo ($groupingratting['rat1']/$groupingratting['counttotrat'])*100; ?>%;
+	width: <?php echo $bar1; ?>%;
 	height: 13px;
 	background-color: #FBC02D;
 	border-radius: 20px
@@ -491,3 +524,60 @@ foreach ($class_comments as $class_comment) : ?>
     </div> <!-- / .row -->
     </div> <!-- / .container -->
   </main>
+  
+  <script type="text/javascript">
+	function addchart(){
+		var sessuser = '<?php echo $this->session->userdata('id_user'); ?>';
+
+		if(sessuser == ''){
+			var text = "Anda belum Login";
+			info_modal(text);
+			return false;
+		}
+		var flag = '<?php echo $course['flag']; ?>';
+		var id   = '<?php echo $course['id_class']; ?>';
+		var texting = "Berhasil dimasukan keranjang";
+		var textduplicate = "Kelas sudah pernah dipesan! Yuk Selesaikan pembayaran!";
+		var baseUrl = "<?php echo base_url() ?>user/add_chart/";
+		$.ajax({
+			url: baseUrl,
+			dataType: 'json',
+			method: 'POST',
+			data: {flag:flag,id:id},
+			success: function(datas){
+				info_modal(texting);
+				document.getElementById("count_cart").innerHTML = datas;
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+				info_modal(textduplicate);
+			}
+		});
+	}
+	
+	function buychart(){
+		var sessuser = '<?php echo $this->session->userdata('id_user'); ?>';
+
+		if(sessuser == ''){
+			var text = "Anda belum Login";
+			info_modal(text);
+			return false;
+		}
+		var flag = '<?php echo $course['flag']; ?>';
+		var id   = '<?php echo $course['id_class']; ?>';
+		var texting = "Berhasil dimasukan keranjang";
+		var textduplicate = "Kelas sudah pernah dipesan! Yuk Selesaikan pembayaran!";
+		var baseUrl = "<?php echo base_url() ?>user/add_chart/";
+		$.ajax({
+			url: baseUrl,
+			dataType: 'json',
+			method: 'POST',
+			data: {flag:flag,id:id},
+			success: function(datas){
+				location.href = "<?php echo site_url('home/shopping_cart'); ?>";
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+				info_modal(textduplicate);
+			}
+		});
+	}
+</script>

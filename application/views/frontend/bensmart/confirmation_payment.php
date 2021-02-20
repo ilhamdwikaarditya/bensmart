@@ -4,6 +4,8 @@ $user_details = $this->user_model->get_user($id_user,$id_level)->row_array();
 $this->db->select('IFNULL(sum(discount_price),0) totprice');
 $this->db->from('tr_chart a');
 $this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
+$this->db->join('tr_class_member c', 'a.id_class = c.id_class', 'left');
+$this->db->join('tr_payment d', 'c.kd_booking = d.kd_booking');
 $this->db->where('id_user', $id_user);
 $this->db->where('status_checked', 'checked');
 $this->db->where('status_chart', '0');
@@ -136,9 +138,12 @@ foreach ($bank_datas as $bank_data):?>
               <!-- List group -->
               <div class="list-group list-group-flush">
 <?php
+$this->db->select('thumbnail,nm_class, group_concat(nm_mentor) nm_mentor, discount_price');
 $this->db->from('tr_chart a');
 $this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
 $this->db->join('tr_class_mentor c', 'b.id_class = c.id_class', 'left');
+$this->db->join('tr_class_member d', 'b.id_class = d.id_class', 'left');
+$this->db->join('tr_payment e', 'd.kd_booking = e.kd_booking');
 $this->db->where('id_user', $id_user);
 $this->db->where('status_checked', 'checked');
 $this->db->where('status_chart', '0');

@@ -35,7 +35,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" id="navbarLandings" href="#" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link" id="navbarLandings" href="<?php echo site_url('publik/class_all'); ?>" aria-haspopup="true" aria-expanded="false">
 						Belajar Apa Saja
 					</a>
 				</li>

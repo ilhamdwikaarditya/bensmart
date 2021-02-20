@@ -50,6 +50,7 @@ class User extends CI_Controller {
             redirect(site_url('login'), 'refresh');
         }
 
+        $page_data['id_user'] = $this->session->userdata('id_user');
         $page_data['page_name'] = 'dashboard';
         $page_data['page_title'] = 'Dashboard';
         $this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
@@ -74,6 +75,18 @@ class User extends CI_Controller {
         $page_data['id_user'] = $this->session->userdata('id_user');
         $page_data['page_name'] = 'status_pesanan';
         $page_data['page_title'] = 'Status pesanan';
+        $this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
+    }
+	
+	public function invoice_pesanan() {
+        if ($this->session->userdata('user_login') != true) {
+            redirect(site_url('login'), 'refresh');
+        }
+
+        $page_data['kd_booking'] = $this->uri->segment(3);
+        $page_data['id_user'] = $this->session->userdata('id_user');
+        $page_data['page_name'] = 'invoice_pesanan';
+        $page_data['page_title'] = 'Invoice pesanan';
         $this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
     }
 	
@@ -170,11 +183,15 @@ class User extends CI_Controller {
 		if ($this->session->userdata('user_login') != true){
 			redirect(site_url('login'), 'refresh');
         }else{
-		
+			
 			$jenis = $this->input->post('flag');
 			$corb = $this->input->post('id');
 			$data = $this->user_model->add_chart($jenis,$corb);
-			echo json_encode($data);
+			
+			$count_cart = $this->user_model->count_cart();
+			
+			
+			echo json_encode($count_cart);
 		}
 	}
 	

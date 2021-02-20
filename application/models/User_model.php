@@ -447,6 +447,13 @@ class User_model extends CI_Model {
 		return $chart_id;
     }
 	
+	public function count_cart() {
+        $id_user = $this->session->userdata('id_user');
+		$totcart = $this->db->query("SELECT COUNT(id_chart) totcart FROM tr_chart WHERE id_user = ".$this->db->escape($id_user)." AND booked = '0' ")->row("totcart");
+		
+		return $totcart;
+    }
+	
 	public function delete_chart($jenis="",$corb="") {
 		$id_user = $this->session->userdata('id_user');
 		if($jenis == 'class'){
@@ -478,17 +485,18 @@ class User_model extends CI_Model {
 	public function add_class_member($listclass,$totprice) {
 		$id_user = $this->session->userdata('id_user');
 		$digitbooking = str_pad(rand(0, pow(10, 3)-1), 3, '0', STR_PAD_LEFT);
+		$kd_booking = 'BEN-'.date('Ym').$digitbooking;
 		
 		if(strpos($listclass,",") === false){
 			$data['id_class'] = html_escape($listclass);
+			$data['kd_booking'] = $kd_booking;
 			$data['cuser'] = html_escape($id_user);
 		
 			$this->db->insert('tr_class_member', $data);
 			$chart_id = $this->db->insert_id();
 			
 			if($chart_id){
-				$kd_booking = 'BEN-'.date('Ym').$digitbooking;
-				
+
 				$pay['id_class_member'] = $chart_id;
 				$pay['type_payment'] = '1';
 				$pay['kd_booking'] = $kd_booking;
@@ -498,7 +506,7 @@ class User_model extends CI_Model {
 				$this->db->insert('tr_payment', $pay);
 				$pay_id = $this->db->insert_id();
 				
-				$this->db->where('id_class', $exps[$i]);
+				$this->db->where('id_class', $data['id_class']);
 				$this->db->update('tr_chart', array('booked' => '1'));
 			}
 			
@@ -507,6 +515,7 @@ class User_model extends CI_Model {
 			$exps = explode(",", $listclass);
 			for ($i = 0; $i < count($exps); $i++) {
 				$data['id_class'] = html_escape($exps[$i]);
+				$data['kd_booking'] = $kd_booking;
 				$data['cuser'] = html_escape($id_user);
 			
 				$this->db->insert('tr_class_member', $data);
@@ -514,7 +523,6 @@ class User_model extends CI_Model {
 				
 				if($chart_id){
 					
-					$kd_booking = 'BEN-'.date('Ym').$digitbooking;
 					$pay['id_class_member'] = $chart_id;
 					$pay['type_payment'] = '1';
 					$pay['kd_booking'] = $kd_booking;
