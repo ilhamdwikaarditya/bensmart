@@ -323,7 +323,7 @@ foreach ($testimonis as $testimoni):
 <?php $top_courses = $this->crud_model->get_top_courses()->result_array();
 
 foreach ($top_courses as $top_course):?>
-          <a href="<?php echo base_url() . 'publik/desc_class/' . $top_course['id_class'] ?>" >
+          <a href="<?php echo base_url() . 'publik/desc_class/' . $top_course['id_class'] ?>" class="text-decoration-none">
 		  <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
             <!-- Card -->
             <div class="card shadow-light-lg mb-6 mb-md-4 lift lift-lg">

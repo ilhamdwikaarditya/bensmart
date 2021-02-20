@@ -33,7 +33,7 @@
 			  if($allratting['totrating'] == 0){
 				$jmlstar = 0;
 			  }else{
-				$jmlstar = floor($allratting['totrating']/$allratting['tottanggapan']);      
+				$jmlstar = $allratting['totrating']/$allratting['tottanggapan'];      
 			  }
 
 			  $totstar = 5;
@@ -48,7 +48,7 @@
 				<span class="fa fa-star star-inactive"></span>
 			  <?php } ?>
               <span class="text-white ml-2 small">
-                <?php echo $jmlstar; ?> dari <?php echo number_format($allratting['tottanggapan']); ?> tanggapan
+                <?php echo number_format($jmlstar,1); ?> dari <?php echo number_format($allratting['tottanggapan']); ?> ulasan
               </span>
             </p>
           </div>
@@ -165,7 +165,7 @@ foreach ($class_mentor as $index => $mentor) :
 	$this->db->join("tr_class_mentor b","a.id_class = b.id_class");
 	$this->db->where("a.id_class",$course['id_class']);
 	$this->db->where("id_mentor",$mentor['id_mentor']);
-	$this->db->where("active","1");
+	$this->db->where("a.active","1");
 	
 	$allrattingmentor = $this->db->get()->row_array();
 	
