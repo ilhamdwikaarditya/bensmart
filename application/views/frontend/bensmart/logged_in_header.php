@@ -38,7 +38,7 @@ $user_details = $this->user_model->get_user($this->session->userdata('id_user'),
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" id="navbarLandings" href="#" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link" id="navbarLandings" href="<?php echo site_url('publik/class_all'); ?>" aria-haspopup="true" aria-expanded="false">
 						Belajar Apa Saja
 					</a>
 				</li>
@@ -47,13 +47,53 @@ $user_details = $this->user_model->get_user($this->session->userdata('id_user'),
 						Keunggulan
 					</a>
 				</li>
-				<li class="nav-item fas">
-					<a class="nav-link" id="navbarLandings" href="<?php echo site_url('home/shopping_cart'); ?>" aria-haspopup="true" aria-expanded="false">
-						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart4 pb-0" viewBox="0 0 20 20">
-						  <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-						</svg>
-					</a>
-				</li>
+				<li class="nav-item mt-3 ml-md-auto text-uppercase mb-0 position-relative d-flex">
+            <style>
+              li {
+                list-style: none;
+              }
+
+              .fa,
+              .fas {
+                font-family: 'FontAwesome';
+              }
+
+              ul li a {
+                font-size: 1.1rem;
+                color: #343a40;
+              }
+
+              ul li a.cart:hover {
+                text-decoration: none;
+                color: #869ab8;
+              }
+
+              ul li a.cart .cart-basket {
+                font-size: .6rem;
+                position: absolute;
+                top: -8px;
+                right: -12px;
+                width: 16px;
+                height: 16px;
+                color: #fff;
+                background-color: #ffc107;
+                border-radius: 50%;
+              }
+            </style>
+            <div id="cart" class="d-none">
+
+            </div>
+            <a href="<?php echo site_url('home/shopping_cart'); ?>" class="cart position-relative d-inline-flex" aria-label="View your shopping cart">
+              <i class="fas fa fa-shopping-cart fa-lg"></i>
+              <span class="cart-basket d-flex align-items-center justify-content-center" id="count_cart">
+<?php
+	$iduser = $this->session->userdata('id_user');
+	$count_cart = $this->db->query("SELECT COUNT(id_chart) totcart FROM tr_chart WHERE id_user = ".$this->db->escape($iduser)." AND booked = '0' ")->row("totcart");
+	echo $count_cart;
+?>
+              </span>
+            </a>
+          </li>
 
 			</ul>
 			<ul class="list-unstyled topbar-right-menu float-right mb-0">

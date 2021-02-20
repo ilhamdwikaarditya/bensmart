@@ -267,7 +267,7 @@ foreach ($cart_datas as $cart_data):?>
 
                         <!-- Text -->
                         <small class="text-gray-700">
-                          +62 812 8867 5378
+                          +62 882-2530-8030
                         </small>
 
                       </div>
@@ -309,7 +309,7 @@ foreach ($cart_datas as $cart_data):?>
 		var nama = '<?php echo $user_details['firstname']." ".$user_details['lastname']; ?>';
 		var email = '<?php echo $user_details['email']; ?>';
 
-		window.open("https://api.whatsapp.com/send?phone=6281288675378&text=Halo,%20Saya%20"+nama+"%20sudah%20melakukan%20pembayaran%20kelas.%20%20Akses%20kelas%20untuk%20"+email+"%20Berikut%20saya%20lampirkan%20foto%20bukti%20pembayaran:");
+		window.open("https://api.whatsapp.com/send?phone=6288225308030&text=Halo,%20Saya%20"+nama+"%20sudah%20melakukan%20pembayaran%20kelas.%20%20Akses%20kelas%20untuk%20"+email+"%20Berikut%20saya%20lampirkan%20foto%20bukti%20pembayaran:");
 		location.href = "<?php echo site_url('home/confirmation_success'); ?>";
 	}
 </script>

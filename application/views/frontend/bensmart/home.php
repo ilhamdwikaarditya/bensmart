@@ -156,48 +156,26 @@
 
 			  <!-- Slider -->
 			  <div class="position-md-static" data-flickity='{"wrapAround": true, "pageDots": false, "adaptiveHeight": true}' id="blogSlider">
+<?php
+$testimonis = $this->master_model->get_testimoni()->result_array();
+foreach ($testimonis as $testimoni):
+?>				
 				<div class="w-100">
-
 				  <!-- Body -->
 				  <div class="card-body">
 					<blockquote class="blockquote text-center mb-0">
-
 					  <!-- Text -->
 					  <p class="mb-5 mb-md-7">
-						“Dulu orang tua ku agak ga yakin dengan belajar online, tapi setelah dengar katanya ada Kelas Online Bensmart Orang Tua ku tanpa ragu langsung daftarin salah satu kelas 
-						untuk aku ikut. Alhamdulillah, malah disuruh pesen kelas lagi. Terimakasih Bensmart!”
+						“<?php echo $testimoni['desc_testimoni']; ?>”
 					  </p>
-
 					  <!-- Footer -->
 					  <footer class="blockquote-footer">
-						<span class="h4">- Ilham Arditya -</span>
+						<span class="h4">- <?php echo $testimoni['nm_testimoni']; ?> -</span>
 					  </footer>
-
 					</blockquote>
 				  </div>
-
 				</div>
-				<div class="w-100">
-
-				  <!-- Body -->
-				  <div class="card-body">
-					<blockquote class="blockquote text-center mb-0">
-
-					  <!-- Text -->
-					  <p class="mb-5 mb-md-7">
-						“Kebiasaan dari dulu kalau buka internet selalu sukanya buka toko online aja, tapi semenjak ada Bensmart aku jadi malah lebih sering nongkrong disini.
-						Materinya lengkap, Mentor nya asik banget dan menjelaskan materi dengan sangat gamblang. Pokoknya ini bener-bener recommended buat kalian semua.”
-					  </p>
-
-					  <!-- Footer -->
-					  <footer class="blockquote-footer">
-						<span class="h4">- Cristananda Ratnady -</span>
-					  </footer>
-
-					</blockquote>
-				  </div>
-
-				</div>
+<?php endforeach; ?>
 			  </div>
 
 			</div>

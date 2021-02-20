@@ -65,12 +65,14 @@ $cart_sum = $this->db->get()->row_array();
 $digitrand = str_pad(rand(0, pow(10, 3)-1), 3, '0', STR_PAD_LEFT);
 if($this->session->userdata('sessdigitrand')){ }else{ $this->session->set_userdata('sessdigitrand', $digitrand); }
 
+$this->db->select('thumbnail,nm_class, group_concat(nm_mentor) nm_mentor, discount_price');
 $this->db->from('tr_chart a');
 $this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
 $this->db->join('tr_class_mentor c', 'b.id_class = c.id_class', 'left');
 $this->db->where('id_user', $id_user);
 $this->db->where('status_checked', 'checked');
 $this->db->where('booked', '0');
+
 $cart_datas = $this->db->get()->result_array();
 
 foreach ($cart_datas as $cart_data):?>
@@ -202,8 +204,7 @@ foreach ($cart_datas as $cart_data):?>
                   </div>
                 </div>
                 <div class="join-container mx-n4 mt-2 mb-n5">
-                  <a type="button" onClick="nextpay()" class="btn col-12 btn-sm mt-3 btn-primary rounded-bottom"
-                    style="border-radius: 0px 0px 30px 5px;" >
+                  <a type="button" onClick="nextpay()" class="btn col-12 btn-sm mt-3 btn-primary rounded-bottom" style="border-radius: 0px 0px 30px 5px; color:#fff" >
                     Lanjutkan Pembayaran
                   </a>
                 </div>
@@ -232,6 +233,7 @@ foreach ($cart_datas as $cart_data):?>
 		var listclass = $("#listclass").val();
 		var totprice = '<?php echo $cart_sum['totprice']+$this->session->userdata('sessdigitrand'); ?>';
 		var baseUrl = "<?php echo base_url() ?>user/add_class_member/";
+		var textduplicate = "Kelas sudah dalam pemesanan";
 		$.ajax({
 			url: baseUrl,
 			dataType: 'json',
@@ -241,7 +243,7 @@ foreach ($cart_datas as $cart_data):?>
 				location.href = "<?php echo site_url('home/confirmation_payment'); ?>";
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
-				//alert("Ups Ada sedikit kesalahan.. Segera Hubungi Administrator ");
+				info_modal(textduplicate);
 			}
 		});
 	}
