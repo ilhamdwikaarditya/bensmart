@@ -1,16 +1,14 @@
 <?php
+$id_level = $this->session->userdata('id_level');
+$id_user = $this->session->userdata('id_user');
 $user_details = $this->user_model->get_user($id_user,$id_level)->row_array();
 
-$this->db->select('IFNULL(sum(discount_price),0) totprice');
-$this->db->from('tr_chart a');
-$this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
-$this->db->where('id_user', $id_user);
-$this->db->where('status_checked', 'checked');
-$this->db->where('status_chart', '0');
+$this->db->select('IFNULL(amount,0) totprice');
+$this->db->from('tr_payment a');
+$this->db->join('tr_class_member b', 'a.id_class_member = b.id_class_member');
+$this->db->join('tr_class c', 'b.id_class = c.id_class', 'left');
+$this->db->where('a.kd_booking', $kd_booking);
 $cart_sum = $this->db->get()->row_array();
-
-$digitrand = str_pad(rand(0, pow(10, 3)-1), 3, '0', STR_PAD_LEFT);
-if($this->session->userdata('sessdigitrand')){ }else{ $this->session->set_userdata('sessdigitrand', $digitrand); }
 
 ?>
 <!-- HEADER
@@ -136,12 +134,12 @@ foreach ($bank_datas as $bank_data):?>
               <!-- List group -->
               <div class="list-group list-group-flush">
 <?php
-$this->db->from('tr_chart a');
-$this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
-$this->db->join('tr_class_mentor c', 'b.id_class = c.id_class', 'left');
-$this->db->where('id_user', $id_user);
-$this->db->where('status_checked', 'checked');
-$this->db->where('status_chart', '0');
+$this->db->from('tr_payment a');
+$this->db->join('tr_class_member b', 'a.id_class_member = b.id_class_member');
+$this->db->join('tr_class c', 'b.id_class = c.id_class', 'left');
+$this->db->join('tr_class_mentor d', 'c.id_class = d.id_class', 'left');
+$this->db->where('a.kd_booking', $kd_booking);
+
 $cart_datas = $this->db->get()->result_array();
 
 foreach ($cart_datas as $cart_data):?>

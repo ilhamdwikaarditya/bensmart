@@ -80,8 +80,23 @@ class Home extends CI_Controller {
         }else{
 			
 			$page_data['id_user'] = $this->session->userdata('id_user');
+			$page_data['id_level'] = $this->session->userdata('id_level');
 			$page_data['page_name'] = "confirmation_payment";
 			$page_data['page_title'] = "Konfirmasi pembayaran";
+			$this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
+		}
+    }
+	
+	public function confirmation_payment_from_panel() {
+       if ($this->session->userdata('user_login') != true){
+			redirect(site_url('login'), 'refresh');
+        }else{
+			$page_data['id_user'] = $this->session->userdata('id_user');
+			$page_data['id_level'] = $this->session->userdata('id_level');
+			$page_data['kd_booking'] = $this->uri->segment(3);
+			$page_data['page_name'] = "confirmation_payment_from_panel";
+			$page_data['page_title'] = "Konfirmasi pembayaran";
+			
 			$this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
 		}
     }
