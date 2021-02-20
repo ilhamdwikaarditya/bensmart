@@ -148,6 +148,20 @@ class Manajemen_kelas_model extends CI_Model
             return $this->db->get_where('tr_class_materi_dokumen', array('id_class_materi_dokumen' => $id));
         }
     }
+
+    public function get_manajemen_rating_review($id = 0) {
+            $this->db->select("x.id_class_rating, a.id_class, nm_class, x.rating, x.comment, price, discount, nm_mapel, nm_jenjang, nm_materi_group, nm_materi_group_sub, c.kd_jenjang, x.active, concat(e.firstname,' ',e.lastname) as name");
+            $this->db->from('tr_class_rating x');
+            $this->db->join('tr_class a', 'a.id_class = x.id_class');
+            $this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub');
+            $this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang');
+            $this->db->join('ref_mapel d', 'a.id_mapel = d.id_mapel');
+            $this->db->join('ref_user e', 'x.cuser = e.id_user', 'left');
+            $this->db->join('ref_materi_group f', 'a.id_materi_group = f.id_materi_group');
+            $this->db->group_by('x.id_class_rating');
+            $this->db->order_by('x.id_class_rating desc');
+            return $this->db->get();
+    }
 	
 	public function add_manajemen_kelas() {
 
@@ -434,6 +448,20 @@ class Manajemen_kelas_model extends CI_Model
         $this->db->update('tr_class_materi_detail', $data);
     }
 
+    public function active_rating_review($id = "")
+    {
+        $this->db->where('id_class_rating', $id);
+        $this->db->update('tr_class_rating', array('active' => '1'));
+        $this->session->set_flashdata('flash_message', 'Berhasil Di Aktifkan');
+    }
+
+    public function nonactive_rating_review($id = "")
+    {
+        $this->db->where('id_class_rating', $id);
+        $this->db->update('tr_class_rating', array('active' => '0'));
+        $this->session->set_flashdata('flash_message', 'Berhasil Di Non Aktifkan');
+    }
+
 	public function upload_thumbnail($image_code) {
         if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['name'] != "") {
             move_uploaded_file($_FILES['thumbnail']['tmp_name'], 'uploads/thumbnail_class/'.$image_code.'.jpg');
@@ -473,10 +501,46 @@ class Manajemen_kelas_model extends CI_Model
             return base_url().'uploads/user_image/placeholder.png';
     }
 	
-	
 	function get_chain($param,$table,$where){
         $hasil = $this->db->query("SELECT * FROM $table WHERE $where = ".$this->db->escape($param)." ");
         return $hasil->result();
+    }
+
+    public function get_materi_kelas_detail($id) {
+        return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_detail' => $id));
+    }
+
+    public function cek_materi_kelas_detail($id, $user) {
+        return $this->db->get_where('tr_class_materi_member', array('id_class_materi_detail' => $id, 'cuser' => $user));
+    }
+
+    public function add_tandai_materi($id_class_materi_detail, $id_user) { // Admin does this editing
+        $data['id_class_materi_detail']  = html_escape($id_class_materi_detail);
+        $data['cuser'] = html_escape($id_user);
+        $data['status'] = '1';
+        $data['active'] = '1';
+        
+        $this->db->insert('tr_class_materi_member', $data);
+        $this->session->set_flashdata('flash_message', 'Berhasil ditandai selesai');
+    }
+
+    public function add_rating_materi($id_class, $id_user) { // Admin does this editing
+        $data['rating'] = html_escape($this->input->post('rating'));
+        $data['comment'] = html_escape($this->input->post('comment'));
+        $data['id_class']  = html_escape($id_class);
+        $data['cuser'] = html_escape($id_user);
+        $data['active'] = '0';
+        
+        $this->db->insert('tr_class_rating', $data);
+        $this->session->set_flashdata('flash_message', 'Rating berhasil diberikan');
+    }
+
+    public function cek_rating_kelas($id, $user) {
+        return $this->db->get_where('tr_class_rating', array('id_class' => $id, 'cuser' => $user));
+    }
+
+    public function get_materi_dokumen($id) {
+        return $this->db->get_where('tr_class_materi_dokumen', array('id_class_materi_detail' => $id));
     }
 	
 }

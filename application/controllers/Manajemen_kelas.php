@@ -288,5 +288,25 @@ class Manajemen_kelas extends CI_Controller {
             redirect(site_url('manajemen_kelas/manajemen_bundling'), 'refresh');
         }
     }
+
+    public function rating_review($param1 = "", $param2 = "") {
+        if ($this->session->userdata('admin_login') != true) {
+            redirect(site_url('login'), 'refresh');
+        }
+
+        if ($param1 == "active") {
+            $this->manajemen_kelas_model->active_rating_review($param2);
+            redirect(site_url('manajemen_kelas/rating_review'), 'refresh');
+        }
+		elseif ($param1 == "nonactive") {
+            $this->manajemen_kelas_model->nonactive_rating_review($param2);
+            redirect(site_url('manajemen_kelas/rating_review'), 'refresh');
+        }
+
+        $page_data['page_name'] = 'rating_review';
+        $page_data['page_title'] = 'Rating dan Review'; 
+        $page_data['manajemen_rating_review'] = $this->manajemen_kelas_model->get_manajemen_rating_review($param2);
+        $this->load->view('backend/index', $page_data);
+    }
 	
 }

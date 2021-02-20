@@ -31,6 +31,22 @@ class User_model extends CI_Model {
         return $this->db->get('ref_user');
     }
 
+    public function get_all_my_class() {
+        $id_user = $this->session->userdata('id_user');
+		$this->db->select("a.*, b.kd_jenjang, b.nm_jenjang, substring(desc_class, 1, 100) as desc_short, c.nm_mentor, count(e.id_class_materi_section) jmlmateri, ifnull(SEC_TO_TIME( SUM( TIME_TO_SEC(duration))),'00:00:00') as sumduration, f.bio, f.quotes");
+		$this->db->from("tr_class_member x");
+		$this->db->join("tr_class a","x.id_class = a.id_class","left");
+        $this->db->join('ref_jenjang b', 'a.id_jenjang = b.id_jenjang', 'left');
+        $this->db->join('tr_class_mentor c','a.id_class = c.id_class', 'left');
+        $this->db->join('tr_class_materi_section d','a.id_class = d.id_class', 'left');
+        $this->db->join('tr_class_materi_detail e','d.id_class_materi_section = e.id_class_materi_section', 'left');
+        $this->db->join('ref_mentor f','c.id_mentor = f.id_mentor', 'left');
+        $this->db->where('a.active', '1');
+		$this->db->where('x.cuser', $id_user);
+		$this->db->group_by('a.id_class');
+        return $this->db->get();
+    }
+
     public function add_user($is_instructor = false) {
         $validity = $this->check_duplication('on_create', $this->input->post('email'));
         if ($validity == false) {
