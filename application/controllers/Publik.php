@@ -157,7 +157,7 @@ class Publik extends CI_Controller
         $page_data['page_title'] = 'Deskripsi Kelas';
         $page_data['layout']     = $layout;
         $page_data['id_class']   = $id_class;
-        $this->db->select("a.*, b.kd_jenjang, b.nm_jenjang, substring(desc_class, 1, 100) as desc_short, c.nm_mentor, count(e.id_class_materi_section) jmlmateri, ifnull(SEC_TO_TIME( SUM( TIME_TO_SEC(duration))),'00:00:00') as sumduration, f.bio, f.quotes");
+        $this->db->select("a.*, b.kd_jenjang, b.nm_jenjang, substring(desc_class, 1, 100) as desc_short, c.nm_mentor, count(e.id_class_materi_section) jmlmateri, ifnull(SEC_TO_TIME( SUM( TIME_TO_SEC(duration))),'00:00:00') as sumduration, f.bio, f.quotes, 'class' flag");
         $this->db->from('tr_class a');
         $this->db->join('ref_jenjang b', 'a.id_jenjang = b.id_jenjang', 'left');
         $this->db->join('tr_class_mentor c','a.id_class = c.id_class', 'left');
@@ -166,11 +166,7 @@ class Publik extends CI_Controller
         $this->db->join('ref_mentor f','c.id_mentor = f.id_mentor', 'left');
         $this->db->where('a.active', '1');
         $this->db->where('a.id_class', $id_class);
-        // $this->db->group_by('a.id_class');
-		// $this->db->order_by('a.id_class','DESC');
-        // $this->db->from('tr_class');
-        // $total_rows = $this->db->get()->num_rows();
-        // $page_data['courses'] = $this->db->get()->result_array();
+
         $page_data['course']   = $this->db->get()->row_array();
         $this->load->view('frontend/' . get_frontend_settings('theme') . '/index', $page_data);
     }

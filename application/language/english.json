@@ -977,5 +977,11 @@
     "firstname": "Firstname",
     "lastname": "Lastname",
     "mismatch_password": "Mismatch password",
-    "rating_dan_review": "Rating dan review"
+    "rating_dan_review": "Rating dan review",
+    "testimoni": "Testimoni",
+    "tambah_testimoni": "Tambah testimoni",
+    "edit_testimoni": "Edit testimoni",
+    "bank": "Bank",
+    "tambah_bank": "Tambah bank",
+    "edit_bank": "Edit bank"
 }

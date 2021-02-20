@@ -1,4 +1,8 @@
-  <!-- HEADER
+<?php
+	$level = $this->session->userdata('id_level');
+	$user_details = $this->user_model->get_user($id_user,$level)->row_array();
+?>
+<!-- HEADER
     ================================================== -->
   <header class="bg-dark pt-9 pb-9 d-none d-md-block">
     <div class="container-md">
@@ -7,14 +11,14 @@
 
           <!-- Heading -->
           <h1 class="font-weight-bold text-white mb-2">
-            Keranjang Belanja
+            Checkout Kelas
           </h1>
 
         </div>
       </div> <!-- / .row -->
     </div> <!-- / .container -->
   </header>
-  
+
   <!-- MAIN
     ================================================== -->
   <main class="pb-8 pb-md-11 mt-md-n6">
@@ -40,6 +44,16 @@
               <!-- List group -->
               <div class="list-group list-group-flush">
 <?php
+
+$this->db->select('GROUP_CONCAT(b.id_class) listclass');
+$this->db->from('tr_chart a');
+$this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
+$this->db->join('tr_class_mentor c', 'b.id_class = c.id_class', 'left');
+$this->db->where('id_user', $id_user);
+$this->db->where('status_checked', 'checked');
+$this->db->where('booked', '0');
+$listclass = $this->db->get()->row_array();
+
 $this->db->select('IFNULL(sum(discount_price),0) totprice');
 $this->db->from('tr_chart a');
 $this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
@@ -48,9 +62,14 @@ $this->db->where('status_checked', 'checked');
 $this->db->where('booked', '0');
 $cart_sum = $this->db->get()->row_array();
 
+$digitrand = str_pad(rand(0, pow(10, 3)-1), 3, '0', STR_PAD_LEFT);
+if($this->session->userdata('sessdigitrand')){ }else{ $this->session->set_userdata('sessdigitrand', $digitrand); }
+
 $this->db->from('tr_chart a');
 $this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
+$this->db->join('tr_class_mentor c', 'b.id_class = c.id_class', 'left');
 $this->db->where('id_user', $id_user);
+$this->db->where('status_checked', 'checked');
 $this->db->where('booked', '0');
 $cart_datas = $this->db->get()->result_array();
 
@@ -58,9 +77,6 @@ foreach ($cart_datas as $cart_data):?>
                 <div class="list-group-item">
                   <div class="row align-items-center">
                     <div class="col-auto">
-                      <input type="checkbox" class="checkbox" onChange="readcheckbox(this,'<?php echo $cart_data['id_class']; ?>')" value="<?php echo $cart_data['discount_price']; ?>" <?php echo $cart_data['status_checked']; ?>> <!--checked or not -->
-                    </div>
-                    <div class="col-auto ml-n5">
 
                       <img class="avatar-img rounded" src="<?php echo base_url().'uploads/thumbnail_class/'.$cart_data['thumbnail'].'.jpg' ?>" alt="..."
                         style="height: 100px; width: 150px;">
@@ -72,31 +88,67 @@ foreach ($cart_datas as $cart_data):?>
                       <h4 class="mb-0">
                         <?php echo $cart_data['nm_class']; ?>
                       </h4>
+						
+					  <small class="text-gray-700 mt-1 mb-2">
+                        Mentor <?php echo $cart_data['nm_mentor']; ?>
+                      </small>
+					  
+                    </div>
+                    <div class="col-md-auto">
 
+                      <!-- Badge -->
                       <span class="badge badge-pill badge-primary-soft">
                         <span class="h6 text-uppercase font-weight-bold">Rp. <?php echo number_format($cart_data['discount_price']); ?></span>
                       </span>
 
                     </div>
-                    <div class="col-md-auto">
-
-                      <!-- Badge -->
-					  <a type="button" onClick="DeleteCart('<?php echo $cart_data['id_class']; ?>')">
-						  <span class="badge badge-pill badge-dark-soft">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-							  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-							  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-							</svg>
-						  </span>
-					  </a>
-                    </div>
                   </div>
                 </div>
 <?php endforeach; ?>
-              </div>
+            </div>
 
             </div>
           </div>
+<input id="listclass" type="hidden" value="<?php echo $listclass['listclass']; ?>" readonly>
+          <!-- Card -->
+          <div class="card card-bleed shadow-light-lg mb-6">
+            <div class="card-header">
+
+              <!-- Heading -->
+              <h4 class="mb-0">
+                Informasi Akun
+              </h4>
+
+            </div>
+            <div class="card-body">
+
+              <!-- Form -->
+              <form>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+
+                    <!-- Name -->
+                    <div class="form-group">
+                      <label for="name">Nama Lengkap</label>
+                      <input class="form-control" id="name" type="text" value="<?php echo $user_details['firstname']." ".$user_details['lastname']; ?>" readonly>
+                    </div>
+
+                  </div>
+                  <div class="col-12 col-md-6">
+
+                    <!-- Email -->
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input class="form-control" id="email" type="email" value="<?php echo $user_details['email']; ?>" readonly>
+                    </div>
+
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
         </div>
 
         <div class="col-12 col-md-4">
@@ -110,39 +162,49 @@ foreach ($cart_datas as $cart_data):?>
 
                 <!-- Heading -->
                 <h4 class="font-weight-bold mb-3">
-                  Ringkasan Pesanan
+                  Pembayaran
                 </h4>
 
                 <hr class="mx-n4">
 
                 <div class="row">
                   <div class="col">
-                    <p class="text-muted" style="font-size: 15px;" id="countingclass">
+                    <p class="text-muted">
                       Sub Total
                     </p>
                   </div>
                   <div class="col-auto">
-                    <h5 class="text-dark" id="pricechecked">Rp <?php echo number_format($cart_sum['totprice']); ?></h5>
+                    <h5 class="text-dark">Rp <?php echo number_format($cart_sum['totprice']); ?></h5>
+                  </div>
+                </div>
+
+                <div class="row my-n2">
+                  <div class="col">
+                    <p class="text-muted">
+                      Kode Unik
+                    </p>
+                  </div>
+                  <div class="col-auto">
+                    <h5 class="text-primary"><?php echo $this->session->userdata('sessdigitrand'); ?></h5>
                   </div>
                 </div>
 
                 <hr class="mt-n1">
 
-                <div class="row">
+                <div class="row mb-n2">
                   <div class="col">
                     <h5 class="text-dark">
                       Total
                     </h5>
                   </div>
                   <div class="col-auto">
-                    <h5 class="text-dark font-weight-bold" id="totprice">Rp <?php echo number_format($cart_sum['totprice']); ?></h5>
+                    <h5 class="text-dark font-weight-bold">Rp <?php echo number_format($cart_sum['totprice']+$this->session->userdata('sessdigitrand')); ?></h5>
                   </div>
                 </div>
-
-                <div class="join-container mx-n4 mb-n5">
-                  <a href="<?php echo site_url('home/checkout_class'); ?>" class="btn col-12 btn-sm btn-primary mt-3 rounded-bottom"
-                    style="border-radius: 0px 0px 30px 5px;">
-                    Checkout
+                <div class="join-container mx-n4 mt-2 mb-n5">
+                  <a type="button" onClick="nextpay()" class="btn col-12 btn-sm mt-3 btn-primary rounded-bottom"
+                    style="border-radius: 0px 0px 30px 5px;" >
+                    Lanjutkan Pembayaran
                   </a>
                 </div>
               </div>
@@ -165,60 +227,22 @@ foreach ($cart_datas as $cart_data):?>
         <path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor" /></svg>
     </div>
   </div>
-  
 <script type="text/javascript">
-	var formatter = new Intl.NumberFormat('ID', {
-		currency: 'IDR',
-	});
-	
-	$(".checkbox").change(function () {
-		var count = 0;
-		var table_abc = document.getElementsByClassName("checkbox");
-		for (var i = 0; table_abc[i]; ++i) {
-
-			if (table_abc[i].checked) {
-				var value = table_abc[i].value;
-				count += Number(table_abc[i].value);
-			}
-		}
-
-		$("#pricechecked").html("Rp "+formatter.format(count));
-		$("#totprice").html("Rp "+formatter.format(count));
-		
-	});
-	
-	function DeleteCart(id){
-
-		var flag = "class";
-		var texting = "Berhasil dihapus";
-		var baseUrl = "<?php echo base_url() ?>user/delete_chart/";
+	function nextpay(){
+		var listclass = $("#listclass").val();
+		var totprice = '<?php echo $cart_sum['totprice']+$this->session->userdata('sessdigitrand'); ?>';
+		var baseUrl = "<?php echo base_url() ?>user/add_class_member/";
 		$.ajax({
 			url: baseUrl,
 			dataType: 'json',
 			method: 'POST',
-			data: {flag:flag,id:id},
+			data: {listclass:listclass,totprice:totprice},
 			success: function(datas){
-				window.location.reload();
+				location.href = "<?php echo site_url('home/confirmation_payment'); ?>";
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
 				//alert("Ups Ada sedikit kesalahan.. Segera Hubungi Administrator ");
 			}
-		});
-	}
-	
-	function readcheckbox(checkboxElem,val) {
-		if (checkboxElem.checked) {
-			var status_checked = 'checked';
-		} else {
-			var status_checked = '';
-		}
-		
-		var baseUrl = "<?php echo base_url() ?>user/update_check_cart/";
-		$.ajax({
-			url: baseUrl,
-			dataType: 'json',
-			method: 'POST',
-			data: {id_class:val,status_checked:status_checked},
 		});
 	}
 </script>

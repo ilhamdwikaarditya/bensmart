@@ -127,9 +127,27 @@ class Master_model extends CI_Model
     public function get_level($id = 0)
     {
         if ($id > 0) {
-            return $this->db->get_where('ref_level', array('id' => $id, 'is_instructor' => 1));
+            return $this->db->get_where('ref_level', array('id_level' => $id, 'is_instructor' => 1));
         } else {
             return $this->db->get_where('ref_level');
+        }
+    }
+	
+	public function get_testimoni($id = 0)
+    {
+        if ($id > 0) {
+            return $this->db->get_where('ref_testimoni', array('id_testimoni' => $id));
+        } else {
+            return $this->db->get_where('ref_testimoni');
+        }
+    }
+	
+	public function get_bank($id = 0)
+    {
+        if ($id > 0) {
+            return $this->db->get_where('ref_bank', array('id_bank' => $id));
+        } else {
+            return $this->db->get_where('ref_bank');
         }
     }
 
@@ -224,6 +242,34 @@ class Master_model extends CI_Model
         $this->db->insert('ref_level', $data);
         $level_id = $this->db->insert_id();
         $this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
+    }
+	
+	public function add_testimoni()
+    {
+        $data['nm_testimoni'] = html_escape($this->input->post('nm_testimoni'));
+        $data['desc_testimoni'] = html_escape($this->input->post('desc_testimoni'));
+        $data['cuser'] = $this->session->userdata('id_user');
+		$data['photo'] = md5(rand(10000, 10000000));
+
+        $this->db->insert('ref_testimoni', $data);
+        $testimoni_id = $this->db->insert_id();
+        $this->upload_photo_testimoni($data['photo']);
+		$this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
+    }
+	
+	public function add_bank()
+    {
+        $data['bank'] = html_escape($this->input->post('bank'));
+        $data['kd_bank'] = html_escape($this->input->post('kd_bank'));
+        $data['no_rek'] = html_escape($this->input->post('no_rek'));
+        $data['nm_rek'] = html_escape($this->input->post('nm_rek'));
+		$data['photo'] = md5(rand(10000, 10000000));
+        $data['cuser'] = $this->session->userdata('id_user');
+
+        $this->db->insert('ref_bank', $data);
+        $testimoni_id = $this->db->insert_id();
+        $this->upload_photo_bank($data['photo']);
+		$this->session->set_flashdata('flash_message', 'Berhasil ditambahkan');
     }
 
     public function add_member()
@@ -341,6 +387,40 @@ class Master_model extends CI_Model
         $data['cuser'] = $this->session->userdata('id_user');
         $this->db->where('id_level', $level_id);
         $this->db->update('ref_level', $data);
+        $this->session->set_flashdata('flash_message', 'Berhasil Diubah');
+    }
+	
+	public function edit_testimoni($testimoni_id = "")
+    { // Admin does this editing
+        $data['nm_testimoni'] = html_escape($this->input->post('nm_testimoni'));
+        $data['desc_testimoni'] = html_escape($this->input->post('desc_testimoni'));
+        $data['cuser'] = $this->session->userdata('id_user');
+		if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
+			unlink('uploads/testimoni/' . $this->db->get_where('ref_testimoni', array('id_testimoni' => $testimoni_id))->row('photo') . '.jpg');
+			$data['photo'] = md5(rand(10000, 10000000));
+			$this->upload_photo($data['photo']);
+		}
+		
+        $this->db->where('id_testimoni', $testimoni_id);
+        $this->db->update('ref_testimoni', $data);
+        $this->session->set_flashdata('flash_message', 'Berhasil Diubah');
+    }
+	
+	public function edit_bank($bank_id = "")
+    { // Admin does this editing
+        $data['bank'] = html_escape($this->input->post('bank'));
+        $data['kd_bank'] = html_escape($this->input->post('kd_bank'));
+        $data['no_rek'] = html_escape($this->input->post('no_rek'));
+        $data['nm_rek'] = html_escape($this->input->post('nm_rek'));
+        $data['cuser'] = $this->session->userdata('id_user');
+		if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
+			unlink('uploads/bank/' . $this->db->get_where('ref_bank', array('id_bank' => $bank_id))->row('photo') . '.jpg');
+			$data['photo'] = md5(rand(10000, 10000000));
+			$this->upload_photo($data['photo']);
+		}
+		
+        $this->db->where('id_bank', $bank_id);
+        $this->db->update('ref_bank', $data);
         $this->session->set_flashdata('flash_message', 'Berhasil Diubah');
     }
 
@@ -470,6 +550,20 @@ class Master_model extends CI_Model
         $this->db->delete('ref_level');
         $this->session->set_flashdata('flash_message', 'Berhasil Dihapus');
     }
+	
+	public function delete_testimoni($testimoni_id = "")
+    {
+        $this->db->where('id_testimoni', $testimoni_id);
+        $this->db->delete('ref_testimoni');
+        $this->session->set_flashdata('flash_message', 'Berhasil Dihapus');
+    }
+	
+	public function delete_bank($bank_id = "")
+    {
+        $this->db->where('id_bank', $bank_id);
+        $this->db->delete('ref_bank');
+        $this->session->set_flashdata('flash_message', 'Berhasil Dihapus');
+    }
 
     public function delete_member($id_user = "")
     {
@@ -540,6 +634,22 @@ class Master_model extends CI_Model
             $this->session->set_flashdata('flash_message', 'Berhasil');
         }
     }
+	
+	public function upload_photo_testimoni($image_code)
+    {
+        if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
+            move_uploaded_file($_FILES['photo']['tmp_name'], 'uploads/testimoni/' . $image_code . '.jpg');
+            $this->session->set_flashdata('flash_message', 'Berhasil');
+        }
+    }
+	
+	public function upload_photo_bank($image_code)
+    {
+        if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
+            move_uploaded_file($_FILES['photo']['tmp_name'], 'uploads/bank/' . $image_code . '.png');
+            $this->session->set_flashdata('flash_message', 'Berhasil');
+        }
+    }
 
     public function get_user_photo_url($user_id)
     {
@@ -549,6 +659,28 @@ class Master_model extends CI_Model
             return base_url() . 'uploads/user_image/' . $user_profile_image . '.jpg';
         else
             return base_url() . 'uploads/user_image/placeholder.png';
+    }
+	
+	public function get_testimoni_photo_url($testimoni_id)
+    {
+
+        $testimoni_profile_image = $this->db->get_where('ref_testimoni', array('id_testimoni' => $testimoni_id))->row('photo');
+
+		if (file_exists('uploads/testimoni/' . $testimoni_profile_image . '.jpg'))
+            return base_url() . 'uploads/testimoni/' . $testimoni_profile_image . '.jpg';
+        else
+            return base_url() . 'uploads/testimoni/placeholder.png';
+    }
+	
+	public function get_bank_photo_url($bank_id)
+    {
+
+        $bank_profile_image = $this->db->get_where('ref_bank', array('id_bank' => $bank_id))->row('photo');
+
+		if (file_exists('uploads/bank/' . $bank_profile_image . '.png'))
+            return base_url() . 'uploads/bank/' . $bank_profile_image . '.png';
+        else
+            return base_url() . 'uploads/bank/placeholder.png';
     }
 
     public function check_duplication($action = "", $email = "", $id_user = "") {

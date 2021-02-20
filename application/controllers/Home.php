@@ -53,12 +53,48 @@ class Home extends CI_Controller {
     }
 
     public function shopping_cart() {
-        if (!$this->session->userdata('cart_items')) {
-            $this->session->set_userdata('cart_items', array());
-        }
-        $page_data['page_name'] = "shopping_cart";
-        $page_data['page_title'] = site_phrase('shopping_cart');
-        $this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
+        if ($this->session->userdata('user_login') != true){
+			redirect(site_url('login'), 'refresh');
+        }else{
+			$page_data['id_user'] = $this->session->userdata('id_user');
+			$page_data['page_name'] = "shopping_cart";
+			$page_data['page_title'] = "Chart";
+			$this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
+		}
+    }
+	
+	public function checkout_class() {
+        if ($this->session->userdata('user_login') != true){
+			redirect(site_url('login'), 'refresh');
+        }else{
+			$page_data['id_user'] = $this->session->userdata('id_user');
+			$page_data['page_name'] = "checkout_class";
+			$page_data['page_title'] = "Checkout class";
+			$this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
+		}
+    }
+	
+	public function confirmation_payment() {
+       if ($this->session->userdata('user_login') != true){
+			redirect(site_url('login'), 'refresh');
+        }else{
+			
+			$page_data['id_user'] = $this->session->userdata('id_user');
+			$page_data['page_name'] = "confirmation_payment";
+			$page_data['page_title'] = "Konfirmasi pembayaran";
+			$this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
+		}
+    }
+	
+	public function confirmation_success() {
+        if ($this->session->userdata('user_login') != true){
+			redirect(site_url('login'), 'refresh');
+        }else{
+			$page_data['id_user'] = $this->session->userdata('id_user');
+			$page_data['page_name'] = "confirmation_success";
+			$page_data['page_title'] = "Konfirmasi pembayaran Sukses";
+			$this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
+		}
     }
 
     public function courses() {

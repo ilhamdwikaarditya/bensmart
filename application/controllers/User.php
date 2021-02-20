@@ -71,6 +71,7 @@ class User extends CI_Controller {
             redirect(site_url('login'), 'refresh');
         }
 
+        $page_data['id_user'] = $this->session->userdata('id_user');
         $page_data['page_name'] = 'status_pesanan';
         $page_data['page_title'] = 'Status pesanan';
         $this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
@@ -105,7 +106,6 @@ class User extends CI_Controller {
 			redirect(site_url('user/ubah_password'), 'refresh');
         }
     }
-
     public function kelas_diikuti_isi($id_class) {
         if ($this->session->userdata('user_login') != true) {
             redirect(site_url('login'), 'refresh');
@@ -165,5 +165,39 @@ class User extends CI_Controller {
         $page_data['page_title'] = 'Kelas saya';
         $this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
     }
+	
+	public function add_chart(){
+		if ($this->session->userdata('user_login') != true){
+			redirect(site_url('login'), 'refresh');
+        }else{
+		
+			$jenis = $this->input->post('flag');
+			$corb = $this->input->post('id');
+			$data = $this->user_model->add_chart($jenis,$corb);
+			echo json_encode($data);
+		}
+	}
+	
+	public function delete_chart(){
+		$jenis = $this->input->post('flag');
+		$corb = $this->input->post('id');
+		$data = $this->user_model->delete_chart($jenis,$corb);
+		echo json_encode($data);
+	}
 
+	public function update_check_cart(){
+		$jenis = 'class';
+		$stscheck = $this->input->post('status_checked');
+		$corb = $this->input->post('id_class');
+		$data = $this->user_model->update_check_cart($stscheck,$jenis,$corb);
+		echo json_encode($data);
+	}
+	
+	public function add_class_member() {
+		$listclass = $this->input->post('listclass');
+		$totprice = $this->input->post('totprice');
+		$data = $this->user_model->add_class_member($listclass,$totprice);
+		echo json_encode($data);
+		
+	}
 }
