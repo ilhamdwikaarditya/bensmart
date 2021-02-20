@@ -38,7 +38,7 @@
 
 			  $totstar = 5;
 			  
-			  for($s = 0; $s < $jmlstar; $s++){
+			  for($s = 0; $s < floor($jmlstar); $s++){
 			  ?>
 				<span class="fa fa-star star-active"></span>
 			  <?php }
@@ -252,7 +252,7 @@ foreach ($class_mentor as $index => $mentor) :
                       </div>
 						<div>
 							<?php   
-							for($s = 0; $s < $jmlstar; $s++){
+							for($s = 0; $s < floor($jmlstar); $s++){
 							?>
 								<span class="fa fa-star star-active mx-1"></span>
 							<?php }
