@@ -475,7 +475,7 @@ if (isset($id_materi_group_sub)) {
                 <i class="fas fa-sliders-h" style="float: right;"></i>
               </h4>
               <!-- Badge -->
-              <a href="<?php echo base_url() ?>publik/class_all" title="hapus filter" class="badge badge-pill badge-danger-soft ml-12">
+              <a href="<?php echo base_url() ?>publik/class_all" title="hapus filter" class="badge badge-pill badge-danger-soft ml-11">
                 <span class="h6">x</span>
               </a>
               <!-- </a> -->
@@ -485,12 +485,13 @@ if (isset($id_materi_group_sub)) {
 
                 <!-- List group -->
                 <div class="list-group list-group-flush">
+                  
                   <div class="list-group-item">
                     <!-- Toggle -->
                     <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresJenjang" role="button" aria-expanded="true" aria-controls="featuresOne">
                       <div class="mr-auto">
                         <!-- Title -->
-                        <p class="font-weight-bold mb-0">
+                        <p class="font-weight-bold mb-0" style="font-size: 15px;">
                           Jenjang
                         </p>
 
@@ -508,8 +509,8 @@ if (isset($id_materi_group_sub)) {
                     </a> <!-- / .row -->
 
                     <!-- Collapse -->
-                    <div class="collapse show" id="featuresJenjang" data-parent="#featuresAccordion">
-                      <div class="py-5 py-md-6">
+                    <div class="collapse show" id="featuresJenjang" data-parent="#featuresAccordion" style="font-size: 14px;">
+                      <div class="py-5 py-md-3">
                         <div class="">
                           <input type="radio" id="all_jenjang" name="jenjang" class="jenjangs custom-radio" value="all" onclick="filter(this)" <?php if ($selected_jenjang == 'all') echo 'checked'; ?>>
                           <label for="all">Semua</label>
@@ -536,7 +537,7 @@ if (isset($id_materi_group_sub)) {
                       <div class="mr-auto">
 
                         <!-- Title -->
-                        <p class="font-weight-bold mb-0">
+                        <p class="font-weight-bold mb-0" style="font-size: 15px;">
                           Materi
                         </p>
                         <!-- Text -->
@@ -552,8 +553,8 @@ if (isset($id_materi_group_sub)) {
                     </a> <!-- / .row -->
 
                     <!-- Collapse -->
-                    <div class="collapse show" id="featuresMateri" data-parent="#featuresAccordion">
-                      <div class="py-5 py-md-6">
+                    <div class="collapse show" id="featuresMateri" data-parent="#featuresAccordion" style="font-size: 14px;">
+                      <div class="py-5 py-md-3">
                         <div class="">
                           <input type="radio" id="all_materi" name="level" class="materis custom-radio" value="all" onclick="filter(this)" <?php if ($selected_materi == 'all') echo 'checked'; ?>>
                           <label for="all">Semua</label>
@@ -577,7 +578,7 @@ if (isset($id_materi_group_sub)) {
                     <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresSubMateri" role="button" aria-expanded="true" aria-controls="featuresOne">
                       <div class="mr-auto">
                         <!-- Title -->
-                        <p class="font-weight-bold mb-0">
+                        <p class="font-weight-bold mb-0" style="font-size: 15px;">
                           Sub Materi
                         </p>
                         <!-- Text -->
@@ -599,8 +600,8 @@ if (isset($id_materi_group_sub)) {
                     </a> <!-- / .row -->
 
                     <!-- Collapse -->
-                    <div class="collapse show" id="featuresSubMateri" data-parent="#featuresAccordion">
-                      <div class="py-5 py-md-6">
+                    <div class="collapse show" id="featuresSubMateri" data-parent="#featuresAccordion" style="font-size: 14px;">
+                      <div class="py-5 py-md-3">
                         <div class="">
                           <input type="radio" id="all_materisub" name="materisub" class="materisubs custom-radio" value="all" onclick="filter(this)" <?php if ($selected_materi_sub == 'all') echo 'checked'; ?>>
                           <label for="all">Semua</label>
@@ -611,7 +612,7 @@ if (isset($id_materi_group_sub)) {
                         $materi_group_sub = $this->master_model->get_all_materi_group_sub($_GET['materi'])->result_array();
                         foreach ($materi_group_sub as $materisub) : ?>
                           <div class="">
-                            <input type="radio" id="materi-<?php echo $materisub['id_materi_group_sub']; ?>" name="materi" class="materis custom-radio" value="<?php echo $materisub['id_materi_group_sub']; ?>" onclick="filter(this)" <?php if ($selected_materi == '1') echo 'checked'; ?>>
+                            <input type="radio" id="materi-<?php echo $materisub['id_materi_group_sub']; ?>" name="materi" class="materis custom-radio" value="<?php echo $materisub['id_materi_group_sub']; ?>" onclick="filter(this)" <?php if ($selected_materi_sub == $materisub['id_materi_group_sub']) echo 'checked'; ?>>
                             <label for="beginner"><?php echo $materisub['nm_materi_group_sub']; ?></label>
                           </div>
                         <?php endforeach; ?>
@@ -624,7 +625,7 @@ if (isset($id_materi_group_sub)) {
                     <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresHarga" role="button" aria-expanded="true" aria-controls="featuresOne">
                       <div class="mr-auto">
                         <!-- Title -->
-                        <p class="font-weight-bold mb-0">
+                        <p class="font-weight-bold mb-0" style="font-size: 15px;">
                           Harga
                         </p>
                         <!-- Text -->
@@ -646,8 +647,8 @@ if (isset($id_materi_group_sub)) {
                     </a> <!-- / .row -->
 
                     <!-- Collapse -->
-                    <div class="collapse show" id="featuresHarga" data-parent="#featuresAccordion">
-                      <div class="py-5 py-md-6">
+                    <div class="collapse show" id="featuresHarga" data-parent="#featuresAccordion" style="font-size: 14px;">
+                      <div class="py-5 py-md-3">
                         <div class="">
                           <input type="radio" id="price_all" name="price" class="prices custom-radio" value="all" onclick="filter(this)" <?php if ($selected_price == 'all') echo 'checked'; ?>>
                           <label for="price_all">Semua</label>
@@ -670,7 +671,7 @@ if (isset($id_materi_group_sub)) {
                     <a class="d-flex align-items-center text-reset text-decoration-none" data-toggle="collapse" href="#featuresRating" role="button" aria-expanded="true" aria-controls="featuresOne">
                       <div class="mr-auto">
                         <!-- Title -->
-                        <p class="font-weight-bold mb-0">
+                        <p class="font-weight-bold mb-0" style="font-size: 15px;">
                           Rating
                         </p>
                         <!-- Text -->
@@ -692,8 +693,8 @@ if (isset($id_materi_group_sub)) {
                     </a> <!-- / .row -->
 
                     <!-- Collapse -->
-                    <div class="collapse show" id="featuresRating" data-parent="#featuresAccordion">
-                      <div class="py-5 py-md-6">
+                    <div class="collapse show" id="featuresRating" data-parent="#featuresAccordion" style="font-size: 14px;">
+                      <div class="py-5 py-md-3">
                         <div class="">
                           <input type="radio" id="all_rating" name="rating" class="ratings custom-radio" value="<?php echo 'all'; ?>" onclick="filter(this)" <?php if ($selected_rating == "all") echo 'checked'; ?>>
                           <label for="all_rating">Semua Rating</label>
@@ -773,7 +774,7 @@ if (isset($id_materi_group_sub)) {
                               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                               <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
                             </svg>
-                          <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 14px;"><?php echo $course['nm_jenjang'] ?></h6>
+                          <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 13px;"><?php echo $course['nm_jenjang'] ?></h6>
                           </p>
                         </div>
 
@@ -782,7 +783,13 @@ if (isset($id_materi_group_sub)) {
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person ml-5" viewBox="0 0 20 20">
                               <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                             </svg>
-                          <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 14px;"><?php echo $course['nm_mentor']; ?></h6>
+                          <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 13px;">
+                            <?php
+                            $class_mentor = $this->manajemen_kelas_model->get_mentor_kelas($course['id_class'])->result_array();
+                            foreach ($class_mentor as $index => $mentor) : ?>
+                              <?php echo $mentor['nm_mentor']; ?><br>
+                            <?php endforeach; ?>
+                          </h6>
                           </p>
                         </div>
                       </div>
@@ -794,7 +801,7 @@ if (isset($id_materi_group_sub)) {
                               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                               <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
                             </svg>
-                          <h6 class="align-items-center pb-2 ml-1 text-gray-700"><?php echo $course['jmlmateri']; ?> Materi, Durasi:
+                          <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 13px;"><?php echo $course['jmlmateri']; ?> Materi, <br>Durasi:
                             <?php
                             $hitduration = explode(":", $course['sumduration']);
                             $jam   = $hitduration[0];
@@ -816,7 +823,7 @@ if (isset($id_materi_group_sub)) {
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star ml-5" viewBox="0 0 20 20">
                               <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
                             </svg>
-                          <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 14px;">
+                          <h6 class="align-items-center pb-2 ml-1 text-gray-700" style="font-size: 13px;">
                             <b>4.6</b>
                             (410 reviews)
                           </h6>

@@ -564,33 +564,37 @@
                 Mentor Kelas
               </h3>
 
-              <div class="d-flex bd-highlight mb-3">
-                <div class="mr-auto bd-highlight">
-                  <div class="avatar avatar-xxl justify-content-center">
-                    <img src="<?php echo base_url() . 'assets/frontend/bensmart/img/avatars/avatar-4.jpg' ?>" alt="..." class="card-img-top">
-                    <!-- <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-1.jpg" alt="..."> -->
+              <?php
+              $class_mentor = $this->manajemen_kelas_model->get_mentor_kelas($course['id_class'])->result_array();
+              foreach ($class_mentor as $index => $mentor) : ?>
+                <div class="d-flex bd-highlight mb-3">
+                  <div class="mr-auto bd-highlight">
+                    <div class="avatar avatar-xxl justify-content-center">
+                      <!-- <img src="<?php echo base_url() . 'assets/frontend/bensmart/img/avatars/avatar-4.jpg' ?>" alt="..." class="card-img-top"> -->
+                      <img src="<?php echo base_url() . 'uploads/user_image/' . $mentor['photo'] . '.jpg' ?>" alt="..." class="card-img-top">
+                    </div>
+
+                    <div class="d-flex bd-highlight justify-content-center">
+                      <p class="mr-1">4.7</p>
+                      <span class="fa fa-star checked mt-1 mb-0"></span>
+                    </div>
                   </div>
 
-                  <div class="d-flex bd-highlight justify-content-center">
-                    <p class="mr-1">4.7</p>
-                    <span class="fa fa-star checked mt-1 mb-0"></span>
+                  <div class="ml-5 bd-highlight">
+                    <h4 class="mb-0 ">
+                      <?php echo $mentor['nm_mentor']; ?>
+                    </h4>
+
+                    <p class="text-muted mb-1" style="font-size: 16px; font-style: italic;">
+                      "<?php echo strip_tags(html_entity_decode($mentor['quotes'])) ?>"
+                    </p>
+
+                    <p style="font-size: 17px;">
+                      <?php echo strip_tags(html_entity_decode($mentor['bio'])) ?>
+                    </p>
                   </div>
                 </div>
-
-                <div class="ml-5 bd-highlight">
-                  <h4 class="mb-0 ">
-                    <?php echo $course['nm_mentor']; ?>
-                  </h4>
-
-                  <p class="text-muted mb-1" style="font-size: 16px; font-style: italic;">
-                    "<?php echo strip_tags(html_entity_decode($course['quotes'])) ?>"
-                  </p>
-
-                  <p style="font-size: 17px;">
-                    <?php echo strip_tags(html_entity_decode($course['bio'])) ?>
-                  </p>
-                </div>
-              </div>
+              <?php endforeach; ?>
 
             </div>
 
