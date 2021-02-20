@@ -543,4 +543,14 @@ class Manajemen_kelas_model extends CI_Model
         return $this->db->get_where('tr_class_materi_dokumen', array('id_class_materi_detail' => $id));
     }
 	
+	public function get_komentar_kelas($id = 0) {
+        
+			$this->db->from('tr_class_rating a');
+			$this->db->join('ref_user b', 'a.cuser = b.id_user');
+			$this->db->where('a.id_class',$id);
+			
+			return $this->db->get();
+        
+    }
+	
 }

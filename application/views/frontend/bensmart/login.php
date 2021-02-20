@@ -97,7 +97,7 @@
 						<label for="phone">
 							Handphone
 						</label>
-						<input type="text" class="form-control" id="phone" name="phone" placeholder="082133071761">
+						<input type="text" class="form-control" id="phone" name="phone" placeholder="08xxxxxxxxxx">
 					</div>
 					<div class="form-group">
 						<label for="address">

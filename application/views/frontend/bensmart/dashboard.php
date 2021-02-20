@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!-- HEADER
     ================================================== -->
     <header class="bg-dark pt-9 pb-11 d-none d-md-block">
@@ -7,7 +10,7 @@
 
             <!-- Heading -->
             <h1 class="font-weight-bold text-white mb-2">
-              Dashbord Member
+              Dashboard Member
             </h1>
 
           </div>

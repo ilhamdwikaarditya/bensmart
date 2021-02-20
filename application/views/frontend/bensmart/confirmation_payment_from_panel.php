@@ -8,6 +8,7 @@ $this->db->from('tr_payment a');
 $this->db->join('tr_class_member b', 'a.id_class_member = b.id_class_member');
 $this->db->join('tr_class c', 'b.id_class = c.id_class', 'left');
 $this->db->where('a.kd_booking', $kd_booking);
+$this->db->where('a.cuser', $id_user);
 $cart_sum = $this->db->get()->row_array();
 
 ?>
@@ -139,7 +140,7 @@ $this->db->join('tr_class_member b', 'a.id_class_member = b.id_class_member');
 $this->db->join('tr_class c', 'b.id_class = c.id_class', 'left');
 $this->db->join('tr_class_mentor d', 'c.id_class = d.id_class', 'left');
 $this->db->where('a.kd_booking', $kd_booking);
-
+$this->db->where('a.cuser', $id_user);
 $cart_datas = $this->db->get()->result_array();
 
 foreach ($cart_datas as $cart_data):?>

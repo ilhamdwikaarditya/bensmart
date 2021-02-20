@@ -153,7 +153,7 @@ class Publik extends CI_Controller
         }
         $layout = $this->session->userdata('layout');
 
-        $page_data['page_name']  = "bensmart_class_desc";
+        $page_data['page_name']  = "bensmart_class_desc2";
         $page_data['page_title'] = 'Deskripsi Kelas';
         $page_data['layout']     = $layout;
         $page_data['id_class']   = $id_class;
