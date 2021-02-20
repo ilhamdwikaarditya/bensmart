@@ -2,6 +2,7 @@
 	$this->db->select("IFNULL(count(id_class),0) tottanggapan, IFNULL(sum(rating),0) totrating");
 	$this->db->from("tr_class_rating");
 	$this->db->where("id_class",$course['id_class']);
+	$this->db->where("active","1");
 	$allratting = $this->db->get()->row_array();
 	
 ?>
@@ -164,6 +165,7 @@ foreach ($class_mentor as $index => $mentor) :
 	$this->db->join("tr_class_mentor b","a.id_class = b.id_class");
 	$this->db->where("a.id_class",$course['id_class']);
 	$this->db->where("id_mentor",$mentor['id_mentor']);
+	$this->db->where("active","1");
 	
 	$allrattingmentor = $this->db->get()->row_array();
 	
@@ -264,12 +266,12 @@ foreach ($class_mentor as $index => $mentor) :
 <?php 
 	$idclass = $course['id_class'];
 	$this->db->select("
-	(select count(rating) from tr_class_rating where id_class = ".$this->db->escape($idclass)." ) counttotrat,
-	(select IFNULL(count(rating),0) from tr_class_rating where id_class = ".$this->db->escape($idclass)." and rating = '1' ) rat1,
-	 (select IFNULL(count(rating),0) from tr_class_rating where id_class = ".$this->db->escape($idclass)." and rating = '2' ) rat2,
-	 (select IFNULL(count(rating),0) from tr_class_rating where id_class = ".$this->db->escape($idclass)." and rating = '3' ) rat3,
-	 (select IFNULL(count(rating),0) from tr_class_rating where id_class = ".$this->db->escape($idclass)." and rating = '4' ) rat4,
-	 (select IFNULL(count(rating),0) from tr_class_rating where id_class = ".$this->db->escape($idclass)." and rating = '5' ) rat5
+	(select count(rating) from tr_class_rating where id_class = ".$this->db->escape($idclass)." and active = '1' ) counttotrat,
+	(select IFNULL(count(rating),0) from tr_class_rating where id_class = ".$this->db->escape($idclass)." and rating = '1' and active = '1' ) rat1,
+	 (select IFNULL(count(rating),0) from tr_class_rating where id_class = ".$this->db->escape($idclass)." and rating = '2' and active = '1' ) rat2,
+	 (select IFNULL(count(rating),0) from tr_class_rating where id_class = ".$this->db->escape($idclass)." and rating = '3' and active = '1' ) rat3,
+	 (select IFNULL(count(rating),0) from tr_class_rating where id_class = ".$this->db->escape($idclass)." and rating = '4' and active = '1' ) rat4,
+	 (select IFNULL(count(rating),0) from tr_class_rating where id_class = ".$this->db->escape($idclass)." and rating = '5' and active = '1' ) rat5
 	");
 	$this->db->from("tr_class_rating");
 	$groupingratting = $this->db->get()->row_array();
