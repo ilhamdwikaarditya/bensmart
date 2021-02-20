@@ -7,7 +7,7 @@ $user_details = $this->user_model->get_user($this->session->userdata('id_user'),
 
 		<!-- Brand -->
 		<a class="navbar-brand" href="<?php echo site_url() ?>">
-			<img src="<?php echo base_url() . 'assets/frontend/bensmart/img/logo_text_bensmart.png' ?>" class="navbar-brand-img" height="17" alt="...">
+			<img src="<?php echo base_url() . 'assets/frontend/bensmart/img/logo_text_bensmart.png' ?>" class="navbar-brand-img mt-n3" height="20" alt="...">
 		</a>
 
 		<!-- Toggler -->

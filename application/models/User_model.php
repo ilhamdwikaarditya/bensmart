@@ -41,7 +41,7 @@ class User_model extends CI_Model {
         $this->db->join('tr_class_materi_section d','a.id_class = d.id_class', 'left');
         $this->db->join('tr_class_materi_detail e','d.id_class_materi_section = e.id_class_materi_section', 'left');
         $this->db->join('ref_mentor f','c.id_mentor = f.id_mentor', 'left');
-        $this->db->where('a.active', '1');
+        $this->db->where('a.active', '3');
 		$this->db->where('x.cuser', $id_user);
 		$this->db->group_by('a.id_class');
         return $this->db->get();

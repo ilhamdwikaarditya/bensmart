@@ -35,7 +35,7 @@
 
 		<!-- Buttons -->
 		<div class="text-center text-md-left">
-		  <a href="<?php echo site_url('publik/class_all'); ?>" class="btn btn-primary shadow lift mr-1">
+		  <a href="<?php echo site_url('publik/class_all'); ?>" class="btn btn-primary btn-sm shadow lift mr-1">
 			Lihat seluruh kelas<i class="fe fe-arrow-right d-none d-md-inline ml-3"></i>
 		  </a>
 		</div>
@@ -382,7 +382,7 @@ foreach ($top_courses as $top_course):?>
                 </h4>
                 <!-- Text -->
                 <h6 class="text-muted">
-                  <?php echo strip_tags(html_entity_decode($top_course['desc_class'])); ?>
+                  <?php echo strip_tags(html_entity_decode($top_course['desc_short'])); ?>
                 </h6>
                <div class="row align-items-center">
                   <p>                
@@ -432,8 +432,22 @@ foreach ($top_courses as $top_course):?>
                       <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
                     </svg>
                     <h6 class="align-items-center pb-2 ml-1 text-gray-700">
-                      <b>4.6</b>
-                       (410 reviews)</h6>
+					<?php
+						$cek = $this->db->query("select a.id_class, count(b.id_class_rating) as cek_rating, sum(b.rating)/count(b.id_class_rating) as rating
+						from tr_class a
+						left join tr_class_rating b on a.id_class = b.id_class
+						where b.active = '1' and a.id_class = ".$top_course['id_class'].";");
+						$cek_rating = $cek->row()->cek_rating;
+						$rating = $cek->row()->rating;
+						// $cek_rating = $this->manajemen_kelas_model->rating_kelas($course['id_class'])->result_array();
+						?>
+						<?php if ($cek_rating == 0) {
+							echo "0.0 ( 0 Ulasan )";
+						} else {
+							echo number_format($rating,1)." ( ".$cek_rating." Ulasan )";
+						}
+						?>    
+					</h6>
                   </p>
                 </div>
               </div>
@@ -482,7 +496,7 @@ foreach ($top_courses as $top_course):?>
 		</p>
 
 		<!-- Button -->
-		<a href="<?php echo site_url('home/login'); ?>" target="" class="btn btn-primary lift">
+		<a href="<?php echo site_url('home/login'); ?>" target="" class="btn btn-primary btn-sm lift">
 		  Masuk Kelas <i class="fe fe-arrow-right"></i>
 		</a>
 

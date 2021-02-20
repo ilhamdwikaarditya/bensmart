@@ -116,11 +116,24 @@ class Master_model extends CI_Model
         return $materi_details['id_materi_group'];
     }
 
+    public function get_materi_group_sub_id($id = "")
+    {
+        $materi_details = $this->db->get_where('ref_materi_group_sub', array('id_materi_group_sub' => $id))->row_array();
+        return $materi_details['id_materi_group_sub'];
+    }
+
     public function get_materi_group_sub_by_id($id_materi_group_sub)
     {
         $this->db->from("ref_materi_group_sub a");
         $this->db->join('ref_materi_group b', 'a.id_materi_group = b.id_materi_group', 'left');
         $this->db->where('a.id_materi_group_sub', $id_materi_group_sub);
+        return $this->db->get();
+    }
+
+    public function get_materi_group_sub($id = 0)
+    {
+        $this->db->from("ref_materi_group_sub a");
+        $this->db->where('a.id_materi_group', $id);
         return $this->db->get();
     }
 

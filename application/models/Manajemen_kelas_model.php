@@ -102,6 +102,25 @@ class Manajemen_kelas_model extends CI_Model
 			return $this->db->get();
         
     }
+
+    public function rating_kelas($id = 0) {  
+        $this->db->select("a.id_class, a.nm_class, count(b.id_class_rating) as cek_rating");
+        $this->db->from('tr_class a');
+        $this->db->join('tr_class_rating b', 'a.id_class = b.id_class', 'left');
+        $this->db->where("b.active = '1'");
+        $this->db->where('a.id_class',$id);
+        $this->db->group_by('a.id_class');
+        return $this->db->get();
+    }
+
+    public function get_rating_kelas($id = 0) {     
+        $this->db->select("avg(rating) as rating");
+        $this->db->from('tr_class_rating a');
+        $this->db->where("a.active = '1'");
+        $this->db->where('a.id_class',$id);
+        $this->db->group_by('a.id_class');
+        return $this->db->get();  
+    }
 	
 	public function get_mentor($mentor_id = 0) {
 		$this->db->select("a.id_mentor, a.id_user, b.firstname, b.lastname");
@@ -134,7 +153,7 @@ class Manajemen_kelas_model extends CI_Model
 
     public function get_materi_detail($type_by, $id) {
         if ($type_by == 'section') {
-            return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_section' => $id));
+            return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_section' => $id, 'active' => '3'));
         } elseif ($type_by == 'detail') {
             return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_detail' => $id));
         }

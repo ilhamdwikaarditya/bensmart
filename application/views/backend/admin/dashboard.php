@@ -40,7 +40,7 @@
                             <div class="card shadow-none m-0">
                                 <div class="card-body text-center">
                                     <i class="dripicons-archive text-muted" style="font-size: 24px;"></i>
-                                    <h3><span><?php echo $number_of_courses; ?></span></h3>
+                                    <h3><span><?php echo $count_kelas; ?></span></h3>
                                     <p class="text-muted font-15 mb-0">Jumlah Kelas</p>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                             <div class="card shadow-none m-0 border-left">
                                 <div class="card-body text-center">
                                     <i class="dripicons-camcorder text-muted" style="font-size: 24px;"></i>
-                                    <h3><span><?php echo $number_of_lessons; ?></span></h3>
+                                    <h3><span><?php echo $count_materi; ?></span></h3>
                                     <p class="text-muted font-15 mb-0">Jumlah Materi</p>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                             <div class="card shadow-none m-0 border-left">
                                 <div class="card-body text-center">
                                     <i class="dripicons-network-3 text-muted" style="font-size: 24px;"></i>
-                                    <h3><span><?php echo $number_of_enrolment; ?></span></h3>
+                                    <h3><span><?php echo $count_terjual; ?></span></h3>
                                     <p class="text-muted font-15 mb-0">Kelas Terjual</p>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                             <div class="card shadow-none m-0 border-left">
                                 <div class="card-body text-center">
                                     <i class="dripicons-user-group text-muted" style="font-size: 24px;"></i>
-                                    <h3><span><?php echo $number_of_students; ?></span></h3>
+                                    <h3><span><?php echo $count_member; ?></span></h3>
                                     <p class="text-muted font-15 mb-0">Jumlah Member</p>
                                 </div>
                             </div>

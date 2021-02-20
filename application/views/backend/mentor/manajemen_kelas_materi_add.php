@@ -100,7 +100,7 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section('class', $id_
                                                                                     <?php
                                                                                     $lesson_counter++; // Keeps track of number of lesson
                                                                                     ?>
-                                                                                    <?php echo 'Materi' . ' ' . $lesson_counter; ?>
+                                                                                    <?php echo 'Materi' . ' ' . $lesson['position'];; ?>
                                                                                 </span>: <?php echo $lesson['nm_class_materi_detail']; ?>
                                                                             </h5>
                                                                         </div>
@@ -117,7 +117,7 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section('class', $id_
                                                                                     <?php
                                                                                     $lesson_counter++; // Keeps track of number of lesson
                                                                                     ?>
-                                                                                    <?php echo 'Materi' . ' ' . $lesson_counter; ?>
+                                                                                    <?php echo 'Materi' . ' ' . $lesson['position'];; ?>
                                                                                 </span>: <?php echo $lesson['nm_class_materi_detail']; ?>
                                                                             </h5>
                                                                         </div>
@@ -135,7 +135,7 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section('class', $id_
                                                                                     <?php
                                                                                     $lesson_counter++; // Keeps track of number of lesson
                                                                                     ?>
-                                                                                    <?php echo 'Materi' . ' ' . $lesson_counter; ?>
+                                                                                    <?php echo 'Materi' . ' ' . $lesson['position'];; ?>
                                                                                 </span>: <?php echo $lesson['nm_class_materi_detail']; ?>
                                                                             </h5>
                                                                         </div>
@@ -152,7 +152,7 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section('class', $id_
                                                                                     <?php
                                                                                     $lesson_counter++; // Keeps track of number of lesson
                                                                                     ?>
-                                                                                    <?php echo 'Materi' . ' ' . $lesson_counter; ?>
+                                                                                    <?php echo 'Materi' . ' ' . $lesson['position']; ?>
                                                                                 </span>: <?php echo $lesson['nm_class_materi_detail']; ?>
                                                                             </h5>
                                                                         </div>

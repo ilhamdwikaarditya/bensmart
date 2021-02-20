@@ -59,7 +59,7 @@ class Publik extends CI_Controller
         $layout = $this->session->userdata('layout');
         $selected_jenjang = "all";
         $selected_materi = "all";
-        $selected_materisub = "all";
+        $selected_materi_sub = "all";
         $selected_price = "all";
         $selected_rating = "all";
 
@@ -73,6 +73,10 @@ class Publik extends CI_Controller
             $selected_materi = $this->master_model->get_materi_group_id($_GET['materi']);
         }
 
+        if (isset($_GET['materi_sub']) && !empty($_GET['materi_sub'] && $_GET['materi_sub'] != "all")) {
+            $selected_materi_sub = $this->master_model->get_materi_group_sub_id($_GET['materi_sub']);
+        }
+
         // Get the selected price
         if (isset($_GET['price']) && !empty($_GET['price'])) {
             $selected_price = $_GET['price'];
@@ -83,20 +87,20 @@ class Publik extends CI_Controller
             $selected_rating = $_GET['rating'];
         }
 
-        if ($selected_jenjang == "all" && $selected_materi == "all" && $selected_materisub == "all" && $selected_price == "all" && $selected_rating == 'all') {
+        if ($selected_jenjang == "all" && $selected_materi == "all" && $selected_materi_sub == "all" && $selected_price == "all" && $selected_rating == 'all') {
             $this->db->where('active', '1');
             $total_rows = $this->db->get('tr_class')->num_rows();
             $config = array();
             $config = pagintaion($total_rows, 6);
             $config['base_url']  = site_url('publik/class_all/');
             $this->pagination->initialize($config);
-            $this->db->select("a.*, b.kd_jenjang, b.nm_jenjang, substring(desc_class, 1, 100) as desc_short, c.nm_mentor, count(e.id_class_materi_section) jmlmateri, ifnull(SEC_TO_TIME( SUM( TIME_TO_SEC(duration))),'00:00:00') as sumduration");
+            $this->db->select("a.*, b.kd_jenjang, b.nm_jenjang, substring(desc_class, 1, 100) as desc_short, count(e.id_class_materi_section) jmlmateri, ifnull(SEC_TO_TIME( SUM( TIME_TO_SEC(duration))),'00:00:00') as sumduration");
             $this->db->from('tr_class a');
             $this->db->join('ref_jenjang b', 'a.id_jenjang = b.id_jenjang', 'left');
-            $this->db->join('tr_class_mentor c','a.id_class = c.id_class', 'left');
+            // $this->db->join('tr_class_mentor c','a.id_class = c.id_class', 'left');
             $this->db->join('tr_class_materi_section d','a.id_class = d.id_class', 'left');
             $this->db->join('tr_class_materi_detail e','d.id_class_materi_section = e.id_class_materi_section', 'left');
-            $this->db->where('a.active', '1');
+            $this->db->where('a.active', '3');
             $this->db->group_by('a.id_class');
 		    $this->db->order_by('a.id_class','DESC');
             // $this->db->from('tr_class');
@@ -104,15 +108,10 @@ class Publik extends CI_Controller
             $page_data['courses'] = $this->db->get()->result_array();
             // $page_data['courses'] = $this->db->get('tr_class', $config['per_page'], $this->uri->segment(3))->result_array();
         } else {
-            // $total_rows = $this->db->get('tr_class')->num_rows();
-            // $config = array();
-            // $config = pagintaion($total_rows, 6);
-            // $config['base_url']  = site_url('publik/courses/');
-            // $this->pagination->initialize($config);
-            $this->db->select("a.*, b.kd_jenjang, b.nm_jenjang, substring(desc_class, 1, 100) as desc_short, c.nm_mentor, count(e.id_class_materi_section) jmlmateri, ifnull(SEC_TO_TIME( SUM( TIME_TO_SEC(duration))),'00:00:00') as sumduration");
+            $this->db->select("a.*, b.kd_jenjang, b.nm_jenjang, substring(desc_class, 1, 100) as desc_short, count(e.id_class_materi_section) jmlmateri, ifnull(SEC_TO_TIME( SUM( TIME_TO_SEC(duration))),'00:00:00') as sumduration");
             $this->db->from('tr_class a');
             $this->db->join('ref_jenjang b', 'a.id_jenjang = b.id_jenjang', 'left');
-            $this->db->join('tr_class_mentor c','a.id_class = c.id_class', 'left');
+            // $this->db->join('tr_class_mentor c','a.id_class = c.id_class', 'left');
             $this->db->join('tr_class_materi_section d','a.id_class = d.id_class', 'left');
             $this->db->join('tr_class_materi_detail e','d.id_class_materi_section = e.id_class_materi_section', 'left');
 
@@ -124,10 +123,10 @@ class Publik extends CI_Controller
                 $this->db->where("a.id_materi_group = '$selected_materi'");
             }
 
-            if ($selected_materisub != "all") {
-                $this->db->where("a.id_materi_group_sub = '$selected_jenjang'");
+            if ($selected_materi_sub != "all") {
+                $this->db->where("a.id_materi_group_sub = '$selected_materi_sub'");
             }
-            $this->db->where('a.active', '1');
+            $this->db->where('a.active', '3');
             $this->db->group_by('a.id_class');
 		    $this->db->order_by('a.id_class','DESC');
             $page_data['courses'] = $this->db->get()->result_array();
@@ -140,7 +139,7 @@ class Publik extends CI_Controller
         $page_data['layout']     = $layout;
         $page_data['selected_jenjang']    = $selected_jenjang;
         $page_data['selected_materi']     = $selected_materi;
-        // $page_data['selected_materisub']  = $selected_materisub;
+        $page_data['selected_materi_sub']  = $selected_materi_sub;
         $page_data['selected_price']      = $selected_price;
         $page_data['selected_rating']     = $selected_rating;
         $this->load->view('frontend/' . get_frontend_settings('theme') . '/index', $page_data);

@@ -130,7 +130,7 @@ isset($id_class_materi_detail) ? "" : $id_class_materi_detail = "0";
               <!-- Heading -->
               <h6 class="font-weight-bold text-uppercase mb-3" style="font-size:15px">
                 <!-- <a class="list-link text-reset" href="<?php echo base_url('user/dashboard'); ?>"> -->
-                  Daftar Materi
+                Daftar Materi
                 <!-- </a> -->
               </h6>
               <hr>
@@ -191,11 +191,14 @@ isset($id_class_materi_detail) ? "" : $id_class_materi_detail = "0";
               </div>
               <div class="col-auto">
                 <?php
-                if (empty($cekmateri)) { ?>
-                  <a href="<?php echo base_url() . 'user/tandai_materi/' . $course['id_class'] . '/' . $id_class_materi_detail . '/' . $this->session->userdata('id_user') ?>" class="btn btn-primary btn-xs ml-auto">
-                    Tandai Selesai<i class="fe fe-check-circle d-none d-md-inline ml-3"></i>
-                  </a>
+                if (empty($cekmateri)) {
+                  if ($id_class_materi_detail != '0') { ?>
+                    <button type="button" class="btn btn-primary btn-xs ml-auto disablebutton" onClick="blockDoubleClick()">Tandai Selesai<i class="fe fe-check-circle d-none d-md-inline ml-3"></i></button>
+                    <!-- <a href="<?php echo base_url() . 'user/tandai_materi/' . $course['id_class'] . '/' . $id_class_materi_detail . '/' . $this->session->userdata('id_user') ?>" class="btn btn-primary btn-xs ml-auto block">
+                      Tandai Selesai<i class="fe fe-check-circle d-none d-md-inline ml-3"></i>
+                    </a> -->
                 <?php }
+                }
                 ?>
               </div>
             </div>
@@ -307,5 +310,11 @@ isset($id_class_materi_detail) ? "" : $id_class_materi_detail = "0";
     urlSuffix = "materi=" + selectedMateri;
     var url = urlPrefix + urlSuffix;
     return url;
+  }
+
+  function blockDoubleClick() {
+    $('.disablebutton').prop('disabled', true);
+    var url = '<?php echo base_url() . 'user/tandai_materi/' . $course['id_class'] . '/' . $id_class_materi_detail . '/' . $this->session->userdata('id_user') ?>'
+    window.location.href = url;
   }
 </script>

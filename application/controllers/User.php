@@ -111,7 +111,42 @@ class User extends CI_Controller {
             redirect(site_url('login'), 'refresh');
         }
 
-        $id_class_materi_detail = "0";
+        $id_user = $this->session->userdata('id_user');
+        $cek = $this->db->query("select a.id_class_materi_detail, b.position from tr_class_materi_member a 
+        left join tr_class_materi_detail b on a.id_class_materi_detail = b.id_class_materi_detail
+        left join tr_class_materi_section c on b.id_class_materi_section = c.id_class_materi_section
+        where c.id_class = '$id_class' and a.cuser = '$id_user' and b.active = '3'
+        group by a.id_class_materi_detail order by b.position desc limit 1");
+        @$id_class_materi_detail_akhir = $cek->row()->id_class_materi_detail;
+        @$position_akhir = $cek->row()->position;
+
+        if(!empty($id_class_materi_detail_akhir)){
+            $sql = $this->db->query("select a.id_class, b.nm_class, c.id_class_materi_section, c.nm_class_materi_section, d.* from tr_class_member a
+            left join tr_class b on a.id_class = b.id_class
+            left join tr_class_materi_section c on a.id_class = c.id_class
+            left join tr_class_materi_detail d on c.id_class_materi_section = d.id_class_materi_section
+            where a.id_class = '$id_class' and a.cuser = '$id_user' and d.active = '3' and d.position > $position_akhir order by d.position limit 1;");
+            @$materi_next = $sql->row()->id_class_materi_detail;
+            if(!empty($materi_next)){
+                $id_class_materi_detail = $materi_next;
+            } else {
+                $sql = $this->db->query("select a.id_class, b.nm_class, c.id_class_materi_section, c.nm_class_materi_section, d.* from tr_class_member a
+                left join tr_class b on a.id_class = b.id_class
+                left join tr_class_materi_section c on a.id_class = c.id_class
+                left join tr_class_materi_detail d on c.id_class_materi_section = d.id_class_materi_section
+                where a.id_class = '$id_class' and a.cuser = '$id_user' and d.active = '3' limit 1;");
+                $materi_awal = $sql->row()->id_class_materi_detail;
+                $id_class_materi_detail = $materi_awal;
+            }
+        } else {
+            $sql = $this->db->query("select a.id_class, b.nm_class, c.id_class_materi_section, c.nm_class_materi_section, d.* from tr_class_member a
+            left join tr_class b on a.id_class = b.id_class
+            left join tr_class_materi_section c on a.id_class = c.id_class
+            left join tr_class_materi_detail d on c.id_class_materi_section = d.id_class_materi_section
+            where a.id_class = '$id_class' and a.cuser = '$id_user' and d.active = '3' limit 1;");
+            $materi_awal = $sql->row()->id_class_materi_detail;
+            $id_class_materi_detail = $materi_awal;
+        }
 
         // Get materi
         if (isset($_GET['materi']) && !empty($_GET['materi'])) {
@@ -127,7 +162,7 @@ class User extends CI_Controller {
         $this->db->join('tr_class_materi_section d','a.id_class = d.id_class', 'left');
         $this->db->join('tr_class_materi_detail e','d.id_class_materi_section = e.id_class_materi_section', 'left');
         $this->db->join('ref_mentor f','c.id_mentor = f.id_mentor', 'left');
-        $this->db->where('a.active', '1');
+        $this->db->where('a.active', '3');
         $this->db->where('a.id_class', $id_class);
         $page_data['course']   = $this->db->get()->row_array();
         $page_data['id_class_materi_detail']   = $id_class_materi_detail;
@@ -143,7 +178,23 @@ class User extends CI_Controller {
         $page_data['page_title'] = 'Kelas saya';
         $page_data['id_class_materi_detail'] = $id_class_materi_detail;
         $this->manajemen_kelas_model->add_tandai_materi($id_class_materi_detail, $id_user);
-        redirect(site_url('user/kelas_diikuti_isi/'.$id_class.'?materi='.$id_class_materi_detail));
+        $cek = $this->db->query("select position from tr_class_materi_detail where id_class_materi_detail = '$id_class_materi_detail';");
+        @$position = $cek->row()->position;
+        if(!empty($position)){
+            $sql = $this->db->query("select a.id_class, b.nm_class, c.id_class_materi_section, c.nm_class_materi_section, d.* from tr_class_member a
+            left join tr_class b on a.id_class = b.id_class
+            left join tr_class_materi_section c on a.id_class = c.id_class
+            left join tr_class_materi_detail d on c.id_class_materi_section = d.id_class_materi_section
+            where a.id_class = '$id_class' and a.cuser = '$id_user' and d.active = '3' and d.position > $position order by c.position, d.position limit 1;");
+            @$id_next = $sql->row()->id_class_materi_detail;
+            if(!empty($id_next)){
+                redirect(site_url('user/kelas_diikuti_isi/'.$id_class.'?materi='.$id_next));
+            } else {
+                redirect(site_url('user/kelas_diikuti_isi/'.$id_class.'?materi='.$id_class_materi_detail));
+            }
+        } else {
+            redirect(site_url('user/kelas_diikuti_isi/'.$id_class.'?materi='.$id_class_materi_detail));
+        }
     }
 
     public function rating_materi($id_class, $id_class_materi_detail) {

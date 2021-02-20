@@ -27,7 +27,20 @@ class Admin extends CI_Controller {
         if ($this->session->userdata('admin_login') != true) {
             redirect(site_url('login'), 'refresh');
         }
+
+        $count_kelas = $this->db->query("select count(id_class) as jml_class from tr_class where active = '3'");
+        $count_materi = $this->db->query("select count(a.id_class_materi_detail) as jml_materi from tr_class_materi_detail a 
+        left join tr_class_materi_section b on a.id_class_materi_section = b.id_class_materi_section 
+        left join tr_class c on b.id_class = c.id_class
+        where c.active = '3' and a.active = '3';");
+        $count_terjual = $this->db->query("select count(id_class) as jml_terjual from tr_class_member");
+        $count_member = $this->db->query("select count(id_user) as jml_member from ref_user where id_level = '3'");
+
         $page_data['page_name'] = 'dashboard';
+        $page_data['count_kelas'] = $count_kelas->row()->jml_class;
+        $page_data['count_materi'] = $count_materi->row()->jml_materi;
+        $page_data['count_terjual'] = $count_terjual->row()->jml_terjual;
+        $page_data['count_member'] = $count_member->row()->jml_member;
         $page_data['page_title'] = get_phrase('dashboard');
         $this->load->view('backend/index.php', $page_data);
     }
