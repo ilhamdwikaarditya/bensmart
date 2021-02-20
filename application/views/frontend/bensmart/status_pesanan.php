@@ -47,6 +47,34 @@
 
                 <!-- Form -->
 				Belum ada kelas yang dipesan.
+				
+				<div class="list-group list-group-flush">
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          <a href="#!">Invoice #91240</a>
+                        </p>
+
+                        <!-- Text -->
+                        <small class="text-gray-700">
+                          Billed Apr, 24, 2020
+                        </small>
+
+                      </div>
+                      <div class="col-auto">
+
+                        <!-- Button -->
+                        <button class="btn btn-xs btn-outline-white">
+                          Pay now
+                        </button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
               </div>
             </div>

@@ -731,7 +731,8 @@ if (isset($id_materi_group_sub)) {
         <!-- Card Left -->
         <div class="col-lg-9 mb-5">
           <?php foreach ($courses as $course) : ?>
-            <div class="card card-row shadow-light-lg mb-6">
+            <a href="<?php echo base_url() . 'publik/desc_class/' . $course['id_class'] ?>" class="font-weight-bold mt-2">
+			<div class="card card-row shadow-light-lg mb-6">
               <div class="row no-gutters">
                 <!-- GAMBAR -->
                 <div class="col-12 col-md-4">
@@ -754,12 +755,9 @@ if (isset($id_materi_group_sub)) {
                 </div>
                 <!-- TEXT -->
                 <div class="col-12 col-md-8">
-                  <div class="px-6">
+				  <div class="px-6">
                     <div class="d-flex justify-content-between">
-
-                      <a href="<?php echo base_url() . 'publik/desc_class/' . $course['id_class'] ?>" class="font-weight-bold mt-2">
                         <h4 style="color:black;"><?php echo $course['nm_class'] ?></h4>
-                      </a>
                     </div>
 
                     <h6 class="text-muted mt-0" style="font-size: 14px;">
@@ -834,6 +832,7 @@ if (isset($id_materi_group_sub)) {
                 </div>
               </div> <!-- / .row -->
             </div>
+			</a>
           <?php endforeach; ?>
 
         </div>

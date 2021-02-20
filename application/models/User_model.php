@@ -403,4 +403,120 @@ class User_model extends CI_Model {
             redirect(site_url('admin/instructor_application'), 'refresh');
         }
     }
+	
+	public function add_chart($jenis,$corb) {
+        $id_user = $this->session->userdata('id_user');
+		if($jenis == 'class'){
+			$duplicate_chart_check = $this->db->get_where('tr_chart', array('id_user' => $id_user, 'id_class' => $corb));
+				if ($duplicate_chart_check->num_rows() > 0) {
+					$this->session->set_flashdata('error_message', 'Kelas sudah ada di chart');
+				}else{
+					$data['id_user'] = html_escape($id_user);
+					$data['id_class'] = html_escape($corb);
+					$data['id_bundling'] = '0';
+				}
+        }else{
+			$duplicate_chart_check = $this->db->get_where('tr_chart', array('id_user' => $id_user, 'id_bundling' => $corb));
+				if ($duplicate_chart_check->num_rows() > 0) {
+					$this->session->set_flashdata('error_message', 'Kelas sudah ada di chart');
+				}else{
+					$data['id_user'] = html_escape($id_user);
+					$data['id_class'] = '0';
+					$data['id_bundling'] = html_escape($corb);
+				}
+		}
+		
+		$this->db->insert('tr_chart', $data);
+		$chart_id = $this->db->insert_id();
+		return $chart_id;
+    }
+	
+	public function delete_chart($jenis="",$corb="") {
+		$id_user = $this->session->userdata('id_user');
+		if($jenis == 'class'){
+			$this->db->where('id_user', $id_user);
+			$this->db->where('id_class', $corb);
+			$this->db->delete('tr_chart');
+		}else{
+			$this->db->where('id_user', $id_user);
+			$this->db->where('id_bundling', $corb);
+			$this->db->delete('tr_chart');
+		}
+		return $corb;
+    }
+	
+	public function update_check_cart($stscheck="",$jenis="",$corb="") {
+		$id_user = $this->session->userdata('id_user');
+		if($jenis == 'class'){
+			$this->db->where('id_user', $id_user);
+			$this->db->where('id_class', $corb);
+			$this->db->update('tr_chart',array('status_checked' => $stscheck));
+		}else{
+			$this->db->where('id_user', $id_user);
+			$this->db->where('id_bundling', $corb);
+			$this->db->update('tr_chart',array('status_checked' => $stscheck));
+		}
+		return $corb;
+    }
+	
+	public function add_class_member($listclass,$totprice) {
+		$id_user = $this->session->userdata('id_user');
+		$digitbooking = str_pad(rand(0, pow(10, 3)-1), 3, '0', STR_PAD_LEFT);
+		
+		if(strpos($listclass,",") === false){
+			$data['id_class'] = html_escape($listclass);
+			$data['cuser'] = html_escape($id_user);
+		
+			$this->db->insert('tr_class_member', $data);
+			$chart_id = $this->db->insert_id();
+			
+			if($chart_id){
+				$kd_booking = 'BEN-'.date('Ym').$digitbooking;
+				
+				$pay['id_class_member'] = $chart_id;
+				$pay['type_payment'] = '1';
+				$pay['kd_booking'] = $kd_booking;
+				$pay['amount'] = $totprice;
+				$pay['cuser'] = html_escape($id_user);
+				
+				$this->db->insert('tr_payment', $pay);
+				$pay_id = $this->db->insert_id();
+				
+				$this->db->where('id_class', $exps[$i]);
+				$this->db->update('tr_chart', array('booked' => '1'));
+			}
+			
+		}else{
+			
+			$exps = explode(",", $listclass);
+			for ($i = 0; $i < count($exps); $i++) {
+				$data['id_class'] = html_escape($exps[$i]);
+				$data['cuser'] = html_escape($id_user);
+			
+				$this->db->insert('tr_class_member', $data);
+				$chart_id = $this->db->insert_id();
+				
+				if($chart_id){
+					
+					$kd_booking = 'BEN-'.date('Ym').$digitbooking;
+					$pay['id_class_member'] = $chart_id;
+					$pay['type_payment'] = '1';
+					$pay['kd_booking'] = $kd_booking;
+					$pay['amount'] = $totprice;
+					$pay['cuser'] = html_escape($id_user);
+					
+					$this->db->insert('tr_payment', $pay);
+					$pay_id = $this->db->insert_id();
+					
+					
+					$this->db->where('id_class', $exps[$i]);
+					$this->db->update('tr_chart', array('booked' => '1'));
+				}
+			}
+			
+		}
+		
+		return $listclass;
+    }
+	
 }

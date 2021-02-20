@@ -345,7 +345,8 @@
 <?php $top_courses = $this->crud_model->get_top_courses()->result_array();
 
 foreach ($top_courses as $top_course):?>
-          <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <a href="<?php echo base_url() . 'publik/desc_class/' . $top_course['id_class'] ?>" >
+		  <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
             <!-- Card -->
             <div class="card shadow-light-lg mb-6 mb-md-4 lift lift-lg">
               <!-- Image -->
@@ -436,11 +437,12 @@ foreach ($top_courses as $top_course):?>
                   </p>
                 </div>
               </div>
-              <a href="#" class="card-btn btn btn-block btn-sm btn-primary mt-n4">
+              <a href="<?php echo base_url() . 'publik/desc_class/' . $top_course['id_class'] ?>" class="card-btn btn btn-block btn-sm btn-primary mt-n4">
                 Ikuti Kelas
               </a>
             </div>
           </div>
+		  </a>
 <?php endforeach; ?>
           
           

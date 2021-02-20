@@ -976,5 +976,11 @@
     "password_updated": "Password updated",
     "firstname": "Firstname",
     "lastname": "Lastname",
-    "mismatch_password": "Mismatch password"
+    "mismatch_password": "Mismatch password",
+    "testimoni": "Testimoni",
+    "tambah_testimoni": "Tambah testimoni",
+    "edit_testimoni": "Edit testimoni",
+    "bank": "Bank",
+    "tambah_bank": "Tambah bank",
+    "edit_bank": "Edit bank"
 }

@@ -251,6 +251,90 @@ class Master extends CI_Controller {
         }
     }
 	
+	public function testimoni($param1 = "", $param2 = "") {
+		
+        if ($this->session->userdata('admin_login') != true) {
+            redirect(site_url('login'), 'refresh');
+        }
+        if ($param1 == "add") {
+            $this->master_model->add_testimoni();
+            redirect(site_url('master/testimoni'), 'refresh');
+        }
+        elseif ($param1 == "edit") {
+            $this->master_model->edit_testimoni($param2);
+            redirect(site_url('master/testimoni'), 'refresh');
+        }
+        elseif ($param1 == "delete") {
+            $this->master_model->delete_testimoni($param2);
+            redirect(site_url('master/testimoni'), 'refresh');
+        }
+
+        $page_data['page_name'] = 'testimoni';
+        $page_data['page_title'] = 'Testimoni';
+        $page_data['testimoni'] = $this->master_model->get_testimoni($param2);
+        $this->load->view('backend/index', $page_data);
+    }
+	
+	public function testimoni_form($param1 = "", $param2 = "") {
+        if ($this->session->userdata('admin_login') != true) {
+            redirect(site_url('login'), 'refresh');
+        }
+
+        if ($param1 == 'add_testimoni_form') {
+            $page_data['page_name'] = 'testimoni_add';
+            $page_data['page_title'] = 'Tambah Testimoni';
+            $this->load->view('backend/index', $page_data);
+        }
+        elseif ($param1 == 'edit_testimoni_form') {
+            $page_data['page_name'] = 'testimoni_edit';
+            $page_data['testimoni_id'] = $param2;
+            $page_data['page_title'] = 'Edit Testimoni';
+            $this->load->view('backend/index', $page_data);
+        }
+    }
+	
+	public function bank($param1 = "", $param2 = "") {
+		
+        if ($this->session->userdata('admin_login') != true) {
+            redirect(site_url('login'), 'refresh');
+        }
+        if ($param1 == "add") {
+            $this->master_model->add_bank();
+            redirect(site_url('master/bank'), 'refresh');
+        }
+        elseif ($param1 == "edit") {
+            $this->master_model->edit_bank($param2);
+            redirect(site_url('master/bank'), 'refresh');
+        }
+        elseif ($param1 == "delete") {
+            $this->master_model->delete_bank($param2);
+            redirect(site_url('master/bank'), 'refresh');
+        }
+
+        $page_data['page_name'] = 'bank';
+        $page_data['page_title'] = 'Bank';
+        $page_data['bank'] = $this->master_model->get_bank($param2);
+        $this->load->view('backend/index', $page_data);
+    }
+	
+	public function bank_form($param1 = "", $param2 = "") {
+        if ($this->session->userdata('admin_login') != true) {
+            redirect(site_url('login'), 'refresh');
+        }
+
+        if ($param1 == 'add_bank_form') {
+            $page_data['page_name'] = 'bank_add';
+            $page_data['page_title'] = 'Tambah Bank';
+            $this->load->view('backend/index', $page_data);
+        }
+        elseif ($param1 == 'edit_bank_form') {
+            $page_data['page_name'] = 'bank_edit';
+            $page_data['bank_id'] = $param2;
+            $page_data['page_title'] = 'Edit Bank';
+            $this->load->view('backend/index', $page_data);
+        }
+    }
+	
 	public function mentor($param1 = "", $param2 = "") {
 		
         if ($this->session->userdata('admin_login') != true) {
