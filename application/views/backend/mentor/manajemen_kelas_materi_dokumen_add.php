@@ -16,7 +16,7 @@ $materi_detail = $this->manajemen_kelas_model->get_materi_detail('detail', $id_c
             <div class="card-body">
 
                 <h4 class="header-title mb-3">Form Tambah Materi Dokumen
-                    <a href="javascript::" onclick="window.history.back()" class="alignToTitle btn btn-outline-secondary btn-rounded btn-sm"> <i class=" mdi mdi-keyboard-backspace"></i> Kembali</a>
+                    <a href="<?php echo site_url('mentor/manajemen_kelas_form/detmateri_manajemen_kelas_form/'.$id_class); ?>" class="alignToTitle btn btn-outline-secondary btn-rounded btn-sm"> <i class=" mdi mdi-keyboard-backspace"></i> Kembali</a>
                 </h4>
 
                 <div id="progressbarwizard">
