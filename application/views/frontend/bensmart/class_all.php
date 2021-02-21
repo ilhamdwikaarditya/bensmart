@@ -30,7 +30,7 @@ if (isset($id_materi_group_sub)) {
       <div class="row mt-8">
 
         <!-- Card Right -->
-        <div class="col-lg-3" data-aos="fade-up">
+        <div class="col-lg-3">
           <!-- Card -->
           <div class="card shadow-light-lg mb-6 mb-md-4 lift lift-lg">
             <div class="card-header filter-card-header">

@@ -131,7 +131,11 @@ class Manajemen_kelas_model extends CI_Model
 
     public function get_materi_section($type_by, $id) {
         if ($type_by == 'class') {
-            return $this->db->get_where('tr_class_materi_section', array('id_class' => $id));
+            $this->db->from("tr_class_materi_section a");
+			$this->db->where('a.id_class',$id);
+			$this->db->order_by("a.position");
+            return $this->db->get();
+            // return $this->db->get_where('tr_class_materi_section', array('id_class' => $id));
         } elseif ($type_by == 'section') {
             return $this->db->get_where('tr_class_materi_section', array('id_class_materi_section' => $id));
         }
