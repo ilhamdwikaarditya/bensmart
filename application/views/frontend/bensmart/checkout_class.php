@@ -111,7 +111,7 @@ foreach ($cart_datas as $cart_data):?>
 
             </div>
           </div>
-<input id="listclass" type="hidden" value="<?php echo $listclass['listclass']; ?>" readonly>
+<input id="listclass" type="text" value="<?php echo $listclass['listclass']; ?>" readonly>
           <!-- Card -->
           <div class="card card-bleed shadow-light-lg mb-6">
             <div class="card-header">
