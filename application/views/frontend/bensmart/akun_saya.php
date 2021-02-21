@@ -93,7 +93,17 @@ $data_akun = $this->db->get_where('ref_user', array('id_user' => $this->session-
                       </div>
 
                     </div>
-					
+					<?php if(!empty($this->session->flashdata('file'))){ ?>
+					<div class="col-12 col-md-12">
+						<span class="badge badge-pill badge-danger">
+						  <span class="h6 text-uppercase font-weight-bold"><?php echo $this->session->flashdata('file'); ?></span>
+							<?php $this->session->unset_userdata('file'); ?>
+						</span>
+					</div>
+					<div class="col-12 col-md-12">
+						&nbsp;
+					</div>
+					<?php } ?>
 					<div class="col-12 col-md-2">
 						<div class="row align-items-center">
 						  <div class="col-auto">
@@ -112,7 +122,7 @@ $data_akun = $this->db->get_where('ref_user', array('id_user' => $this->session-
 							</p>
 							<!-- Text -->
 							<small class="text-gray-700">
-							  JPG dengan ukuran maks 1 Mb
+							  JPG dengan ukuran maks 2 Mb
 							</small>
 						  </div>
 					</div>

@@ -580,6 +580,7 @@ class Manajemen_kelas_model extends CI_Model
 			$this->db->from('tr_class_rating a');
 			$this->db->join('ref_user b', 'a.cuser = b.id_user');
 			$this->db->where('a.id_class',$id);
+			$this->db->where('a.active','1');
 			
 			return $this->db->get();
         

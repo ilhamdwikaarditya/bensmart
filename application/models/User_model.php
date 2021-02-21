@@ -246,7 +246,7 @@ class User_model extends CI_Model {
 
         $this->db->where('id_user', $user_id);
         $this->db->update('ref_user', $data);
-        $this->session->set_flashdata('flash_message', get_phrase('password_updated'));
+        $this->session->set_flashdata('notif', 'Password Berhasil Dirubah');
     }
 
 

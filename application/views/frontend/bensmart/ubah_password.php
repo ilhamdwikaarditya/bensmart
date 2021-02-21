@@ -48,6 +48,17 @@
                 <!-- Form -->
                 <form action="<?php echo site_url('user/manage_password/' .$this->session->userdata('id_user')); ?>" method="post">
                   <div class="row">
+					<?php if(!empty($this->session->flashdata('notif'))){ ?>
+					<div class="col-12 col-md-12">
+						<span class="badge badge-pill badge-info">
+						  <span class="h6 text-uppercase font-weight-bold"><?php echo $this->session->flashdata('notif'); ?></span>
+						  <?php $this->session->unset_userdata('notif'); ?>
+						</span>
+					</div>
+					<div class="col-12 col-md-12">
+						&nbsp;
+					</div>
+					<?php } ?>
                     <div class="col-12 col-md-12">
 
                       <div class="form-group">

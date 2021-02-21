@@ -45,7 +45,7 @@
               </div>
               <div class="card-body">
 <?php
-$this->db->select("a.kd_booking, f_formatTanggalindo(date(a.cdate)) dt , time(a.cdate) tm, b.status sts_pay");
+$this->db->select("a.kd_booking, date(a.cdate) dt , time(a.cdate) tm, b.status sts_pay");
 $this->db->from("tr_payment a");
 $this->db->join("tr_class_member b", "a.id_class_member = b.id_class_member");
 $this->db->where("b.cuser", $id_user);
@@ -69,7 +69,7 @@ if(empty($inv_datas)){
 
                         <!-- Text -->
                         <small class="text-gray-700">
-                          <?php echo $inv_data['dt']." - ".$inv_data['tm']; ?>
+                          <?php echo tanggal($inv_data['dt'])." - ".$inv_data['tm']; ?>
                         </small>
 
                       </div>

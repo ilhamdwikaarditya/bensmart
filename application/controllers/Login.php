@@ -124,8 +124,8 @@ class Login extends CI_Controller {
             }
 
         }else {
-            $this->session->set_flashdata('error_message', get_phrase('you_have_already_registered'));
-            redirect(site_url('home/login'), 'refresh');
+            $this->session->set_flashdata('notif', 'Email Anda Sudah Terdaftar');
+            redirect(site_url('home/login?sts=emailsudahterdaftar'), 'refresh');
         }
     }
 
