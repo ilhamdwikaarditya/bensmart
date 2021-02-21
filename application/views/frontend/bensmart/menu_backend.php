@@ -22,9 +22,15 @@
 		  <!-- List -->
 		  <ul class="card-list list text-gray-700 mb-6">
 			<li class="list-item">
-			  <a class="list-link text-reset" href="<?php echo base_url('user/kelas_diikuti'); ?>">
+			<?php if ($page_name == 'kelas_diikuti') { ?>
+				<a class="list-link text-warning" href="<?php echo base_url('user/kelas_diikuti'); ?>">
 				Kelas Diikuti
 			  </a>
+			<?php } else { ?>
+				<a class="list-link text-reset" href="<?php echo base_url('user/kelas_diikuti'); ?>">
+				Kelas Diikuti
+			  </a>
+			<?php }?>
 			</li>
 			<li class="list-item">
 			  <a class="list-link text-reset" href="<?php echo site_url('publik/class_all'); ?>" target="_blank">
@@ -32,9 +38,15 @@
 			  </a>
 			</li>
 			<li class="list-item">
-			  <a class="list-link text-reset" href="<?php echo base_url('user/status_pesanan'); ?>">
+			<?php if ($page_name == 'status_pesanan') { ?>
+				<a class="list-link text-warning" href="<?php echo base_url('user/status_pesanan'); ?>">
 				Status Pesanan
 			  </a>
+			<?php } else { ?>
+				<a class="list-link text-reset" href="<?php echo base_url('user/status_pesanan'); ?>">
+				Status Pesanan
+			  </a>
+			<?php }?>
 			</li>
 		  </ul>
 
@@ -46,14 +58,26 @@
 		  <!-- List -->
 		  <ul class="card-list list text-gray-700 mb-0">
 			<li class="list-item">
-			  <a class="list-link text-reset" href="<?php echo base_url('user/akun_saya'); ?>">
+			<?php if ($page_name == 'akun_saya') { ?>
+				<a class="list-link text-warning" href="<?php echo base_url('user/akun_saya'); ?>">
 				Akun saya
 			  </a>
+			<?php } else { ?>
+				<a class="list-link text-reset" href="<?php echo base_url('user/akun_saya'); ?>">
+				Akun saya
+			  </a>
+			<?php }?>
 			</li>
 			<li class="list-item">
-			  <a class="list-link text-reset" href="<?php echo base_url('user/ubah_password'); ?>">
+			<?php if ($page_name == 'ubah_password') { ?>
+				<a class="list-link text-warning" href="<?php echo base_url('user/ubah_password'); ?>">
 				Ubah Password
 			  </a>
+			<?php } else { ?>
+				<a class="list-link text-reset" href="<?php echo base_url('user/ubah_password'); ?>">
+				Ubah Password
+			  </a>
+			<?php }?>
 			</li>
 		  </ul>
 

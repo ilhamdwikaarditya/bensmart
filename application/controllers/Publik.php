@@ -135,7 +135,7 @@ class Publik extends CI_Controller
         }
 
         $page_data['page_name']  = "class_all";
-        $page_data['page_title'] = 'Deskripsi Kelas';
+        $page_data['page_title'] = 'Seluruh Kelas';
         $page_data['layout']     = $layout;
         $page_data['selected_jenjang']    = $selected_jenjang;
         $page_data['selected_materi']     = $selected_materi;

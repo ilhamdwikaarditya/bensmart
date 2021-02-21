@@ -73,7 +73,7 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section('class', $id_
                                                 <div class="col-xl-12">
                                                     <div class="card bg-light text-seconday on-hover-action mb-5" id="section-<?php echo $section['id_class_materi_section']; ?>">
                                                         <div class="card-body">
-                                                            <h5 class="card-title" class="mb-3" style="min-height: 45px;"><span class="font-weight-light"><?php echo 'Section' . ' ' . ++$key; ?></span>: <?php echo $section['nm_class_materi_section']; ?>
+                                                            <h5 class="card-title" class="mb-3" style="min-height: 45px;"><span class="font-weight-light"><?php echo 'Section' . ' ' . $section['position']; ?></span>: <?php echo $section['nm_class_materi_section']; ?>
                                                                 <div class="row justify-content-center alignToTitle float-right display-none" id="widgets-of-section-<?php echo $section['id_class_materi_section']; ?>">
                                                                     <button type="button" class="btn btn-outline-secondary btn-rounded btn-sm ml-1" name="button" onclick="showAjaxModal('<?php echo site_url('modal/popup/materi_section_edit/' . $section['id_class_materi_section'] . '/' . $id_class); ?>', 'Edit Materi Section')"><i class="mdi mdi-pencil-outline"></i> Edit Materi Section</button>
                                                                     <button type="button" class="btn btn-outline-secondary btn-rounded btn-sm ml-1" name="button" onclick="confirm_modal('<?php echo site_url('mentor/materi_section/' . $id_class . '/delete' . '/' . $section['id_class_materi_section']); ?>');"><i class="mdi mdi-window-close"></i> Hapus Materi Section</button>
@@ -82,7 +82,7 @@ $materi_section = $this->manajemen_kelas_model->get_materi_section('class', $id_
                                                             <div class="clearfix"></div>
                                                             <?php
                                                             // $lessons = $this->crud_model->get_lessons('section', $section['id'])->result_array();
-                                                            $lessons = $this->manajemen_kelas_model->get_materi_detail('section', $section['id_class_materi_section'])->result_array();
+                                                            $lessons = $this->manajemen_kelas_model->get_materi_detail_mentor('section', $section['id_class_materi_section'])->result_array();
                                                             foreach ($lessons as $index => $lesson) : ?>
                                                                 <div class="col-md-12">
                                                                     <!-- Portlet card -->

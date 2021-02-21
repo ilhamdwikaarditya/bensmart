@@ -7,7 +7,7 @@
 
             <!-- Heading -->
             <h1 class="font-weight-bold text-white mb-2">
-              Dashbord Member
+              Dashboard Member
             </h1>
 
           </div>

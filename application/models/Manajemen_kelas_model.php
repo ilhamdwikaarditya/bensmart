@@ -151,6 +151,15 @@ class Manajemen_kelas_model extends CI_Model
         // return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_section' => $id_class_materi_section));
     }
 
+    public function get_materi_detail_mentor($type_by, $id) {
+        if ($type_by == 'section') {
+            return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_section' => $id));
+        } elseif ($type_by == 'detail') {
+            return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_detail' => $id));
+        }
+        // return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_section' => $id_class_materi_section));
+    }
+
     public function get_materi_detail($type_by, $id) {
         if ($type_by == 'section') {
             return $this->db->get_where('tr_class_materi_detail', array('id_class_materi_section' => $id, 'active' => '3'));

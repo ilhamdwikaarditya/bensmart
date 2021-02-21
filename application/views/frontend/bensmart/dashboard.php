@@ -122,7 +122,7 @@ foreach ($class_datas as $class_data){
 		</h6>
 		<div class="progress">
 		  <div class="progress-bar bg-dark" style="width:<?php echo ($totsele / $totkelas)*100; ?>%">
-			<?php echo ($totsele / $totkelas)*100; ?>%
+			<?php echo number_format(($totsele / $totkelas)*100,2); ?>%
 		  </div>
 		</div>
 		<p class="small text-muted mt-1">

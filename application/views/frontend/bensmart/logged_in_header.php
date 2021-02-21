@@ -43,11 +43,11 @@ $user_details = $this->user_model->get_user($this->session->userdata('id_user'),
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" id="navbarLandings" href="#" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link" id="navbarLandings" href="<?php echo site_url(); ?>" aria-haspopup="true" aria-expanded="false">
 						Keunggulan
 					</a>
 				</li>
-				<li class="nav-item mt-3 ml-md-auto text-uppercase mb-0 position-relative d-flex">
+				<li class="nav-item mt-3 ml-md-auto mr-3 text-uppercase mb-0 position-relative d-flex">
             <style>
               li {
                 list-style: none;

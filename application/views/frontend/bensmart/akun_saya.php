@@ -10,7 +10,7 @@ $data_akun = $this->db->get_where('ref_user', array('id_user' => $this->session-
 
             <!-- Heading -->
             <h1 class="font-weight-bold text-white mb-2">
-              Dashbord Member
+              Dashboard Member
             </h1>
 
           </div>
@@ -130,7 +130,7 @@ $data_akun = $this->db->get_where('ref_user', array('id_user' => $this->session-
                     <div class="col-12 col-md-12">
 
                       <!-- Button -->
-                      <button class="btn btn-block btn-primary" type="submit">
+                      <button class="btn btn-block btn-primary btn-sm mt-7" type="submit">
                         Simpan
                       </button>
 
