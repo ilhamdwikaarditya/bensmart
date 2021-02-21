@@ -143,6 +143,8 @@ class Mentor extends CI_Controller {
 			$page_data['mentor'] = $this->manajemen_kelas_model->get_mentor()->result_array();
 			$page_data['page_name'] = 'manajemen_kelas_materi_dokumen_add';
             $page_data['id_class_materi_detail'] = $param2;
+            $sql = $this->db->query("select c.id_class from tr_class_materi_detail a left join tr_class_materi_section b on a.id_class_materi_section = b.id_class_materi_section left join tr_class c on b.id_class = c.id_class where a.id_class_materi_detail = '$param2'");
+            $page_data['id_class'] = $sql->row()->id_class;
             $page_data['page_title'] = 'Tambah Materi Detail Dokumen';
             $this->load->view('backend/index', $page_data);
         }
