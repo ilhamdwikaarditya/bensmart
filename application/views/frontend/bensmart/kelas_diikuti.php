@@ -44,6 +44,7 @@
           </div>
           <div class="card-body">
             <div class="list-group list-group-flush">
+            <?php if(!empty($my_class)){ ?>
               <?php
               foreach ($my_class as $course) : ?>
                 <a href="<?php echo base_url() . 'user/kelas_diikuti_isi/' . $course['id_class'] ?>" class="font-weight-bold mt-2 py-1 lift lift-lg" style="text-decoration:none;">
@@ -114,6 +115,10 @@
                   </div>
                 </a>
               <?php endforeach; ?>
+            <?php } else {
+              echo "Belum ada kelas yang diikuti.";
+            }?>
+              
             </div>
 
           </div>
