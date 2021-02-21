@@ -35,11 +35,11 @@ class Manajemen_kelas_model extends CI_Model
 			$this->db->select("a.id_class, nm_class, price, discount, nm_mapel, nm_jenjang, nm_materi_group, nm_materi_group_sub, group_concat(nm_mentor) nm_mentor, c.kd_jenjang, a.active");
 			$this->db->from('tr_class a');
 			// $this->db->join('tr_class a', 'a.id_class = x.id_class');
-			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub');
-			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang');
-			$this->db->join('ref_mapel d', 'a.id_mapel = d.id_mapel');
+			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub', 'left');
+			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang', 'left');
+			$this->db->join('ref_mapel d', 'a.id_mapel = d.id_mapel', 'left');
 			$this->db->join('tr_class_mentor e', 'a.id_class = e.id_class', 'left');
-			$this->db->join('ref_materi_group f', 'a.id_materi_group = f.id_materi_group');
+			$this->db->join('ref_materi_group f', 'a.id_materi_group = f.id_materi_group', 'left');
 			$this->db->where('e.id_mentor', $this->session->userdata('id_mentor'));
 			$this->db->group_by('a.id_class');
 			$this->db->order_by('a.id_class');
@@ -52,9 +52,9 @@ class Manajemen_kelas_model extends CI_Model
         }else{
 			$this->db->select("a.id_bundling, a.nm_bundling, price, discount, a.id_jenjang, nm_jenjang, a.id_materi_group, nm_materi_group, a.id_materi_group_sub, nm_materi_group_sub, c.kd_jenjang, a.active");
 			$this->db->from('tr_bundling a');
-			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub');
-			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang');
-			$this->db->join('ref_materi_group d', 'a.id_materi_group = d.id_materi_group');
+			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub', 'left');
+			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang', 'left');
+			$this->db->join('ref_materi_group d', 'a.id_materi_group = d.id_materi_group', 'left');
 			$this->db->group_by('a.id_bundling');
 			$this->db->order_by('a.id_bundling');	
 			return $this->db->get();
@@ -65,11 +65,11 @@ class Manajemen_kelas_model extends CI_Model
         if ($id > 0) {
             $this->db->select("a.id_bundling_detail, a.id_class, b.nm_class, b.price, b.discount, e.kd_jenjang, e.nm_jenjang, nm_materi_group, nm_materi_group_sub");
 			$this->db->from('tr_bundling_detail a');
-			$this->db->join('tr_class b', 'a.id_class = b.id_class');
-			$this->db->join('ref_materi_group c', 'b.id_materi_group = c.id_materi_group');
-			$this->db->join('ref_materi_group_sub d', 'b.id_materi_group_sub = d.id_materi_group_sub');
-			$this->db->join('ref_jenjang e', 'b.id_jenjang = e.id_jenjang');
-			$this->db->join('ref_mapel f', 'b.id_mapel = f.id_mapel');
+			$this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
+			$this->db->join('ref_materi_group c', 'b.id_materi_group = c.id_materi_group', 'left');
+			$this->db->join('ref_materi_group_sub d', 'b.id_materi_group_sub = d.id_materi_group_sub', 'left');
+			$this->db->join('ref_jenjang e', 'b.id_jenjang = e.id_jenjang', 'left');
+			$this->db->join('ref_mapel f', 'b.id_mapel = f.id_mapel', 'left');
 			$this->db->join('tr_class_mentor g', 'b.id_class = g.id_class', 'left');
 			$this->db->where('a.id_bundling', $id);
 			$this->db->group_by('a.id_bundling_detail');
@@ -78,11 +78,11 @@ class Manajemen_kelas_model extends CI_Model
         }else{
 			$this->db->select("a.id_bundling_detail, a.id_class, b.nm_class, b.price, b.discount, e.kd_jenjang, e.nm_jenjang, nm_materi_group, nm_materi_group_sub");
 			$this->db->from('tr_bundling_detail a');
-			$this->db->join('tr_class b', 'a.id_class = b.id_class');
-			$this->db->join('ref_materi_group c', 'b.id_materi_group = c.id_materi_group');
-			$this->db->join('ref_materi_group_sub d', 'b.id_materi_group_sub = d.id_materi_group_sub');
-			$this->db->join('ref_jenjang e', 'b.id_jenjang = e.id_jenjang');
-			$this->db->join('ref_mapel f', 'b.id_mapel = f.id_mapel');
+			$this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
+			$this->db->join('ref_materi_group c', 'b.id_materi_group = c.id_materi_group', 'left');
+			$this->db->join('ref_materi_group_sub d', 'b.id_materi_group_sub = d.id_materi_group_sub', 'left');
+			$this->db->join('ref_jenjang e', 'b.id_jenjang = e.id_jenjang', 'left');
+			$this->db->join('ref_mapel f', 'b.id_mapel = f.id_mapel', 'left');
 			$this->db->join('tr_class_mentor g', 'b.id_class = g.id_class', 'left');
 			$this->db->group_by('a.id_bundling_detail');
 			$this->db->order_by('a.id_bundling_detail');	
@@ -94,9 +94,9 @@ class Manajemen_kelas_model extends CI_Model
         
 			#$this->db->select("a.id_class, d.id_user, b.id_class_mentor, d.photo, c.nm_mentor");
 			$this->db->from('tr_class a');
-			$this->db->join('tr_class_mentor b', 'a.id_class = b.id_class');
-			$this->db->join('ref_mentor c', 'b.id_mentor = c.id_mentor');
-			$this->db->join('ref_user d', 'c.id_user = d.id_user');
+			$this->db->join('tr_class_mentor b', 'a.id_class = b.id_class', 'left');
+			$this->db->join('ref_mentor c', 'b.id_mentor = c.id_mentor', 'left');
+			$this->db->join('ref_user d', 'c.id_user = d.id_user', 'left');
 			$this->db->where('a.id_class',$id);
 			
 			return $this->db->get();
