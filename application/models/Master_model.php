@@ -487,6 +487,8 @@ class Master_model extends CI_Model
             $this->db->update('ref_mentor', $datas);
             
             $this->session->set_flashdata('flash_message', 'Berhasil Diubah');
+            $nm_mentor = html_escape($this->input->post('firstname')).' '.html_escape($this->input->post('lastname'));
+            $update_mentor_kelas = $this->db->query("update tr_class_mentor set nm_mentor = '$nm_mentor' where id_mentor = '$id_mentor'");
         }
     }
 
