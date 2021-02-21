@@ -18,11 +18,11 @@ class Manajemen_kelas_model extends CI_Model
         }else{
 			$this->db->select("a.id_class, nm_class, price, discount, nm_mapel, nm_jenjang, nm_materi_group, nm_materi_group_sub, group_concat(nm_mentor) nm_mentor, c.kd_jenjang, a.active");
 			$this->db->from('tr_class a');
-			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub');
-			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang');
-			$this->db->join('ref_mapel d', 'a.id_mapel = d.id_mapel');
+			$this->db->join('ref_materi_group_sub b', 'a.id_materi_group_sub = b.id_materi_group_sub','left');
+			$this->db->join('ref_jenjang c', 'a.id_jenjang = c.id_jenjang','left');
+			$this->db->join('ref_mapel d', 'a.id_mapel = d.id_mapel','left');
 			$this->db->join('tr_class_mentor e', 'a.id_class = e.id_class', 'left');
-			$this->db->join('ref_materi_group f', 'a.id_materi_group = f.id_materi_group');
+			$this->db->join('ref_materi_group f', 'a.id_materi_group = f.id_materi_group','left');
 			$this->db->group_by('a.id_class');
 			$this->db->order_by('a.id_class');
 			
