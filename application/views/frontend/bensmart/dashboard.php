@@ -37,7 +37,7 @@
 
 			  <!-- Heading -->
 			  <h4 class="mb-0">
-				Dashboard member
+				Dashboard Member
 			  </h4>
 
 			</div>
@@ -72,6 +72,7 @@ $this->db->group_by("f.id_mapel");
 $this->db->order_by("persentase DESC");
 $this->db->limit("5");
 $mapel_datas = $this->db->get()->result_array();
+if(!empty($mapel_datas)){
 foreach ($mapel_datas as $mapel_data){
 ?>
 	<div class="col-sm-2 col-md-3 col-6">
@@ -88,7 +89,10 @@ foreach ($mapel_datas as $mapel_data){
 	</div>
 <?php
 }
+}else{
 ?>
+Belum ada data.
+<?php } ?>
 				  </div>
 				</div>
 				<div class="list-group-item">
@@ -110,6 +114,7 @@ $this->db->join("tr_class_materi_member e","d.id_class_materi_detail = e.id_clas
 $this->db->where("b.cuser", $id_user);
 $this->db->group_by("b.id_class");
 $class_datas = $this->db->get()->result_array();
+if(!empty($mapel_datas)){
 foreach ($class_datas as $class_data){
 	$idclass = $class_data['id_class'];
 	$nmclass = $class_data['nm_class'];
@@ -137,7 +142,10 @@ foreach ($class_datas as $class_data){
 	  </div>	
 <?php
 }
+}
 ?>
+Belum ada progres.
+<?php ?>
 				  
 
 				  

@@ -441,11 +441,16 @@ class Master_model extends CI_Model
     { // Admin does this editing
         $validity = $this->check_duplication_member('on_update', $this->input->post('email'), $id_user);
         if ($validity) {
-            $data['firstname'] = html_escape($this->input->post('firstname'));
+			$data['firstname'] = html_escape($this->input->post('firstname'));
             $data['lastname'] = html_escape($this->input->post('lastname'));
             $data['address'] = html_escape($this->input->post('address'));
             $data['phone'] = html_escape($this->input->post('phone'));
-            if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
+            if(filesize($_FILES['photo']['tmp_name']) > 2097152){
+				$this->session->set_flashdata('file', 'Ukuran foto terlalu besar');
+				return false;
+			}
+			
+			if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
                 unlink('uploads/user_image/' . $this->db->get_where('ref_user', array('id_user' => $id_user))->row('photo') . '.jpg');
                 $data['photo'] = md5(rand(10000, 10000000));
                 $this->upload_photo($data['photo']);

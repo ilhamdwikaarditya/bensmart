@@ -10,7 +10,7 @@
 		  
 		  <h6 class="font-weight-bold text-uppercase mb-3">
 			<a class="list-link text-reset" href="<?php echo base_url('user/dashboard'); ?>">
-				Dashbord
+				Dashboard
 			  </a>
 		  </h6>
 		  <hr>

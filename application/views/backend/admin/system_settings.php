@@ -99,27 +99,5 @@
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
-    <div class="col-xl-5">
-        <div class="card">
-            <div class="card-body">
-                <div class="col-lg-12">
-                    <h4 class="mb-3 header-title"><?php echo get_phrase('update_product');?></h4>
-
-                    <form action="<?php echo site_url('updater/update'); ?>" method="post" enctype="multipart/form-data">
-                        <div class="form-group mb-2">
-                            <label><?php echo get_phrase('file'); ?></label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="file_name" name="file_name" required onchange="changeTitleOfImageUploader(this)">
-                                    <label class="custom-file-label" for="file_name"><?php echo get_phrase('update_product'); ?></label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary"><?php echo get_phrase('update'); ?></button>
-                    </form>
-                </div>
-            </div> <!-- end card body-->
-        </div>
-    </div>
+    
 </div>
