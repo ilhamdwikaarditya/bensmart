@@ -45,7 +45,7 @@
               <div class="list-group list-group-flush">
 <?php
 
-$this->db->select('GROUP_CONCAT(b.id_class) listclass');
+$this->db->select('GROUP_CONCAT(DISTINCT b.id_class) listclass');
 $this->db->from('tr_chart a');
 $this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
 $this->db->join('tr_class_mentor c', 'b.id_class = c.id_class', 'left');
@@ -240,7 +240,7 @@ foreach ($cart_datas as $cart_data):?>
 			method: 'POST',
 			data: {listclass:listclass,totprice:totprice},
 			success: function(datas){
-				location.href = "<?php echo site_url('home/confirmation_payment'); ?>";
+				location.href = "<?php echo site_url('home/confirmation_payment/'); ?>"+datas;
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
 				info_modal(textduplicate);

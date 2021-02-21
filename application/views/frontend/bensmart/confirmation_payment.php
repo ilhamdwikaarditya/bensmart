@@ -1,4 +1,5 @@
 <?php
+$kd_booking = html_escape($this->uri->segment(3));
 $user_details = $this->user_model->get_user($id_user,$id_level)->row_array();
 
 $this->db->select('IFNULL(sum(discount_price),0) totprice');
@@ -7,7 +8,7 @@ $this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
 $this->db->join('tr_class_member c', 'CONCAT(a.id_class,a.id_user) = CONCAT(c.id_class,c.cuser)', 'left');
 $this->db->join('tr_payment d', 'c.kd_booking = d.kd_booking');
 $this->db->where('id_user', $id_user);
-$this->db->where('status_checked', 'checked');
+$this->db->where('d.kd_booking', $kd_booking);
 $this->db->where('c.status', '0');
 $this->db->group_by('c.id_class');
 $cart_sum = $this->db->get()->row_array();
@@ -139,6 +140,7 @@ foreach ($bank_datas as $bank_data):?>
               <!-- List group -->
               <div class="list-group list-group-flush">
 <?php
+
 $this->db->select('thumbnail,nm_class, group_concat(nm_mentor) nm_mentor, discount_price');
 $this->db->from('tr_chart a');
 $this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
@@ -146,7 +148,7 @@ $this->db->join('tr_class_mentor c', 'b.id_class = c.id_class', 'left');
 $this->db->join('tr_class_member d', 'concat(a.id_class,a.id_user) = concat(d.id_class,d.cuser)', 'left');
 $this->db->join('tr_payment e', 'd.kd_booking = e.kd_booking');
 $this->db->where('id_user', $id_user);
-$this->db->where('status_checked', 'checked');
+$this->db->where('d.kd_booking', $kd_booking);
 $this->db->where('d.status', '0');
 $cart_datas = $this->db->get()->result_array();
 
