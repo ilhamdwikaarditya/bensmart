@@ -503,7 +503,7 @@ class User_model extends CI_Model {
 			$data['kd_booking'] = $kd_booking;
 			$data['cuser'] = html_escape($id_user);
 		
-			$this->db->insert('tr_class_memberx', $data);
+			$this->db->insert('tr_class_member', $data);
 			$chart_id = $this->db->insert_id();
 			
 			if($chart_id){
@@ -514,11 +514,11 @@ class User_model extends CI_Model {
 				$pay['amount'] = $totprice;
 				$pay['cuser'] = html_escape($id_user);
 				
-				$this->db->insert('tr_paymentx', $pay);
+				$this->db->insert('tr_payment', $pay);
 				$pay_id = $this->db->insert_id();
 				
 				$this->db->where('id_class', $data['id_class']);
-				$this->db->update('tr_chartx', array('booked' => '1','status_checked' => ' '));
+				$this->db->update('tr_chart', array('booked' => '1','status_checked' => ' '));
 			}
 			
 		}else{
