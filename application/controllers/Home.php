@@ -58,7 +58,7 @@ class Home extends CI_Controller {
         }else{
 			$page_data['id_user'] = $this->session->userdata('id_user');
 			$page_data['page_name'] = "shopping_cart";
-			$page_data['page_title'] = "Chart";
+			$page_data['page_title'] = "Keranjang Saya";
 			$this->load->view('frontend/'.get_frontend_settings('theme').'/index', $page_data);
 		}
     }

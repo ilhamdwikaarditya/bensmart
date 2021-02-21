@@ -121,9 +121,15 @@ foreach ($class_datas as $class_data){
 		  <?php echo $nmclass; ?>
 		</h6>
 		<div class="progress">
-		  <div class="progress-bar bg-dark" style="width:<?php echo ($totsele / $totkelas)*100; ?>%">
+			<?php if($totkelas == '0'){ ?>
+			<div class="progress-bar bg-dark" style="width:0%">
+				0%
+			</div>
+			<?php } else { ?>
+			<div class="progress-bar bg-dark" style="width:<?php echo ($totsele / $totkelas)*100; ?>%">
 			<?php echo number_format(($totsele / $totkelas)*100,2); ?>%
-		  </div>
+			</div>
+			<?php }?>
 		</div>
 		<p class="small text-muted mt-1">
 		  <span class="">(<?php echo $totsele; ?> dari <?php echo $totkelas; ?> materi telah selesai)</span>
