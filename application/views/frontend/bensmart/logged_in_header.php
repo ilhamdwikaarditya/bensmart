@@ -101,7 +101,7 @@ $user_details = $this->user_model->get_user($this->session->userdata('id_user'),
 					<a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" id="topbar-userdrop"
 						href="#" role="button" aria-haspopup="true" aria-expanded="false">
 						<span class="account-user-avatar">
-							<img src="<?php echo $this->user_model->get_user_image_url($this->session->userdata('id_user')); ?>" alt="user-image" class="rounded-circle" style="width:35px; height:35px;">
+							<img src="<?php echo $this->user_model->get_user_image_url_new($this->session->userdata('id_user')); ?>" alt="user-image" class="rounded-circle" style="width:35px; height:35px;">
 						</span>
 						&nbsp;
 						<span style="color: #506690; ">

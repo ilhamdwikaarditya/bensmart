@@ -145,24 +145,18 @@ if(!empty($cart_datas)){
                     </h5>
                   </div>
                   <div class="col-auto">
+					<input type="hidden" id="totval" value="<?php echo $cart_sum['totprice']; ?>">
                     <h5 class="text-dark font-weight-bold" id="totprice">Rp <?php echo number_format($cart_sum['totprice']); ?></h5>
                   </div>
                 </div>
-                <?php if(!empty($cart_datas)){ ?>
+                
                   <div class="join-container mx-n4 mb-n5">
-                  <a href="<?php echo site_url('home/checkout_class'); ?>" class="btn col-12 btn-sm btn-primary mt-3 rounded-bottom"
-                    style="border-radius: 0px 0px 30px 5px;">
+                  <a type="button" onClick="checkout()" class="btn col-12 btn-sm btn-primary mt-3 rounded-bottom"
+                    style="border-radius: 0px 0px 30px 5px; color:#fff;">
                     Checkout
                   </a>
                 </div>
-                <?php } else { ?>
-                  <div class="join-container mx-n4 mb-n5">
-                  <a href="" class="btn col-12 btn-sm btn-primary mt-3 rounded-bottom"
-                    style="border-radius: 0px 0px 30px 5px;pointer-events: none;">
-                    Checkout
-                  </a>
-                </div>
-                <?php } ?>
+                
               </div>
             </div>
           </div>
@@ -202,6 +196,7 @@ if(!empty($cart_datas)){
 
 		$("#pricechecked").html("Rp "+formatter.format(count));
 		$("#totprice").html("Rp "+formatter.format(count));
+		$("#totval").val(count);
 		
 	});
 	
@@ -238,5 +233,18 @@ if(!empty($cart_datas)){
 			method: 'POST',
 			data: {id_class:val,status_checked:status_checked},
 		});
+	}
+	
+	function checkout(){
+		var textcartnull = "Keranjang anda masih kosong atau Tidak ada kelas yang dipilih";
+		var totval = $("#totval").val();
+
+		if(totval == '' || totval == '0'){
+			info_modal(textcartnull); 
+			return false;
+		}else{
+			location.href = "<?php echo site_url('home/checkout_class'); ?>";
+		}
+		
 	}
 </script>
