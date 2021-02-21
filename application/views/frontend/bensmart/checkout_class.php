@@ -240,7 +240,7 @@ foreach ($cart_datas as $cart_data):?>
 			method: 'POST',
 			data: {listclass:listclass,totprice:totprice},
 			success: function(datas){
-				location.href = "<?php echo site_url('home/confirmation_payment'); ?>";
+				location.href = "<?php echo site_url('home/confirmation_payment/'); ?>"+datas;
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
 				info_modal(textduplicate);

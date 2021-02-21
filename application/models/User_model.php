@@ -551,7 +551,8 @@ class User_model extends CI_Model {
 			
 		}
 		
-		return $listclass;
+		return $kd_booking;
+		//return json_encode(array('kd_booking' => $kd_booking, 'listclass' => $listclass));
     }
 	
 	public function cek_kelas($id_class) {
