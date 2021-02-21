@@ -275,6 +275,16 @@ class User_model extends CI_Model {
             return base_url().'uploads/user_image/placeholder.png';
 		}
 	}
+	
+	public function get_user_image_url_new($user_id) {
+        $user_profile_image = $this->db->get_where('ref_user', array('id_user' => $user_id))->row('photo');
+        if ($user_profile_image != '' || $user_profile_image != null){
+            return base_url().'uploads/user_image/'.$user_profile_image.'.jpg';
+        }else{
+            return base_url().'uploads/user_image/placeholder.png';
+		}
+	}
+	
     public function get_instructor_list() {
         $query1 = $this->db->get_where('course', array('status' => 'active'))->result_array();
         $instructor_ids = array();
@@ -507,7 +517,7 @@ class User_model extends CI_Model {
 				$pay_id = $this->db->insert_id();
 				
 				$this->db->where('id_class', $data['id_class']);
-				$this->db->update('tr_chart', array('booked' => '1'));
+				$this->db->update('tr_chart', array('booked' => '1','status_checked' => ' '));
 			}
 			
 		}else{
@@ -534,13 +544,23 @@ class User_model extends CI_Model {
 					
 					
 					$this->db->where('id_class', $exps[$i]);
-					$this->db->update('tr_chart', array('booked' => '1'));
+					$this->db->update('tr_chart', array('booked' => '1','status_checked' => ' '));
 				}
 			}
 			
 		}
 		
 		return $listclass;
+    }
+	
+	public function cek_kelas($id_class) {
+		$id_user = $this->session->userdata('id_user');
+        if ($id_user > 0) {
+            $this->db->where('cuser', $id_user);
+        }
+            $this->db->where('id_class', $id_class);
+		
+        return $this->db->get('tr_class_member');
     }
 	
 }

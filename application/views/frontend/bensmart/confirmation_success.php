@@ -26,9 +26,9 @@ $this->session->unset_userdata('sessdigitrand');
 
 
             <!-- Submit -->
-            <button class="btn btn-small btn-success h-100 justify-content-center ali" type="submit">
-              Kembali ke Kelas Saya
-            </button>
+            <a type="button" href="<?php echo site_url('user/status_pesanan'); ?>" class="btn btn-small btn-success h-100 justify-content-center ali">
+              Cek Status Pembayaran
+            </a>
           </div>
 
         </div>

@@ -4,11 +4,12 @@ $user_details = $this->user_model->get_user($id_user,$id_level)->row_array();
 $this->db->select('IFNULL(sum(discount_price),0) totprice');
 $this->db->from('tr_chart a');
 $this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
-$this->db->join('tr_class_member c', 'a.id_class = c.id_class', 'left');
+$this->db->join('tr_class_member c', 'CONCAT(a.id_class,a.id_user) = CONCAT(c.id_class,c.cuser)', 'left');
 $this->db->join('tr_payment d', 'c.kd_booking = d.kd_booking');
 $this->db->where('id_user', $id_user);
 $this->db->where('status_checked', 'checked');
-$this->db->where('status_chart', '0');
+$this->db->where('c.status', '0');
+$this->db->group_by('c.id_class');
 $cart_sum = $this->db->get()->row_array();
 
 $digitrand = str_pad(rand(0, pow(10, 3)-1), 3, '0', STR_PAD_LEFT);
@@ -142,11 +143,11 @@ $this->db->select('thumbnail,nm_class, group_concat(nm_mentor) nm_mentor, discou
 $this->db->from('tr_chart a');
 $this->db->join('tr_class b', 'a.id_class = b.id_class', 'left');
 $this->db->join('tr_class_mentor c', 'b.id_class = c.id_class', 'left');
-$this->db->join('tr_class_member d', 'b.id_class = d.id_class', 'left');
+$this->db->join('tr_class_member d', 'concat(a.id_class,a.id_user) = concat(d.id_class,d.cuser)', 'left');
 $this->db->join('tr_payment e', 'd.kd_booking = e.kd_booking');
 $this->db->where('id_user', $id_user);
 $this->db->where('status_checked', 'checked');
-$this->db->where('status_chart', '0');
+$this->db->where('d.status', '0');
 $cart_datas = $this->db->get()->result_array();
 
 foreach ($cart_datas as $cart_data):?>
@@ -283,7 +284,7 @@ foreach ($cart_datas as $cart_data):?>
 
                 <div class="join-container mx-n4 mt-2 mb-n5">
                   <a type="button" onClick="clickconfirm()" class="btn col-12 btn-sm mt-3 btn-success rounded-bottom"
-                    style="border-radius: 0px 0px 30px 5px;">
+                    style="border-radius: 0px 0px 30px 5px; color:white;">
                     Konfirmasi Pembayaran
                   </a>
                 </div>

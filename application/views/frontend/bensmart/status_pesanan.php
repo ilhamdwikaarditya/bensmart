@@ -54,9 +54,10 @@ $inv_datas = $this->db->get()->result_array();
 if(empty($inv_datas)){
 	echo "Belum ada kelas yang dipesan.";
 }else{
-	foreach ($inv_datas as $inv_data):?>
+?>
                 <!-- Form -->
 				<div class="list-group list-group-flush">
+<?php foreach ($inv_datas as $inv_data):?>
                   <div class="list-group-item">
                     <div class="row align-items-center">
                       <div class="col">
@@ -78,7 +79,7 @@ if(empty($inv_datas)){
                         
                           <?php if($inv_data['sts_pay'] == '0'){ ?>
 							<a type="button" href="<?php echo site_url('home/confirmation_payment_from_panel/').$inv_data['kd_booking']; ?>" target="_blank" class="btn btn-xs btn-outline-white">
-								Bayar
+								Lanjut Pembayaran
 							</a>
 						  <?php }else{ ?>
 							<span class="badge badge-pill badge-success-soft">
@@ -90,8 +91,8 @@ if(empty($inv_datas)){
                       </div>
                     </div>
                   </div>
-                </div>
 	<?php endforeach; ?>
+                </div>
 <?php } ?>
               </div>
             </div>
