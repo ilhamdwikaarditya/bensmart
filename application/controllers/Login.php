@@ -229,8 +229,14 @@ class Login extends CI_Controller {
 			$this->load->view('frontend/'.get_frontend_settings('theme').'/index', $dataverifikasi);
 			
         }else{
-            $this->session->set_flashdata('error_message', get_phrase('the_verification_code_is_wrong').'.');
-            echo false;
+            
+			$reuser = $this->db->get_where('ref_user', array('rand_code' => $email))->row_array();
+			$redataverifikasi['nama']  = $reuser['firstname']." ".$reuser['lastname'];
+			$redataverifikasi['email'] = $reuser['email'];
+			
+			$redataverifikasi['page_name'] = "verification_code_byurl_expired";
+			$redataverifikasi['page_title'] = "Link Verifikasi Kedaluarsa";
+			$this->load->view('frontend/'.get_frontend_settings('theme').'/index', $redataverifikasi);
         }
     }
 	
