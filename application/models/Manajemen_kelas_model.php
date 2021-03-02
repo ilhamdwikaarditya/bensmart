@@ -194,6 +194,17 @@ class Manajemen_kelas_model extends CI_Model
             $this->db->order_by('x.id_class_rating desc');
             return $this->db->get();
     }
+
+    public function get_pembayaran_kelas($id = 0) {
+        $this->db->select("x.id_class_member, a.status, x.active, concat(e.firstname,' ',e.lastname) as name, x.kd_booking, sum(x.amount) as amount, e.email, x.bukti_pembayaran");
+        $this->db->from('tr_payment x');
+        $this->db->join('tr_class_member a', 'x.id_class_member = a.id_class_member','left');
+        // $this->db->join('tr_class b', 'a.id_class = a.id_class', 'left');
+        $this->db->join('ref_user e', 'x.cuser = e.id_user', 'left');
+        $this->db->group_by('x.kd_booking, x.cuser');
+        $this->db->order_by('x.id_class_member desc');
+        return $this->db->get();
+    }
 	
 	public function add_manajemen_kelas() {
 
@@ -494,6 +505,40 @@ class Manajemen_kelas_model extends CI_Model
         $this->session->set_flashdata('flash_message', 'Berhasil Di Non Aktifkan');
     }
 
+    public function verification_pembayaran_kelas($id = "")
+    {
+        $this->db->where('id_class_member', $id);
+        $this->db->update('tr_class_member', array('status' => '1'));
+        $this->session->set_flashdata('flash_message', 'Verifikasi berhasil di lakukan');
+    }
+
+    public function unverification_pembayaran_kelas($id = "")
+    {
+        $this->db->where('id_class_member', $id);
+        $this->db->update('tr_class_member', array('status' => '0'));
+        $this->session->set_flashdata('flash_message', 'Verifikasi berhasil di batalkan');
+    }
+
+    public function upload_pembayaran_kelas($kd_booking = "")
+    {
+        // $data['kd_booking'] = $this->session->userdata('kd_booking');
+        if (isset($_FILES['bukti_pembayaran']) && $_FILES['bukti_pembayaran']['name'] != "") {
+            $sql = $this->db->query("select distinct(bukti_pembayaran) from tr_payment where kd_booking = '$kd_booking'");
+            if($sql->row()->bukti_pembayaran == '' || $sql->row()->bukti_pembayaran == null){
+                $data['bukti_pembayaran'] = md5(rand(10000, 10000000));
+                $this->upload_bukti_pembayaran($data['bukti_pembayaran']);
+            } else {
+                unlink('uploads/bukti_pembayaran/' . $this->db->get_where('tr_payment', array('kd_booking' => $kd_booking))->row('bukti_pembayaran').'.jpg');
+                $data['bukti_pembayaran'] = md5(rand(10000, 10000000));
+                $this->upload_bukti_pembayaran($data['bukti_pembayaran']);
+            }
+        }
+        $this->db->where('kd_booking', $kd_booking);
+        $this->db->update('tr_payment', $data);
+        $this->session->set_flashdata('flash_message', 'Upload Bukti Pembayaran berhasil di lakukan');
+    }
+
+
 	public function upload_thumbnail($image_code) {
         if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['name'] != "") {
             move_uploaded_file($_FILES['thumbnail']['tmp_name'], 'uploads/thumbnail_class/'.$image_code.'.jpg');
@@ -514,6 +559,13 @@ class Manajemen_kelas_model extends CI_Model
             $this->session->set_flashdata('flash_message', 'Berhasil');
         }
     }
+
+    public function upload_bukti_pembayaran($image_code) {
+        if (isset($_FILES['bukti_pembayaran']) && $_FILES['bukti_pembayaran']['name'] != "") {
+            move_uploaded_file($_FILES['bukti_pembayaran']['tmp_name'], 'uploads/bukti_pembayaran/'.$image_code.'.jpg');
+            $this->session->set_flashdata('flash_message', 'Berhasil');
+        }
+    }
 	
 	public function get_thumbnail_url($user_id) {
 
@@ -529,6 +581,15 @@ class Manajemen_kelas_model extends CI_Model
         $user_profile_image = $this->db->get_where('tr_bundling', array('id_bundling' => $user_id))->row('thumbnail');
         if (file_exists('uploads/thumbnail_bundling/'.$user_profile_image.'.jpg'))
              return base_url().'uploads/thumbnail_bundling/'.$user_profile_image.'.jpg';
+        else
+            return base_url().'uploads/user_image/placeholder.png';
+    }
+
+    public function get_bukti_pembayaran($user_id) {
+
+        $user_profile_image = $this->db->get_where('tr_payment', array('kd_booking' => $user_id))->row('bukti_pembayaran');
+        if (file_exists('uploads/bukti_pembayaran/'.$user_profile_image.'.jpg'))
+             return base_url().'uploads/bukti_pembayaran/'.$user_profile_image.'.jpg';
         else
             return base_url().'uploads/user_image/placeholder.png';
     }

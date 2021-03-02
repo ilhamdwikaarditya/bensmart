@@ -202,14 +202,20 @@ class Master_model extends CI_Model
 
     public function add_jenjang($is_instructor = false)
     {
-        $data['nm_jenjang'] = html_escape($this->input->post('nm_jenjang'));
-        $data['kd_jenjang'] = html_escape($this->input->post('kd_jenjang'));
-        $data['cuser'] = $this->session->userdata('id_user');
+        $jenjang = html_escape($this->input->post('kd_jenjang'));
+        $cek_jenjang = $this->db->query("select * from ref_jenjang where kd_jenjang = '$jenjang'");
+        if(empty($cek_jenjang)){
+            $data['nm_jenjang'] = html_escape($this->input->post('nm_jenjang'));
+            $data['kd_jenjang'] = html_escape($this->input->post('kd_jenjang'));
+            $data['cuser'] = $this->session->userdata('id_user');
 
-        $this->db->insert('ref_jenjang', $data);
-        $id_jenjang = $this->db->insert_id();
-        // $this->upload_user_image($data['image']);
-        $this->session->set_flashdata('flash_message', 'Berhasil Ditambahkan');
+            $this->db->insert('ref_jenjang', $data);
+            $id_jenjang = $this->db->insert_id();
+            // $this->upload_user_image($data['image']);
+            $this->session->set_flashdata('flash_message', 'Berhasil Ditambahkan');
+        } else {
+            $this->session->set_flashdata('error_message', 'Gagal Ditambahkan, kode jenjang tersebut sudah ada');
+        }
     }
 
     public function add_materi_group($is_instructor = false)
@@ -237,13 +243,19 @@ class Master_model extends CI_Model
 
     public function add_mapel($is_instructor = false)
     {
-        $data['nm_mapel'] = html_escape($this->input->post('nm_mapel'));
-        $data['kd_mapel'] = html_escape($this->input->post('kd_mapel'));
-        $data['cuser'] = $this->session->userdata('id_user');
+        $mapel = html_escape($this->input->post('kd_mapel'));
+        $cek_mapel = $this->db->query("select * from ref_mapel where kd_mapel = '$mapel'");
+        if(empty($cek_mapel)){
+            $data['nm_mapel'] = html_escape($this->input->post('nm_mapel'));
+            $data['kd_mapel'] = html_escape($this->input->post('kd_mapel'));
+            $data['cuser'] = $this->session->userdata('id_user');
 
-        $this->db->insert('ref_mapel', $data);
-        $id_mapel = $this->db->insert_id();
-        $this->session->set_flashdata('flash_message', 'Berhasil Ditambahkan');
+            $this->db->insert('ref_mapel', $data);
+            $id_mapel = $this->db->insert_id();
+            $this->session->set_flashdata('flash_message', 'Berhasil Ditambahkan');
+        } else {
+            $this->session->set_flashdata('error_message', 'Gagal Ditambahkan, kode mapel tersebut sudah ada');
+        }
     }
 
     public function add_level()
@@ -626,7 +638,7 @@ class Master_model extends CI_Model
 
         if ($action == 'on_create') {
             if ($duplicate_email_check->num_rows() > 0) {
-                if ($duplicate_email_check->row()->status == 1) {
+                if ($duplicate_email_check->row()->status_verification == 1) {
                     return false;
                 } else {
                     return 'unverified_user';

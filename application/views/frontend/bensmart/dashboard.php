@@ -142,10 +142,9 @@ foreach ($class_datas as $class_data){
 	  </div>	
 <?php
 }
-}
-?>
-Belum ada progres.
-<?php ?>
+} else { ?>
+	Belum ada progres.
+<?php } ?>
 				  
 
 				  

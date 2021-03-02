@@ -60,7 +60,7 @@ function error_notify(message) {
 }
 
 function error_required_field() {
-  $.NotificationApp.send("<?php echo get_phrase('oh_snap'); ?>!", "<?php echo get_phrase('please_fill_all_the_required_fields'); ?>" ,"top-right","rgba(0,0,0,0.2)","error");
+  $.NotificationApp.send("Perhatian!", "Silakan Isi Semua Data Terlebih Dahulu" ,"top-right","rgba(0,0,0,0.2)","error");
 }
 </script>
 
@@ -72,12 +72,12 @@ function error_required_field() {
 
 <?php if ($this->session->flashdata('error_message') != ""):?>
 <script type="text/javascript">
-  $.NotificationApp.send("<?php echo get_phrase('oh_snap'); ?>!", '<?php echo $this->session->flashdata("error_message");?>' ,"top-right","rgba(0,0,0,0.2)","error");
+  $.NotificationApp.send("Perhatian!", '<?php echo $this->session->flashdata("error_message");?>' ,"top-right","rgba(0,0,0,0.2)","error");
 </script>
 <?php endif;?>
 
 <?php if ($this->session->flashdata('flash_message') != ""):?>
 <script type="text/javascript">
-  $.NotificationApp.send("<?php echo get_phrase('congratulations'); ?>!", '<?php echo $this->session->flashdata("flash_message");?>' ,"top-right","rgba(0,0,0,0.2)","success");
+  $.NotificationApp.send("Selamat!", '<?php echo $this->session->flashdata("flash_message");?>' ,"top-right","rgba(0,0,0,0.2)","success");
 </script>
 <?php endif;?>

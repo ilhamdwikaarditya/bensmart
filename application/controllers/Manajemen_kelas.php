@@ -308,5 +308,29 @@ class Manajemen_kelas extends CI_Controller {
         $page_data['manajemen_rating_review'] = $this->manajemen_kelas_model->get_manajemen_rating_review($param2);
         $this->load->view('backend/index', $page_data);
     }
+
+    public function pembayaran_kelas($param1 = "", $param2 = "") {
+        if ($this->session->userdata('admin_login') != true) {
+            redirect(site_url('login'), 'refresh');
+        }
+
+        if ($param1 == "verification") {
+            $this->manajemen_kelas_model->verification_pembayaran_kelas($param2);
+            redirect(site_url('manajemen_kelas/pembayaran_kelas'), 'refresh');
+        }
+		elseif ($param1 == "unverification") {
+            $this->manajemen_kelas_model->unverification_pembayaran_kelas($param2);
+            redirect(site_url('manajemen_kelas/pembayaran_kelas'), 'refresh');
+        }
+        elseif ($param1 == "upload") {
+            $this->manajemen_kelas_model->upload_pembayaran_kelas($param2);
+            redirect(site_url('manajemen_kelas/pembayaran_kelas'), 'refresh');
+        }
+
+        $page_data['page_name'] = 'pembayaran_kelas';
+        $page_data['page_title'] = 'Pembayaran Kelas'; 
+        $page_data['pembayaran_kelas'] = $this->manajemen_kelas_model->get_pembayaran_kelas($param2);
+        $this->load->view('backend/index', $page_data);
+    }
 	
 }
