@@ -13,14 +13,34 @@
 					Masukan Email dan Password anda.
 				</p>
 				<?php if(isset($sts)){ ?>
-				<div class="col-12 col-md-12">
-					<span class="badge badge-pill badge-warning">
-					  <span class="h6 text-uppercase font-weight-bold">Email Anda Sudah Pernah Terdaftar</span>
-					</span>
-				</div>
-				<div class="col-12 col-md-12">
-					&nbsp;
-				</div>
+					<?php if($sts == 'emailsudahterdaftar'){ ?>
+						<div class="col-12 col-md-12">
+							<span class="badge badge-pill badge-warning">
+							  <span class="h6 text-uppercase font-weight-bold">Email Anda Sudah Pernah Terdaftar</span>
+							</span>
+						</div>
+						<div class="col-12 col-md-12">
+							&nbsp;
+						</div>
+					<?php }elseif($sts == 'emailbelumterverifikasi'){ ?>
+						<div class="col-12 col-md-12">
+							<span class="badge badge-pill badge-warning">
+							  <span class="h6 text-uppercase font-weight-bold">Email Anda Belum Terverifikasi</span>
+							</span>
+						</div>
+						<div class="col-12 col-md-12">
+							&nbsp;
+						</div>
+					<?php }elseif($sts == 'userpasssalah'){ ?>
+						<div class="col-12 col-md-12">
+							<span class="badge badge-pill badge-warning">
+							  <span class="h6 text-uppercase font-weight-bold">Email atau Password Salah</span>
+							</span>
+						</div>
+						<div class="col-12 col-md-12">
+							&nbsp;
+						</div>
+					<?php } ?>
 				<?php } ?>
 				<!-- Form -->
 				<form class="mb-6" action="<?php echo site_url('login/validate_login/user'); ?>" method="post">
@@ -226,7 +246,7 @@
 			<div class="col-lg-7 offset-lg-1 align-self-stretch d-none d-lg-block">
 
 				<!-- Image -->
-				<div class="h-100 w-cover bg-cover" style="background-image: url(<?php echo base_url() . 'assets/frontend/' . get_frontend_settings('theme') . '/img/covers/cover-14.jpg' ?>);"></div>
+				<div class="h-100 w-cover bg-cover" style="background-image: url(<?php echo base_url() . 'assets/frontend/' . get_frontend_settings('theme') . '/img/covers/cover-bensmart.jfif' ?>);"></div>
 
 				<!-- Shape -->
 				<div class="shape shape-left shape-fluid-y svg-shim text-white">

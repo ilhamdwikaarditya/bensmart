@@ -12,7 +12,7 @@ $cekstatusver = $this->db->get_where('ref_user', array('email' => $email))->row_
                   <div class="user-dashboard-content w-100 login-form">
                       <div class="content-title-box">
                           <?php if($cekstatusver['status_verification'] == '1'){ ?>
-						  <div class="title">Email <?php echo @$email; ?> sudah pernah di verifikasi!</div>
+						  <div class="title">Email <?php echo @$email; ?> sudah di verifikasi!</div>
                           <?php }else{ ?>
 						  <div class="subtitle">Silahkan login menggunakan email anda.</div>
                           <?php } ?>

@@ -34,6 +34,7 @@ class Login extends CI_Controller {
 		$this->db->select('a.id_user, firstname, lastname, password, email, phone, photo, id_level, address, a.id_jenjang, id_mentor, status_verification');
         $this->db->from('ref_user a');
         $this->db->join('ref_mentor b','a.id_user = b.id_user','left');
+        $this->db->where('a.active', '1');
         $this->db->where('email', $email);
         $this->db->where('password', sha1($password));
         $query = $this->db->get();
@@ -62,12 +63,12 @@ class Login extends CI_Controller {
 				}else{
 					$this->session->unset_userdata('error_message');
 					$this->session->set_flashdata('error_message','Email anda belum terverifikasi');
-					redirect(site_url('home/login'), 'refresh');
+					redirect(site_url('home/login?sts=emailbelumterverifikasi'), 'refresh');
 				}
 			}else {
 				$this->session->unset_userdata('error_message');
 				$this->session->set_flashdata('error_message','Username atau password salah');
-				redirect(site_url('home/login'), 'refresh');
+				redirect(site_url('home/login?sts=userpasssalah'), 'refresh');
 			}
     }
 
@@ -228,8 +229,14 @@ class Login extends CI_Controller {
 			$this->load->view('frontend/'.get_frontend_settings('theme').'/index', $dataverifikasi);
 			
         }else{
-            $this->session->set_flashdata('error_message', get_phrase('the_verification_code_is_wrong').'.');
-            echo false;
+            
+			$reuser = $this->db->get_where('ref_user', array('rand_code' => $email))->row_array();
+			$redataverifikasi['nama']  = $reuser['firstname']." ".$reuser['lastname'];
+			$redataverifikasi['email'] = $reuser['email'];
+			
+			$redataverifikasi['page_name'] = "verification_code_byurl_expired";
+			$redataverifikasi['page_title'] = "Link Verifikasi Kedaluarsa";
+			$this->load->view('frontend/'.get_frontend_settings('theme').'/index', $redataverifikasi);
         }
     }
 	
