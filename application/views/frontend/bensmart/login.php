@@ -13,14 +13,34 @@
 					Masukan Email dan Password anda.
 				</p>
 				<?php if(isset($sts)){ ?>
-				<div class="col-12 col-md-12">
-					<span class="badge badge-pill badge-warning">
-					  <span class="h6 text-uppercase font-weight-bold">Email Anda Sudah Pernah Terdaftar</span>
-					</span>
-				</div>
-				<div class="col-12 col-md-12">
-					&nbsp;
-				</div>
+					<?php if($sts == 'emailsudahterdaftar'){ ?>
+						<div class="col-12 col-md-12">
+							<span class="badge badge-pill badge-warning">
+							  <span class="h6 text-uppercase font-weight-bold">Email Anda Sudah Pernah Terdaftar</span>
+							</span>
+						</div>
+						<div class="col-12 col-md-12">
+							&nbsp;
+						</div>
+					<?php }elseif($sts == 'emailbelumterverifikasi'){ ?>
+						<div class="col-12 col-md-12">
+							<span class="badge badge-pill badge-warning">
+							  <span class="h6 text-uppercase font-weight-bold">Email Anda Belum Terverifikasi</span>
+							</span>
+						</div>
+						<div class="col-12 col-md-12">
+							&nbsp;
+						</div>
+					<?php }elseif($sts == 'userpasssalah'){ ?>
+						<div class="col-12 col-md-12">
+							<span class="badge badge-pill badge-warning">
+							  <span class="h6 text-uppercase font-weight-bold">Email atau Password Salah</span>
+							</span>
+						</div>
+						<div class="col-12 col-md-12">
+							&nbsp;
+						</div>
+					<?php } ?>
 				<?php } ?>
 				<!-- Form -->
 				<form class="mb-6" action="<?php echo site_url('login/validate_login/user'); ?>" method="post">

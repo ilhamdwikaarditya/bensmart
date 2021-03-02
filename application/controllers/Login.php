@@ -62,12 +62,12 @@ class Login extends CI_Controller {
 				}else{
 					$this->session->unset_userdata('error_message');
 					$this->session->set_flashdata('error_message','Email anda belum terverifikasi');
-					redirect(site_url('home/login'), 'refresh');
+					redirect(site_url('home/login?sts=emailbelumterverifikasi'), 'refresh');
 				}
 			}else {
 				$this->session->unset_userdata('error_message');
 				$this->session->set_flashdata('error_message','Username atau password salah');
-				redirect(site_url('home/login'), 'refresh');
+				redirect(site_url('home/login?sts=userpasssalah'), 'refresh');
 			}
     }
 
