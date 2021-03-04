@@ -55,6 +55,7 @@
                                                         <label class="custom-file-label" for="photo">Pilih Foto</label>
                                                     </div>
                                                 </div>
+                                                    <i><p style="color:red;">*Ukuran gambar harus 500px x 300px untuk hasil yang maksimal</p></i>
                                             </div>
                                         </div>
                                         <div class="text-center">
