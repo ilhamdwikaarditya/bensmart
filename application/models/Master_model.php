@@ -236,7 +236,7 @@ class Master_model extends CI_Model
         $data['id_materi_group'] = html_escape($this->input->post('id_materi_group'));
         $data['cuser'] = $this->session->userdata('id_user');
 		
-		$cek_jenjang = $this->db->query("select * from ref_materi_group_sub where kd_materi_group_sub = ".$data['kd_materi_group_sub']." ");
+		$cek_jenjang = $this->db->query("select * from ref_materi_group_sub where kd_materi_group_sub = '".$data['kd_materi_group_sub']."' ");
         if(empty($cek_jenjang)){
 			$this->db->insert('ref_materi_group_sub', $data);
 			$id_materi_group_sub = $this->db->insert_id();
