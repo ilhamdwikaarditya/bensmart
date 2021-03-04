@@ -203,7 +203,7 @@ class Master_model extends CI_Model
     public function add_jenjang($is_instructor = false)
     {
         $jenjang = html_escape($this->input->post('kd_jenjang'));
-        $cek_jenjang = $this->db->query("select * from ref_jenjang where kd_jenjang = '$jenjang'");
+        $cek_jenjang = $this->db->query("select * from ref_jenjang where kd_jenjang = ".$this->db->escape($jenjang)."");
         if(empty($cek_jenjang)){
             $data['nm_jenjang'] = html_escape($this->input->post('nm_jenjang'));
             $data['kd_jenjang'] = html_escape($this->input->post('kd_jenjang'));
@@ -235,10 +235,15 @@ class Master_model extends CI_Model
         $data['kd_materi_group_sub'] = html_escape($this->input->post('kd_materi_group_sub'));
         $data['id_materi_group'] = html_escape($this->input->post('id_materi_group'));
         $data['cuser'] = $this->session->userdata('id_user');
-
-        $this->db->insert('ref_materi_group_sub', $data);
-        $id_materi_group_sub = $this->db->insert_id();
-        $this->session->set_flashdata('flash_message', 'Berhasil Ditambahkan');
+		
+		$cek_jenjang = $this->db->query("select * from ref_materi_group_sub where kd_materi_group_sub = ".$data['kd_materi_group_sub']." ");
+        if(empty($cek_jenjang)){
+			$this->db->insert('ref_materi_group_sub', $data);
+			$id_materi_group_sub = $this->db->insert_id();
+			$this->session->set_flashdata('flash_message', 'Berhasil Ditambahkan');
+		}else{
+			$this->session->set_flashdata('error_message', 'Gagal Ditambahkan, Kode Sub Materi Grup tersebut sudah ada');
+		}
     }
 
     public function add_mapel($is_instructor = false)

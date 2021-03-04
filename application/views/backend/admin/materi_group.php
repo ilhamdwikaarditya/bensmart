@@ -38,8 +38,8 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="<?php echo site_url('master/materi_group_form/edit_materi_group_form/'.$materi_group['id_materi_group']) ?>">Edit</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('master/materi_group/delete/'.$materi_group['id_materi_group']); ?>');">Delete</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('master/materi_group_form/edit_materi_group_form/'.$materi_group['id_materi_group']) ?>">Ubah</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="confirm_modal('<?php echo site_url('master/materi_group/delete/'.$materi_group['id_materi_group']); ?>');">Hapus</a></li>
                                     </ul>
                                 </div>
                               </td>

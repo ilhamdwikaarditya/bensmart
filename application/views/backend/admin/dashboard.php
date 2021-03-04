@@ -36,7 +36,7 @@
             <div class="card-body p-0">
                 <div class="row no-gutters">
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo site_url('admin/courses'); ?>" class="text-secondary">
+                        <a href="#" class="text-secondary">
                             <div class="card shadow-none m-0">
                                 <div class="card-body text-center">
                                     <i class="dripicons-archive text-muted" style="font-size: 24px;"></i>
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo site_url('admin/courses'); ?>" class="text-secondary">
+                        <a href="#" class="text-secondary">
                             <div class="card shadow-none m-0 border-left">
                                 <div class="card-body text-center">
                                     <i class="dripicons-camcorder text-muted" style="font-size: 24px;"></i>
@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo site_url('admin/enrol_history'); ?>" class="text-secondary">
+                        <a href="#" class="text-secondary">
                             <div class="card shadow-none m-0 border-left">
                                 <div class="card-body text-center">
                                     <i class="dripicons-network-3 text-muted" style="font-size: 24px;"></i>
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo site_url('admin/users'); ?>" class="text-secondary">
+                        <a href="#" class="text-secondary">
                             <div class="card shadow-none m-0 border-left">
                                 <div class="card-body text-center">
                                     <i class="dripicons-user-group text-muted" style="font-size: 24px;"></i>
