@@ -114,29 +114,29 @@
 						<label for="firstname">
 							Nama Depan
 						</label>
-						<input type="text" class="form-control" id="firstname" name="firstname" placeholder="Nama depan">
+						<input type="text" class="form-control" id="firstname" name="firstname" placeholder="Nama depan" required>
 					</div>
 					<div class="form-group">
 						<label for="lastname">
 							Nama Belakang
 						</label>
-						<input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nama belakang">
+						<input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nama belakang" required>
 					</div>
 					<div class="form-group">
 						<label for="phone">
 							Handphone
 						</label>
-						<input type="text" class="form-control" id="phone" name="phone" placeholder="08xxxxxxxxxx">
+						<input type="text" class="form-control" id="phone" name="phone" placeholder="08xxxxxxxxxx" required>
 					</div>
 					<div class="form-group">
 						<label for="address">
 							Alamat:
 						</label>
-						<textarea name="address" id="address" class="form-control"></textarea>
+						<textarea name="address" id="address" class="form-control" required></textarea>
 					</div>
 					<div class="form-group">
 						<label for="kota"><span class="input-field-icon"><i class="fas fa-city"></i></span> Kota:</label>
-						<select class="form-control select2" data-toggle="select2" name="id_kota" id="id_kota">
+						<select class="form-control select2" data-toggle="select2" name="id_kota" id="id_kota" class="required">
 							<option value="0">None</option>
 							<?php foreach ($kota as $datakota): ?>
 								  <option value="<?php echo $datakota['id_kab']; ?>"><?php echo $datakota['nama']; ?></option>
@@ -145,7 +145,7 @@
 					</div>
 					<div class="form-group">
 						<label for="jenjang"><span class="input-field-icon"><i class="fas fa-jenjang"></i></span> Jenjang:</label>
-						<select class="form-control select2" data-toggle="select2" name="id_jenjang" id="id_jenjang">
+						<select class="form-control select2" data-toggle="select2" name="id_jenjang" id="id_jenjang" class="required">
 							<option value="0">None</option>
 							<?php foreach ($jenjang as $datajenjang): ?>
 								  <option value="<?php echo $datajenjang['id_jenjang']; ?>"><?php echo $datajenjang['nm_jenjang']; ?></option>
@@ -157,7 +157,7 @@
 						<label for="email">
 							Alamat Email
 						</label>
-						<input type="email" class="form-control" id="registration-email" name="email" placeholder="email@gmail.com">
+						<input type="email" class="form-control" id="registration-email" name="email" placeholder="email@gmail.com" required>
 					</div>
 
 					<!-- Password -->
@@ -165,14 +165,14 @@
 						<label for="password">
 							Password
 						</label>
-						<input type="password" class="form-control" id="registration-password" name="password" placeholder="Masukan kata sandi">
+						<input type="password" class="form-control" id="registration-password" name="password" placeholder="Masukan kata sandi" required>
 					</div>
 
 					<div class="form-group mb-5">
 						<label for="repassword">
 							Ulangi Password
 						</label>
-						<input type="password" class="form-control" id="registration-repassword" name="repassword" placeholder="Masukan lagi kata sandi">
+						<input type="password" class="form-control" id="registration-repassword" name="repassword" placeholder="Masukan lagi kata sandi" required>
 					</div>
 
 					<!-- Submit -->
@@ -284,6 +284,14 @@
 
 	var submit = document.getElementById('daftar');
 	submit.onclick = function() {
+		var textingtwo = "Kota atau Jenjang harus diisi";
+		var kota = $("#id_kota").val();
+		var jenjang = $("#id_jenjang").val();
+		if(kota == '0' || jenjang == '0'){
+			info_modal(textingtwo);
+			return false;
+		}
+		
 		var pass = $("#registration-password").val();
 		var repass = $("#registration-repassword").val();
 		var texting = "Password Yang dimasukan berbeda";
@@ -291,6 +299,9 @@
 			info_modal(texting);
 			return false;
 		}
+		
+		
+		
 	}
 	
 	$(document).ready(function() {
