@@ -132,18 +132,20 @@
 
 			  <!-- Slider -->
 			  <div class="card-img-slider" data-flickity='{"fade": true, "imagesLoaded": true, "pageDots": false, "prevNextButtons": false, "asNavFor": "#blogSlider", "draggable": false}'>
-				<a class="card-img-left bg-cover" style="background-image: url(<?php echo base_url().'assets/frontend/bensmart/img/photos/photo-1.jpg' ?>);" href="#!">
-
+			  <?php
+$testimonis = $this->master_model->get_testimoni()->result_array();
+foreach ($testimonis as $testimoni):
+?>
+				<a class="card-img-left bg-cover" style="background-image: url(<?php echo $this->master_model->get_testimoni_photo_url($testimoni['id_testimoni']); ?>); background-size: 500px 300px" href="#!">
 				  <!-- Image (placeholder) -->
-				  <img src="<?php echo base_url().'assets/frontend/bensmart/img/photos/photo-1.jpg' ?>" alt="..." class="img-fluid d-md-none invisible">
-
+				  <img src="<?php echo $this->master_model->get_testimoni_photo_url($testimoni['id_testimoni']); ?>" alt="..." class="img-fluid d-md-none invisible">
+				  <!-- <img src="<?php echo base_url().'assets/frontend/bensmart/img/photos/photo-1.jpg' ?>" alt="..." class="img-fluid d-md-none invisible"> -->
 				</a>
-				<a class="card-img-left bg-cover" style="background-image: url(<?php echo base_url().'assets/frontend/bensmart/img/photos/photo-26.jpg' ?>);" href="#!">
-
+<?php endforeach; ?>
+				<!-- <a class="card-img-left bg-cover" style="background-image: url(<?php echo base_url().'assets/frontend/bensmart/img/photos/photo-26.jpg' ?>);" href="#!"> -->
 				  <!-- Image (placeholder) -->
-				  <img src="<?php echo base_url().'assets/frontend/bensmart/img/photos/photo-26.jpg' ?>" alt="..." class="img-fluid d-md-none invisible">
-
-				</a>
+				  <!-- <img src="<?php echo base_url().'assets/frontend/bensmart/img/photos/photo-26.jpg' ?>" alt="..." class="img-fluid d-md-none invisible"> -->
+				<!-- </a> -->
 			  </div>
 
 			  <!-- Shape -->
@@ -166,7 +168,7 @@ foreach ($testimonis as $testimoni):
 					<blockquote class="blockquote text-center mb-0">
 					  <!-- Text -->
 					  <p class="mb-5 mb-md-7">
-						“<?php echo $testimoni['desc_testimoni']; ?>”
+						“<?php echo strip_tags(html_entity_decode($testimoni['desc_testimoni'])) ?>”
 					  </p>
 					  <!-- Footer -->
 					  <footer class="blockquote-footer">

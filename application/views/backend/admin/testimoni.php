@@ -20,6 +20,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
+                      <th>Foto</th>
                       <th>Nama</th>
                       <th>Testimoni</th>
                       <th>Aksi</th>
@@ -30,6 +31,9 @@
                        foreach ($testimoni->result_array() as $key => $datatestimoni): ?>
                           <tr>
                               <td><?php echo $key+1; ?></td>
+                              <td>
+                                <img src="<?php echo $this->master_model->get_testimoni_photo_url($datatestimoni['id_testimoni']); ?>" alt="" height="50" width="50" class="img-fluid rounded-circle img-thumbnail">
+                              </td>
                               <td><?php echo $datatestimoni['nm_testimoni']; ?></td>
                               <td><?php echo $datatestimoni['desc_testimoni']; ?></td>
                               <td>

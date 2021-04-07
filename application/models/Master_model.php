@@ -203,7 +203,7 @@ class Master_model extends CI_Model
     public function add_jenjang($is_instructor = false)
     {
         $jenjang = html_escape($this->input->post('kd_jenjang'));
-        $cek_jenjang = $this->db->query("select * from ref_jenjang where kd_jenjang = ".$this->db->escape($jenjang)."");
+        $cek_jenjang = $this->db->query("select * from ref_jenjang where kd_jenjang = '$jenjang'");
         if(empty($cek_jenjang)){
             $data['nm_jenjang'] = html_escape($this->input->post('nm_jenjang'));
             $data['kd_jenjang'] = html_escape($this->input->post('kd_jenjang'));
@@ -231,13 +231,13 @@ class Master_model extends CI_Model
 
     public function add_materi_group_sub($is_instructor = false)
     {
-        $data['nm_materi_group_sub'] = html_escape($this->input->post('nm_materi_group_sub'));
-        $data['kd_materi_group_sub'] = html_escape($this->input->post('kd_materi_group_sub'));
-        $data['id_materi_group'] = html_escape($this->input->post('id_materi_group'));
-        $data['cuser'] = $this->session->userdata('id_user');
-		
-		$cek_jenjang = $this->db->query("select * from ref_materi_group_sub where kd_materi_group_sub = '".$data['kd_materi_group_sub']."' ");
-        if(empty($cek_jenjang)){
+        $kd_materi_group_sub = html_escape($this->input->post('kd_materi_group_sub'));
+        $cek_kd_materi_group_sub = $this->db->query("select * from ref_materi_group_sub where kd_materi_group_sub = '$kd_materi_group_sub'");
+        if(empty($cek_kd_materi_group_sub)){
+            $data['nm_materi_group_sub'] = html_escape($this->input->post('nm_materi_group_sub'));
+            $data['kd_materi_group_sub'] = html_escape($this->input->post('kd_materi_group_sub'));
+            $data['id_materi_group'] = html_escape($this->input->post('id_materi_group'));
+            $data['cuser'] = $this->session->userdata('id_user');
 			$this->db->insert('ref_materi_group_sub', $data);
 			$id_materi_group_sub = $this->db->insert_id();
 			$this->session->set_flashdata('flash_message', 'Berhasil Ditambahkan');
@@ -428,7 +428,7 @@ class Master_model extends CI_Model
 		if (isset($_FILES['photo']) && $_FILES['photo']['name'] != "") {
 			unlink('uploads/testimoni/' . $this->db->get_where('ref_testimoni', array('id_testimoni' => $testimoni_id))->row('photo') . '.jpg');
 			$data['photo'] = md5(rand(10000, 10000000));
-			$this->upload_photo($data['photo']);
+			$this->upload_photo_testimoni($data['photo']);
 		}
 		
         $this->db->where('id_testimoni', $testimoni_id);

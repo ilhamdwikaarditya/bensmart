@@ -100,7 +100,7 @@
                                         <div class="form-group row mb-3">
                                             <label class="col-md-3 col-form-label" for="email"> <?php echo get_phrase('email'); ?> <span class="required">*</span> </label>
                                             <div class="col-md-9">
-                                                <input type="email" id="email" name="email" class="form-control" value="<?php echo $member_data['email']; ?>" required>
+                                                <input type="email" id="email" name="email" class="form-control" value="<?php echo $member_data['email']; ?>" required disabled>
                                             </div>
                                         </div>
                                     </div> <!-- end col -->
