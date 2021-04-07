@@ -36,6 +36,7 @@ class Admin extends CI_Controller {
         $count_terjual = $this->db->query("select count(id_class) as jml_terjual from tr_class_member");
         $count_member = $this->db->query("select count(id_user) as jml_member from ref_user where id_level = '3'");
 
+        $page_data['adminstatus'] = $this->session->userdata('admin_login');
         $page_data['page_name'] = 'dashboard';
         $page_data['count_kelas'] = $count_kelas->row()->jml_class;
         $page_data['count_materi'] = $count_materi->row()->jml_materi;
