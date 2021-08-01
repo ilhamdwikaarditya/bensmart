@@ -20,31 +20,36 @@ class Login extends REST_Controller {
         
     }
 	
-	public function login1_post() {
+	public function loginact_post() {
         $email = $this->post('email');
         $password = $this->post('password');
+        $sign_method = $this->post('sign_method');
+        $sign_platform = $this->post('sign_platform');
         $invalidLogin = ['invalid' => $email];
 		
         if(!$email || !$password) $this->response($invalidLogin, REST_Controller::HTTP_NOT_FOUND);
-        $id = $this->Apiauth_model->login($email,$password);
-        if($id) {
-            $token['id'] = $id;
-            $token['email'] = $email;
-            $date = new DateTime();
-            $token['iat'] = $date->getTimestamp();
-            $token['exp'] = $date->getTimestamp() + 60*60*5;
-			$output = array(
-				"sign_method" => "{apps}",
-				"sign_platform" => "{apps}",
-				"data" => array("id" => "{".$id."}","password" => "".$password."","type" => "{user_type}","token" => "{".JWT::encode($token, "sinauobenpinter!")."}","expired_date" => "{".$token['exp']."}"),
-			);
-           
-			
-			
-            $this->set_response($output, REST_Controller::HTTP_OK);
-        }
-        else {
-            $this->set_response($invalidLogin, REST_Controller::HTTP_NOT_FOUND);
+        $data = $this->Apiauth_model->login($email,$password);
+        foreach ($data as $row)
+        {
+            if(!empty($data)) {
+                
+                $id = $row->id_user;
+                $token['id'] = $id;
+                $token['email'] = $email;
+                $date = new DateTime();
+                $token['iat'] = $date->getTimestamp();
+                $token['exp'] = $date->getTimestamp() + 60*60*5;
+                $output = array(
+                    "sign_method" => "".$sign_method."",
+                    "sign_platform" => "".$sign_platform."",
+                    "data" => array("id" => "".$row->id_user."","password" => "".$password."","type" => "".$row->id_level."","token" => "".JWT::encode($token, "sinauobenpinter!")."","expired_date" => "".$token['exp'].""),
+                );
+               
+                $this->set_response($output, REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->set_response($invalidgetuserdata, REST_Controller::HTTP_NOT_FOUND);
+            }
         }
     }
 }
